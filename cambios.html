@@ -40,7 +40,7 @@
 </tr></thead>
 <tbody>
   <tr data-tipo-centro="Hospitalario" data-motivo="Costo">
-    <td><span class="badge-critico" style="font-size:.72rem">CRITICAL</span></td>
+    <td><span class="badge-critico" style="font-size:.72rem" data-i18n="sev.critica">CRITICAL</span></td>
     <td style="font-size:.81rem"><strong>H. La Paz</strong></td>
     <td style="font-size:.79rem;color:var(--sm-text-muted)">Hospital</td>
     <td><span class="badge badge-danger" style="font-size:.7rem">Cost</span></td>
@@ -56,9 +56,9 @@
     </td>
   </tr>
   <tr data-tipo-centro="Escolar" data-motivo="Costo">
-    <td><span class="badge-moderado" style="font-size:.72rem">MODERATE</span></td>
+    <td><span class="badge-moderado" style="font-size:.72rem" data-i18n="sev.moderada">MODERATE</span></td>
     <td style="font-size:.81rem"><strong>C. El Pinar</strong></td>
-    <td style="font-size:.79rem;color:var(--sm-text-muted)">School</td>
+    <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td>
     <td><span class="badge badge-warning" style="font-size:.7rem">Cost</span></td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Menu week 22</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">+3% above target (€3.30 vs €3.20)</td>
@@ -72,9 +72,9 @@
     </td>
   </tr>
   <tr data-tipo-centro="Escolar" data-motivo="Nutricional">
-    <td><span class="badge-moderado" style="font-size:.72rem">MODERATE</span></td>
+    <td><span class="badge-moderado" style="font-size:.72rem" data-i18n="sev.moderada">MODERATE</span></td>
     <td style="font-size:.81rem"><strong>C. Nou Barris</strong></td>
-    <td style="font-size:.79rem;color:var(--sm-text-muted)">School</td>
+    <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td>
     <td><span class="badge badge-warning" style="font-size:.7rem">Nutri.</span></td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Menu week 22</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">+11% caloric intake above target — nutritional deviation</td>
@@ -114,7 +114,7 @@
   <tr data-tipo-centro="3ª Edad" data-motivo="Substitution">
     <td style="font-size:.81rem"><strong>Res. Los Pinos</strong></td>
     <td style="font-size:.79rem;color:var(--sm-text-muted)">Senior Care</td>
-    <td style="font-size:.79rem">Substitution</td>
+    <td style="font-size:.79rem" data-i18n="cambios.motivo.sust">Substitution</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Merluza al vapor</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Dorada a la plancha</td>
     <td><span class="semaforo semaforo-verde mr-1" style="width:7px;height:7px"></span><span style="font-size:.76rem">+€0.05</span></td>
@@ -129,7 +129,7 @@
   <tr data-tipo-centro="Hospitalario" data-motivo="Ajuste">
     <td style="font-size:.81rem"><strong>H. San Juan</strong></td>
     <td style="font-size:.79rem;color:var(--sm-text-muted)">Hospital</td>
-    <td style="font-size:.79rem">Side adjustment</td>
+    <td style="font-size:.79rem" data-i18n="cambios.motivo.ajuste">Side adjustment</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Patatas fritas</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Verduras asadas</td>
     <td><span class="semaforo semaforo-verde mr-1" style="width:7px;height:7px"></span><span style="font-size:.76rem">-€0.12</span></td>
@@ -156,10 +156,10 @@
     <table class="table mb-0">
       <thead><tr><th data-i18n="col.centro">Center</th><th data-i18n="col.tipo">Type</th><th data-i18n="cambios.col.motivo">Reason</th><th data-i18n="cambios.col.detalle">Detail</th><th data-i18n="col.fecha">Date</th><th data-i18n="cambios.col.impacto">Cost impact</th><th></th></tr></thead>
       <tbody>
-        <tr data-tipo-centro="3ª Edad" data-motivo="Substitution"><td><strong>Residencia Los Pinos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)">Senior Care</td><td>Substitution</td><td style="font-size:.82rem">Merluza → Dorada (disponibilidad)</td><td style="font-size:.82rem">25/05/2026</td><td class="text-warning">+€0.05</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
-        <tr data-tipo-centro="Hospitalario" data-motivo="Ajuste"><td><strong>Hospital San Juan</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)">Hospital</td><td>Cost adjustment</td><td style="font-size:.82rem">Side dish optimization week 22</td><td style="font-size:.82rem">25/05/2026</td><td class="text-success">-€0.12</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
-        <tr data-tipo-centro="Escolar" data-motivo="Variante dieta"><td><strong>C. Montserrat</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)">School</td><td>Diet variant</td><td style="font-size:.82rem">New lactose-free variant generated</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-montserrat.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
-        <tr data-tipo-centro="Escolar" data-motivo="Ajuste"><td><strong>C. San Marcos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)">School</td><td>Nutritional adjustment</td><td style="font-size:.82rem">Friday macronutrient rebalance</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-sanmarcos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="3ª Edad" data-motivo="Substitution"><td><strong>Residencia Los Pinos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.terceraEdad">Senior Care</td><td data-i18n="cambios.motivo.sust">Substitution</td><td style="font-size:.82rem">Merluza → Dorada (disponibilidad)</td><td style="font-size:.82rem">25/05/2026</td><td class="text-warning">+€0.05</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="Hospitalario" data-motivo="Ajuste"><td><strong>Hospital San Juan</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.hospitalario">Hospital</td><td data-i18n="cambios.motivo.costo">Cost adjustment</td><td style="font-size:.82rem">Side dish optimization week 22</td><td style="font-size:.82rem">25/05/2026</td><td class="text-success">-€0.12</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="Escolar" data-motivo="Variante dieta"><td><strong>C. Montserrat</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td><td data-i18n="cambios.motivo.dieta">Diet variant</td><td style="font-size:.82rem">New lactose-free variant generated</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-montserrat.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="Escolar" data-motivo="Ajuste"><td><strong>C. San Marcos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td><td data-i18n="cambios.motivo.nutri">Nutritional adjustment</td><td style="font-size:.82rem">Friday macronutrient rebalance</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-sanmarcos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
       </tbody>
     </table>
   </div>

@@ -35,9 +35,9 @@
   </div>
   <div class="d-flex align-items-center flex-wrap" style="gap:.5rem">
     <select class="form-control form-control-sm" id="selPeriodo" style="width:160px;height:32px" onchange="cargarPeriodo()">
-      <option value="2025-09">Septiembre 2025</option>
-      <option value="2025-10">Octubre 2025</option>
-      <option value="2025-11">Noviembre 2025</option>
+      <option value="2025-09" data-m-es="Septiembre 2025" data-m-en="September 2025">Septiembre 2025</option>
+      <option value="2025-10" data-m-es="Octubre 2025" data-m-en="October 2025">Octubre 2025</option>
+      <option value="2025-11" data-m-es="Noviembre 2025" data-m-en="November 2025">Noviembre 2025</option>
     </select>
     <button class="btn btn-outline-primary btn-sm" onclick="abrirModalGenerar()"><i class="mdi mdi-robot"></i> <span data-i18n="basal.btn.generate">Generate base menu</span></button>
   </div>
@@ -82,7 +82,7 @@
       <i class="mdi mdi-alert kpi-icon"></i>
       <div class="kpi-value text-orange" id="kpiDesv">2</div>
       <div class="kpi-label"><span data-i18n="basal.kpi.desv">Rules with deviation</span></div>
-      <div class="kpi-trend" style="color:var(--sm-orange)" data-i18n="basal.kpi.desv.trend"><i class="mdi mdi-alert-outline"></i> &Aacute;mbar &middot; no bloqueantes</div>
+      <div class="kpi-trend" style="color:var(--sm-orange)" ><i class="mdi mdi-alert-outline"></i> <span data-i18n="basal.kpi.desv.trend">Amber &middot; non-blocking</span></div>
     </div>
   </div>
 </div>
@@ -94,10 +94,10 @@
       <h6 class="card-title mb-0" id="tituloSemana"><i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>Base Menu Primary &mdash; Week 1</h6>
       <div class="d-flex align-items-center" style="gap:.5rem" id="basalWeekControls">
         <div class="btn-group btn-group-sm" id="semanaGroup">
-          <button class="btn btn-outline-secondary active" onclick="cambiarSemana(1,this)">Sem 1</button>
-          <button class="btn btn-outline-secondary" onclick="cambiarSemana(2,this)">Sem 2</button>
-          <button class="btn btn-outline-secondary" onclick="cambiarSemana(3,this)">Sem 3</button>
-          <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)">Sem 4</button>
+          <button class="btn btn-outline-secondary active" onclick="cambiarSemana(1,this)"><span data-i18n="basal.sem">Sem</span> 1</button>
+          <button class="btn btn-outline-secondary" onclick="cambiarSemana(2,this)"><span data-i18n="basal.sem">Sem</span> 2</button>
+          <button class="btn btn-outline-secondary" onclick="cambiarSemana(3,this)"><span data-i18n="basal.sem">Sem</span> 3</button>
+          <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)"><span data-i18n="basal.sem">Sem</span> 4</button>
         </div>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
         <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> <span data-i18n="basal.btn.genCentros">Generate center menus</span></button>
@@ -107,10 +107,10 @@
     <!-- Sub-tabs escolar: en la cabecera del card, solo visibles cuando tipo=escolar -->
     <div id="escolarBasalSubTabs" style="display:none">
       <ul class="nav nav-tabs mt-2 mb-0">
-        <li class="nav-item"><a class="nav-link active" href="#" data-subtipo="primaria" onclick="switchSubtipo('primaria');return false;">Base Menu Primary</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="secundaria" onclick="switchSubtipo('secundaria');return false;">Base Menu Secondary</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="infantil" onclick="switchSubtipo('infantil');return false;">Base Menu Infant</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="residencia-escolar" onclick="switchSubtipo('residencia-escolar');return false;">Men&uacute; Basal Residencia Escolar</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#" data-subtipo="primaria" onclick="switchSubtipo('primaria');return false;"><span data-i18n="basal.tab.primary">Base Menu Primary</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="secundaria" onclick="switchSubtipo('secundaria');return false;"><span data-i18n="basal.tab.secondary">Base Menu Secondary</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="infantil" onclick="switchSubtipo('infantil');return false;"><span data-i18n="basal.tab.infant">Base Menu Infant</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="residencia-escolar" onclick="switchSubtipo('residencia-escolar');return false;"><span data-i18n="basal.tab.residence">Men&uacute; Basal Residencia Escolar</span></a></li>
       </ul>
     </div>
     <!-- Estado: no generado -->
@@ -584,12 +584,12 @@ function renderKPIs(key, cfg, gen) {
 
 function renderSemaforo(key, cfg, gen) {
   var rules = [
-    {ok:gen, label:'Cost per diner', desc: gen ? 'Within target €'+cfg.target.toFixed(2)+'/diner' : 'No data — generate the menu first'},
-    {ok:gen, label:'Caloric range ('+cfg.kcalLabel+')', desc: gen ? 'Avg '+Math.round((cfg.kcalMin+cfg.kcalMax)/2)+' kcal · meets '+cfg.norma : 'No data'},
-    {ok:gen, label:'Variety (no repeat in 15 days)', desc: gen ? 'No repetitions detected' : 'No data'},
-    {ok: gen && key !== 'hospital', label:'Fish frequency', desc: !gen ? 'No data' : (key === 'hospital' ? '1.2 srv/wk · min. recommended 2' : '1.8 srv/wk · within range')},
-    {ok: gen && key !== 'escolar-primaria', label:'Weekly wholegrains', desc: !gen ? 'No data' : (key === 'escolar-primaria' ? '0 of 1 weekly minimum this week' : '1 of 1 minimum · OK')},
-    {ok:gen, label:'Macronutrients', desc: gen ? 'P 13.2% · F 31.8% · C 55% · OK' : 'No data'}
+    {ok:gen, label:t('basal.rules.costDiner'), desc: gen ? t('basal.rules.costVal') : 'No data'},
+    {ok:gen, label:t('basal.rules.kcal'), desc: gen ? t('basal.rules.kcalVal') : 'No data'},
+    {ok:gen, label:t('basal.rules.variety'), desc: gen ? t('basal.rules.varietyVal') : 'No data'},
+    {ok: gen && key !== 'hospital', label:t('basal.rules.fish'), desc: !gen ? 'No data' : (key === 'hospital' ? '1.2 srv/wk' : t('basal.rules.fishVal'))},
+    {ok: gen && key !== 'escolar-primaria', label:t('basal.rules.grains'), desc: !gen ? 'No data' : (key === 'escolar-primaria' ? t('basal.rules.grainsVal') : '1 of 1 minimum · OK')},
+    {ok:gen, label:t('basal.rules.macro'), desc: gen ? 'P 13.2% · F 31.8% · C 55% · OK' : 'No data'}
   ];
   var html = '';
   rules.forEach(function(r) {
@@ -1155,5 +1155,23 @@ function cargarPeriodo(){smToast('Loading selected period…','info',1800);}
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderPage();
 (function(){var t=sessionStorage.getItem('menuBasalTipo');if(t){sessionStorage.removeItem('menuBasalTipo');switchTipo(t);}})();
+</script>
+
+<script>
+(function(){
+  var _mData = [
+    {sel:'option[value="2025-09"]',es:'Septiembre 2025',en:'September 2025'},
+    {sel:'option[value="2025-10"]',es:'Octubre 2025',en:'October 2025'},
+    {sel:'option[value="2025-11"]',es:'Noviembre 2025',en:'November 2025'}
+  ];
+  var _orig = window.applyI18n;
+  window.applyI18n = function(){
+    if(_orig) _orig();
+    var lang = window.I18N_LANG || 'en';
+    _mData.forEach(function(m){
+      document.querySelectorAll(m.sel).forEach(function(o){ o.textContent = lang==='es'?m.es:m.en; });
+    });
+  };
+})();
 </script>
 </body></html>

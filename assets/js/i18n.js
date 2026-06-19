@@ -431,6 +431,19 @@
       'det.cost.fullDayTarget': 'Objetivo día completo',
       'det.cost.avgFullDay': 'Costo medio día completo',
       'det.cost.withinTarget': 'Dentro del objetivo',
+      /* ── EXTRA v5 ────────────────── */
+      'menus.filter.datePh': 'dd/mm/aaaa',
+      'menus.filter.all': 'Todos',
+      'menus.tipo.hospital': 'Menú hospitalario',
+      'menus.tipo.senior': 'Menú residencia',
+      'menus.tipo.corp': 'Menú corporativo',
+      'basal.tab.primary': 'Menú Base Principal',
+      'basal.tab.secondary': 'Menú Base Secundario',
+      'basal.tab.infant': 'Menú Base Infantil',
+      'basal.tab.residence': 'Menú Basal Residencia Escolar',
+      'cambios.detail.blocksPublication': 'bloquea publicación',
+      'cambios.detail.menuWeek': 'Semana de menú',
+      'dash.kpi.excep.short': 'Excep.',
     },
     en: {
       /* ── SIDEBAR ─────────────────── */
@@ -859,6 +872,19 @@
       'det.cost.fullDayTarget': 'Full day target',
       'det.cost.avgFullDay': 'Avg full day cost',
       'det.cost.withinTarget': 'Within target',
+      /* ── EXTRA v5 ────────────────── */
+      'menus.filter.datePh': 'dd/mm/yyyy',
+      'menus.filter.all': 'All',
+      'menus.tipo.hospital': 'Hospital menu',
+      'menus.tipo.senior': 'Senior care menu',
+      'menus.tipo.corp': 'Corporate menu',
+      'basal.tab.primary': 'Base Menu Primary',
+      'basal.tab.secondary': 'Base Menu Secondary',
+      'basal.tab.infant': 'Base Menu Infant',
+      'basal.tab.residence': 'Base Menu School Residence',
+      'cambios.detail.blocksPublication': 'blocks publication',
+      'cambios.detail.menuWeek': 'Menu week',
+      'dash.kpi.excep.short': 'Excep.',
     }
   };
 
@@ -950,7 +976,15 @@
       'En revisión': t('status.revision'),
       'Sincronizado': t('status.sincronizado'),
       'Activo': t('status.activo'),
-      'Inactivo': t('status.inactivo')
+      'Inactivo': t('status.inactivo'),
+      'Approved': t('status.aprobado'),
+      'Pending': t('status.pendiente'),
+      'Draft': t('status.borrador'),
+      'Published': t('status.publicado'),
+      'Under review': t('status.revision'),
+      'Synced': t('status.sincronizado'),
+      'Active': t('status.activo'),
+      'Inactive': t('status.inactivo')
     };
     return _m[s] || s;
   };
@@ -960,7 +994,11 @@
       'Hospitalario': t('tipo.hospitalario'),
       '3ª Edad': t('tipo.terceraEdad'),
       'Empresa': t('tipo.empresa'),
-      'Residencia': t('tipo.residencia')
+      'Residencia': t('tipo.residencia'),
+      'School menu': t('menus.tipo.escolar'),
+      'Hospital menu': t('menus.tipo.hospital'),
+      'Senior care menu': t('menus.tipo.senior'),
+      'Corporate menu': t('menus.tipo.corp')
     };
     return _m[s] || s;
   };

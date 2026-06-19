@@ -23,12 +23,12 @@
     <a href="configuracion.html" class="btn btn-sm btn-outline-secondary" onclick="sessionStorage.setItem('cfgTab','cfgIntegracion')"><i class="mdi mdi-lan-connect"></i> <span data-i18n="pub.btn.crownet">Crownet status</span></a>
     <button class="btn btn-primary btn-sm" onclick="publicarSeleccionados()"><i class="mdi mdi-cloud-upload"></i> <span data-i18n="pub.btn.selected">Publish selected</span></button>
   </div>
-</div><div class="row mb-4"><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-orange"><i class="mdi mdi-clock kpi-icon"></i><div class="kpi-value text-orange">3</div><div class="kpi-label"><span data-i18n="pub.kpi.pending">Pending publication</span></div></div></div><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-green"><i class="mdi mdi-check-circle kpi-icon"></i><div class="kpi-value text-green">12</div><div class="kpi-label"><span data-i18n="pub.kpi.published">Published this week</span></div></div></div><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-blue"><i class="mdi mdi-cloud-sync kpi-icon"></i><div class="kpi-value text-blue">100%</div><div class="kpi-label"><span data-i18n="pub.kpi.sync">Synced with Crownet</span></div></div></div><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-green"><i class="mdi mdi-account-group kpi-icon"></i><div class="kpi-value text-green">2.841</div><div class="kpi-label"><span data-i18n="pub.kpi.comensales">Diners served</span></div></div></div></div><div class="card mb-4"><div class="card-body"><h6 class="card-title mb-3"><i class="mdi mdi-clock-outline mr-1" style="color:var(--sm-orange)"></i><span data-i18n="pub.queue.title">Publication Queue — Pending</span></h6><table class="table mb-0"><thead><tr><th style="width:40px"><input type="checkbox" id="chkAll" onclick="toggleAll(this)"></th><th data-i18n="col.centro">Center</th><th data-i18n="pub.col.menu">Menu / Period</th><th class="text-center" data-i18n="pub.col.valStatus">Validation status</th><th class="text-center" data-i18n="pub.col.cost">Cost</th><th class="text-center" data-i18n="pub.col.nutri">Nutritional</th><th data-i18n="col.acciones">Actions</th></tr></thead><tbody>
+</div><div class="row mb-4"><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-orange"><i class="mdi mdi-clock kpi-icon"></i><div class="kpi-value text-orange">3</div><div class="kpi-label"><span data-i18n="pub.kpi.pending">Pending publication</span></div></div></div><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-green"><i class="mdi mdi-check-circle kpi-icon"></i><div class="kpi-value text-green">12</div><div class="kpi-label"><span data-i18n="pub.kpi.published">Published this week</span></div></div></div><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-blue"><i class="mdi mdi-cloud-sync kpi-icon"></i><div class="kpi-value text-blue">100%</div><div class="kpi-label"><span data-i18n="pub.kpi.sync">Synced with Crownet</span></div></div></div><div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-green"><i class="mdi mdi-account-group kpi-icon"></i><div class="kpi-value text-green">2.841</div><div class="kpi-label"><span data-i18n="pub.kpi.comensales">Diners served</span></div></div></div></div><div class="card mb-4"><div class="card-body"><h6 class="card-title mb-3"><i class="mdi mdi-clock-outline mr-1" style="color:var(--sm-orange)"></i><span data-i18n="pub.queue.title">Publication Queue — Pending</span></h6><table class="table mb-0"><thead><tr><th style="width:40px"><input type="checkbox" id="chkAll" onclick="toggleAll(this)"></th><th data-i18n="col.centro">Center</th><th data-i18n="pub.col.menu">Menu / Period</th><th class="text-center" data-i18n="pub.col.estadoVal">Validation status</th><th class="text-center" data-i18n="pub.col.cost">Cost</th><th class="text-center" data-i18n="pub.col.nutri">Nutritional</th><th data-i18n="col.acciones">Actions</th></tr></thead><tbody>
   <tr data-centro="C. La Paz" data-bloqueado="false" data-tipo="Hospitalario" data-estado="Aprobado">
     <td><input type="checkbox" class="chk-pub"></td>
     <td><strong>C. La Paz</strong><div class="text-muted" style="font-size:.74rem" data-i18n="pub.sub.excepAprobada">Excepci&oacute;n de costo aprobada</div></td>
     <td>Week 22 — 22–26 May 2026</td>
-    <td class="text-center"><span class="badge-aprobado">Approved</span></td>
+    <td class="text-center"><span class="badge-aprobado" data-i18n="status.aprobado">Approved</span></td>
     <td class="text-center text-warning font-weight-bold">108%<div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="pub.badge.approvedException">approved exception</div></td>
     <td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar bg-warning" style="width:94%"></div></div><div style="font-size:.72rem;color:#6c757d;margin-top:2px">94%</div></td>
     <td><div class="d-flex" style="gap:.3rem">
@@ -41,7 +41,7 @@
     <td><strong>Hospital San Juan</strong><div class="text-muted" style="font-size:.74rem" data-i18n="pub.sub.pendApproval">Pending approval</div></td>
     <td>Week 22 — 22–26 May 2026</td>
     <td class="text-center">
-      <span class="badge-pendiente">Under review</span>
+      <span class="badge-pendiente" data-i18n="status.revision">Under review</span>
       <div class="mt-1 d-flex align-items-center justify-content-center" style="gap:.3rem;font-size:.74rem;color:var(--sm-danger)">
         <i class="mdi mdi-block-helper"></i> <span data-i18n="pub.badge.noPublicable">No publicable</span>
       </div>
@@ -57,7 +57,7 @@
     <td><input type="checkbox" class="chk-pub"></td>
     <td><strong>C. San Marcos</strong><div class="text-muted" style="font-size:.74rem" data-i18n="pub.sub.menuReady">Menu and diet variants ready</div></td>
     <td>Week 23 — 29 May–2 Jun 2026</td>
-    <td class="text-center"><span class="badge-aprobado">Approved</span></td>
+    <td class="text-center"><span class="badge-aprobado" data-i18n="status.aprobado">Approved</span></td>
     <td class="text-center text-success font-weight-bold">96.1%</td>
     <td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar" style="width:97%"></div></div><div style="font-size:.72rem;color:#6c757d;margin-top:2px">97%</div></td>
     <td><div class="d-flex" style="gap:.3rem">
