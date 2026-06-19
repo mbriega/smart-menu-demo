@@ -533,33 +533,33 @@ function confirmarRechazoLP() {
 var recetasCrownet = ['Sopa castellana','Ensalada mixta','Crema de calabaza','Caldo de pollo','Gazpacho','Crema de verduras','Pollo asado','Merluza al horno','Lomo de cerdo','Bacalao al horno','Salmón a la plancha','Pechuga plancha','Ternera estofada','Tortilla francesa','Arroz blanco','Patatas vapor','Verduras salteadas','Puré de patata','Ensalada verde','Arroz integral','Fruta del tiempo','Yogur natural','Naranja','Flan de huevo','Gelatina','Compota de manzana','Crema de verduras','Menústera de verduras'];
 
 var recetasDB = {
-  'Sopa castellana':{kcal:185,prot:'7g',grasa:'5g',hc:'28g',alerg:'Gluten',costo:'€0.45',receta:'Caldo de carne, pan tostado, huevo, pimentón, ajo.'},
-  'Ensalada mixta':{kcal:55,prot:'2g',grasa:'2g',hc:'8g',alerg:'Ninguno',costo:'€0.25',receta:'Lechuga, tomate, cebolla, zanahoria, aceitunas.'},
-  'Crema de calabaza':{kcal:145,prot:'3g',grasa:'5g',hc:'22g',alerg:'Ninguno',costo:'€0.40',receta:'Calabaza, cebolla, caldo de verduras, nata, sal.'},
-  'Caldo de pollo':{kcal:65,prot:'4g',grasa:'2g',hc:'8g',alerg:'Ninguno',costo:'€0.35',receta:'Carcasa de pollo, zanahoria, puerro, apio, sal.'},
-  'Gazpacho':{kcal:95,prot:'2g',grasa:'4g',hc:'12g',alerg:'Ninguno',costo:'€0.35',receta:'Tomate, pepino, pimiento, ajo, pan, aceite, vinagre.'},
-  'Pollo asado':{kcal:320,prot:'38g',grasa:'14g',hc:'2g',alerg:'Ninguno',costo:'€1.20',receta:'Muslo de pollo, ajo, romero, limón, aceite, pimienta.'},
-  'Merluza al horno':{kcal:215,prot:'33g',grasa:'7g',hc:'0g',alerg:'Pescado',costo:'€1.35',receta:'Merluza, limón, ajo, perejil, aceite, sal.'},
-  'Lomo de cerdo':{kcal:290,prot:'35g',grasa:'14g',hc:'0g',alerg:'Ninguno',costo:'€1.10',receta:'Lomo de cerdo, ajo, pimentón, romero, aceite, sal.'},
-  'Bacalao al horno':{kcal:250,prot:'36g',grasa:'8g',hc:'0g',alerg:'Pescado',costo:'€1.40',receta:'Bacalao, tomate, cebolla, pimiento, aceite, ajo.'},
-  'Salmón a la plancha':{kcal:295,prot:'38g',grasa:'14g',hc:'0g',alerg:'Pescado',costo:'€1.55',receta:'Salmón fresco, limón, eneldo, aceite, sal.'},
-  'Pechuga plancha':{kcal:195,prot:'40g',grasa:'5g',hc:'0g',alerg:'Ninguno',costo:'€0.90',receta:'Pechuga de pollo, aceite, sal, limón.'},
-  'Ternera estofada':{kcal:380,prot:'42g',grasa:'18g',hc:'8g',alerg:'Ninguno',costo:'€1.55',receta:'Ternera, cebolla, zanahoria, vino blanco, caldo.'},
-  'Tortilla francesa':{kcal:210,prot:'12g',grasa:'14g',hc:'2g',alerg:'Huevo',costo:'€0.55',receta:'Huevo, aceite, sal.'},
-  'Arroz blanco':{kcal:130,prot:'3g',grasa:'0g',hc:'28g',alerg:'Ninguno',costo:'€0.22',receta:'Arroz, agua, sal, aceite.'},
-  'Patatas vapor':{kcal:95,prot:'2g',grasa:'0g',hc:'21g',alerg:'Ninguno',costo:'€0.20',receta:'Patatas, sal, perejil.'},
-  'Verduras salteadas':{kcal:80,prot:'3g',grasa:'3g',hc:'11g',alerg:'Ninguno',costo:'€0.30',receta:'Calabacín, pimiento, cebolla, aceite, sal.'},
-  'Puré de patata':{kcal:120,prot:'2g',grasa:'4g',hc:'19g',alerg:'Lactosa',costo:'€0.25',receta:'Patata, mantequilla, leche, sal, nuez moscada.'},
-  'Ensalada verde':{kcal:38,prot:'2g',grasa:'2g',hc:'5g',alerg:'Ninguno',costo:'€0.18',receta:'Lechuga, pepino, aceitunas, aceite, sal.'},
-  'Arroz integral':{kcal:140,prot:'3g',grasa:'1g',hc:'30g',alerg:'Ninguno',costo:'€0.25',receta:'Arroz integral, agua, sal.'},
-  'Patatas asadas':{kcal:105,prot:'2g',grasa:'2g',hc:'21g',alerg:'Ninguno',costo:'€0.22',receta:'Patatas, aceite, sal, romero.'},
-  'Fruta del tiempo':{kcal:60,prot:'1g',grasa:'0g',hc:'15g',alerg:'Ninguno',costo:'€0.35',receta:'Fruta de temporada fresca.'},
-  'Yogur natural':{kcal:65,prot:'4g',grasa:'3g',hc:'5g',alerg:'Lactosa',costo:'€0.28',receta:'Yogur natural sin azúcar.'},
-  'Naranja':{kcal:45,prot:'1g',grasa:'0g',hc:'11g',alerg:'Ninguno',costo:'€0.15',receta:'Naranja fresca.'},
-  'Flan de huevo':{kcal:175,prot:'7g',grasa:'6g',hc:'23g',alerg:'Huevo,Lactosa',costo:'€0.38',receta:'Huevo, leche, azúcar, caramelo.'},
-  'Gelatina':{kcal:80,prot:'2g',grasa:'0g',hc:'18g',alerg:'Ninguno',costo:'€0.20',receta:'Gelatina, agua, azúcar, sabor natural.'},
-  'Compota de manzana':{kcal:90,prot:'0g',grasa:'0g',hc:'22g',alerg:'Ninguno',costo:'€0.22',receta:'Manzana, azúcar, canela.'},
-  'Crema de verduras':{kcal:130,prot:'4g',grasa:'4g',hc:'19g',alerg:'Ninguno',costo:'€0.40',receta:'Verduras variadas, caldo, aceite, sal.'}
+  'Sopa castellana':{kcal:185,prot:'7g',grasa:'5g',hc:'28g',alerg:'Gluten',costo:'€0.45',receta:'Meat broth, toast, egg, paprika, garlic.'},
+  'Ensalada mixta':{kcal:55,prot:'2g',grasa:'2g',hc:'8g',alerg:'None',costo:'€0.25',receta:'Lettuce, tomato, onion, carrot, olives.'},
+  'Crema de calabaza':{kcal:145,prot:'3g',grasa:'5g',hc:'22g',alerg:'None',costo:'€0.40',receta:'Pumpkin, onion, vegetable broth, cream, salt.'},
+  'Caldo de pollo':{kcal:65,prot:'4g',grasa:'2g',hc:'8g',alerg:'None',costo:'€0.35',receta:'Chicken carcass, carrot, leek, celery, salt.'},
+  'Gazpacho':{kcal:95,prot:'2g',grasa:'4g',hc:'12g',alerg:'None',costo:'€0.35',receta:'Tomato, cucumber, bell pepper, garlic, bread, oil, vinegar.'},
+  'Pollo asado':{kcal:320,prot:'38g',grasa:'14g',hc:'2g',alerg:'None',costo:'€1.20',receta:'Muslo de pollo, ajo, romero, limón, aceite, pimienta.'},
+  'Merluza al horno':{kcal:215,prot:'33g',grasa:'7g',hc:'0g',alerg:'Pescado',costo:'€1.35',receta:'Hake, lemon, garlic, parsley, oil, salt.'},
+  'Lomo de cerdo':{kcal:290,prot:'35g',grasa:'14g',hc:'0g',alerg:'None',costo:'€1.10',receta:'Pork loin, garlic, paprika, rosemary, oil, salt.'},
+  'Bacalao al horno':{kcal:250,prot:'36g',grasa:'8g',hc:'0g',alerg:'Pescado',costo:'€1.40',receta:'Cod, tomato, onion, bell pepper, oil, garlic.'},
+  'Salmón a la plancha':{kcal:295,prot:'38g',grasa:'14g',hc:'0g',alerg:'Pescado',costo:'€1.55',receta:'Fresh salmon, lemon, dill, oil, salt.'},
+  'Pechuga plancha':{kcal:195,prot:'40g',grasa:'5g',hc:'0g',alerg:'None',costo:'€0.90',receta:'Chicken breast, oil, salt, lemon.'},
+  'Ternera estofada':{kcal:380,prot:'42g',grasa:'18g',hc:'8g',alerg:'None',costo:'€1.55',receta:'Beef, onion, carrot, white wine, broth.'},
+  'Tortilla francesa':{kcal:210,prot:'12g',grasa:'14g',hc:'2g',alerg:'Huevo',costo:'€0.55',receta:'Egg, oil, salt.'},
+  'Arroz blanco':{kcal:130,prot:'3g',grasa:'0g',hc:'28g',alerg:'None',costo:'€0.22',receta:'Rice, water, salt, oil.'},
+  'Patatas vapor':{kcal:95,prot:'2g',grasa:'0g',hc:'21g',alerg:'None',costo:'€0.20',receta:'Potatoes, salt, parsley.'},
+  'Verduras salteadas':{kcal:80,prot:'3g',grasa:'3g',hc:'11g',alerg:'None',costo:'€0.30',receta:'Zucchini, bell pepper, onion, oil, salt.'},
+  'Puré de patata':{kcal:120,prot:'2g',grasa:'4g',hc:'19g',alerg:'Lactosa',costo:'€0.25',receta:'Potato, butter, milk, salt, nutmeg.'},
+  'Ensalada verde':{kcal:38,prot:'2g',grasa:'2g',hc:'5g',alerg:'None',costo:'€0.18',receta:'Lettuce, cucumber, olives, oil, salt.'},
+  'Arroz integral':{kcal:140,prot:'3g',grasa:'1g',hc:'30g',alerg:'None',costo:'€0.25',receta:'Brown rice, water, salt.'},
+  'Patatas asadas':{kcal:105,prot:'2g',grasa:'2g',hc:'21g',alerg:'None',costo:'€0.22',receta:'Potatoes, oil, salt, rosemary.'},
+  'Fruta del tiempo':{kcal:60,prot:'1g',grasa:'0g',hc:'15g',alerg:'None',costo:'€0.35',receta:'Fresh seasonal fruit.'},
+  'Yogur natural':{kcal:65,prot:'4g',grasa:'3g',hc:'5g',alerg:'Lactosa',costo:'€0.28',receta:'Plain unsweetened yogurt.'},
+  'Naranja':{kcal:45,prot:'1g',grasa:'0g',hc:'11g',alerg:'None',costo:'€0.15',receta:'Fresh orange.'},
+  'Flan de huevo':{kcal:175,prot:'7g',grasa:'6g',hc:'23g',alerg:'Huevo,Lactosa',costo:'€0.38',receta:'Egg, milk, sugar, caramel.'},
+  'Gelatina':{kcal:80,prot:'2g',grasa:'0g',hc:'18g',alerg:'None',costo:'€0.20',receta:'Gelatin, water, sugar, natural flavor.'},
+  'Compota de manzana':{kcal:90,prot:'0g',grasa:'0g',hc:'22g',alerg:'None',costo:'€0.22',receta:'Apple, sugar, cinnamon.'},
+  'Crema de verduras':{kcal:130,prot:'4g',grasa:'4g',hc:'19g',alerg:'None',costo:'€0.40',receta:'Mixed vegetables, broth, oil, salt.'}
 };
 
 var variantesDB = [
@@ -594,9 +594,9 @@ var menuVariantesData = {
 
 // ── Funciones de variantes (misma lógica que sanmarcos) ───────────────────────
 function verPlato(nombre,dia){
-  var d=recetasDB[nombre]||{kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'Sin datos',costo:'—',receta:'Información no disponible.'};
-  var ac=d.alerg==='Ninguno'?'var(--sm-green)':'var(--sm-orange)';
-  var ai=d.alerg==='Ninguno'?'mdi-check-circle-outline':'mdi-alert-outline';
+  var d=recetasDB[nombre]||{kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'No data',costo:'—',receta:'Information not available.'};
+  var ac=d.alerg==='None'?'var(--sm-green)':'var(--sm-orange)';
+  var ai=d.alerg==='None'?'mdi-check-circle-outline':'mdi-alert-outline';
   document.getElementById('mPlatoTitle').innerHTML='<i class="mdi mdi-food mr-2" style="color:var(--sm-green)"></i>'+nombre+(dia?' — '+dia:'');
   document.getElementById('mPlatoBody').innerHTML='<div class="d-flex" style="gap:1.2rem"><div style="flex:1"><div class="plato-label">Ingredients / Recipe</div><p class="plato-receta">'+d.receta+'</p><div class="plato-label">Allergens</div><p class="plato-alerg"><i class="mdi '+ai+' mr-1" style="color:'+ac+'"></i>'+d.alerg+'</p></div><div class="plato-nutri-box"><div class="plato-label">Nutritional information</div><div class="plato-nutri-row"><span style="color:#6c757d">Calories</span><strong>'+d.kcal+' kcal</strong></div><div class="plato-nutri-row"><span style="color:#6c757d">Protein</span><strong>'+d.prot+'</strong></div><div class="plato-nutri-row"><span style="color:#6c757d">Fat</span><strong>'+d.grasa+'</strong></div><div class="plato-nutri-row"><span style="color:#6c757d">Carbs</span><strong>'+d.hc+'</strong></div><div class="plato-nutri-row" style="margin-top:.3rem;padding-top:.4rem;border-top:2px solid #e5e7eb"><span style="color:#6c757d">Cost/serving</span><strong style="color:var(--sm-green)">'+d.costo+'</strong></div></div></div>';
   $('#modalPlato').modal('show');
@@ -629,7 +629,7 @@ function renderVariantes() {
     html += '<td class="text-center" style="font-size:.82rem">' + v.costo + '</td>';
     html += '<td>' + badge + '</td>';
     html += '<td><div class="d-flex" style="gap:.3rem">';
-    html += '<button class="btn btn-sm btn-outline-primary p-1" onclick="abrirDetalleVariante(' + idx + ')" title="Ver menú completo"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>';
+    html += '<button class="btn btn-sm btn-outline-primary p-1" onclick="abrirDetalleVariante(' + idx + ')" title="View full menu"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>';
     html += '<button class="btn btn-sm btn-outline-secondary p-1" onclick="abrirEdicionVariante(' + idx + ')" title="Edit dishes"><i class="mdi mdi-pencil" style="font-size:.85rem"></i></button>';
     html += '<button class="btn btn-sm btn-success p-1" onclick="aprobarVariante(' + idx + ')" title="Approve variant"><i class="mdi mdi-check" style="font-size:.85rem"></i></button>';
     html += '</div></td>';

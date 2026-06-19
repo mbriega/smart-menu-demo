@@ -305,7 +305,7 @@ function renderCentrosTabla(pag){
       '<td><div class="d-flex" style="gap:.3rem">'+
         '<button class="btn btn-sm btn-outline-primary" onclick="abrirCentro(\''+c.id+'\')"><i class="mdi mdi-eye"></i> Profile</button>'+
         '<a href="'+(_CENTROS_DETALLE[c.estadoMenu]||'menu-detalle.html')+'" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-food-fork-drink"></i> Menus</a>'+
-        '<a href="menu-basal.html" onclick="irBasalCentro(\''+c.tipo+'\');return false;" class="btn btn-sm btn-outline-primary" title="Menú Basal"><i class="mdi mdi-silverware-fork-knife"></i> Basal</a>'+
+        '<a href="menu-basal.html" onclick="irBasalCentro(\''+c.tipo+'\');return false;" class="btn btn-sm btn-outline-primary" title="Base Menu"><i class="mdi mdi-silverware-fork-knife"></i> Basal</a>'+
         '<button class="btn btn-sm btn-outline-warning" onclick="editarCentro(\''+c.nombre.replace(/'/g,"\\'")+'\')" ><i class="mdi mdi-pencil"></i></button>'+
         '<button class="btn btn-sm btn-outline-warning" onclick="smToast(\'Contacto: responsable@centro.es\',\'info\',4000)"><i class="mdi mdi-phone"></i></button>'+
       '</div></td>'+

@@ -326,7 +326,7 @@ function toggleEdicion() {
       cell.innerHTML = sel;
       cell.onclick = null;
     });
-    smToast('Modo edición activo. Selecciona recetas del catálogo Crownet.', 'info', 3000);
+    smToast('Edit mode active. Select dishes from the Crownet catalog.', 'info', 3000);
   } else {
     var cambios = [];
     cells.forEach(function(cell) {
@@ -365,27 +365,27 @@ function toggleEdicion() {
 }
 
 var recetasDB = {
-  'Sopa de fideos':      {kcal:180,prot:'6g',grasa:'4g',hc:'32g',alerg:'Gluten',costo:'€0.45',receta:'Caldo de pollo, fideos, zanahoria, cebolla, aceite, sal.'},
-  'Pollo asado':         {kcal:320,prot:'38g',grasa:'14g',hc:'2g',alerg:'Ninguno',costo:'€1.20',receta:'Muslo de pollo, ajo, romero, aceite, pimienta, limón.'},
-  'Merluza al vapor':    {kcal:210,prot:'32g',grasa:'6g',hc:'0g',alerg:'Pescado',costo:'€1.35',receta:'Merluza fresca, limón, aceite, perejil, sal.'},
-  'Bacalao al horno':    {kcal:240,prot:'36g',grasa:'8g',hc:'0g',alerg:'Pescado',costo:'€1.40',receta:'Bacalao, tomate, cebolla, pimiento, aceite, ajo.'},
-  'Macarrones boloñesa': {kcal:420,prot:'18g',grasa:'12g',hc:'62g',alerg:'Gluten, Lactosa',costo:'€0.75',receta:'Pasta, carne picada, tomate, cebolla, ajo, aceite, queso.'},
-  'Patatas al vapor':    {kcal:95,prot:'2g',grasa:'0g',hc:'21g',alerg:'Ninguno',costo:'€0.20',receta:'Patatas, sal, perejil.'},
-  'Verduras salteadas':  {kcal:80,prot:'3g',grasa:'3g',hc:'11g',alerg:'Ninguno',costo:'€0.30',receta:'Calabacín, pimiento, cebolla, aceite, sal.'},
-  'Puré de patata':      {kcal:120,prot:'2g',grasa:'4g',hc:'19g',alerg:'Lactosa',costo:'€0.25',receta:'Patata, mantequilla, leche, sal, nuez moscada.'},
-  'Ensalada':            {kcal:45,prot:'1g',grasa:'2g',hc:'6g',alerg:'Ninguno',costo:'€0.18',receta:'Lechuga, tomate, zanahoria, aceite, vinagre, sal.'},
-  'Arroz blanco':        {kcal:130,prot:'3g',grasa:'0g',hc:'28g',alerg:'Ninguno',costo:'€0.22',receta:'Arroz, agua, sal, aceite.'},
-  'Fruta del tiempo':    {kcal:60,prot:'1g',grasa:'0g',hc:'15g',alerg:'Ninguno',costo:'€0.35',receta:'Fruta de temporada fresca.'},
-  'Yogur natural':       {kcal:65,prot:'4g',grasa:'3g',hc:'5g',alerg:'Lactosa',costo:'€0.28',receta:'Yogur natural sin azúcar.'}
+  'Sopa de fideos':      {kcal:180,prot:'6g',grasa:'4g',hc:'32g',alerg:'Gluten',costo:'€0.45',receta:'Chicken broth, noodles, carrot, onion, oil, salt.'},
+  'Pollo asado':         {kcal:320,prot:'38g',grasa:'14g',hc:'2g',alerg:'None',costo:'€1.20',receta:'Chicken thigh, garlic, rosemary, oil, pepper, lemon.'},
+  'Merluza al vapor':    {kcal:210,prot:'32g',grasa:'6g',hc:'0g',alerg:'Pescado',costo:'€1.35',receta:'Fresh hake, lemon, oil, parsley, salt.'},
+  'Bacalao al horno':    {kcal:240,prot:'36g',grasa:'8g',hc:'0g',alerg:'Pescado',costo:'€1.40',receta:'Cod, tomato, onion, bell pepper, oil, garlic.'},
+  'Macarrones boloñesa': {kcal:420,prot:'18g',grasa:'12g',hc:'62g',alerg:'Gluten, Lactosa',costo:'€0.75',receta:'Pasta, minced meat, tomato, onion, garlic, oil, cheese.'},
+  'Patatas al vapor':    {kcal:95,prot:'2g',grasa:'0g',hc:'21g',alerg:'None',costo:'€0.20',receta:'Potatoes, salt, parsley.'},
+  'Verduras salteadas':  {kcal:80,prot:'3g',grasa:'3g',hc:'11g',alerg:'None',costo:'€0.30',receta:'Zucchini, bell pepper, onion, oil, salt.'},
+  'Puré de patata':      {kcal:120,prot:'2g',grasa:'4g',hc:'19g',alerg:'Lactosa',costo:'€0.25',receta:'Potato, butter, milk, salt, nutmeg.'},
+  'Ensalada':            {kcal:45,prot:'1g',grasa:'2g',hc:'6g',alerg:'None',costo:'€0.18',receta:'Lettuce, tomato, carrot, oil, vinegar, salt.'},
+  'Arroz blanco':        {kcal:130,prot:'3g',grasa:'0g',hc:'28g',alerg:'None',costo:'€0.22',receta:'Rice, water, salt, oil.'},
+  'Fruta del tiempo':    {kcal:60,prot:'1g',grasa:'0g',hc:'15g',alerg:'None',costo:'€0.35',receta:'Fresh seasonal fruit.'},
+  'Yogur natural':       {kcal:65,prot:'4g',grasa:'3g',hc:'5g',alerg:'Lactosa',costo:'€0.28',receta:'Plain unsweetened yogurt.'}
 };
 
 function verPlato(nombre, dia) {
   if (modoEdicion) return;
   _sustNombre=nombre; _sustServicio=dia;
   document.getElementById('mPlatoTitle').innerHTML = '<i class="mdi mdi-food mr-2" style="color:var(--sm-green)"></i>' + nombre + ' — ' + dia;
-  var d = recetasDB[nombre] || {kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'Sin datos',costo:'—',receta:'Información no disponible.'};
-  var alergColor = d.alerg === 'Ninguno' ? 'var(--sm-green)' : 'var(--sm-orange)';
-  var alergIcon  = d.alerg === 'Ninguno' ? 'mdi-check-circle-outline' : 'mdi-alert-outline';
+  var d = recetasDB[nombre] || {kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'No data',costo:'—',receta:'Information not available.'};
+  var alergColor = d.alerg === 'None' ? 'var(--sm-green)' : 'var(--sm-orange)';
+  var alergIcon  = d.alerg === 'None' ? 'mdi-check-circle-outline' : 'mdi-alert-outline';
   document.getElementById('mPlatoBody').innerHTML =
     '<div class="d-flex" style="gap:1.2rem">'
     + '<div style="flex:1">'
@@ -413,7 +413,7 @@ function abrirSustituir(nombre,servicio){
   nombre=nombre||_sustNombre||'';
   servicio=servicio||_sustServicio||'';
   var db=recetasDB[nombre]||{};
-  var motivo=(db.alerg&&db.alerg!=='Ninguno')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
+  var motivo=(db.alerg&&db.alerg!=='None')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
   document.getElementById('sustMotivoTexto').textContent=motivo;
   document.getElementById('sustPlatoAfectado').value=(servicio?servicio+' · ':'')+nombre;
   document.getElementById('sustPlatoSustituto').value='';

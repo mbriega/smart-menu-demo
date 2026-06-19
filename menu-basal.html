@@ -139,7 +139,7 @@
           <p class="text-muted mb-0" style="font-size:.85rem"><i class="mdi mdi-cursor-default-click mr-1"></i>Haz clic en cualquier plato para ver el detalle</p>
           <div class="d-flex" style="gap:.5rem">
             <button class="btn btn-sm btn-outline-primary" id="btnEditarTabla" onclick="toggleEdicionBasal(this)"><i class="mdi mdi-pencil"></i> <span data-i18n="basal.edit">Edit dishes</span></button>
-            <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerando menú basal con IA…','info');setTimeout(function(){smToast('Menú regenerado. Revisa y aprueba.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerating base menu with AI…','info');setTimeout(function(){smToast('Menu regenerated. Review and approve.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
           </div>
         </div>
         <div style="overflow-x:auto">
@@ -638,63 +638,63 @@ var menuBasalDB = {
 var modoEdicionBasal = false;
 
 var basalRecetasDB = {
-  'Crema de verduras':{kcal:95,prot:'3g',grasa:'3g',hc:'14g',alerg:'Ninguno',costo:'€0.40',receta:'Calabacín, zanahoria, puerro, aceite, sal.'},
-  'Lentejas con calabaza':{kcal:210,prot:'14g',grasa:'4g',hc:'32g',alerg:'Ninguno',costo:'€0.55',receta:'Lentejas pardinas, calabaza, cebolla, ajo, aceite, comino.'},
-  'Coliflor rehogada':{kcal:80,prot:'3g',grasa:'4g',hc:'8g',alerg:'Ninguno',costo:'€0.30',receta:'Coliflor, ajo, aceite, pimentón, sal.'},
-  'Arroz integral con tomate':{kcal:160,prot:'4g',grasa:'3g',hc:'30g',alerg:'Ninguno',costo:'€0.35',receta:'Arroz integral, tomate, cebolla, ajo, aceite, sal.'},
-  'Sopa de ave con fideo integral':{kcal:140,prot:'10g',grasa:'4g',hc:'17g',alerg:'Gluten',costo:'€0.50',receta:'Caldo de pollo, fideos integrales, zanahoria, sal.'},
-  'Albóndigas con tomate':{kcal:280,prot:'22g',grasa:'14g',hc:'16g',alerg:'Gluten, Huevo',costo:'€0.95',receta:'Carne picada mixta, pan rallado, huevo, tomate, ajo, perejil.'},
-  'Tortilla fr. de calabacín':{kcal:160,prot:'10g',grasa:'10g',hc:'8g',alerg:'Huevo',costo:'€0.45',receta:'Huevo, calabacín, cebolla, aceite, sal.'},
-  'Ragout de pollo':{kcal:240,prot:'28g',grasa:'10g',hc:'10g',alerg:'Ninguno',costo:'€0.85',receta:'Pollo troceado, zanahoria, cebolla, tomate, vino blanco, aceite.'},
-  'Tilapia guisada con limón':{kcal:180,prot:'30g',grasa:'5g',hc:'3g',alerg:'Pescado',costo:'€1.10',receta:'Tilapia, limón, ajo, perejil, aceite, sal.'},
-  'Garbanzos con sofrito':{kcal:220,prot:'12g',grasa:'6g',hc:'30g',alerg:'Ninguno',costo:'€0.50',receta:'Garbanzos cocidos, puerro, zanahoria, tomate, aceite, comino.'},
-  'Hamburguesa soja tomate':{kcal:230,prot:'16g',grasa:'8g',hc:'22g',alerg:'Gluten, Soja',costo:'€0.65',receta:'Proteína de soja texturizada, tomate, cebolla, ajo, perejil.'},
-  'Salmón a la naranja':{kcal:260,prot:'28g',grasa:'12g',hc:'8g',alerg:'Pescado',costo:'€1.40',receta:'Salmón fresco, naranja, miel, aceite, sal, pimienta.'},
-  'Jamoncitos de pollo al ajillo':{kcal:260,prot:'30g',grasa:'14g',hc:'2g',alerg:'Ninguno',costo:'€0.90',receta:'Jamoncitos de pollo, ajo, vino blanco, aceite, perejil.'},
-  'Arroz al horno':{kcal:280,prot:'10g',grasa:'8g',hc:'42g',alerg:'Ninguno',costo:'€0.55',receta:'Arroz, costillas de cerdo, morcilla, tomate, ajo, pimentón.'},
-  'Tortilla de patatas':{kcal:215,prot:'10g',grasa:'13g',hc:'16g',alerg:'Huevo',costo:'€0.50',receta:'Huevo, patata, cebolla, aceite de oliva, sal.'},
-  'Magro guisado a la jardinera':{kcal:260,prot:'25g',grasa:'12g',hc:'12g',alerg:'Ninguno',costo:'€0.90',receta:'Magro de cerdo, patata, zanahoria, guisantes, cebolla, tomate.'},
-  'Bonito a la plancha encebollado':{kcal:200,prot:'30g',grasa:'7g',hc:'4g',alerg:'Pescado',costo:'€1.20',receta:'Bonito fresco, cebolla, aceite, vinagre, sal.'},
-  'Cous cous completo':{kcal:280,prot:'14g',grasa:'8g',hc:'38g',alerg:'Gluten',costo:'€0.60',receta:'Sémola de trigo, garbanzos, zanahoria, calabacín, especias ras el hanout.'},
-  'Revuelto de jamón y queso':{kcal:200,prot:'13g',grasa:'14g',hc:'4g',alerg:'Huevo, Lactosa',costo:'€0.55',receta:'Huevo, jamón serrano, queso manchego, aceite, sal.'},
-  'Merluza rebozada':{kcal:230,prot:'26g',grasa:'10g',hc:'12g',alerg:'Pescado, Gluten, Huevo',costo:'€1.15',receta:'Merluza, harina, huevo, aceite, limón, sal.'},
-  'Cinta de lomo a la plancha':{kcal:200,prot:'28g',grasa:'9g',hc:'0g',alerg:'Ninguno',costo:'€0.80',receta:'Cinta de lomo, ajo, aceite, sal, pimienta, limón.'},
-  'Abadejo enharinado frito':{kcal:220,prot:'24g',grasa:'10g',hc:'10g',alerg:'Pescado, Gluten',costo:'€0.95',receta:'Abadejo, harina de trigo, aceite de girasol, limón, sal.'},
-  'Lentejas ECO con verduras':{kcal:205,prot:'13g',grasa:'4g',hc:'32g',alerg:'Ninguno',costo:'€0.52',receta:'Lentejas ECO, zanahoria, cebolla, pimiento, ajo, tomate, comino.'},
-  'Bacalao al horno':{kcal:180,prot:'28g',grasa:'5g',hc:'4g',alerg:'Pescado',costo:'€1.10',receta:'Bacalao desalado, tomate, cebolla, pimiento, aceite, ajo.'},
-  'Filete de pollo a la plancha':{kcal:170,prot:'30g',grasa:'5g',hc:'0g',alerg:'Ninguno',costo:'€0.75',receta:'Pechuga de pollo, ajo, limón, aceite, sal, orégano.'},
-  'Patatas asadas':{kcal:110,prot:'2g',grasa:'3g',hc:'19g',alerg:'Ninguno',costo:'€0.22',receta:'Patata, aceite, sal, romero.'},
-  'Ensalada lechuga y zanahoria':{kcal:35,prot:'1g',grasa:'2g',hc:'5g',alerg:'Ninguno',costo:'€0.18',receta:'Lechuga, zanahoria, aceite, vinagre, sal.'},
-  'Cous cous':{kcal:130,prot:'4g',grasa:'2g',hc:'26g',alerg:'Gluten',costo:'€0.28',receta:'Sémola de trigo, aceite de oliva, sal, perejil.'},
-  'Ensalada lechuga y maíz':{kcal:40,prot:'1g',grasa:'2g',hc:'6g',alerg:'Ninguno',costo:'€0.20',receta:'Lechuga, maíz en grano, aceite, vinagre, sal.'},
-  'Ensalada lechuga, maíz y aceitunas':{kcal:55,prot:'1g',grasa:'4g',hc:'6g',alerg:'Ninguno',costo:'€0.25',receta:'Lechuga, maíz, aceitunas negras, aceite, vinagre.'},
-  'Judías verdes rehogadas':{kcal:75,prot:'2g',grasa:'4g',hc:'7g',alerg:'Ninguno',costo:'€0.30',receta:'Judías verdes, ajo, aceite de oliva, pimentón dulce.'},
-  'Espirales integrales carbonara':{kcal:310,prot:'12g',grasa:'10g',hc:'42g',alerg:'Gluten, Huevo, Lactosa',costo:'€0.70',receta:'Pasta integral, huevo, queso parmesano, panceta, pimienta.'},
-  'Crema de calabacín':{kcal:85,prot:'2g',grasa:'4g',hc:'10g',alerg:'Lactosa',costo:'€0.38',receta:'Calabacín, nata ligera, cebolla, ajo, aceite, sal.'},
-  'Calabaza gratinada':{kcal:95,prot:'3g',grasa:'5g',hc:'12g',alerg:'Lactosa',costo:'€0.32',receta:'Calabaza, queso rallado, aceite, sal, nuez moscada.'},
-  'Judías pintas estofadas':{kcal:200,prot:'11g',grasa:'4g',hc:'30g',alerg:'Ninguno',costo:'€0.48',receta:'Judías pintas, zanahoria, cebolla, pimiento, laurel, aceite.'},
-  'Patatas panadera':{kcal:130,prot:'2g',grasa:'5g',hc:'20g',alerg:'Ninguno',costo:'€0.25',receta:'Patata, cebolla, aceite, vino blanco, sal, orégano.'},
-  'Verduras asadas con orégano':{kcal:70,prot:'2g',grasa:'3g',hc:'9g',alerg:'Ninguno',costo:'€0.32',receta:'Pimiento, berenjena, calabacín, cebolla, aceite, orégano.'},
-  'Ensalada lechuga y cebolla':{kcal:30,prot:'1g',grasa:'2g',hc:'4g',alerg:'Ninguno',costo:'€0.15',receta:'Lechuga, cebolla morada, aceite, vinagre, sal.'},
-  'Ensalada de tomate y maíz':{kcal:45,prot:'1g',grasa:'2g',hc:'7g',alerg:'Ninguno',costo:'€0.22',receta:'Tomate, maíz en grano, aceite, vinagre de módena, sal.'},
-  'Brócoli rehogado':{kcal:55,prot:'4g',grasa:'3g',hc:'5g',alerg:'Ninguno',costo:'€0.28',receta:'Brócoli al vapor, ajo, aceite de oliva, sal, guindilla.'},
-  'Macarrones integrales amatriciana':{kcal:320,prot:'13g',grasa:'11g',hc:'43g',alerg:'Gluten',costo:'€0.65',receta:'Macarrones integrales, panceta, tomate, cebolla, queso pecorino.'},
-  'Patatas guisadas con pollo':{kcal:290,prot:'22g',grasa:'10g',hc:'28g',alerg:'Ninguno',costo:'€0.85',receta:'Pollo, patata, zanahoria, cebolla, ajo, tomate, vino blanco.'},
-  'Judías blancas ECO guisadas':{kcal:195,prot:'10g',grasa:'5g',hc:'28g',alerg:'Ninguno',costo:'€0.50',receta:'Judías blancas ECO, chorizo, zanahoria, cebolla, ajo, laurel.'},
-  'Arroz ECO tres delicias':{kcal:220,prot:'8g',grasa:'6g',hc:'34g',alerg:'Huevo',costo:'€0.52',receta:'Arroz ECO, huevo, zanahoria, guisantes, maíz, aceite de sésamo.'},
-  'Ensalada lechuga y tomate':{kcal:30,prot:'1g',grasa:'2g',hc:'4g',alerg:'Ninguno',costo:'€0.15',receta:'Lechuga, tomate, aceite de oliva, vinagre, sal.'},
-  'Ensalada lechuga, tomate y remolacha':{kcal:45,prot:'1g',grasa:'2g',hc:'7g',alerg:'Ninguno',costo:'€0.20',receta:'Lechuga, tomate, remolacha cocida, aceite, vinagre balsámico.'},
-  'Arroz con tomate':{kcal:165,prot:'4g',grasa:'3g',hc:'31g',alerg:'Ninguno',costo:'€0.36',receta:'Arroz blanco, tomate triturado, ajo, aceite, sal.'},
-  'Judías verdes con patatas':{kcal:110,prot:'3g',grasa:'4g',hc:'16g',alerg:'Ninguno',costo:'€0.34',receta:'Judías verdes, patata, ajo, aceite, pimentón, sal.'},
-  'Revuelto de patatas y calabacín':{kcal:195,prot:'8g',grasa:'11g',hc:'18g',alerg:'Huevo',costo:'€0.42',receta:'Huevo, patata, calabacín, cebolla, aceite de oliva.'},
-  'Espaguetis integrales verdura':{kcal:290,prot:'10g',grasa:'6g',hc:'48g',alerg:'Gluten',costo:'€0.58',receta:'Espaguetis integrales, tomate, calabacín, pimiento, ajo, albahaca.'},
-  'Coliflor al vapor con sofrito':{kcal:70,prot:'3g',grasa:'3g',hc:'8g',alerg:'Ninguno',costo:'€0.28',receta:'Coliflor al vapor, sofrito de tomate y ajo, aceite, sal.'},
-  'Ensalada lechuga, tomate y maíz':{kcal:42,prot:'1g',grasa:'2g',hc:'7g',alerg:'Ninguno',costo:'€0.22',receta:'Lechuga, tomate cherry, maíz, aceite, vinagre, sal.'},
-  'Patatas fritas':{kcal:165,prot:'2g',grasa:'9g',hc:'20g',alerg:'Ninguno',costo:'€0.30',receta:'Patata, aceite de girasol, sal.'},
-  'Fruta temporada · pan':{kcal:80,prot:'1g',grasa:'0g',hc:'19g',alerg:'Gluten',costo:'€0.30',receta:'Fruta fresca de temporada, pan de trigo.'},
-  'Fruta temporada · pan integral':{kcal:90,prot:'2g',grasa:'1g',hc:'20g',alerg:'Gluten',costo:'€0.32',receta:'Fruta fresca de temporada, pan integral de centeno.'},
-  'Yogur natural s/azúcar · pan':{kcal:95,prot:'5g',grasa:'3g',hc:'13g',alerg:'Lactosa, Gluten',costo:'€0.35',receta:'Yogur natural sin azúcar, pan integral.'},
-  '—':{kcal:0,prot:'0g',grasa:'0g',hc:'0g',alerg:'Ninguno',costo:'€0.00',receta:'Sin guarnición este día.'}
+  'Crema de verduras':{kcal:95,prot:'3g',grasa:'3g',hc:'14g',alerg:'None',costo:'€0.40',receta:'Zucchini, carrot, leek, oil, salt.'},
+  'Lentejas con calabaza':{kcal:210,prot:'14g',grasa:'4g',hc:'32g',alerg:'None',costo:'€0.55',receta:'Brown lentils, pumpkin, onion, garlic, oil, cumin.'},
+  'Coliflor rehogada':{kcal:80,prot:'3g',grasa:'4g',hc:'8g',alerg:'None',costo:'€0.30',receta:'Cauliflower, garlic, oil, paprika, salt.'},
+  'Arroz integral con tomate':{kcal:160,prot:'4g',grasa:'3g',hc:'30g',alerg:'None',costo:'€0.35',receta:'Brown rice, tomato, onion, garlic, oil, salt.'},
+  'Sopa de ave con fideo integral':{kcal:140,prot:'10g',grasa:'4g',hc:'17g',alerg:'Gluten',costo:'€0.50',receta:'Chicken broth, whole grain noodles, carrot, salt.'},
+  'Albóndigas con tomate':{kcal:280,prot:'22g',grasa:'14g',hc:'16g',alerg:'Gluten, Huevo',costo:'€0.95',receta:'Mixed minced meat, breadcrumbs, egg, tomato, garlic, parsley.'},
+  'Tortilla fr. de calabacín':{kcal:160,prot:'10g',grasa:'10g',hc:'8g',alerg:'Huevo',costo:'€0.45',receta:'Egg, zucchini, onion, oil, salt.'},
+  'Ragout de pollo':{kcal:240,prot:'28g',grasa:'10g',hc:'10g',alerg:'None',costo:'€0.85',receta:'Diced chicken, carrot, onion, tomato, white wine, oil.'},
+  'Tilapia guisada con limón':{kcal:180,prot:'30g',grasa:'5g',hc:'3g',alerg:'Pescado',costo:'€1.10',receta:'Tilapia, lemon, garlic, parsley, oil, salt.'},
+  'Garbanzos con sofrito':{kcal:220,prot:'12g',grasa:'6g',hc:'30g',alerg:'None',costo:'€0.50',receta:'Cooked chickpeas, leek, carrot, tomato, oil, cumin.'},
+  'Hamburguesa soja tomate':{kcal:230,prot:'16g',grasa:'8g',hc:'22g',alerg:'Gluten, Soja',costo:'€0.65',receta:'Textured soy protein, tomato, onion, garlic, parsley.'},
+  'Salmón a la naranja':{kcal:260,prot:'28g',grasa:'12g',hc:'8g',alerg:'Pescado',costo:'€1.40',receta:'Fresh salmon, orange, honey, oil, salt, pepper.'},
+  'Jamoncitos de pollo al ajillo':{kcal:260,prot:'30g',grasa:'14g',hc:'2g',alerg:'None',costo:'€0.90',receta:'Chicken drumsticks, garlic, white wine, oil, parsley.'},
+  'Arroz al horno':{kcal:280,prot:'10g',grasa:'8g',hc:'42g',alerg:'None',costo:'€0.55',receta:'Rice, pork ribs, blood sausage, tomato, garlic, paprika.'},
+  'Tortilla de patatas':{kcal:215,prot:'10g',grasa:'13g',hc:'16g',alerg:'Huevo',costo:'€0.50',receta:'Egg, potato, onion, olive oil, salt.'},
+  'Magro guisado a la jardinera':{kcal:260,prot:'25g',grasa:'12g',hc:'12g',alerg:'None',costo:'€0.90',receta:'Lean pork, potato, carrot, peas, onion, tomato.'},
+  'Bonito a la plancha encebollado':{kcal:200,prot:'30g',grasa:'7g',hc:'4g',alerg:'Pescado',costo:'€1.20',receta:'Fresh bonito tuna, onion, oil, vinegar, salt.'},
+  'Cous cous completo':{kcal:280,prot:'14g',grasa:'8g',hc:'38g',alerg:'Gluten',costo:'€0.60',receta:'Wheat semolina, chickpeas, carrot, zucchini, ras el hanout spices.'},
+  'Revuelto de jamón y queso':{kcal:200,prot:'13g',grasa:'14g',hc:'4g',alerg:'Huevo, Lactosa',costo:'€0.55',receta:'Egg, serrano ham, manchego cheese, oil, salt.'},
+  'Merluza rebozada':{kcal:230,prot:'26g',grasa:'10g',hc:'12g',alerg:'Pescado, Gluten, Huevo',costo:'€1.15',receta:'Hake, flour, egg, oil, lemon, salt.'},
+  'Cinta de lomo a la plancha':{kcal:200,prot:'28g',grasa:'9g',hc:'0g',alerg:'None',costo:'€0.80',receta:'Pork loin fillet, garlic, oil, salt, pepper, lemon.'},
+  'Abadejo enharinado frito':{kcal:220,prot:'24g',grasa:'10g',hc:'10g',alerg:'Pescado, Gluten',costo:'€0.95',receta:'Pollock, wheat flour, sunflower oil, lemon, salt.'},
+  'Lentejas ECO con verduras':{kcal:205,prot:'13g',grasa:'4g',hc:'32g',alerg:'None',costo:'€0.52',receta:'Organic lentils, carrot, onion, bell pepper, garlic, tomato, cumin.'},
+  'Bacalao al horno':{kcal:180,prot:'28g',grasa:'5g',hc:'4g',alerg:'Pescado',costo:'€1.10',receta:'Desalted cod, tomato, onion, bell pepper, oil, garlic.'},
+  'Filete de pollo a la plancha':{kcal:170,prot:'30g',grasa:'5g',hc:'0g',alerg:'None',costo:'€0.75',receta:'Chicken breast, garlic, lemon, oil, salt, oregano.'},
+  'Patatas asadas':{kcal:110,prot:'2g',grasa:'3g',hc:'19g',alerg:'None',costo:'€0.22',receta:'Potato, oil, salt, rosemary.'},
+  'Ensalada lechuga y zanahoria':{kcal:35,prot:'1g',grasa:'2g',hc:'5g',alerg:'None',costo:'€0.18',receta:'Lettuce, carrot, oil, vinegar, salt.'},
+  'Cous cous':{kcal:130,prot:'4g',grasa:'2g',hc:'26g',alerg:'Gluten',costo:'€0.28',receta:'Wheat semolina, olive oil, salt, parsley.'},
+  'Ensalada lechuga y maíz':{kcal:40,prot:'1g',grasa:'2g',hc:'6g',alerg:'None',costo:'€0.20',receta:'Lettuce, corn kernels, oil, vinegar, salt.'},
+  'Ensalada lechuga, maíz y aceitunas':{kcal:55,prot:'1g',grasa:'4g',hc:'6g',alerg:'None',costo:'€0.25',receta:'Lettuce, corn, black olives, oil, vinegar.'},
+  'Judías verdes rehogadas':{kcal:75,prot:'2g',grasa:'4g',hc:'7g',alerg:'None',costo:'€0.30',receta:'Green beans, garlic, olive oil, sweet paprika.'},
+  'Espirales integrales carbonara':{kcal:310,prot:'12g',grasa:'10g',hc:'42g',alerg:'Gluten, Huevo, Lactosa',costo:'€0.70',receta:'Whole grain pasta, egg, parmesan cheese, pancetta, pepper.'},
+  'Crema de calabacín':{kcal:85,prot:'2g',grasa:'4g',hc:'10g',alerg:'Lactosa',costo:'€0.38',receta:'Zucchini, light cream, onion, garlic, oil, salt.'},
+  'Calabaza gratinada':{kcal:95,prot:'3g',grasa:'5g',hc:'12g',alerg:'Lactosa',costo:'€0.32',receta:'Pumpkin, grated cheese, oil, salt, nutmeg.'},
+  'Judías pintas estofadas':{kcal:200,prot:'11g',grasa:'4g',hc:'30g',alerg:'None',costo:'€0.48',receta:'Pinto beans, carrot, onion, bell pepper, bay leaf, oil.'},
+  'Patatas panadera':{kcal:130,prot:'2g',grasa:'5g',hc:'20g',alerg:'None',costo:'€0.25',receta:'Potato, onion, oil, white wine, salt, oregano.'},
+  'Verduras asadas con orégano':{kcal:70,prot:'2g',grasa:'3g',hc:'9g',alerg:'None',costo:'€0.32',receta:'Bell pepper, eggplant, zucchini, onion, oil, oregano.'},
+  'Ensalada lechuga y cebolla':{kcal:30,prot:'1g',grasa:'2g',hc:'4g',alerg:'None',costo:'€0.15',receta:'Lettuce, red onion, oil, vinegar, salt.'},
+  'Ensalada de tomate y maíz':{kcal:45,prot:'1g',grasa:'2g',hc:'7g',alerg:'None',costo:'€0.22',receta:'Tomato, corn kernels, oil, balsamic vinegar, salt.'},
+  'Brócoli rehogado':{kcal:55,prot:'4g',grasa:'3g',hc:'5g',alerg:'None',costo:'€0.28',receta:'Steamed broccoli, garlic, olive oil, salt, chili.'},
+  'Macarrones integrales amatriciana':{kcal:320,prot:'13g',grasa:'11g',hc:'43g',alerg:'Gluten',costo:'€0.65',receta:'Whole grain macaroni, pancetta, tomato, onion, pecorino cheese.'},
+  'Patatas guisadas con pollo':{kcal:290,prot:'22g',grasa:'10g',hc:'28g',alerg:'None',costo:'€0.85',receta:'Chicken, potato, carrot, onion, garlic, tomato, white wine.'},
+  'Judías blancas ECO guisadas':{kcal:195,prot:'10g',grasa:'5g',hc:'28g',alerg:'None',costo:'€0.50',receta:'Organic white beans, chorizo, carrot, onion, garlic, bay leaf.'},
+  'Arroz ECO tres delicias':{kcal:220,prot:'8g',grasa:'6g',hc:'34g',alerg:'Huevo',costo:'€0.52',receta:'Organic rice, egg, carrot, peas, corn, sesame oil.'},
+  'Ensalada lechuga y tomate':{kcal:30,prot:'1g',grasa:'2g',hc:'4g',alerg:'None',costo:'€0.15',receta:'Lettuce, tomato, olive oil, vinegar, salt.'},
+  'Ensalada lechuga, tomate y remolacha':{kcal:45,prot:'1g',grasa:'2g',hc:'7g',alerg:'None',costo:'€0.20',receta:'Lettuce, tomato, cooked beet, oil, balsamic vinegar.'},
+  'Arroz con tomate':{kcal:165,prot:'4g',grasa:'3g',hc:'31g',alerg:'None',costo:'€0.36',receta:'White rice, crushed tomato, garlic, oil, salt.'},
+  'Judías verdes con patatas':{kcal:110,prot:'3g',grasa:'4g',hc:'16g',alerg:'None',costo:'€0.34',receta:'Green beans, potato, garlic, oil, paprika, salt.'},
+  'Revuelto de patatas y calabacín':{kcal:195,prot:'8g',grasa:'11g',hc:'18g',alerg:'Huevo',costo:'€0.42',receta:'Egg, potato, zucchini, onion, olive oil.'},
+  'Espaguetis integrales verdura':{kcal:290,prot:'10g',grasa:'6g',hc:'48g',alerg:'Gluten',costo:'€0.58',receta:'Whole grain spaghetti, tomato, zucchini, bell pepper, garlic, basil.'},
+  'Coliflor al vapor con sofrito':{kcal:70,prot:'3g',grasa:'3g',hc:'8g',alerg:'None',costo:'€0.28',receta:'Steamed cauliflower, tomato and garlic sofrito, oil, salt.'},
+  'Ensalada lechuga, tomate y maíz':{kcal:42,prot:'1g',grasa:'2g',hc:'7g',alerg:'None',costo:'€0.22',receta:'Lettuce, cherry tomato, corn, oil, vinegar, salt.'},
+  'Patatas fritas':{kcal:165,prot:'2g',grasa:'9g',hc:'20g',alerg:'None',costo:'€0.30',receta:'Potato, sunflower oil, salt.'},
+  'Fruta temporada · pan':{kcal:80,prot:'1g',grasa:'0g',hc:'19g',alerg:'Gluten',costo:'€0.30',receta:'Fresh seasonal fruit, wheat bread.'},
+  'Fruta temporada · pan integral':{kcal:90,prot:'2g',grasa:'1g',hc:'20g',alerg:'Gluten',costo:'€0.32',receta:'Fresh seasonal fruit, whole rye bread.'},
+  'Yogur natural s/azúcar · pan':{kcal:95,prot:'5g',grasa:'3g',hc:'13g',alerg:'Lactosa, Gluten',costo:'€0.35',receta:'Plain unsweetened yogurt, whole grain bread.'},
+  '—':{kcal:0,prot:'0g',grasa:'0g',hc:'0g',alerg:'None',costo:'€0.00',receta:'No side dish today.'}
 };
 
 // ── MENÚ RESIDENCIA ESCOLAR (3 servicios) ────────────────────────────────────
@@ -787,7 +787,7 @@ function renderTabla(sem) {
     row.dias.forEach(function(plato, dIdx) {
       var db = basalRecetasDB[plato];
       var cellClass = 'ok';
-      if (db && db.alerg && db.alerg !== 'Ninguno' && db.alerg !== 'Sin datos') {
+      if (db && db.alerg && db.alerg !== 'None' && db.alerg !== 'No data') {
         cellClass = db.alerg.split(',').length >= 2 ? 'danger' : 'warning';
       }
       if (modoEdicionBasal) {
@@ -924,7 +924,7 @@ function renderBasalAlergenos(sem) {
   var data=menuBasalDB[sem];if(!data)return;
   var dias=['Mon','Tue','Wed','Thu','Fri'];
   var alergList=[];
-  data.rows.forEach(function(row){row.dias.forEach(function(plato,di){var db=basalRecetasDB[plato];if(db&&db.alerg&&db.alerg!=='Ninguno'&&db.alerg!=='Sin datos')alergList.push({alerg:db.alerg,plato:plato,dia:dias[di],servicio:row.plato});});});
+  data.rows.forEach(function(row){row.dias.forEach(function(plato,di){var db=basalRecetasDB[plato];if(db&&db.alerg&&db.alerg!=='None'&&db.alerg!=='No data')alergList.push({alerg:db.alerg,plato:plato,dia:dias[di],servicio:row.plato});});});
   var el=document.getElementById('basalAlergenosContent');if(!el)return;
   if(!alergList.length){el.innerHTML='<div class="alert-sm-ok p-3 mb-0"><i class="mdi mdi-check-circle mr-2"></i>No allergens detected in this base menu week.</div>';return;}
   var html='<div class="alert-sm-critico p-3 mb-3"><i class="mdi mdi-alert-circle mr-2"></i><strong>'+alergList.length+' dish(es) with allergens detected this week</strong></div>';
@@ -946,8 +946,8 @@ function verPlatoBasal(nombre, dia) {
   _sustBasalNombre=nombre; _sustBasalServicio=dia;
   document.getElementById('mPlatoTitle').innerHTML='<i class="mdi mdi-food mr-2" style="color:var(--sm-green)"></i>'+nombre+' — '+dia;
   var d=basalRecetasDB[nombre]||{kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'No data',costo:'—',receta:'Information not available.'};
-  var alergColor=(d.alerg==='Ninguno'||d.alerg==='No data')?'var(--sm-green)':'var(--sm-orange)';
-  var alergIcon=(d.alerg==='Ninguno'||d.alerg==='No data')?'mdi-check-circle-outline':'mdi-alert-outline';
+  var alergColor=(d.alerg==='None'||d.alerg==='No data')?'var(--sm-green)':'var(--sm-orange)';
+  var alergIcon=(d.alerg==='None'||d.alerg==='No data')?'mdi-check-circle-outline':'mdi-alert-outline';
   document.getElementById('mPlatoBody').innerHTML=
     '<div class="d-flex" style="gap:1.2rem">'
     +'<div style="flex:1"><div class="plato-label">Ingredients / Recipe</div><p class="plato-receta">'+d.receta+'</p>'
@@ -966,7 +966,7 @@ function abrirSustituirBasal(nombre,servicio){
   $('#modalPlato').modal('hide');
   nombre=nombre||_sustBasalNombre||'';servicio=servicio||_sustBasalServicio||'';
   var db=basalRecetasDB[nombre]||{};
-  var motivo=(db.alerg&&db.alerg!=='Ninguno'&&db.alerg!=='No data')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
+  var motivo=(db.alerg&&db.alerg!=='None'&&db.alerg!=='No data')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
   document.getElementById('sustBasalMotivoTexto').textContent=motivo;
   document.getElementById('sustBasalPlatoAfectado').value=(servicio?servicio+' · ':'')+nombre;
   document.getElementById('sustBasalPlatoSustituto').value='';
