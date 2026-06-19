@@ -1,13 +1,13 @@
 <!DOCTYPE html><html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SMART Menu · Menú Basal</title>
+<title>SMART Menu · Base Menu</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9Ik0gMzEwLjI4IDIyMi4wMCBMIDMwMi4wNCAyMjIuMDAiLz48L3N2Zz4K">
 <link rel="stylesheet" href="assets_custom/vendors/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet" href="assets_custom/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet" href="assets_custom/css/style.css">
 <link rel="stylesheet" href="assets/css/smart-menu-theme.css?v=6">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
-</head><body><div id="sm-toast-container"></div><div class="container-scroller"><div class="container-fluid page-body-wrapper"><nav class="sidebar sidebar-offcanvas" id="sidebar"><a class="sm-sidebar-brand" href="dashboard.html" style="display:flex;padding:1rem 1.2rem;gap:.7rem;align-items:center">
+<script src="assets/js/i18n.js"></script></head><body><div id="sm-toast-container"></div><div class="container-scroller"><div class="container-fluid page-body-wrapper"><nav class="sidebar sidebar-offcanvas" id="sidebar"><a class="sm-sidebar-brand" href="dashboard.html" style="display:flex;padding:1rem 1.2rem;gap:.7rem;align-items:center">
   <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMzEwLjI4IDIyMi4wMAogIEwgMzAyLjA0IDIyMi4wMAogIFEgMjY3LjUxIDIyMC40MSAyNDEuNDIgMjAwLjg2CiAgQyAxNzguODQgMTUzLjk5IDE4NC4wNiA1Mi4yOSAyNTMuNjQgMTQuMTkKICBRIDI4My4yMCAtMi4wMSAzMTcuNzYgMS40NAogIEMgMzY4LjYzIDYuNTIgNDA3LjQ3IDQ1LjYyIDQxMy44OSA5Ni4yMgogIEMgNDIyLjE2IDE2MS4yOSAzNzcuMDAgMjE5LjUzIDMxMC4yOCAyMjIuMDAKICBaCiAgTSAzNzYuNzggMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSA0MC40MAogIEEgNzAuNDMgNzAuNDMgMC4wIDAgMCAyMzUuOTIgMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSAxODEuMjYKICBBIDcwLjQzIDcwLjQzIDAuMCAwIDAgMzc2Ljc4IDExMC44MwogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gNDgwLjYxIDIxNS4yNAogIEwgNDM4LjAzIDIxNS4yNAogIEEgMC4zMyAwLjMzIDAuMCAwIDEgNDM3LjcwIDIxNC45MQogIEwgNDM3LjcwIDU1LjI2CiAgQSA0LjM0IDQuMjYgLTMyLjYgMCAxIDQzOC4xMyA1My4zOQogIEMgNDU0LjA1IDIwLjYxIDQ4Ni42OSA1LjM2IDUyMi4xNSA2LjUwCiAgQyA1NDEuOTQgNy4xNCA1NjEuNzUgMTQuNjMgNTc2LjQ4IDI4LjI1CiAgQSAwLjUwIDAuNDggNDMuMyAwIDEgNTc2LjUxIDI4Ljk0CiAgTCA1NDYuOTQgNTkuODEKICBBIDAuNDYgMC40NiAwLjAgMCAxIDU0Ni4zMCA1OS44MwogIFEgNTM4LjUyIDUyLjY1IDUyOC4xNyA1MC44OAogIEMgNTExLjYzIDQ4LjA2IDQ5Mi42NCA1MS42NyA0ODEuODAgNjUuMzUKICBBIDIuNDAgMi4zNyAtMjYuMiAwIDAgNDgxLjI5IDY2LjgyCiAgTCA0ODEuMjkgMjE0LjU2CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA0ODAuNjEgMjE1LjI0CiAgWiIKLz4KPHBhdGggZmlsbD0iIzM4YjAwMCIgZD0iCiAgTSA4NjcuMTcgMjE0LjU4CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA4NjYuNDkgMjE1LjI2CiAgTCA4MjMuOTAgMjE1LjI1CiAgQSAwLjMzIDAuMzMgMC4wIDAgMSA4MjMuNTcgMjE0LjkyCiAgTCA4MjMuNjEgNTUuMjUKICBBIDQuMzQgNC4yNiAtMzIuNiAwIDEgODI0LjA0IDUzLjM4CiAgQyA4MzkuOTcgMjAuNjAgODcyLjYyIDUuMzYgOTA4LjA5IDYuNTEKICBDIDkyNy44OCA3LjE1IDk0Ny42OSAxNC42NSA5NjIuNDIgMjguMjcKICBBIDAuNTAgMC40OCA0My40IDAgMSA5NjIuNDUgMjguOTYKICBMIDkzMi44NyA1OS44MwogIEEgMC40NiAwLjQ2IDAuMCAwIDEgOTMyLjIzIDU5Ljg1CiAgUSA5MjQuNDUgNTIuNjcgOTE0LjEwIDUwLjg5CiAgQyA4OTcuNTUgNDguMDcgODc4LjU2IDUxLjY3IDg2Ny43MiA2NS4zNQogIEEgMi40MCAyLjM3IC0yNi4yIDAgMCA4NjcuMjEgNjYuODIKICBMIDg2Ny4xNyAyMTQuNTgKICBaIgovPgo8cGF0aCBmaWxsPSIjMzhiMDAwIiBkPSIKICBNIDc0NS45NyAxOTUuNTYKICBRIDcwMi45NSAyMjUuNjMgNjUxLjI4IDIxMC44MQogIFEgNjE3Ljc4IDIwMS4yMSA1OTcuNDQgMTc0LjMwCiAgUSA1NjMuMTUgMTI4LjkzIDU4Mi4yOCA3NS4xOQogIFEgNTkzLjIzIDQ0LjQyIDYyMi4wOSAyNS4wNwogIFEgNjI1LjY2IDIyLjY3IDYyOC4zNyAyMS41MAogIEMgNjMxLjIyIDIwLjI3IDYzNC4yMiAxOC40MSA2MzYuOTUgMTcuMTcKICBRIDY3Ni42NyAtMC45MCA3MTkuMTAgMTMuMzQKICBRIDc1Ny4xOCAyNi4xMiA3NzcuMTUgNjIuMDEKICBRIDc4NS4zOSA3Ni44MSA3ODguNTMgOTMuOTUKICBRIDc5MC4wNyAxMDIuMzggNzkwLjAzIDExNy40MQogIFEgNzg5LjkxIDE1NS41MyA3OTAuMDEgMjE0LjkxCiAgQSAwLjM0IDAuMzQgMC4wIDAgMSA3ODkuNjcgMjE1LjI1CiAgTCA3NDcuMDkgMjE1LjI1CiAgQSAwLjU4IDAuNTcgLTAuMCAwIDEgNzQ2LjUxIDIxNC42OAogIEwgNzQ2LjUxIDE5NS44NQogIEEgMC4zNSAwLjM0IDczLjAgMCAwIDc0NS45NyAxOTUuNTYKICBaCiAgTSA3NDYuNDQ4NCAxMTAuOTA1MAogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjgyLjI4NTcgNTAuNTgxNQogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjE4Ljk3MTYgMTExLjc5NTAKICBBIDYzLjc0IDYwLjc3IC0wLjQgMCAwIDY4My4xMzQzIDE3Mi4xMTg1CiAgQSA2My43NCA2MC43NyAtMC40IDAgMCA3NDYuNDQ4NCAxMTAuOTA1MAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMTE3Mi41MSA3Ny44NAogIEEgMC4yNCAwLjI0IDAuMCAwIDEgMTE3Mi40MiA3OC4xNwogIEwgMTA1Ny40NCAxNDQuNTYKICBBIDAuNDggMC40OCAwLjAgMCAxIDEwNTYuNzkgMTQ0LjM5CiAgTCAxMDM1LjM5IDEwNy4zMwogIEEgMC40OCAwLjQ3IDYwLjggMCAxIDEwMzUuNTcgMTA2LjY4CiAgTCAxMTA4LjQ3IDY0LjU5CiAgQSAwLjQyIDAuNDEgNDguNiAwIDAgMTEwOC41MSA2My45MAogIFEgMTA5Ny40NyA1NS40OSAxMDgzLjc1IDUyLjI2CiAgUSAxMDYzLjUyIDQ3LjUwIDEwNDQuMzggNTUuMzkKICBDIDEwMjMuODQgNjMuODUgMTAxMC42NSA3OC4yNyAxMDA2LjE0IDEwMC44OQogIFEgMTAwMy4yOSAxMTUuMTYgMTAwNy4yNCAxMjcuNTAKICBRIDEwMTYuOTIgMTU3Ljc1IDEwNDYuNTEgMTY4LjI1CiAgQyAxMDcxLjM5IDE3Ny4wOSAxMDk4LjY4IDE3MC41MyAxMTE2LjU0IDE1MS4zNQogIFEgMTEyNi4zNCAxNDAuODIgMTEzMC4xOCAxMjcuMzcKICBBIDAuNDggMC40NiAtNzQuMyAwIDEgMTEzMC43NSAxMjcuMDQKICBMIDExNzEuNjUgMTM4LjExCiAgQSAwLjYxIDAuNjAgLTc0LjIgMCAxIDExNzIuMDcgMTM4Ljg3CiAgUSAxMTYwLjM2IDE3Ny41NyAxMTI2LjU1IDE5OC45OQogIFEgMTEwMC4wNSAyMTUuNzcgMTA2OS4yNiAyMTUuNzQKICBRIDEwNTcuMTkgMjE1LjczIDEwNDIuNDkgMjEyLjE4CiAgQyAxMDA5LjY4IDIwNC4yNSA5ODQuMzYgMTgzLjc2IDk3MC4zMiAxNTIuNjkKICBRIDk2MC40MyAxMzAuODEgOTYxLjU3IDEwNy45OAogIEMgOTYyLjczIDg0LjY1IDk3MS4zMyA2MS4wOSA5ODcuMDQgNDMuMzMKICBRIDk5Ni44NSAzMi4yNCAxMDA4LjA3IDI1LjIwCiAgUSAxMDE5LjY4IDE3LjkzIDEwMzMuMTEgMTMuMTEKICBDIDEwNzQuNzkgLTEuODMgMTEyNS41OSAxMS42NCAxMTUzLjEyIDQ2LjkwCiAgQyAxMTYwLjI4IDU2LjA3IDExNjUuOTYgNjYuODYgMTE3Mi41MSA3Ny44NAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gODguMzYgMTUxLjgzCiAgQSAwLjM4IDAuMzggMC4wIDAgMCA4OS4wMiAxNTEuOTYKICBRIDEwOS4xNyAxMjcuMzcgMTE4Ljc0IDk4LjUyCiAgQyAxMjguNTAgNjkuMTEgMTMxLjMyIDM3LjQ5IDEzMS41OCA3Ljg5CiAgQSAwLjY2IDAuNjUgLTg5LjYgMCAxIDEzMi4yMyA3LjI0CiAgTCAxNzQuMDcgNy4yNAogIEEgMC44NSAwLjg0IDg5LjcgMCAxIDE3NC45MSA4LjA4CiAgUSAxNzUuMDkgNDAuMDcgMTcwLjIxIDcwLjc0CiAgQyAxNjYuMzUgOTUuMDIgMTU5LjI0IDExOS4wNiAxNDguMTIgMTQwLjgyCiAgUSAxMzEuOTAgMTcyLjU1IDEwNS42NiAxOTcuNjcKICBRIDk2LjU1IDIwNi4zOCA4NS45NCAyMTQuOTUKICBBIDEuMzUgMS4zMiAtNjQuMCAwIDEgODUuMTAgMjE1LjI1CiAgTCA2Mi4yMiAyMTUuMjUKICBBIDAuODAgMC43OSAtOC40IDAgMSA2MS40NiAyMTQuNjkKICBMIDAuMTMgNy44MAogIEEgMC40MyAwLjQyIC04LjUgMCAxIDAuNTQgNy4yNQogIEwgNDQuOTMgNy4yNQogIEEgMC43NiAwLjc2IDAuMCAwIDEgNDUuNjYgNy44MAogIEwgODguMzYgMTUxLjgzCiAgWiIKLz4KPHBhdGggZmlsbD0iI2VkNzE2NCIgZD0iCiAgTSAzNjAuMzQgMTEwLjc2CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAzNjAuNTUgMTEwLjk3CiAgTCAzNjAuNTUgMTExLjA5CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAzMDYuNTkgMTY1LjA0CiAgTCAzMDYuMTMgMTY1LjA0CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAyNTIuMTcgMTExLjA5CiAgTCAyNTIuMTcgMTEwLjk3CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAyNTIuMzggMTEwLjc2CiAgTCAzNjAuMzQgMTEwLjc2CiAgWiIKLz4KPC9zdmc+Cg==" alt="Vorare" style="height:26px;width:auto;flex-shrink:0">
   <div style="display:flex;flex-direction:column;line-height:1.05">
     <span style="font-size:.95rem;font-weight:900;color:#fff;letter-spacing:.5px">SMART</span>
@@ -17,7 +17,7 @@
 <li class="nav-item nav-category">Principal</li>
 <li class="nav-item"><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li>
 <li class="nav-item"><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li>
-<li class="nav-item active"><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title">Men&uacute; Basal</span></a></li>
+<li class="nav-item active"><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title"><span data-i18n="basal.title">Base Menu</span></span></a></li>
 <li class="nav-item"><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title">Cambios y Excepciones</span></a></li>
 <li class="nav-item"><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li>
 <li class="nav-item"><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li>
@@ -25,13 +25,13 @@
 <li class="nav-item"><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li>
 </ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Nutricionista Central</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav>
 
-<div class="main-panel"><div class="content-wrapper">
+<div class="main-panel"><div class="sm-topbar"><div class="sm-lang-toggle"><button class="sm-lang-btn" data-lang="es" onclick="setLang('es')">ES</button><span class="sm-lang-sep">|</span><button class="sm-lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div></div><div class="content-wrapper">
 
 <!-- HEADER -->
 <div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem">
   <div>
-    <h4><i class="mdi mdi-silverware-fork-knife mr-2" style="color:var(--sm-green)"></i>Men&uacute; Basal</h4>
-    <p class="sm-page-subtitle" id="pageSubtitle">Propuesta maestra &mdash; Escolar &middot; Menú Basal Primaria</p>
+    <h4><i class="mdi mdi-silverware-fork-knife mr-2" style="color:var(--sm-green)"></i><span data-i18n="basal.title">Base Menu</span></h4>
+    <p class="sm-page-subtitle" id="pageSubtitle">Propuesta maestra &mdash; School &middot; Base Menu Primary</p>
   </div>
   <div class="d-flex align-items-center flex-wrap" style="gap:.5rem">
     <select class="form-control form-control-sm" id="selPeriodo" style="width:160px;height:32px" onchange="cargarPeriodo()">
@@ -39,16 +39,16 @@
       <option value="2025-10">Octubre 2025</option>
       <option value="2025-11">Noviembre 2025</option>
     </select>
-    <button class="btn btn-outline-primary btn-sm" onclick="abrirModalGenerar()"><i class="mdi mdi-robot"></i> Generar men&uacute; basal</button>
+    <button class="btn btn-outline-primary btn-sm" onclick="abrirModalGenerar()"><i class="mdi mdi-robot"></i> <span data-i18n="basal.btn.generate">Generate base menu</span></button>
   </div>
 </div>
 
 <!-- PESTAÑAS TIPO DE CENTRO -->
 <ul class="nav nav-tabs mb-3" id="tipoTabs">
-  <li class="nav-item"><a class="nav-link active" href="#" data-tipo="escolar" onclick="switchTipo('escolar');return false;"><span class="ico-tipo ico-escolar"></span>Escolar</a></li>
-  <li class="nav-item"><a class="nav-link" href="#" data-tipo="hospital" onclick="switchTipo('hospital');return false;"><span class="ico-tipo ico-hospital"></span>Hospital</a></li>
-  <li class="nav-item"><a class="nav-link" href="#" data-tipo="tercera-edad" onclick="switchTipo('tercera-edad');return false;"><span class="ico-tipo ico-tercera-edad"></span>Tercera Edad</a></li>
-  <li class="nav-item"><a class="nav-link" href="#" data-tipo="empresa" onclick="switchTipo('empresa');return false;"><span class="ico-tipo ico-empresa"></span>Empresa</a></li>
+  <li class="nav-item"><a class="nav-link active" href="#" data-tipo="escolar" onclick="switchTipo('escolar');return false;"><span class="ico-tipo ico-escolar"></span><span data-i18n="basal.tab.escolar">School</span></a></li>
+  <li class="nav-item"><a class="nav-link" href="#" data-tipo="hospital" onclick="switchTipo('hospital');return false;"><span class="ico-tipo ico-hospital"></span><span data-i18n="basal.tab.hospital">Hospital</span></a></li>
+  <li class="nav-item"><a class="nav-link" href="#" data-tipo="tercera-edad" onclick="switchTipo('tercera-edad');return false;"><span class="ico-tipo ico-tercera-edad"></span><span data-i18n="basal.tab.tercera">Senior Care</span></a></li>
+  <li class="nav-item"><a class="nav-link" href="#" data-tipo="empresa" onclick="switchTipo('empresa');return false;"><span class="ico-tipo ico-empresa"></span><span data-i18n="basal.tab.empresa">Corporate</span></a></li>
 </ul>
 
 <!-- KPIs ESTADO -->
@@ -57,7 +57,7 @@
     <div class="kpi-card kpi-green">
       <i class="mdi mdi-check-circle kpi-icon"></i>
       <div class="kpi-value text-green" id="kpiEstado">En revisi&oacute;n</div>
-      <div class="kpi-label">Estado del men&uacute; basal</div>
+      <div class="kpi-label"><span data-i18n="basal.kpi.estado">Base menu status</span></div>
       <div class="kpi-trend text-muted" id="kpiEstadoTrend"><i class="mdi mdi-clock-outline"></i> Generado hoy &middot; pendiente aprobaci&oacute;n</div>
     </div>
   </div>
@@ -65,7 +65,7 @@
     <div class="kpi-card kpi-green">
       <i class="mdi mdi-leaf kpi-icon"></i>
       <div class="kpi-value text-green" id="kpiNutri">96.4%</div>
-      <div class="kpi-label">Cumplimiento nutricional</div>
+      <div class="kpi-label"><span data-i18n="basal.kpi.nutri">Nutritional compliance</span></div>
       <div class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> Dentro de rango <span id="kpiKcalLabel">600&ndash;700 kcal</span></div>
     </div>
   </div>
@@ -73,7 +73,7 @@
     <div class="kpi-card kpi-green">
       <i class="mdi mdi-currency-eur kpi-icon"></i>
       <div class="kpi-value text-green" id="kpiCosto">98.1%</div>
-      <div class="kpi-label">Cumplimiento de costo</div>
+      <div class="kpi-label"><span data-i18n="basal.kpi.costo">Cost compliance</span></div>
       <div class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> Dentro de target corporativo</div>
     </div>
   </div>
@@ -81,7 +81,7 @@
     <div class="kpi-card kpi-orange">
       <i class="mdi mdi-alert kpi-icon"></i>
       <div class="kpi-value text-orange" id="kpiDesv">2</div>
-      <div class="kpi-label">Reglas con desviaci&oacute;n</div>
+      <div class="kpi-label"><span data-i18n="basal.kpi.desv">Rules with deviation</span></div>
       <div class="kpi-trend" style="color:var(--sm-orange)"><i class="mdi mdi-alert-outline"></i> &Aacute;mbar &middot; no bloqueantes</div>
     </div>
   </div>
@@ -91,7 +91,7 @@
 <div class="card mb-3">
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center mb-2">
-      <h6 class="card-title mb-0" id="tituloSemana"><i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>Men&uacute; Basal Primaria &mdash; Semana 1</h6>
+      <h6 class="card-title mb-0" id="tituloSemana"><i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>Base Menu Primary &mdash; Week 1</h6>
       <div class="d-flex align-items-center" style="gap:.5rem" id="basalWeekControls">
         <div class="btn-group btn-group-sm" id="semanaGroup">
           <button class="btn btn-outline-secondary active" onclick="cambiarSemana(1,this)">Sem 1</button>
@@ -99,7 +99,7 @@
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(3,this)">Sem 3</button>
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)">Sem 4</button>
         </div>
-        <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> Aprobar men&uacute; basal</button>
+        <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
         <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> Generar men&uacute;s por centro</button>
         <button class="btn btn-sm btn-outline-primary ml-1" onclick="exportarBasal()"><i class="mdi mdi-file-excel-outline"></i> Excel</button>
       </div>
@@ -107,9 +107,9 @@
     <!-- Sub-tabs escolar: en la cabecera del card, solo visibles cuando tipo=escolar -->
     <div id="escolarBasalSubTabs" style="display:none">
       <ul class="nav nav-tabs mt-2 mb-0">
-        <li class="nav-item"><a class="nav-link active" href="#" data-subtipo="primaria" onclick="switchSubtipo('primaria');return false;">Men&uacute; Basal Primaria</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="secundaria" onclick="switchSubtipo('secundaria');return false;">Men&uacute; Basal Secundaria</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="infantil" onclick="switchSubtipo('infantil');return false;">Men&uacute; Basal Infantil</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#" data-subtipo="primaria" onclick="switchSubtipo('primaria');return false;">Base Menu Primary</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="secundaria" onclick="switchSubtipo('secundaria');return false;">Base Menu Secondary</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="infantil" onclick="switchSubtipo('infantil');return false;">Base Menu Infant</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-subtipo="residencia-escolar" onclick="switchSubtipo('residencia-escolar');return false;">Men&uacute; Basal Residencia Escolar</a></li>
       </ul>
     </div>
@@ -125,11 +125,11 @@
     <!-- Estado: generado -->
     <div id="basalContenido">
     <ul class="nav nav-tabs mb-3 mt-3" id="basalTab">
-      <li class="nav-item"><a class="nav-link active" id="basalTabBtn-menu"  href="#" onclick="switchBasalTab('menu'); return false;">Men&uacute;</a></li>
-      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-nutri" href="#" onclick="switchBasalTab('nutri');return false;">Nutrici&oacute;n</a></li>
-      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-costo" href="#" onclick="switchBasalTab('costo');return false;">Costo</a></li>
-      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-alerg" href="#" onclick="switchBasalTab('alerg');return false;">Al&eacute;rgenos</a></li>
-      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-hist"  href="#" onclick="switchBasalTab('hist'); return false;">Historial</a></li>
+      <li class="nav-item"><a class="nav-link active" id="basalTabBtn-menu"  href="#" onclick="switchBasalTab('menu'); return false;"><span data-i18n="basal.tab.menu">Menu</span></a></li>
+      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-nutri" href="#" onclick="switchBasalTab('nutri');return false;"><span data-i18n="basal.tab.nutri">Nutrition</span></a></li>
+      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-costo" href="#" onclick="switchBasalTab('costo');return false;"><span data-i18n="basal.tab.costo">Cost</span></a></li>
+      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-alerg" href="#" onclick="switchBasalTab('alerg');return false;"><span data-i18n="basal.tab.alerg">Allergens</span></a></li>
+      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-hist"  href="#" onclick="switchBasalTab('hist'); return false;"><span data-i18n="basal.tab.hist">History</span></a></li>
     </ul>
     <div id="basalTabContent">
 
@@ -138,15 +138,15 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
           <p class="text-muted mb-0" style="font-size:.85rem"><i class="mdi mdi-cursor-default-click mr-1"></i>Haz clic en cualquier plato para ver el detalle</p>
           <div class="d-flex" style="gap:.5rem">
-            <button class="btn btn-sm btn-outline-primary" id="btnEditarTabla" onclick="toggleEdicionBasal(this)"><i class="mdi mdi-pencil"></i> Editar platos</button>
-            <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerando menú basal con IA…','info');setTimeout(function(){smToast('Menú regenerado. Revisa y aprueba.','success');},2800)"><i class="mdi mdi-robot"></i> Regenerar IA</button>
+            <button class="btn btn-sm btn-outline-primary" id="btnEditarTabla" onclick="toggleEdicionBasal(this)"><i class="mdi mdi-pencil"></i> <span data-i18n="basal.edit">Edit dishes</span></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerando menú basal con IA…','info');setTimeout(function(){smToast('Menú regenerado. Revisa y aprueba.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
           </div>
         </div>
         <div style="overflow-x:auto">
           <table class="menu-table" id="tBasal">
             <thead><tr>
               <th style="width:110px">Plato</th>
-              <th>Lunes</th><th>Martes</th><th>Mi&eacute;rcoles</th><th>Jueves</th><th>Viernes</th>
+              <th data-i18n="basal.col.lun">Mon</th><th data-i18n="basal.col.mar">Tue</th><th data-i18n="basal.col.mie">Wed</th><th data-i18n="basal.col.jue">Thu</th><th data-i18n="basal.col.vie">Fri</th>
             </tr></thead>
             <tbody id="tbodyBasal"></tbody>
           </table>
@@ -179,7 +179,7 @@
       <div id="tabBasalHistorial" style="display:none">
         <h6 class="font-weight-700 mb-3"><i class="mdi mdi-history mr-1" style="color:var(--sm-green)"></i>Historial de versiones</h6>
         <table class="table table-clean">
-          <thead><tr><th>Versi&oacute;n</th><th>Fecha</th><th>Generado por</th><th>Estado</th><th>Observaciones</th></tr></thead>
+          <thead><tr><th data-i18n="basal.hist.version">Version</th><th data-i18n="basal.hist.fecha">Date</th><th data-i18n="basal.hist.gen">Generated by</th><th data-i18n="basal.hist.estado">Status</th><th data-i18n="basal.hist.obs">Notes</th></tr></thead>
           <tbody id="tbodyHistorial">
             <tr>
               <td><strong>v3</strong> <span class="badge badge-success badge-sm ml-1">Actual</span></td>
@@ -216,7 +216,7 @@
 <div class="modal fade" id="modalGenerar" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document"><div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-robot mr-1" style="color:var(--sm-green)"></i>Generar men&uacute; basal con IA &mdash; <span id="generarTipoLabel">Primaria</span></h5>
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-robot mr-1" style="color:var(--sm-green)"></i>Generate AI base menu &mdash; <span id="generarTipoLabel">Primary</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem">
@@ -224,18 +224,18 @@
         <div class="col-6">
           <label class="form-label" style="font-size:.78rem;font-weight:600">Tipo de centro</label>
           <select class="form-control form-control-sm" id="generarTipoSelect" onchange="onGenerarTipoChange()">
-            <option value="escolar">Escolar</option>
-            <option value="hospital">Hospital</option>
-            <option value="tercera-edad">Tercera Edad</option>
-            <option value="empresa">Empresa</option>
+            <option value="escolar"><span data-i18n="basal.tab.escolar">School</span></option>
+            <option value="hospital"><span data-i18n="basal.tab.hospital">Hospital</span></option>
+            <option value="tercera-edad"><span data-i18n="basal.tab.tercera">Senior Care</span></option>
+            <option value="empresa"><span data-i18n="basal.tab.empresa">Corporate</span></option>
           </select>
         </div>
         <div class="col-6" id="generarSubtipoGroup">
           <label class="form-label" style="font-size:.78rem;font-weight:600">Men&uacute; basal</label>
           <select class="form-control form-control-sm" id="generarSubtipoSelect" onchange="onGenerarSubtipoChange()">
-            <option value="primaria">Primaria</option>
-            <option value="secundaria">Secundaria</option>
-            <option value="infantil">Infantil</option>
+            <option value="primaria">Primary</option>
+            <option value="secundaria">Secondary</option>
+            <option value="infantil">Infant</option>
             <option value="residencia-escolar">Residencia Escolar</option>
           </select>
         </div>
@@ -273,7 +273,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
       <button type="button" class="btn btn-primary btn-sm" id="btnGenerarIA" onclick="ejecutarGeneracionIA()"><i class="mdi mdi-robot"></i> Generar</button>
     </div>
   </div></div>
@@ -326,7 +326,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
       <button type="button" class="btn btn-primary btn-sm" onclick="confirmarSustBasal()"><i class="mdi mdi-check"></i> Confirmar sustituci&oacute;n</button>
     </div>
   </div></div>
@@ -336,7 +336,7 @@
 <div class="modal fade" id="modalGenMenusCentros" tabindex="-1" style="z-index:1200">
   <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-robot mr-1" style="color:var(--sm-green)"></i><span id="genModalTitulo">Generar men&uacute;s Escolar &middot; Primaria</span></h5>
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-robot mr-1" style="color:var(--sm-green)"></i><span id="genModalTitulo">Generate School menus &middot; Primary</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem">
@@ -365,17 +365,17 @@
         <p class="mt-2 mb-0 text-muted" style="font-size:.77rem"><i class="mdi mdi-information-outline"></i> La IA adaptar&aacute; el men&uacute; basal a la normativa y restricciones espec&iacute;ficas de cada centro.</p>
       </div>
       <div id="genStep2" style="display:none">
-        <div class="d-flex align-items-center mb-2" style="gap:.5rem;font-size:.83rem"><span class="spinner-border spinner-border-sm text-success"></span><strong>Generando men&uacute;s&hellip;</strong></div>
+        <div class="d-flex align-items-center mb-2" style="gap:.5rem;font-size:.83rem"><span class="spinner-border spinner-border-sm text-success"></span><strong>Generating menus&hellip;</strong></div>
         <div class="progress mb-3" style="height:5px"><div class="progress-bar bg-success" id="genBarProgreso" style="width:0%;transition:width .4s"></div></div>
         <div id="genListaProceso" style="font-size:.82rem"></div>
       </div>
       <div id="genStep3" style="display:none">
-        <div class="d-flex align-items-center mb-3" style="gap:.5rem"><i class="mdi mdi-check-circle" style="color:var(--sm-green);font-size:1.15rem"></i><strong style="font-size:.88rem">Men&uacute;s generados correctamente</strong><span id="genBadgeCount" class="badge badge-success ml-1" style="font-size:.75rem"></span></div>
+        <div class="d-flex align-items-center mb-3" style="gap:.5rem"><i class="mdi mdi-check-circle" style="color:var(--sm-green);font-size:1.15rem"></i><strong style="font-size:.88rem">Mens generated successfully</strong><span id="genBadgeCount" class="badge badge-success ml-1" style="font-size:.75rem"></span></div>
         <div id="genTablaResultados"></div>
       </div>
     </div>
     <div class="modal-footer">
-      <div id="genFooter1"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button class="btn btn-primary btn-sm ml-1" onclick="ejecutarGenMenus()"><i class="mdi mdi-robot"></i> Generar men&uacute;s seleccionados</button></div>
+      <div id="genFooter1"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button><button class="btn btn-primary btn-sm ml-1" onclick="ejecutarGenMenus()"><i class="mdi mdi-robot"></i> Generar men&uacute;s seleccionados</button></div>
       <div id="genFooter3" style="display:none"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cerrar</button><a href="menus.html" onclick="sessionStorage.setItem('dashFiltroTipo',STATE.tipo);return true;" class="btn btn-primary btn-sm ml-1"><i class="mdi mdi-eye"></i> Ver men&uacute;s generados</a></div>
     </div>
   </div></div>
@@ -390,7 +390,7 @@
     </div>
     <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">&iquest;Aprobar el men&uacute; basal? Esto habilitar&aacute; la generaci&oacute;n de men&uacute;s para los centros de este tipo.</div>
     <div class="modal-footer" style="border-top:none;padding-top:.25rem">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
       <button type="button" class="btn btn-success btn-sm" onclick="confirmarAprobarBasal()"><i class="mdi mdi-check-circle"></i> S&iacute;, aprobar</button>
     </div>
   </div></div>
@@ -400,19 +400,19 @@
 <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-sm" role="document"><div class="modal-content">
     <div class="modal-header" style="border-bottom:none;padding-bottom:.5rem">
-      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Cerrar sesi&oacute;n</h5>
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Log out</h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
-    <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">&iquest;Est&aacute;s seguro de que deseas cerrar la sesi&oacute;n actual?</div>
+    <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">Are you sure you want to log out?</div>
     <div class="modal-footer" style="border-top:none;padding-top:.25rem">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
       <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalLogout').modal('hide');setTimeout(function(){window.location.href='login.html';},300)"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</button>
     </div>
   </div></div>
 </div>
 
 <!-- MODAL AJUSTES -->
-<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Ajustes de cuenta</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Perfil</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Nombre</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Apellidos</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Rol</label><input type="text" class="form-control form-control-sm" value="Nutricionista Central" disabled></div></div></div><div class="modal-footer"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Ajustes guardados','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Guardar cambios</button></div></div></div></div>
+<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Account settings</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div></div><div class="modal-footer"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Settings saved','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Save changes</button></div></div></div></div>
 
 </div></div></div></div>
 
@@ -432,16 +432,16 @@ function getActiveKey() {
 }
 
 var TIPO_LABELS = { 'escolar':'Escolar', 'hospital':'Hospital', 'tercera-edad':'Tercera Edad', 'empresa':'Empresa' };
-var SUBTIPO_LABELS = { 'primaria':'Primaria', 'secundaria':'Secundaria', 'infantil':'Infantil', 'residencia-escolar':'Residencia Escolar' };
+var SUBTIPO_LABELS = { 'primaria':'Primary', 'secundaria':'Secondary', 'infantil':'Infant', 'residencia-escolar':'School Residence' };
 
 var TIPO_CONFIG = {
   'escolar-primaria':           {kcalMin:600,kcalMax:700,kcalLabel:'600–700 kcal',norma:'RD 315/2025',target:3.50,nutri:'96.4%',costoKpi:'98.1%',desv:2},
   'escolar-secundaria':         {kcalMin:700,kcalMax:800,kcalLabel:'700–800 kcal',norma:'RD 315/2025',target:3.80,nutri:'94.8%',costoKpi:'97.2%',desv:1},
   'escolar-infantil':           {kcalMin:500,kcalMax:600,kcalLabel:'500–600 kcal',norma:'RD 315/2025',target:3.20,nutri:'97.9%',costoKpi:'99.0%',desv:0},
-  'escolar-residencia-escolar': {kcalMin:1800,kcalMax:2000,kcalLabel:'1.800–2.000 kcal/día (3 servicios)',norma:'RD 315/2025',target:5.20,nutri:'97.1%',costoKpi:'98.4%',desv:1},
-  'hospital':           {kcalMin:700,kcalMax:900,kcalLabel:'700–900 kcal',norma:'Normativa hospitalaria',target:5.00,nutri:'93.5%',costoKpi:'95.8%',desv:3},
+  'escolar-residencia-escolar': {kcalMin:1800,kcalMax:2000,kcalLabel:'1,800–2,000 kcal/day (3 services)',norma:'RD 315/2025',target:5.20,nutri:'97.1%',costoKpi:'98.4%',desv:1},
+  'hospital':           {kcalMin:700,kcalMax:900,kcalLabel:'700–900 kcal',norma:'Hospital standards',target:5.00,nutri:'93.5%',costoKpi:'95.8%',desv:3},
   'tercera-edad':       {kcalMin:700,kcalMax:800,kcalLabel:'700–800 kcal',norma:'RD 1030/2006',target:4.20,nutri:'98.2%',costoKpi:'97.5%',desv:1},
-  'empresa':            {kcalMin:700,kcalMax:900,kcalLabel:'700–900 kcal',norma:'Menú equilibrado',target:6.50,nutri:'96.1%',costoKpi:'98.8%',desv:1}
+  'empresa':            {kcalMin:700,kcalMax:900,kcalLabel:'700–900 kcal',norma:'Balanced menu',target:6.50,nutri:'96.1%',costoKpi:'98.8%',desv:1}
 };
 
 var APROBADO = {
@@ -455,9 +455,9 @@ var GENERADO = {
 
 var CENTROS_BY_TIPO = {
   'escolar': [
-    {nombre:'Colegio San Marcos',subtipo:'Primaria',comensales:245,nutri:'98.2%',costo:'€3.18'},
-    {nombre:'C. El Pinar',subtipo:'Secundaria',comensales:180,nutri:'97.5%',costo:'€3.45'},
-    {nombre:'C. Montessori',subtipo:'Infantil',comensales:95,nutri:'99.0%',costo:'€3.05'}
+    {nombre:'Colegio San Marcos',subtipo:'Primary',comensales:245,nutri:'98.2%',costo:'€3.18'},
+    {nombre:'C. El Pinar',subtipo:'Secondary',comensales:180,nutri:'97.5%',costo:'€3.45'},
+    {nombre:'C. Montessori',subtipo:'Infant',comensales:95,nutri:'99.0%',costo:'€3.05'}
   ],
   'hospital': [
     {nombre:'C. La Paz',subtipo:'Hospitalario',comensales:380,nutri:'94.1%',costo:'€4.05'},
@@ -508,9 +508,9 @@ function renderPage() {
 
   // Subtitle
   var subtitle = TIPO_LABELS[STATE.tipo];
-  if (STATE.tipo === 'escolar') subtitle += ' · Menú Basal ' + SUBTIPO_LABELS[STATE.subtipo];
+  if (STATE.tipo === 'escolar') subtitle += ' · Base Menu ' + SUBTIPO_LABELS[STATE.subtipo];
   var el = document.getElementById('pageSubtitle');
-  if (el) el.textContent = 'Propuesta maestra — ' + subtitle;
+  if (el) el.textContent = 'Master proposal — ' + subtitle;
 
   // Botón "Generar menús por centro" en el card header — visible y habilitado solo si aprobado
   var btnGenCentros = document.getElementById('btnGenMenusCentros');
@@ -518,7 +518,7 @@ function renderPage() {
     var aprobado = APROBADO[key];
     btnGenCentros.style.display = gen ? '' : 'none';
     btnGenCentros.disabled = !aprobado;
-    btnGenCentros.title = aprobado ? '' : 'Aprueba el menú basal para habilitar esta acción';
+    btnGenCentros.title = aprobado ? '' : 'Approve the base menu to enable this action';
   }
 
   renderKPIs(key, cfg, gen);
@@ -548,8 +548,8 @@ function renderPage() {
   // Titulo semana
   var tit = document.getElementById('tituloSemana');
   if (tit) {
-    var titLabel = STATE.tipo === 'escolar' ? 'Menú Basal ' + SUBTIPO_LABELS[STATE.subtipo] : 'Menú Basal ' + TIPO_LABELS[STATE.tipo];
-    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Semana ' + STATE.semana;
+    var titLabel = STATE.tipo === 'escolar' ? 'Base Menu ' + SUBTIPO_LABELS[STATE.subtipo] : 'Base Menu ' + TIPO_LABELS[STATE.tipo];
+    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Week ' + STATE.semana;
   }
 
   // Aprobar button
@@ -558,10 +558,10 @@ function renderPage() {
     var aprobado = APROBADO[key];
     btnApr.disabled = aprobado || !gen;
     if (aprobado) {
-      btnApr.innerHTML = '<i class="mdi mdi-check-circle"></i> Aprobado';
+      btnApr.innerHTML = '<i class="mdi mdi-check-circle"></i> Approved';
       btnApr.className = 'btn btn-success btn-sm';
     } else {
-      btnApr.innerHTML = '<i class="mdi mdi-check-circle-outline"></i> Aprobar menú basal';
+      btnApr.innerHTML = '<i class="mdi mdi-check-circle-outline"></i> Approve base menu';
       btnApr.className = 'btn btn-primary btn-sm';
     }
   }
@@ -569,9 +569,9 @@ function renderPage() {
 
 function renderKPIs(key, cfg, gen) {
   var aprobado = APROBADO[key];
-  var estado = !gen ? 'No generado' : (aprobado ? 'Aprobado' : 'En revisión');
+  var estado = !gen ? 'Not generated' : (aprobado ? 'Approved' : 'Under review');
   var estadoColor = !gen ? 'var(--sm-text-muted)' : (aprobado ? 'var(--sm-green)' : 'var(--sm-orange)');
-  var trend = !gen ? 'Pendiente de generar con IA' : (aprobado ? 'Listo para generar menús por centro' : 'Generado · pendiente aprobación');
+  var trend = !gen ? 'Pending AI generation' : (aprobado ? 'Ready to generate center menus' : 'Generated · pending approval');
 
   var el;
   el = document.getElementById('kpiEstado'); if (el) { el.textContent = estado; el.style.color = estadoColor; }
@@ -584,12 +584,12 @@ function renderKPIs(key, cfg, gen) {
 
 function renderSemaforo(key, cfg, gen) {
   var rules = [
-    {ok:gen, label:'Costo por comensal', desc: gen ? 'Dentro de target €'+cfg.target.toFixed(2)+'/comensal' : 'Sin datos — genera el menú primero'},
-    {ok:gen, label:'Rango calórico ('+cfg.kcalLabel+')', desc: gen ? 'Media '+Math.round((cfg.kcalMin+cfg.kcalMax)/2)+' kcal · cumple '+cfg.norma : 'Sin datos'},
-    {ok:gen, label:'Variedad (no repetir en 15 días)', desc: gen ? 'Sin repeticiones detectadas' : 'Sin datos'},
-    {ok: gen && key !== 'hospital', label:'Frecuencia pescado', desc: !gen ? 'Sin datos' : (key === 'hospital' ? '1.2 raciones/sem · mín recomendado 2' : '1.8 raciones/sem · dentro de rango')},
-    {ok: gen && key !== 'escolar-primaria', label:'Integrales semanales', desc: !gen ? 'Sin datos' : (key === 'escolar-primaria' ? '0 de 1 mínimo semanal esta semana' : '1 de 1 mínimo · OK')},
-    {ok:gen, label:'Macronutrientes', desc: gen ? 'P 13.2% · L 31.8% · HC 55% · OK' : 'Sin datos'}
+    {ok:gen, label:'Cost per diner', desc: gen ? 'Within target €'+cfg.target.toFixed(2)+'/diner' : 'No data — generate the menu first'},
+    {ok:gen, label:'Caloric range ('+cfg.kcalLabel+')', desc: gen ? 'Avg '+Math.round((cfg.kcalMin+cfg.kcalMax)/2)+' kcal · meets '+cfg.norma : 'No data'},
+    {ok:gen, label:'Variety (no repeat in 15 days)', desc: gen ? 'No repetitions detected' : 'No data'},
+    {ok: gen && key !== 'hospital', label:'Fish frequency', desc: !gen ? 'No data' : (key === 'hospital' ? '1.2 srv/wk · min. recommended 2' : '1.8 srv/wk · within range')},
+    {ok: gen && key !== 'escolar-primaria', label:'Weekly wholegrains', desc: !gen ? 'No data' : (key === 'escolar-primaria' ? '0 of 1 weekly minimum this week' : '1 of 1 minimum · OK')},
+    {ok:gen, label:'Macronutrients', desc: gen ? 'P 13.2% · F 31.8% · C 55% · OK' : 'No data'}
   ];
   var html = '';
   rules.forEach(function(r) {
@@ -765,15 +765,15 @@ function _renderServicioRows(rows, sem, sectionLabel, sectionColor, dias) {
 function renderTabla(sem) {
   var tbody = document.getElementById('tbodyBasal');
   if (!tbody) return;
-  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var dias = ['Mon','Tue','Wed','Thu','Fri'];
   var html = '';
 
   if (STATE.tipo === 'escolar' && STATE.subtipo === 'residencia-escolar') {
     var data = menuBasalResEscDB[sem];
     if (!data) { tbody.innerHTML = ''; return; }
-    html += _renderServicioRows(data.desayuno, sem, '🌅 Desayuno', 'rgba(22,163,73,.06)', dias);
-    html += _renderServicioRows(data.comida, sem, '☀️ Comida', 'rgba(232,119,34,.06)', dias);
-    html += _renderServicioRows(data.cena, sem, '🌙 Cena', 'rgba(21,101,192,.06)', dias);
+    html += _renderServicioRows(data.desayuno, sem, '🌅 Breakfast', 'rgba(22,163,73,.06)', dias);
+    html += _renderServicioRows(data.comida, sem, '☀️ Lunch', 'rgba(232,119,34,.06)', dias);
+    html += _renderServicioRows(data.cena, sem, '🌙 Dinner', 'rgba(21,101,192,.06)', dias);
     tbody.innerHTML = html;
     renderBasalNutricion(sem);
     renderBasalCosto(sem);
@@ -815,20 +815,20 @@ function generarOpcionesReceta(actual) {
 
 function editarPlatoDirecto(sem, rIdx, dIdx, valor) {
   menuBasalDB[sem].rows[rIdx].dias[dIdx] = valor;
-  smToast('Plato actualizado', 'success', 1500);
+  smToast('Dish updated', 'success', 1500);
   document.getElementById('btnAprobar').disabled = false;
 }
 
 function toggleEdicionBasal(btn) {
   modoEdicionBasal = !modoEdicionBasal;
   if (modoEdicionBasal) {
-    btn.innerHTML = '<i class="mdi mdi-content-save-outline"></i> Guardar cambios';
+    btn.innerHTML = '<i class="mdi mdi-content-save-outline"></i> Save changes';
     btn.classList.replace('btn-outline-primary','btn-primary');
-    smToast('Modo edición activo. Selecciona cualquier plato para cambiarlo.','info',3000);
+    smToast('Edit mode active. Click any dish to change it.','info',3000);
   } else {
-    btn.innerHTML = '<i class="mdi mdi-pencil"></i> Editar platos';
+    btn.innerHTML = '<i class="mdi mdi-pencil"></i> Edit dishes';
     btn.classList.replace('btn-primary','btn-outline-primary');
-    smToast('Cambios guardados. La IA ha validado el impacto nutricional.','success');
+    smToast('Changes saved. AI has validated the nutritional impact.','success');
     var btnApr = document.getElementById('btnAprobar');
     if (btnApr && !APROBADO[getActiveKey()]) btnApr.disabled = false;
   }
@@ -842,8 +842,8 @@ function cambiarSemana(num, btn) {
   renderTabla(num);
   var tit = document.getElementById('tituloSemana');
   if (tit) {
-    var titLabel = STATE.tipo === 'escolar' ? 'Menú Basal ' + SUBTIPO_LABELS[STATE.subtipo] : 'Menú Basal ' + TIPO_LABELS[STATE.tipo];
-    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Semana ' + num;
+    var titLabel = STATE.tipo === 'escolar' ? 'Base Menu ' + SUBTIPO_LABELS[STATE.subtipo] : 'Base Menu ' + TIPO_LABELS[STATE.tipo];
+    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Week ' + num;
   }
 }
 
@@ -863,7 +863,7 @@ function switchBasalTab(tab) {
 function renderBasalNutricion(sem) {
   var data = menuBasalDB[sem]; if (!data) return;
   var cfg = TIPO_CONFIG[getActiveKey()];
-  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var dias = ['Mon','Tue','Wed','Thu','Fri'];
   var daily = dias.map(function(d,di){
     var kcal=0,prot=0,grasa=0,hc=0;
     data.rows.forEach(function(row){var db=basalRecetasDB[row.dias[di]];if(db){kcal+=db.kcal||0;prot+=parseInt(db.prot)||0;grasa+=parseInt(db.grasa)||0;hc+=parseInt(db.hc)||0;}});
@@ -871,12 +871,12 @@ function renderBasalNutricion(sem) {
   });
   function avg(key){var vals=daily.map(function(d){return d[key];}).filter(function(v){return v>0;});return vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length):0;}
   var nutriRows=[
-    {label:'Calorías',key:'kcal',unit:' kcal',min:cfg.kcalMin,max:cfg.kcalMax,obj:cfg.kcalLabel},
-    {label:'Proteínas',key:'prot',unit:'g',min:20,max:40,obj:'12–15%'},
-    {label:'Grasas',key:'grasa',unit:'g',min:20,max:30,obj:'30–35%'},
-    {label:'Hidratos',key:'hc',unit:'g',min:60,max:90,obj:'50–55%'}
+    {label:'Calories',key:'kcal',unit:' kcal',min:cfg.kcalMin,max:cfg.kcalMax,obj:cfg.kcalLabel},
+    {label:'Protein',key:'prot',unit:'g',min:20,max:40,obj:'12–15%'},
+    {label:'Fat',key:'grasa',unit:'g',min:20,max:30,obj:'30–35%'},
+    {label:'Carbs',key:'hc',unit:'g',min:60,max:90,obj:'50–55%'}
   ];
-  var html='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Nutriente</th>';
+  var html='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Nutrient</th>';
   dias.forEach(function(d){html+='<th class="text-center">'+d.substring(0,3)+'</th>';});
   html+='<th class="text-center">Media</th><th class="text-center">Objetivo</th><th class="text-center">Estado</th></tr></thead><tbody>';
   nutriRows.forEach(function(row){
@@ -886,7 +886,7 @@ function renderBasalNutricion(sem) {
     html+='<td class="text-center font-weight-bold">'+(a>0?a+row.unit:'—')+'</td>';
     html+='<td class="text-center text-muted" style="font-size:.82rem">'+row.obj+'</td>';
     var ok=a>=row.min&&a<=row.max;
-    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ OK</span>':'<span class="badge-critico">Revisar</span>')+'</td></tr>';
+    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ OK</span>':'<span class="badge-critico">Review</span>')+'</td></tr>';
   });
   html+='</tbody></table></div>';
   var el=document.getElementById('basalNutriContent');if(el)el.innerHTML=html;
@@ -896,7 +896,7 @@ function renderBasalCosto(sem) {
   var data=menuBasalDB[sem];if(!data)return;
   var cfg=TIPO_CONFIG[getActiveKey()];
   var TARGET=cfg.target;
-  var dias=['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var dias=['Mon','Tue','Wed','Thu','Fri'];
   var daily=dias.map(function(d,di){
     var total=0;data.rows.forEach(function(row){var db=basalRecetasDB[row.dias[di]];if(db&&db.costo)total+=parseFloat(String(db.costo).replace('€','').replace(',','.'))||0;});return{dia:d,total:total};
   });
@@ -904,17 +904,17 @@ function renderBasalCosto(sem) {
   var mediaDay=daily.length?totalSem/daily.length:0;
   var onTarget=daily.filter(function(d){return d.total<=TARGET;}).length;
   var html='<div class="row mb-3">';
-  html+='<div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+mediaDay.toFixed(2)+'</div><div class="kpi-label">Costo medio / día</div></div></div>';
-  html+='<div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+totalSem.toFixed(2)+'</div><div class="kpi-label">Total semana / comensal</div></div></div>';
-  html+='<div class="col-4"><div class="kpi-card '+(onTarget>=4?'kpi-green':'kpi-red')+' p-3 text-center"><div class="kpi-value '+(onTarget>=4?'text-green':'text-danger')+'" style="font-size:1.4rem">'+onTarget+'/5</div><div class="kpi-label">Días dentro de target (€'+TARGET.toFixed(2)+')</div></div></div>';
+  html+='<div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+mediaDay.toFixed(2)+'</div><div class="kpi-label">Avg cost / day</div></div></div>';
+  html+='<div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+totalSem.toFixed(2)+'</div><div class="kpi-label">Weekly total / diner</div></div></div>';
+  html+='<div class="col-4"><div class="kpi-card '+(onTarget>=4?'kpi-green':'kpi-red')+' p-3 text-center"><div class="kpi-value '+(onTarget>=4?'text-green':'text-danger')+'" style="font-size:1.4rem">'+onTarget+'/5</div><div class="kpi-label">Days within target (€'+TARGET.toFixed(2)+')</div></div></div>';
   html+='</div>';
-  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Día</th><th>Servicio</th><th>Nº platos</th><th class="text-center">Costo unit.</th><th class="text-center">Target</th><th class="text-center">Estado</th></tr></thead><tbody style="line-height:2">';
+  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Day</th><th>Service</th><th>No. dishes</th><th class="text-center">Unit cost</th><th class="text-center">Target</th><th class="text-center">Status</th></tr></thead><tbody style="line-height:2">';
   daily.forEach(function(d){
     var ok=d.total<=TARGET;
-    html+='<tr><td><strong>'+d.dia.substring(0,3)+'</strong></td><td>Almuerzo</td><td>4 platos</td>';
+    html+='<tr><td><strong>'+d.dia+'</strong></td><td>Lunch</td><td>4 dishes</td>';
     html+='<td class="text-center '+(ok?'':'text-danger')+'">€'+d.total.toFixed(2)+'</td>';
     html+='<td class="text-center text-muted">€'+TARGET.toFixed(2)+'</td>';
-    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ Target</span>':'<span class="badge-critico">Sobre target</span>')+'</td></tr>';
+    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ Target</span>':'<span class="badge-critico">Over target</span>')+'</td></tr>';
   });
   html+='</tbody></table></div>';
   var el=document.getElementById('basalCostoContent');if(el)el.innerHTML=html;
@@ -922,17 +922,17 @@ function renderBasalCosto(sem) {
 
 function renderBasalAlergenos(sem) {
   var data=menuBasalDB[sem];if(!data)return;
-  var dias=['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var dias=['Mon','Tue','Wed','Thu','Fri'];
   var alergList=[];
   data.rows.forEach(function(row){row.dias.forEach(function(plato,di){var db=basalRecetasDB[plato];if(db&&db.alerg&&db.alerg!=='Ninguno'&&db.alerg!=='Sin datos')alergList.push({alerg:db.alerg,plato:plato,dia:dias[di],servicio:row.plato});});});
   var el=document.getElementById('basalAlergenosContent');if(!el)return;
-  if(!alergList.length){el.innerHTML='<div class="alert-sm-ok p-3 mb-0"><i class="mdi mdi-check-circle mr-2"></i>No se han detectado alérgenos en esta semana del menú basal.</div>';return;}
-  var html='<div class="alert-sm-critico p-3 mb-3"><i class="mdi mdi-alert-circle mr-2"></i><strong>'+alergList.length+' plato(s) con alérgenos detectados esta semana</strong></div>';
-  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Alérgeno</th><th>Plato</th><th>Día</th><th>Servicio</th><th>Acción</th></tr></thead><tbody style="line-height:2">';
+  if(!alergList.length){el.innerHTML='<div class="alert-sm-ok p-3 mb-0"><i class="mdi mdi-check-circle mr-2"></i>No allergens detected in this base menu week.</div>';return;}
+  var html='<div class="alert-sm-critico p-3 mb-3"><i class="mdi mdi-alert-circle mr-2"></i><strong>'+alergList.length+' dish(es) with allergens detected this week</strong></div>';
+  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Allergen</th><th data-i18n="basal.col.plato">Dish</th><th>Day</th><th>Service</th><th>Action</th></tr></thead><tbody style="line-height:2">';
   alergList.forEach(function(item){
     var tags=item.alerg.split(',').map(function(a){return '<span class="badge badge-danger mr-1" style="font-size:.75rem">'+a.trim()+'</span>';}).join('');
     html+='<tr><td>'+tags+'</td><td><strong>'+item.plato+'</strong></td><td>'+item.dia+'</td><td>'+item.servicio+'</td>';
-    html+='<td><button class="btn btn-sm btn-warning" onclick="abrirSustituirBasal(\''+item.plato.replace(/'/g,"\\'")+'\',\''+item.dia+' · '+item.servicio+'\')"><i class="mdi mdi-swap-horizontal"></i> Sustituir</button></td></tr>';
+    html+='<td><button class="btn btn-sm btn-warning" onclick="abrirSustituirBasal(\''+item.plato.replace(/'/g,"\\'")+'\',\''+item.dia+' · '+item.servicio+'\')"><i class="mdi mdi-swap-horizontal"></i> Replace</button></td></tr>';
   });
   html+='</tbody></table></div>';
   el.innerHTML=html;
@@ -945,19 +945,19 @@ function verPlatoBasal(nombre, dia) {
   if (modoEdicionBasal || nombre === '—') return;
   _sustBasalNombre=nombre; _sustBasalServicio=dia;
   document.getElementById('mPlatoTitle').innerHTML='<i class="mdi mdi-food mr-2" style="color:var(--sm-green)"></i>'+nombre+' — '+dia;
-  var d=basalRecetasDB[nombre]||{kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'Sin datos',costo:'—',receta:'Información no disponible.'};
-  var alergColor=(d.alerg==='Ninguno'||d.alerg==='Sin datos')?'var(--sm-green)':'var(--sm-orange)';
-  var alergIcon=(d.alerg==='Ninguno'||d.alerg==='Sin datos')?'mdi-check-circle-outline':'mdi-alert-outline';
+  var d=basalRecetasDB[nombre]||{kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'No data',costo:'—',receta:'Information not available.'};
+  var alergColor=(d.alerg==='Ninguno'||d.alerg==='No data')?'var(--sm-green)':'var(--sm-orange)';
+  var alergIcon=(d.alerg==='Ninguno'||d.alerg==='No data')?'mdi-check-circle-outline':'mdi-alert-outline';
   document.getElementById('mPlatoBody').innerHTML=
     '<div class="d-flex" style="gap:1.2rem">'
-    +'<div style="flex:1"><div class="plato-label">Ingredientes / Receta</div><p class="plato-receta">'+d.receta+'</p>'
-    +'<div class="plato-label">Alérgenos</div><p class="plato-alerg"><i class="mdi '+alergIcon+' mr-1" style="color:'+alergColor+'"></i>'+d.alerg+'</p></div>'
-    +'<div class="plato-nutri-box"><div class="plato-label">Información nutricional</div>'
-    +'<div class="plato-nutri-row"><span style="color:#6c757d">Calorías</span><strong>'+d.kcal+' kcal</strong></div>'
-    +'<div class="plato-nutri-row"><span style="color:#6c757d">Proteínas</span><strong>'+d.prot+'</strong></div>'
-    +'<div class="plato-nutri-row"><span style="color:#6c757d">Grasas</span><strong>'+d.grasa+'</strong></div>'
-    +'<div class="plato-nutri-row"><span style="color:#6c757d">Hidratos</span><strong>'+d.hc+'</strong></div>'
-    +'<div class="plato-nutri-row" style="margin-top:.3rem;padding-top:.4rem;border-top:2px solid #e5e7eb"><span style="color:#6c757d">Costo/ración</span><strong style="color:var(--sm-green)">'+d.costo+'</strong></div>'
+    +'<div style="flex:1"><div class="plato-label">Ingredients / Recipe</div><p class="plato-receta">'+d.receta+'</p>'
+    +'<div class="plato-label"><span data-i18n="basal.tab.alerg">Allergens</span></div><p class="plato-alerg"><i class="mdi '+alergIcon+' mr-1" style="color:'+alergColor+'"></i>'+d.alerg+'</p></div>'
+    +'<div class="plato-nutri-box"><div class="plato-label">Nutritional information</div>'
+    +'<div class="plato-nutri-row"><span style="color:#6c757d">Calories</span><strong>'+d.kcal+' kcal</strong></div>'
+    +'<div class="plato-nutri-row"><span style="color:#6c757d">Protein</span><strong>'+d.prot+'</strong></div>'
+    +'<div class="plato-nutri-row"><span style="color:#6c757d">Fat</span><strong>'+d.grasa+'</strong></div>'
+    +'<div class="plato-nutri-row"><span style="color:#6c757d">Carbs</span><strong>'+d.hc+'</strong></div>'
+    +'<div class="plato-nutri-row" style="margin-top:.3rem;padding-top:.4rem;border-top:2px solid #e5e7eb"><span style="color:#6c757d">Cost/serving</span><strong style="color:var(--sm-green)">'+d.costo+'</strong></div>'
     +'</div></div>';
   $('#modalPlato').modal('show');
 }
@@ -966,7 +966,7 @@ function abrirSustituirBasal(nombre,servicio){
   $('#modalPlato').modal('hide');
   nombre=nombre||_sustBasalNombre||'';servicio=servicio||_sustBasalServicio||'';
   var db=basalRecetasDB[nombre]||{};
-  var motivo=(db.alerg&&db.alerg!=='Ninguno'&&db.alerg!=='Sin datos')?'Alérgeno detectado: '+db.alerg+' en '+nombre:'Sustitución solicitada para '+(nombre||'el plato seleccionado');
+  var motivo=(db.alerg&&db.alerg!=='Ninguno'&&db.alerg!=='No data')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
   document.getElementById('sustBasalMotivoTexto').textContent=motivo;
   document.getElementById('sustBasalPlatoAfectado').value=(servicio?servicio+' · ':'')+nombre;
   document.getElementById('sustBasalPlatoSustituto').value='';
@@ -976,11 +976,11 @@ function abrirSustituirBasal(nombre,servicio){
 
 function confirmarSustBasal(){
   var s=document.getElementById('sustBasalPlatoSustituto').value;
-  if(!s){smToast('Selecciona un plato sustituto','warning');return;}
+  if(!s){smToast('Select a replacement dish','warning');return;}
   $('#modalSustituir').modal('hide');
-  smToast('Plato sustituido por "'+s+'"','success');
-  setTimeout(function(){smToast('Validando nuevo menú...','info');},1000);
-  setTimeout(function(){smToast('Validación completada. Sin nuevas desviaciones.','success');},2500);
+  smToast('Dish replaced with "'+s+'"','success');
+  setTimeout(function(){smToast('Validating new menu...','info');},1000);
+  setTimeout(function(){smToast('Validation complete. No new deviations.','success');},2500);
 }
 
 // ── GENERAR CON IA ────────────────────────────────────────────────────────────
@@ -1006,8 +1006,8 @@ function _actualizarParamsModal() {
   var m=_getModalKey();
   var cfg=m.tipo==='escolar'?TIPO_CONFIG['escolar-primaria']:TIPO_CONFIG[m.key];if(!cfg)return;
   var tipoLabel=TIPO_LABELS[m.tipo];
-  if(m.tipo==='escolar')tipoLabel+=' · Todos los submenús';
-  else tipoLabel='Menú Basal '+tipoLabel;
+  if(m.tipo==='escolar')tipoLabel+=' · All sub-menus';
+  else tipoLabel='Base Menu '+tipoLabel;
   var el;
   el=document.getElementById('generarTipoLabel');if(el)el.textContent=tipoLabel;
   el=document.getElementById('generarNormaLabel');if(el)el.textContent=cfg.norma;
@@ -1035,7 +1035,7 @@ function ejecutarGeneracionIA() {
   document.getElementById('iaProgress').style.display='block';
   var m=_getModalKey();
   var cfg=TIPO_CONFIG[m.key];
-  var msgs=['Consultando recetas Crownet…','Aplicando reglas nutricionales '+cfg.norma+'…','Verificando variedad y frecuencias…','Optimizando costos (target €'+cfg.target.toFixed(2)+')…','Generando propuesta final…'];
+  var msgs=['Consulting Crownet recipes…','Applying nutritional rules '+cfg.norma+'…','Verifying variety and frequencies…','Optimizing costs (target €'+cfg.target.toFixed(2)+')…','Generating final proposal…'];
   var paso=0,bar=document.getElementById('iaProgressBar'),msg=document.getElementById('iaProgressMsg');
   var iv=setInterval(function(){
     if(paso>=msgs.length){
@@ -1046,8 +1046,8 @@ function ejecutarGeneracionIA() {
         GENERADO[m.key]=true;
       }
       if(m.tipo===STATE.tipo)renderPage();
-      var genLabel=TIPO_LABELS[m.tipo]+(m.tipo==='escolar'?' · Primaria, Secundaria, Infantil y Residencia Escolar':'');
-      smToast('Menú basal '+genLabel+' generado. Revisa y aprueba.','success',5000);
+      var genLabel=TIPO_LABELS[m.tipo]+(m.tipo==='escolar'?' · Primary, Secondary, Infant and School Residence':'');
+      smToast('Base menu '+genLabel+' generated. Review and approve.','success',5000);
       return;
     }
     msg.textContent=msgs[paso];bar.style.width=((paso+1)/msgs.length*100)+'%';paso++;
@@ -1056,9 +1056,9 @@ function ejecutarGeneracionIA() {
 
 // ── APROBAR BASAL ─────────────────────────────────────────────────────────────
 function aprobarBasal() {
-  if(modoEdicionBasal){smToast('Guarda los cambios antes de aprobar','warning');return;}
+  if(modoEdicionBasal){smToast('Save changes before approving','warning');return;}
   var key=getActiveKey();
-  if(!GENERADO[key]){smToast('Primero genera el menú basal con IA','warning');return;}
+  if(!GENERADO[key]){smToast('First generate the base menu with AI','warning');return;}
   $('#modalAprobarBasal').modal('show');
 }
 
@@ -1067,7 +1067,7 @@ function confirmarAprobarBasal() {
   $('#modalAprobarBasal').modal('hide');
   APROBADO[key]=true;
   renderPage();
-  smToast('Menú basal aprobado. Ya puedes generar los menús por centro desde Menús.','success',5000);
+  smToast('Base menu approved. You can now generate center menus from Menus.','success',5000);
 }
 
 // ── GENERAR MENÚS CENTROS ─────────────────────────────────────────────────────
@@ -1075,12 +1075,12 @@ var _genCentrosActivos = [];
 
 function abrirGenMenusCentros() {
   var key=getActiveKey();
-  if(!APROBADO[key]){smToast('Aprueba el menú basal antes de generar menús por centro','warning',4000);return;}
+  if(!APROBADO[key]){smToast('Approve the base menu before generating center menus','warning',4000);return;}
   var tipo=STATE.tipo;
   var centros=(CENTROS_BY_TIPO[tipo]||[]).slice();
   _genCentrosActivos=centros;
 
-  var titulo='Generar menús '+TIPO_LABELS[tipo];
+  var titulo='Generate menus — '+TIPO_LABELS[tipo];
   var el=document.getElementById('genModalTitulo');if(el)el.textContent=titulo;
 
   var html='';
@@ -1088,9 +1088,9 @@ function abrirGenMenusCentros() {
     html+='<label class="d-flex align-items-center px-3 py-2 mb-0'+(i<centros.length-1?' border-bottom':'')+'" style="gap:.6rem;cursor:pointer">';
     html+='<input type="checkbox" class="genCheck" data-idx="'+i+'" checked>';
     html+='<div style="flex:1"><strong>'+c.nombre+'</strong><span class="badge badge-secondary ml-1" style="font-size:.7rem;vertical-align:middle">'+c.subtipo+'</span></div>';
-    html+='<span class="text-muted">'+c.comensales+' comensales</span></label>';
+    html+='<span class="text-muted">'+c.comensales+' diners</span></label>';
   });
-  if(!centros.length){html='<div class="px-3 py-3 text-muted" style="font-size:.83rem"><i class="mdi mdi-information-outline mr-1"></i>No hay centros de este tipo registrados.</div>';}
+  if(!centros.length){html='<div class="px-3 py-3 text-muted" style="font-size:.83rem"><i class="mdi mdi-information-outline mr-1"></i>No centers of this type registered.</div>';}
   var listEl=document.getElementById('genCentrosList');if(listEl)listEl.innerHTML=html;
 
   document.getElementById('genStep1').style.display='';
@@ -1108,7 +1108,7 @@ function toggleAllGenCentros(v){document.querySelectorAll('.genCheck').forEach(f
 
 function ejecutarGenMenus(){
   var checks=Array.from(document.querySelectorAll('.genCheck:checked'));
-  if(!checks.length){smToast('Selecciona al menos un centro','warning');return;}
+  if(!checks.length){smToast('Select at least one center','warning');return;}
   var idxs=checks.map(function(c){return parseInt(c.dataset.idx);});
   document.getElementById('genStep1').style.display='none';
   document.getElementById('genFooter1').style.display='none';
@@ -1139,18 +1139,18 @@ function mostrarResultadosGen(idxs){
   document.getElementById('genStep3').style.display='';
   document.getElementById('genFooter1').style.display='none';
   document.getElementById('genFooter3').style.display='';
-  document.getElementById('genBadgeCount').textContent=idxs.length+' menú'+(idxs.length>1?'s':'');
-  var html='<table class="table table-sm mb-0" style="font-size:.82rem"><thead><tr><th>Centro</th><th>Tipo</th><th class="text-center">Cumpl. Nutricional</th><th class="text-center">Coste/comensal</th><th class="text-center">Estado</th></tr></thead><tbody>';
+  document.getElementById('genBadgeCount').textContent=idxs.length+' menu'+(idxs.length>1?'s':'');
+  var html='<table class="table table-sm mb-0" style="font-size:.82rem"><thead><tr><th>Center</th><th>Type</th><th class="text-center">Nutritional compliance</th><th class="text-center">Cost/diner</th><th class="text-center">Status</th></tr></thead><tbody>';
   idxs.forEach(function(i){
     var c=_genCentrosActivos[i];
-    html+='<tr><td><strong>'+c.nombre+'</strong></td><td style="font-size:.78rem">'+c.subtipo+'</td><td class="text-center text-success font-weight-bold">'+c.nutri+'</td><td class="text-center">'+c.costo+'</td><td class="text-center"><span class="badge badge-warning" style="font-size:.74rem;padding:.3em .55em">Borrador</span></td></tr>';
+    html+='<tr><td><strong>'+c.nombre+'</strong></td><td style="font-size:.78rem">'+c.subtipo+'</td><td class="text-center text-success font-weight-bold">'+c.nutri+'</td><td class="text-center">'+c.costo+'</td><td class="text-center"><span class="badge badge-warning" style="font-size:.74rem;padding:.3em .55em">Draft</span></td></tr>';
   });
   html+='</tbody></table>';
   document.getElementById('genTablaResultados').innerHTML=html;
 }
 
-function exportarBasal(){smToast('Exportando menú basal a Excel…','info',2500);}
-function cargarPeriodo(){smToast('Cargando período seleccionado…','info',1800);}
+function exportarBasal(){smToast('Exporting base menu to Excel…','info',2500);}
+function cargarPeriodo(){smToast('Loading selected period…','info',1800);}
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderPage();

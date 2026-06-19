@@ -48,8 +48,8 @@
 }
 .sidebar .nav { flex: 1 !important; min-height: 0 !important; overflow-y: auto !important; overflow-x: hidden !important; margin-bottom: 0 !important; padding-bottom: 155px !important; }
 .page-body-wrapper { padding-left: 258px !important; min-height: 100vh !important; }
-.main-panel { width: 100% !important; min-height: 100vh !important; overflow-y: auto !important; }
-.content-wrapper { padding: 2rem !important; background: var(--sm-bg) !important; min-height: 100vh !important; }
+.main-panel { width: 100% !important; min-height: 100vh !important; overflow-y: auto !important; display: flex !important; flex-direction: column !important; }
+.content-wrapper { padding: 2rem !important; background: var(--sm-bg) !important; flex: 1 !important; }
 
 /* ── SIDEBAR NAV ─────────────────────────────────────────── */
 .sidebar .nav .nav-item:hover { background: var(--sm-sidebar-hover) !important; }
@@ -622,3 +622,44 @@ canvas + * { margin-top: 12px !important; }
 .pagination .page-item.active .page-link{background-color:var(--sm-green);border-color:var(--sm-green);color:#fff;}
 .pagination .page-link:hover,.pagination .page-link:focus{color:var(--sm-green);border-color:var(--sm-green);}
 .pagination .page-item.disabled .page-link{color:#adb5bd;}
+
+/* ── TOPBAR ───────────────────────────────────────────── */
+.sm-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: .6rem 2rem .1rem;
+  background: var(--sm-bg);
+  flex-shrink: 0;
+}
+
+/* ── LANGUAGE TOGGLE ─────────────────────────────────── */
+.sm-lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.sm-lang-btn {
+  background: transparent;
+  border: 1px solid var(--sm-border);
+  color: var(--sm-text-muted);
+  border-radius: 4px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .6px;
+  padding: .12rem .42rem;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  line-height: 1.5;
+}
+.sm-lang-btn:hover { color: var(--sm-green); border-color: var(--sm-green); }
+.sm-lang-btn.active {
+  background: var(--sm-green);
+  border-color: var(--sm-green);
+  color: #fff;
+}
+.sm-lang-sep {
+  color: var(--sm-border);
+  font-size: .65rem;
+  line-height: 1;
+}

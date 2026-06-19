@@ -69,6 +69,7 @@
         runScripts(doc);
 
         setTimeout(function(){
+          if(typeof applyI18n==='function')applyI18n();
           if(typeof inicializarCharts==='function')inicializarCharts();
           if(typeof renderTabla==='function')renderTabla(1);
           if(typeof renderVariantes==='function'&&window.variantesGeneradas)renderVariantes();

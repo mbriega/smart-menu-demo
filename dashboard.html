@@ -7,19 +7,19 @@
 <link rel="stylesheet" href="assets_custom/css/style.css">
 <link rel="stylesheet" href="assets/css/smart-menu-theme.css?v=6">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
-</head><body><div id="sm-toast-container"></div><div class="container-scroller"><div class="container-fluid page-body-wrapper"><nav class="sidebar sidebar-offcanvas" id="sidebar"><a class="sm-sidebar-brand" href="dashboard.html" style="display:flex;padding:1rem 1.2rem;gap:.7rem;align-items:center">
+<script src="assets/js/i18n.js"></script></head><body><div id="sm-toast-container"></div><div class="container-scroller"><div class="container-fluid page-body-wrapper"><nav class="sidebar sidebar-offcanvas" id="sidebar"><a class="sm-sidebar-brand" href="dashboard.html" style="display:flex;padding:1rem 1.2rem;gap:.7rem;align-items:center">
   <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMzEwLjI4IDIyMi4wMAogIEwgMzAyLjA0IDIyMi4wMAogIFEgMjY3LjUxIDIyMC40MSAyNDEuNDIgMjAwLjg2CiAgQyAxNzguODQgMTUzLjk5IDE4NC4wNiA1Mi4yOSAyNTMuNjQgMTQuMTkKICBRIDI4My4yMCAtMi4wMSAzMTcuNzYgMS40NAogIEMgMzY4LjYzIDYuNTIgNDA3LjQ3IDQ1LjYyIDQxMy44OSA5Ni4yMgogIEMgNDIyLjE2IDE2MS4yOSAzNzcuMDAgMjE5LjUzIDMxMC4yOCAyMjIuMDAKICBaCiAgTSAzNzYuNzggMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSA0MC40MAogIEEgNzAuNDMgNzAuNDMgMC4wIDAgMCAyMzUuOTIgMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSAxODEuMjYKICBBIDcwLjQzIDcwLjQzIDAuMCAwIDAgMzc2Ljc4IDExMC44MwogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gNDgwLjYxIDIxNS4yNAogIEwgNDM4LjAzIDIxNS4yNAogIEEgMC4zMyAwLjMzIDAuMCAwIDEgNDM3LjcwIDIxNC45MQogIEwgNDM3LjcwIDU1LjI2CiAgQSA0LjM0IDQuMjYgLTMyLjYgMCAxIDQzOC4xMyA1My4zOQogIEMgNDU0LjA1IDIwLjYxIDQ4Ni42OSA1LjM2IDUyMi4xNSA2LjUwCiAgQyA1NDEuOTQgNy4xNCA1NjEuNzUgMTQuNjMgNTc2LjQ4IDI4LjI1CiAgQSAwLjUwIDAuNDggNDMuMyAwIDEgNTc2LjUxIDI4Ljk0CiAgTCA1NDYuOTQgNTkuODEKICBBIDAuNDYgMC40NiAwLjAgMCAxIDU0Ni4zMCA1OS44MwogIFEgNTM4LjUyIDUyLjY1IDUyOC4xNyA1MC44OAogIEMgNTExLjYzIDQ4LjA2IDQ5Mi42NCA1MS42NyA0ODEuODAgNjUuMzUKICBBIDIuNDAgMi4zNyAtMjYuMiAwIDAgNDgxLjI5IDY2LjgyCiAgTCA0ODEuMjkgMjE0LjU2CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA0ODAuNjEgMjE1LjI0CiAgWiIKLz4KPHBhdGggZmlsbD0iIzM4YjAwMCIgZD0iCiAgTSA4NjcuMTcgMjE0LjU4CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA4NjYuNDkgMjE1LjI2CiAgTCA4MjMuOTAgMjE1LjI1CiAgQSAwLjMzIDAuMzMgMC4wIDAgMSA4MjMuNTcgMjE0LjkyCiAgTCA4MjMuNjEgNTUuMjUKICBBIDQuMzQgNC4yNiAtMzIuNiAwIDEgODI0LjA0IDUzLjM4CiAgQyA4MzkuOTcgMjAuNjAgODcyLjYyIDUuMzYgOTA4LjA5IDYuNTEKICBDIDkyNy44OCA3LjE1IDk0Ny42OSAxNC42NSA5NjIuNDIgMjguMjcKICBBIDAuNTAgMC40OCA0My40IDAgMSA5NjIuNDUgMjguOTYKICBMIDkzMi44NyA1OS44MwogIEEgMC40NiAwLjQ2IDAuMCAwIDEgOTMyLjIzIDU5Ljg1CiAgUSA5MjQuNDUgNTIuNjcgOTE0LjEwIDUwLjg5CiAgQyA4OTcuNTUgNDguMDcgODc4LjU2IDUxLjY3IDg2Ny43MiA2NS4zNQogIEEgMi40MCAyLjM3IC0yNi4yIDAgMCA4NjcuMjEgNjYuODIKICBMIDg2Ny4xNyAyMTQuNTgKICBaIgovPgo8cGF0aCBmaWxsPSIjMzhiMDAwIiBkPSIKICBNIDc0NS45NyAxOTUuNTYKICBRIDcwMi45NSAyMjUuNjMgNjUxLjI4IDIxMC44MQogIFEgNjE3Ljc4IDIwMS4yMSA1OTcuNDQgMTc0LjMwCiAgUSA1NjMuMTUgMTI4LjkzIDU4Mi4yOCA3NS4xOQogIFEgNTkzLjIzIDQ0LjQyIDYyMi4wOSAyNS4wNwogIFEgNjI1LjY2IDIyLjY3IDYyOC4zNyAyMS41MAogIEMgNjMxLjIyIDIwLjI3IDYzNC4yMiAxOC40MSA2MzYuOTUgMTcuMTcKICBRIDY3Ni42NyAtMC45MCA3MTkuMTAgMTMuMzQKICBRIDc1Ny4xOCAyNi4xMiA3NzcuMTUgNjIuMDEKICBRIDc4NS4zOSA3Ni44MSA3ODguNTMgOTMuOTUKICBRIDc5MC4wNyAxMDIuMzggNzkwLjAzIDExNy40MQogIFEgNzg5LjkxIDE1NS41MyA3OTAuMDEgMjE0LjkxCiAgQSAwLjM0IDAuMzQgMC4wIDAgMSA3ODkuNjcgMjE1LjI1CiAgTCA3NDcuMDkgMjE1LjI1CiAgQSAwLjU4IDAuNTcgLTAuMCAwIDEgNzQ2LjUxIDIxNC42OAogIEwgNzQ2LjUxIDE5NS44NQogIEEgMC4zNSAwLjM0IDczLjAgMCAwIDc0NS45NyAxOTUuNTYKICBaCiAgTSA3NDYuNDQ4NCAxMTAuOTA1MAogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjgyLjI4NTcgNTAuNTgxNQogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjE4Ljk3MTYgMTExLjc5NTAKICBBIDYzLjc0IDYwLjc3IC0wLjQgMCAwIDY4My4xMzQzIDE3Mi4xMTg1CiAgQSA2My43NCA2MC43NyAtMC40IDAgMCA3NDYuNDQ4NCAxMTAuOTA1MAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMTE3Mi41MSA3Ny44NAogIEEgMC4yNCAwLjI0IDAuMCAwIDEgMTE3Mi40MiA3OC4xNwogIEwgMTA1Ny40NCAxNDQuNTYKICBBIDAuNDggMC40OCAwLjAgMCAxIDEwNTYuNzkgMTQ0LjM5CiAgTCAxMDM1LjM5IDEwNy4zMwogIEEgMC40OCAwLjQ3IDYwLjggMCAxIDEwMzUuNTcgMTA2LjY4CiAgTCAxMTA4LjQ3IDY0LjU5CiAgQSAwLjQyIDAuNDEgNDguNiAwIDAgMTEwOC41MSA2My45MAogIFEgMTA5Ny40NyA1NS40OSAxMDgzLjc1IDUyLjI2CiAgUSAxMDYzLjUyIDQ3LjUwIDEwNDQuMzggNTUuMzkKICBDIDEwMjMuODQgNjMuODUgMTAxMC42NSA3OC4yNyAxMDA2LjE0IDEwMC44OQogIFEgMTAwMy4yOSAxMTUuMTYgMTAwNy4yNCAxMjcuNTAKICBRIDEwMTYuOTIgMTU3Ljc1IDEwNDYuNTEgMTY4LjI1CiAgQyAxMDcxLjM5IDE3Ny4wOSAxMDk4LjY4IDE3MC41MyAxMTE2LjU0IDE1MS4zNQogIFEgMTEyNi4zNCAxNDAuODIgMTEzMC4xOCAxMjcuMzcKICBBIDAuNDggMC40NiAtNzQuMyAwIDEgMTEzMC43NSAxMjcuMDQKICBMIDExNzEuNjUgMTM4LjExCiAgQSAwLjYxIDAuNjAgLTc0LjIgMCAxIDExNzIuMDcgMTM4Ljg3CiAgUSAxMTYwLjM2IDE3Ny41NyAxMTI2LjU1IDE5OC45OQogIFEgMTEwMC4wNSAyMTUuNzcgMTA2OS4yNiAyMTUuNzQKICBRIDEwNTcuMTkgMjE1LjczIDEwNDIuNDkgMjEyLjE4CiAgQyAxMDA5LjY4IDIwNC4yNSA5ODQuMzYgMTgzLjc2IDk3MC4zMiAxNTIuNjkKICBRIDk2MC40MyAxMzAuODEgOTYxLjU3IDEwNy45OAogIEMgOTYyLjczIDg0LjY1IDk3MS4zMyA2MS4wOSA5ODcuMDQgNDMuMzMKICBRIDk5Ni44NSAzMi4yNCAxMDA4LjA3IDI1LjIwCiAgUSAxMDE5LjY4IDE3LjkzIDEwMzMuMTEgMTMuMTEKICBDIDEwNzQuNzkgLTEuODMgMTEyNS41OSAxMS42NCAxMTUzLjEyIDQ2LjkwCiAgQyAxMTYwLjI4IDU2LjA3IDExNjUuOTYgNjYuODYgMTE3Mi41MSA3Ny44NAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gODguMzYgMTUxLjgzCiAgQSAwLjM4IDAuMzggMC4wIDAgMCA4OS4wMiAxNTEuOTYKICBRIDEwOS4xNyAxMjcuMzcgMTE4Ljc0IDk4LjUyCiAgQyAxMjguNTAgNjkuMTEgMTMxLjMyIDM3LjQ5IDEzMS41OCA3Ljg5CiAgQSAwLjY2IDAuNjUgLTg5LjYgMCAxIDEzMi4yMyA3LjI0CiAgTCAxNzQuMDcgNy4yNAogIEEgMC44NSAwLjg0IDg5LjcgMCAxIDE3NC45MSA4LjA4CiAgUSAxNzUuMDkgNDAuMDcgMTcwLjIxIDcwLjc0CiAgQyAxNjYuMzUgOTUuMDIgMTU5LjI0IDExOS4wNiAxNDguMTIgMTQwLjgyCiAgUSAxMzEuOTAgMTcyLjU1IDEwNS42NiAxOTcuNjcKICBRIDk2LjU1IDIwNi4zOCA4NS45NCAyMTQuOTUKICBBIDEuMzUgMS4zMiAtNjQuMCAwIDEgODUuMTAgMjE1LjI1CiAgTCA2Mi4yMiAyMTUuMjUKICBBIDAuODAgMC43OSAtOC40IDAgMSA2MS40NiAyMTQuNjkKICBMIDAuMTMgNy44MAogIEEgMC40MyAwLjQyIC04LjUgMCAxIDAuNTQgNy4yNQogIEwgNDQuOTMgNy4yNQogIEEgMC43NiAwLjc2IDAuMCAwIDEgNDUuNjYgNy44MAogIEwgODguMzYgMTUxLjgzCiAgWiIKLz4KPHBhdGggZmlsbD0iI2VkNzE2NCIgZD0iCiAgTSAzNjAuMzQgMTEwLjc2CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAzNjAuNTUgMTEwLjk3CiAgTCAzNjAuNTUgMTExLjA5CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAzMDYuNTkgMTY1LjA0CiAgTCAzMDYuMTMgMTY1LjA0CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAyNTIuMTcgMTExLjA5CiAgTCAyNTIuMTcgMTEwLjk3CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAyNTIuMzggMTEwLjc2CiAgTCAzNjAuMzQgMTEwLjc2CiAgWiIKLz4KPC9zdmc+Cg==" alt="Vorare" style="height:26px;width:auto;flex-shrink:0">
   <div style="display:flex;flex-direction:column;line-height:1.05">
     <span style="font-size:.95rem;font-weight:900;color:#fff;letter-spacing:.5px">SMART</span>
     <span style="font-size:.95rem;font-weight:900;color:var(--sm-green);letter-spacing:.5px">Menu</span>
   </div>
-</a><ul class="nav"><li class="nav-item nav-category">Principal</li><li class="nav-item active"><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li><li class="nav-item "><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li><li class="nav-item "><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title">Men&uacute; Basal</span></a></li><li class="nav-item "><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title">Cambios y Excepciones</span></a></li><li class="nav-item "><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li><li class="nav-item "><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li></ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Nutricionista Central</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav><div class="main-panel"><div class="content-wrapper"><div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem"><div><h4><i class="mdi mdi-view-dashboard-outline mr-2" style="color:var(--sm-green)"></i>Dashboard Operativo</h4>
-<p class="sm-page-subtitle">Resumen General</p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><select class="form-control form-control-sm" style="width:160px;height:32px" onchange="smToast('Datos actualizados','info',2000)"><option>Esta semana</option><option>&#218;ltimos 14 d&iacute;as</option><option>&#218;ltimo mes</option></select><a href="menus.html" class="btn btn-outline-primary btn-sm"><i class="mdi mdi-food-fork-drink"></i> Men&uacute;s</a></div></div>
+</a><ul class="nav"><li class="nav-item nav-category">Principal</li><li class="nav-item active"><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li><li class="nav-item "><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li><li class="nav-item "><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title"><span data-i18n="dash.banner.basal">Base Menu</span></span></a></li><li class="nav-item "><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title">Cambios y Excepciones</span></a></li><li class="nav-item "><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li><li class="nav-item "><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title"><span data-i18n="dash.banner.pub">Publication</span></span></a></li><li class="nav-item "><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li></ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Nutricionista Central</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav><div class="main-panel"><div class="sm-topbar"><div class="sm-lang-toggle"><button class="sm-lang-btn" data-lang="es" onclick="setLang('es')">ES</button><span class="sm-lang-sep">|</span><button class="sm-lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div></div><div class="content-wrapper"><div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem"><div><h4><i class="mdi mdi-view-dashboard-outline mr-2" style="color:var(--sm-green)"></i><span data-i18n="dash.title">Operations Dashboard</span></h4>
+<p class="sm-page-subtitle"><span data-i18n="dash.subtitle">General Summary</span></p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><select class="form-control form-control-sm" style="width:160px;height:32px" onchange="smToast('Datos actualizados','info',2000)"><option><span data-i18n="dash.period.week">This week</span></option><option>Last 14 days</option><option>Last month</option></select><a href="menus.html" class="btn btn-outline-primary btn-sm"><i class="mdi mdi-food-fork-drink"></i> Men&uacute;s</a></div></div>
 <ul class="nav nav-tabs mt-3 mb-0" id="dashTipoTabs" style="border-bottom:2px solid var(--sm-border)">
-  <li class="nav-item"><a class="nav-link active" data-tipo="escolar" onclick="switchTipoDash('escolar');return false;" href="#"><span class="ico-tipo ico-escolar"></span>Escolar</a></li>
-  <li class="nav-item"><a class="nav-link" data-tipo="hospital" onclick="switchTipoDash('hospital');return false;" href="#"><span class="ico-tipo ico-hospital"></span>Hospital</a></li>
-  <li class="nav-item"><a class="nav-link" data-tipo="tercera-edad" onclick="switchTipoDash('tercera-edad');return false;" href="#"><span class="ico-tipo ico-tercera-edad"></span>Tercera Edad</a></li>
-  <li class="nav-item"><a class="nav-link" data-tipo="empresa" onclick="switchTipoDash('empresa');return false;" href="#"><span class="ico-tipo ico-empresa"></span>Empresa</a></li>
+  <li class="nav-item"><a class="nav-link active" data-tipo="escolar" onclick="switchTipoDash('escolar');return false;" href="#"><span class="ico-tipo ico-escolar"></span><span data-i18n="dash.tab.escolar">School</span></a></li>
+  <li class="nav-item"><a class="nav-link" data-tipo="hospital" onclick="switchTipoDash('hospital');return false;" href="#"><span class="ico-tipo ico-hospital"></span><span data-i18n="dash.tab.hospital">Hospital</span></a></li>
+  <li class="nav-item"><a class="nav-link" data-tipo="tercera-edad" onclick="switchTipoDash('tercera-edad');return false;" href="#"><span class="ico-tipo ico-tercera-edad"></span><span data-i18n="dash.tab.terceraEdad">Senior Care</span></a></li>
+  <li class="nav-item"><a class="nav-link" data-tipo="empresa" onclick="switchTipoDash('empresa');return false;" href="#"><span class="ico-tipo ico-empresa"></span><span data-i18n="dash.tab.empresa">Corporate</span></a></li>
 </ul>
 <!-- ACCIONES RÁPIDAS -->
 <div class="row mb-3">
@@ -28,14 +28,14 @@
       <div class="card-body py-2 d-flex align-items-center justify-content-between flex-wrap" style="gap:.75rem">
         <div class="d-flex align-items-center" style="gap:.5rem">
           <span id="dashAlertaSemaforo" class="semaforo semaforo-rojo" style="width:10px;height:10px;flex-shrink:0"></span>
-          <strong id="dashAlertaStrong" style="font-size:.85rem">3 excepciones pendientes de tu aprobaci&oacute;n</strong>
-          <span id="dashAlertaDetalle" class="text-muted" style="font-size:.8rem">&middot; 1 cr&iacute;tica bloquea publicaci&oacute;n</span>
+          <strong id="dashAlertaStrong" style="font-size:.85rem">3 exceptions pending your approval</strong>
+          <span id="dashAlertaDetalle" class="text-muted" style="font-size:.8rem">&middot; 1 critical blocks publication</span>
         </div>
         <div class="d-flex" style="gap:.5rem">
-          <a id="dashAlertaExcepBtn" href="cambios.html" onclick="irConFiltro('cambios.html');return false;" class="btn btn-sm btn-danger"><i class="mdi mdi-alert-outline"></i> Ver excepciones</a>
+          <a id="dashAlertaExcepBtn" href="cambios.html" onclick="irConFiltro('cambios.html');return false;" class="btn btn-sm btn-danger"><i class="mdi mdi-alert-outline"></i> View exceptions</a>
           <a href="menu-basal.html" onclick="irMenuBasal(DASH_TIPO);return false;" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-silverware-fork-knife"></i> Men&uacute; Basal</a>
           <a href="publicacion.html" onclick="irConFiltro('publicacion.html');return false;" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-cloud-upload-outline"></i> Publicaci&oacute;n</a>
-          <a href="menus.html" onclick="irConFiltro('menus.html');return false;" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> Nuevo men&uacute;</a>
+          <a href="menus.html" onclick="irConFiltro('menus.html');return false;" class="btn btn-sm btn-primary"><i class="mdi mdi-plus"></i> New menu</a>
         </div>
       </div>
     </div>
@@ -50,8 +50,8 @@
       <div>
         <i class="mdi mdi-alert-circle kpi-icon" style="color:var(--sm-danger);opacity:.7"></i>
         <div id="kpiExcepVal" class="kpi-value" style="color:var(--sm-danger)">3</div>
-        <div class="kpi-label">Excepciones pendientes</div>
-        <div id="kpiExcepTrend" class="kpi-trend" style="color:var(--sm-danger)"><i class="mdi mdi-alert-outline"></i> 1 cr&iacute;tica &middot; 2 moderadas</div>
+        <div class="kpi-label"><span data-i18n="dash.kpi.excep">Pending exceptions</span></div>
+        <div id="kpiExcepTrend" class="kpi-trend" style="color:var(--sm-danger)"><i class="mdi mdi-alert-outline"></i> 1 critical &middot; 2 moderate</div>
       </div>
       <a href="cambios.html" class="btn btn-sm btn-danger mt-2" style="font-size:.75rem;width:100%"><i class="mdi mdi-arrow-right"></i> Resolver ahora</a>
     </div>
@@ -62,8 +62,8 @@
       <div>
         <i class="mdi mdi-currency-eur kpi-icon"></i>
         <div id="kpiCostoVal" class="kpi-value text-green">93.4%</div>
-        <div class="kpi-label">Men&uacute;s dentro de target de costo</div>
-        <div id="kpiCostoTrend" class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> +2.1% vs semana anterior</div>
+        <div class="kpi-label"><span data-i18n="dash.kpi.costo">Menus within cost target</span></div>
+        <div id="kpiCostoTrend" class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> +2.1% vs previous week</div>
       </div>
       <div class="kpi-trend text-muted" style="visibility:hidden"><i class="mdi mdi-clock-outline"></i> espacio</div>
     </div>
@@ -74,8 +74,8 @@
       <div>
         <i class="mdi mdi-leaf kpi-icon"></i>
         <div id="kpiNutriVal" class="kpi-value text-green">96.8%</div>
-        <div class="kpi-label">Cumplimiento nutricional global</div>
-        <div id="kpiNutriTrend" class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> +0.5% vs semana anterior</div>
+        <div class="kpi-label"><span data-i18n="dash.kpi.nutri">Global nutritional compliance</span></div>
+        <div id="kpiNutriTrend" class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> +0.5% vs previous week</div>
       </div>
       <div class="kpi-trend text-muted" style="visibility:hidden"><i class="mdi mdi-clock-outline"></i> espacio</div>
     </div>
@@ -86,13 +86,13 @@
       <div>
         <i class="mdi mdi-office-building kpi-icon"></i>
         <div id="kpiCentrosVal" class="kpi-value text-blue">12<span style="font-size:1.1rem;font-weight:400">/15</span></div>
-        <div class="kpi-label">Centros con men&uacute; publicado</div>
+        <div class="kpi-label"><span data-i18n="dash.kpi.centros">Centers with published menu</span></div>
         <div id="kpiCentrosTrend" class="kpi-trend text-muted"><i class="mdi mdi-clock-outline"></i> 3 centros pendientes</div>
       </div>
       <div class="kpi-trend text-muted" style="visibility:hidden"><i class="mdi mdi-clock-outline"></i> espacio</div>
     </div>
   </div>
-</div><div class="row mb-3"><div class="col-12 mb-3"><div class="card"><div class="card-body d-flex flex-column"><div class="d-flex justify-content-between align-items-center mb-2"><h6 class="card-title mb-0">Cumplimiento Mensual por Centro <i class="mdi mdi-information-outline sm-info-icon ml-1" data-toggle="tooltip" title="Porcentaje de cumplimiento nutricional en el mes actual por centro."></i></h6><button class="btn btn-sm btn-outline-primary" onclick="exportarExcel('evolucion')" style="white-space:nowrap"><i class="mdi mdi-file-excel-outline"></i> Excel</button></div><div style="position:relative;height:300px;width:100%"><canvas id="cT"></canvas></div></div></div></div></div><div class="card mb-3"><div class="card-body"><div class="d-flex justify-content-between align-items-center mb-3"><h6 class="card-title mb-0"><i class="mdi mdi-office-building-outline mr-1" style="color:var(--sm-green)"></i>Estado de Centros</h6><div class="d-flex align-items-center" style="gap:.5rem"><select class="form-control form-control-sm" style="width:160px" onchange="smToast('Vista actualizada','info',1800)"><option>Semana actual</option><option>&#218;ltimos 14 d&iacute;as</option><option>&#218;ltimo mes</option></select><a href="centros.html" onclick="irConFiltro('centros.html');return false;" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-arrow-right"></i> Ver todos</a></div></div><table class="table mb-0"><thead><tr><th>Centro</th><th>Tipo</th><th class="text-center">Comensales/d&iacute;a</th><th>Estado men&uacute;</th><th class="text-center">Costo vs Target</th><th class="text-center">Cumpl. Nutricional</th><th>Acciones</th></tr></thead><tbody id="tbodyCentros"><tr><td><strong>Colegio San Marcos</strong></td><td><span class="semaforo semaforo-rojo mr-1"></span>Con incidencia</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">98.2%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar " style="width:98%"></div></div></td><td class="text-center"><span class="badge-aprobado">Aprobado</span></td><td><a href="menu-detalle-sanmarcos.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>C. La Paz</strong></td><td><span class="semaforo semaforo-ambar mr-1"></span>Desviaci&oacute;n</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-warning font-weight-bold">108%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar bg-warning" style="width:94%"></div></div></td><td class="text-center"><span class="badge-pendiente">Pendiente</span></td><td><a href="menu-detalle-lapaz.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>C. Montserrat</strong></td><td><span class="semaforo semaforo-verde mr-1"></span>OK</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">95.4%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar " style="width:97%"></div></div></td><td class="text-center"><span class="badge-publicado">Publicado</span></td><td><a href="menu-detalle-montserrat.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>Residencia Los Pinos</strong></td><td><span class="semaforo semaforo-verde mr-1"></span>OK</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">91.0%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar " style="width:99%"></div></div></td><td class="text-center"><span class="badge-borrador">Borrador</span></td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>Hospital San Juan</strong></td><td><span class="semaforo semaforo-ambar mr-1"></span>En revisi&oacute;n</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">97.3%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar bg-warning" style="width:92%"></div></div></td><td class="text-center"><span class="badge-borrador">Borrador</span></td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr></tbody></table><div id="dashPaginador" class="px-3 pb-1 pt-1"></div></div></div><div class="row"><div class="col-lg-6 mb-3"><div class="card h-100"><div class="card-body"><h6 class="card-title"><i class="mdi mdi-history mr-1" style="color:var(--sm-green)"></i>Actividad Reciente</h6><ul id="listaActividad" class="list-unstyled mb-0"><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-check-circle mr-2" style="font-size:1.1rem;color:var(--sm-green)"></i><div><div style="font-size:.84rem"><strong>Men&uacute; publicado</strong> &middot; C. Montserrat</div><div class="text-muted" style="font-size:.75rem">Hace 15 min &middot; Ana Garc&iacute;a</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-swap-horizontal mr-2" style="font-size:1.1rem;color:var(--sm-orange)"></i><div><div style="font-size:.84rem"><strong>Cambio aprobado autom&aacute;ticamente</strong> &middot; C. La Paz</div><div class="text-muted" style="font-size:.75rem">Hace 42 min &middot; Sistema</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-robot mr-2" style="font-size:1.1rem;color:var(--sm-info)"></i><div><div style="font-size:.84rem"><strong>Men&uacute; generado por IA</strong> &middot; Hospital San Juan</div><div class="text-muted" style="font-size:.75rem">Hace 1h &middot; Ana Garc&iacute;a</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-alert mr-2" style="font-size:1.1rem;color:var(--sm-danger)"></i><div><div style="font-size:.84rem"><strong>Excepci&oacute;n detectada</strong> &middot; C. San Marcos</div><div class="text-muted" style="font-size:.75rem">Hace 2h &middot; Sistema</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-pencil mr-2" style="font-size:1.1rem;color:var(--sm-text-muted)"></i><div><div style="font-size:.84rem"><strong>Men&uacute; editado manualmente</strong> &middot; C. Montserrat</div><div class="text-muted" style="font-size:.75rem">Hace 3h &middot; Ana Garc&iacute;a</div></div></li></ul></div></div></div><div class="col-lg-6 mb-3"><div class="card h-100"><div class="card-body d-flex flex-column"><div class="d-flex justify-content-between align-items-center mb-2"><h6 class="card-title mb-0">Distribuci&oacute;n Nutricional Global <i class="mdi mdi-information-outline sm-info-icon ml-1" data-toggle="tooltip" title="Distribuci&oacute;n de macronutrientes por centro. Objetivo: H60% P20% G20%."></i></h6><button class="btn btn-sm btn-outline-primary" onclick="exportarExcel('nutricional')" style="white-space:nowrap"><i class="mdi mdi-file-excel-outline"></i> Excel</button></div><div style="flex:1;display:flex;align-items:center;justify-content:center"><div style="position:relative;height:260px;width:260px"><canvas id="cN"></canvas></div></div></div></div></div></div></div></div></div></div>
+</div><div class="row mb-3"><div class="col-12 mb-3"><div class="card"><div class="card-body d-flex flex-column"><div class="d-flex justify-content-between align-items-center mb-2"><h6 class="card-title mb-0">Cumplimiento Mensual por Centro <i class="mdi mdi-information-outline sm-info-icon ml-1" data-toggle="tooltip" title="Porcentaje de cumplimiento nutricional en el mes actual por centro."></i></h6><button class="btn btn-sm btn-outline-primary" onclick="exportarExcel('evolucion')" style="white-space:nowrap"><i class="mdi mdi-file-excel-outline"></i> Excel</button></div><div style="position:relative;height:300px;width:100%"><canvas id="cT"></canvas></div></div></div></div></div><div class="card mb-3"><div class="card-body"><div class="d-flex justify-content-between align-items-center mb-3"><h6 class="card-title mb-0"><i class="mdi mdi-office-building-outline mr-1" style="color:var(--sm-green)"></i><span data-i18n="dash.centros.title">Center Status</span></h6><div class="d-flex align-items-center" style="gap:.5rem"><select class="form-control form-control-sm" style="width:160px" onchange="smToast('Vista actualizada','info',1800)"><option>Current week</option><option>Last 14 days</option><option>Last month</option></select><a href="centros.html" onclick="irConFiltro('centros.html');return false;" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-arrow-right"></i> View all</a></div></div><table class="table mb-0"><thead><tr><th data-i18n="col.centro">Center</th><th data-i18n="col.tipo">Type</th><th class="text-center">Diners/day</th><th data-i18n="dash.col.estadoMenu">Menu status</th><th class="text-center">Costo vs Target</th><th class="text-center">Cumpl. Nutricional</th><th data-i18n="col.acciones">Actions</th></tr></thead><tbody id="tbodyCentros"><tr><td><strong>Colegio San Marcos</strong></td><td><span class="semaforo semaforo-rojo mr-1"></span>Con incidencia</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">98.2%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar " style="width:98%"></div></div></td><td class="text-center"><span class="badge-aprobado">Approved</span></td><td><a href="menu-detalle-sanmarcos.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>C. La Paz</strong></td><td><span class="semaforo semaforo-ambar mr-1"></span>Desviaci&oacute;n</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-warning font-weight-bold">108%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar bg-warning" style="width:94%"></div></div></td><td class="text-center"><span class="badge-pendiente">Pending</span></td><td><a href="menu-detalle-lapaz.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>C. Montserrat</strong></td><td><span class="semaforo semaforo-verde mr-1"></span>OK</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">95.4%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar " style="width:97%"></div></div></td><td class="text-center"><span class="badge-publicado">Published</span></td><td><a href="menu-detalle-montserrat.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>Residencia Los Pinos</strong></td><td><span class="semaforo semaforo-verde mr-1"></span>OK</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">91.0%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar " style="width:99%"></div></div></td><td class="text-center"><span class="badge-borrador">Draft</span></td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr><tr><td><strong>Hospital San Juan</strong></td><td><span class="semaforo semaforo-ambar mr-1"></span>En revisi&oacute;n</td><td class="text-center">22&ndash;26 May</td><td class="text-center text-success font-weight-bold">97.3%</td><td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar bg-warning" style="width:92%"></div></div></td><td class="text-center"><span class="badge-borrador">Draft</span></td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-eye"></i> Ver</a></td></tr></tbody></table><div id="dashPaginador" class="px-3 pb-1 pt-1"></div></div></div><div class="row"><div class="col-lg-6 mb-3"><div class="card h-100"><div class="card-body"><h6 class="card-title"><i class="mdi mdi-history mr-1" style="color:var(--sm-green)"></i><span data-i18n="dash.act.title">Recent Activity</span></h6><ul id="listaActividad" class="list-unstyled mb-0"><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-check-circle mr-2" style="font-size:1.1rem;color:var(--sm-green)"></i><div><div style="font-size:.84rem"><strong>Menu published</strong> · C. Montserrat</div><div class="text-muted" style="font-size:.75rem">15 min ago · Ana García</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-swap-horizontal mr-2" style="font-size:1.1rem;color:var(--sm-orange)"></i><div><div style="font-size:.84rem"><strong>Auto-approved change</strong> · C. La Paz</div><div class="text-muted" style="font-size:.75rem">42 min ago · System</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-robot mr-2" style="font-size:1.1rem;color:var(--sm-info)"></i><div><div style="font-size:.84rem"><strong>AI-generated menu</strong> · Hospital San Juan</div><div class="text-muted" style="font-size:.75rem">1h ago · Ana García</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-alert mr-2" style="font-size:1.1rem;color:var(--sm-danger)"></i><div><div style="font-size:.84rem"><strong>Exception detected</strong> · C. San Marcos</div><div class="text-muted" style="font-size:.75rem">2h ago · System</div></div></li><li class="d-flex mb-3 pb-2 border-bottom"><i class="mdi mdi-pencil mr-2" style="font-size:1.1rem;color:var(--sm-text-muted)"></i><div><div style="font-size:.84rem"><strong>Manually edited menu</strong> · C. Montserrat</div><div class="text-muted" style="font-size:.75rem">3h ago · Ana García</div></div></li></ul></div></div></div><div class="col-lg-6 mb-3"><div class="card h-100"><div class="card-body d-flex flex-column"><div class="d-flex justify-content-between align-items-center mb-2"><h6 class="card-title mb-0">Distribuci&oacute;n Nutricional Global <i class="mdi mdi-information-outline sm-info-icon ml-1" data-toggle="tooltip" title="Distribuci&oacute;n de macronutrientes por centro. Objetivo: H60% P20% G20%."></i></h6><button class="btn btn-sm btn-outline-primary" onclick="exportarExcel('nutricional')" style="white-space:nowrap"><i class="mdi mdi-file-excel-outline"></i> Excel</button></div><div style="flex:1;display:flex;align-items:center;justify-content:center"><div style="position:relative;height:260px;width:260px"><canvas id="cN"></canvas></div></div></div></div></div></div></div></div></div></div>
 <script src="assets_custom/vendors/js/vendor.bundle.base.js"></script>
 <script src="assets/js/sidebar.js?v=7" defer></script>
 <script src="assets/js/router.js" defer></script>
@@ -111,12 +111,12 @@ var DASH_PAGINAS={'escolar':1,'hospital':1,'tercera-edad':1,'empresa':1};
 var DASH_DATA={
   'escolar':{
     kpis:{
-      excep:{val:'2',trend:'<i class="mdi mdi-alert-outline"></i> 1 crítica · 1 moderada',color:'var(--sm-danger)'},
-      costo:{val:'94.2%',trend:'<i class="mdi mdi-trending-up"></i> +1.3% vs semana anterior'},
-      nutri:{val:'93.6%',trend:'<i class="mdi mdi-trending-up"></i> +0.5% vs semana anterior'},
-      centros:{val:'27<span style="font-size:1.1rem;font-weight:400">/30</span>',trend:'<i class="mdi mdi-clock-outline"></i> 3 centros pendientes'}
+      excep:{val:'2',trend:'<i class="mdi mdi-alert-outline"></i> 1 critical · 1 moderate',color:'var(--sm-danger)'},
+      costo:{val:'94.2%',trend:'<i class="mdi mdi-trending-up"></i> +1.3% vs previous week'},
+      nutri:{val:'93.6%',trend:'<i class="mdi mdi-trending-up"></i> +0.5% vs previous week'},
+      centros:{val:'27<span style="font-size:1.1rem;font-weight:400">/30</span>',trend:'<i class="mdi mdi-clock-outline"></i> 3 centers pending'}
     },
-    alerta:{show:true,color:'rojo',strong:'2 excepciones pendientes de tu aprobación',detalle:'· 1 crítica bloquea publicación'},
+    alerta:{show:true,color:'rojo',strong:'2 exceptions pending your approval',detalle:'· 1 critical blocks publication'},
     barLabels:['C. San Marcos','C. Montserrat','C. El Pinar','C. La Bordeta','C. Gracia','C. Sant Gervasi','C. Sarrià','C. Les Corts','C. Horta','C. Nou Barris','C. Guinardó','C. Sant Andreu','C. Can Rull','C. El Masnou','C. Badalona','C. Santa Coloma','C. Tarragona','C. Reus','C. Lleida','C. Girona','C. Salt','C. Figueres','C. Olot','C. Vic','C. Manresa','C. Terrassa','C. Sabadell','C. Mataró','C. Vilanova','C. Castelldefels'],
     barData:[89,97,84,87,93,82,96,86,91,80,85,99,90,95,85,88,82,95,89,81,84,95,94,88,80,95,89,94,84,80],
     barColor:'rgba(22,163,73,.75)',
@@ -141,21 +141,21 @@ var DASH_DATA={
       {nombre:'C. Reus',tipo:'Escolar',comensales:176,estadoMenu:'Publicado',estadoClass:'badge-publicado',costo:'94.0%',costoClass:'text-success',nutri:95,nutriBar:''}
     ],
     actividad:[
-      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menú publicado</strong> · C. Montserrat',tiempo:'Hace 15 min · Ana García'},
-      {icon:'mdi-swap-horizontal',color:'var(--sm-orange)',texto:'<strong>Cambio aprobado automáticamente</strong> · C. La Bordeta',tiempo:'Hace 42 min · Sistema'},
-      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menú generado por IA</strong> · C. El Pinar',tiempo:'Hace 1h · Ana García'},
-      {icon:'mdi-alert',color:'var(--sm-danger)',texto:'<strong>Excepción detectada</strong> · C. San Marcos',tiempo:'Hace 2h · Sistema'},
-      {icon:'mdi-pencil',color:'var(--sm-text-muted)',texto:'<strong>Menú editado manualmente</strong> · C. Montserrat',tiempo:'Hace 3h · Ana García'}
+      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menu published</strong> · C. Montserrat',tiempo:'15 min ago · Ana García'},
+      {icon:'mdi-swap-horizontal',color:'var(--sm-orange)',texto:'<strong>Auto-approved change</strong> · C. La Bordeta',tiempo:'42 min ago · System'},
+      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>AI-generated menu</strong> · C. El Pinar',tiempo:'1h ago · Ana García'},
+      {icon:'mdi-alert',color:'var(--sm-danger)',texto:'<strong>Exception detected</strong> · C. San Marcos',tiempo:'2h ago · System'},
+      {icon:'mdi-pencil',color:'var(--sm-text-muted)',texto:'<strong>Manually edited menu</strong> · C. Montserrat',tiempo:'3h ago · Ana García'}
     ]
   },
   'hospital':{
     kpis:{
-      excep:{val:'1',trend:'<i class="mdi mdi-alert-outline"></i> 0 críticas · 1 moderada',color:'var(--sm-orange)'},
-      costo:{val:'97.3%',trend:'<i class="mdi mdi-trending-up"></i> +0.8% vs semana anterior'},
-      nutri:{val:'89.5%',trend:'<i class="mdi mdi-trending-down"></i> -0.4% vs semana anterior'},
-      centros:{val:'3<span style="font-size:1.1rem;font-weight:400">/4</span>',trend:'<i class="mdi mdi-clock-outline"></i> 1 centro pendiente'}
+      excep:{val:'1',trend:'<i class="mdi mdi-alert-outline"></i> 0 critical · 1 moderate',color:'var(--sm-orange)'},
+      costo:{val:'97.3%',trend:'<i class="mdi mdi-trending-up"></i> +0.8% vs previous week'},
+      nutri:{val:'89.5%',trend:'<i class="mdi mdi-trending-down"></i> -0.4% vs previous week'},
+      centros:{val:'3<span style="font-size:1.1rem;font-weight:400">/4</span>',trend:'<i class="mdi mdi-clock-outline"></i> 1 center pending'}
     },
-    alerta:{show:true,color:'ambar',strong:'1 excepción pendiente de tu aprobación',detalle:'· 0 críticas · 1 moderada'},
+    alerta:{show:true,color:'ambar',strong:'1 exception pending your approval',detalle:'· 0 critical · 1 moderate'},
     barLabels:['H. La Paz','H. San Juan','H. Vallecas','H. Parc Taulí'],
     barData:[82,85,93,96],
     barColor:'rgba(21,101,192,.75)',
@@ -167,20 +167,20 @@ var DASH_DATA={
       {nombre:'H. Parc Taulí',tipo:'Hospitalario',comensales:480,estadoMenu:'Publicado',estadoClass:'badge-publicado',costo:'93.8%',costoClass:'text-success',nutri:96,nutriBar:''}
     ],
     actividad:[
-      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menú generado por IA</strong> · H. San Juan',tiempo:'Hace 1h · Ana García'},
-      {icon:'mdi-swap-horizontal',color:'var(--sm-orange)',texto:'<strong>Cambio aprobado automáticamente</strong> · H. La Paz',tiempo:'Hace 42 min · Sistema'},
-      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menú publicado</strong> · H. Vallecas',tiempo:'Hace 3h · Ana García'},
-      {icon:'mdi-alert',color:'var(--sm-danger)',texto:'<strong>Excepción detectada</strong> · H. San Juan',tiempo:'Hace 5h · Sistema'}
+      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menu generated by AI</strong> · H. San Juan',tiempo:'1h ago · Ana García'},
+      {icon:'mdi-swap-horizontal',color:'var(--sm-orange)',texto:'<strong>Auto-approved change</strong> · H. La Paz',tiempo:'42 min ago · System'},
+      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menu published</strong> · H. Vallecas',tiempo:'3h ago · Ana García'},
+      {icon:'mdi-alert',color:'var(--sm-danger)',texto:'<strong>Exception detected</strong> · H. San Juan',tiempo:'5h ago · System'}
     ]
   },
   'tercera-edad':{
     kpis:{
-      excep:{val:'0',trend:'<i class="mdi mdi-check-circle"></i> Sin excepciones activas',color:'var(--sm-green)'},
-      costo:{val:'91.0%',trend:'<i class="mdi mdi-trending-up"></i> +0.2% vs semana anterior'},
-      nutri:{val:'97.4%',trend:'<i class="mdi mdi-trending-up"></i> +1.2% vs semana anterior'},
-      centros:{val:'3<span style="font-size:1.1rem;font-weight:400">/3</span>',trend:'<i class="mdi mdi-check"></i> Todos publicados'}
+      excep:{val:'0',trend:'<i class="mdi mdi-check-circle"></i> No active exceptions',color:'var(--sm-green)'},
+      costo:{val:'91.0%',trend:'<i class="mdi mdi-trending-up"></i> +0.2% vs previous week'},
+      nutri:{val:'97.4%',trend:'<i class="mdi mdi-trending-up"></i> +1.2% vs previous week'},
+      centros:{val:'3<span style="font-size:1.1rem;font-weight:400">/3</span>',trend:'<i class="mdi mdi-check"></i> All published'}
     },
-    alerta:{show:true,color:'verde',strong:'Sin excepciones activas',detalle:'· Todo en orden'},
+    alerta:{show:true,color:'verde',strong:'No active exceptions',detalle:'· All clear'},
     barLabels:['Res. Los Pinos','Res. Buen Retiro','Res. Vallparadís'],
     barData:[99,97,88],
     barColor:'rgba(147,51,234,.75)',
@@ -191,20 +191,20 @@ var DASH_DATA={
       {nombre:'Res. Vallparadís',tipo:'3ª Edad',comensales:178,estadoMenu:'Pendiente',estadoClass:'badge-pendiente',costo:'95.2%',costoClass:'text-success',nutri:88,nutriBar:'bg-warning'}
     ],
     actividad:[
-      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menú publicado</strong> · Res. Los Pinos',tiempo:'Hace 30 min · Ana García'},
-      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menú publicado</strong> · Res. Buen Retiro',tiempo:'Hace 1h · Ana García'},
-      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menú generado por IA</strong> · Res. Vallparadís',tiempo:'Hace 2h · Ana García'},
-      {icon:'mdi-pencil',color:'var(--sm-text-muted)',texto:'<strong>Menú editado manualmente</strong> · Res. Los Pinos',tiempo:'Hace 4h · Ana García'}
+      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menu published</strong> · Res. Los Pinos',tiempo:'30 min ago · Ana García'},
+      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menu published</strong> · Res. Buen Retiro',tiempo:'1h ago · Ana García'},
+      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menu generated by AI</strong> · Res. Vallparadís',tiempo:'2h ago · Ana García'},
+      {icon:'mdi-pencil',color:'var(--sm-text-muted)',texto:'<strong>Manually edited menu</strong> · Res. Los Pinos',tiempo:'4h ago · Ana García'}
     ]
   },
   'empresa':{
     kpis:{
-      excep:{val:'0',trend:'<i class="mdi mdi-check-circle"></i> Sin excepciones activas',color:'var(--sm-green)'},
-      costo:{val:'95.5%',trend:'<i class="mdi mdi-trending-up"></i> +3.2% vs semana anterior'},
-      nutri:{val:'94.8%',trend:'<i class="mdi mdi-trending-up"></i> +0.8% vs semana anterior'},
-      centros:{val:'4<span style="font-size:1.1rem;font-weight:400">/5</span>',trend:'<i class="mdi mdi-clock-outline"></i> 1 centro pendiente'}
+      excep:{val:'0',trend:'<i class="mdi mdi-check-circle"></i> No active exceptions',color:'var(--sm-green)'},
+      costo:{val:'95.5%',trend:'<i class="mdi mdi-trending-up"></i> +3.2% vs previous week'},
+      nutri:{val:'94.8%',trend:'<i class="mdi mdi-trending-up"></i> +0.8% vs previous week'},
+      centros:{val:'4<span style="font-size:1.1rem;font-weight:400">/5</span>',trend:'<i class="mdi mdi-clock-outline"></i> 1 center pending'}
     },
-    alerta:{show:true,color:'verde',strong:'Sin excepciones activas',detalle:'· Todo en orden'},
+    alerta:{show:true,color:'verde',strong:'No active exceptions',detalle:'· All clear'},
     barLabels:['Empresa Alfa','Empresa Beta','Empresa Gamma','Empresa Delta','Empresa Epsilon'],
     barData:[95,97,95,86,94],
     barColor:'rgba(232,119,34,.75)',
@@ -217,10 +217,10 @@ var DASH_DATA={
       {nombre:'Empresa Epsilon',tipo:'Empresa',comensales:345,estadoMenu:'Publicado',estadoClass:'badge-publicado',costo:'93.8%',costoClass:'text-success',nutri:94,nutriBar:''}
     ],
     actividad:[
-      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menú publicado</strong> · Empresa Alfa',tiempo:'Hace 20 min · Ana García'},
-      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menú publicado</strong> · Empresa Beta',tiempo:'Hace 45 min · Ana García'},
-      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menú generado por IA</strong> · Empresa Delta',tiempo:'Hace 2h · Ana García'},
-      {icon:'mdi-pencil',color:'var(--sm-text-muted)',texto:'<strong>Menú editado manualmente</strong> · Empresa Gamma',tiempo:'Hace 3h · Ana García'}
+      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menu published</strong> · Empresa Alfa',tiempo:'20 min ago · Ana García'},
+      {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong>Menu published</strong> · Empresa Beta',tiempo:'45 min ago · Ana García'},
+      {icon:'mdi-robot',color:'var(--sm-info)',texto:'<strong>Menu generated by AI</strong> · Empresa Delta',tiempo:'2h ago · Ana García'},
+      {icon:'mdi-pencil',color:'var(--sm-text-muted)',texto:'<strong>Menu manually edited</strong> · Empresa Gamma',tiempo:'3h ago · Ana García'}
     ]
   }
 };
@@ -275,14 +275,14 @@ function renderDashboard(tipo){
     tbody.innerHTML=slice.map(function(c){
       return '<tr>'+
         '<td><strong>'+c.nombre+'</strong></td>'+
-        '<td style="font-size:.82rem">'+c.tipo+'</td>'+
+        '<td style="font-size:.82rem">'+(typeof tipoLabel==='function'?tipoLabel(c.tipo):c.tipo)+'</td>'+
         '<td class="text-center" style="font-size:.82rem">'+c.comensales+'</td>'+
-        '<td><span class="'+c.estadoClass+'">'+c.estadoMenu+'</span></td>'+
+        '<td><span class="'+c.estadoClass+'">'+(typeof statusLabel==='function'?statusLabel(c.estadoMenu):c.estadoMenu)+'</span></td>'+
         '<td class="text-center '+c.costoClass+' font-weight-bold">'+c.costo+'</td>'+
         '<td class="text-center"><div class="progress mx-auto" style="width:70px"><div class="progress-bar '+c.nutriBar+'" style="width:'+c.nutri+'%"></div></div><span style="font-size:.75rem">'+c.nutri+'%</span></td>'+
         '<td><div class="d-flex" style="gap:.3rem">'+
           '<a href="'+(_DASH_DETALLE[c.estadoMenu]||'menu-detalle.html')+'" class="btn btn-sm btn-outline-secondary" style="font-size:.74rem"><i class="mdi mdi-food-fork-drink"></i> Men&uacute;</a>'+
-          '<a href="menu-basal.html" onclick="irMenuBasal(\''+(_TIPO_BASAL[c.tipo]||'escolar')+'\');return false;" class="btn btn-sm btn-outline-primary" style="font-size:.74rem" title="Menú Basal"><i class="mdi mdi-silverware-fork-knife"></i> Basal</a>'+
+          '<a href="menu-basal.html" onclick="irMenuBasal(\''+(_TIPO_BASAL[c.tipo]||'escolar')+'\');return false;" class="btn btn-sm btn-outline-primary" style="font-size:.74rem" title="Base Menu"><i class="mdi mdi-silverware-fork-knife"></i> Basal</a>'+
           (c.estadoMenu==='Pendiente'
             ? '<a href="cambios.html" onclick="irConFiltro(\'cambios.html\');return false;" class="btn btn-sm btn-warning" style="font-size:.74rem"><i class="mdi mdi-alert-circle-outline"></i> Excep.</a>'
             : ''
@@ -330,14 +330,14 @@ function renderDashboard(tipo){
 }
 
 function exportarExcel(tipo){
-  if(typeof XLSX==='undefined'){smToast('Librería Excel no disponible','error',3000);return;}
+  if(typeof XLSX==='undefined'){smToast('Excel library not available','error',3000);return;}
   var wb=XLSX.utils.book_new(),ws_data,ws_name;
   if(tipo==='evolucion'){
-    ws_name='Cumplimiento Mensual';
-    ws_data=[['Centro','Días de cumplimiento']];
+    ws_name='Monthly Compliance';
+    ws_data=[['Centro','Compliance days']];
     chartEvolucion.data.labels.forEach(function(lbl,i){ws_data.push([lbl,chartEvolucion.data.datasets[0].data[i]]);});
   }else{
-    ws_name='Distribución Nutricional';
+    ws_name='Nutritional Distribution';
     ws_data=[['Macronutriente','% Promedio']];
     chartNutricional.data.labels.forEach(function(lbl,i){ws_data.push([lbl,chartNutricional.data.datasets[0].data[i]]);});
   }
@@ -358,7 +358,7 @@ function inicializarCharts(){
   var cN=document.getElementById("cN");
   if(cN){
     if(chartNutricional){chartNutricional.destroy();chartNutricional=null;}
-    chartNutricional=new Chart(cN,{type:"doughnut",data:{labels:["Hidratos","Proteínas","Grasas"],datasets:[{data:d.macros,backgroundColor:["rgba(22,163,73,.85)","rgba(21,101,192,.85)","rgba(232,119,34,.85)"],borderWidth:2,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom",labels:{padding:14,boxWidth:12,font:{size:11}}},tooltip:{callbacks:{label:function(ctx){return ctx.label+": "+ctx.parsed+"%";}}}}}});
+    chartNutricional=new Chart(cN,{type:"doughnut",data:{labels:(window.I18N_LANG==="en"?["Carbohydrates","Proteins","Fats"]:["Hidratos","Proteínas","Grasas"]),datasets:[{data:d.macros,backgroundColor:["rgba(22,163,73,.85)","rgba(21,101,192,.85)","rgba(232,119,34,.85)"],borderWidth:2,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom",labels:{padding:14,boxWidth:12,font:{size:11}}},tooltip:{callbacks:{label:function(ctx){return ctx.label+": "+ctx.parsed+"%";}}}}}});
   }
   renderDashboard(DASH_TIPO);
 }
@@ -367,17 +367,17 @@ document.addEventListener("DOMContentLoaded",function(){inicializarCharts();});
   <div class="modal-dialog modal-sm" role="document"><div class="modal-content">
     <div class="modal-header" style="border-bottom:none;padding-bottom:.5rem">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700">
-        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Cerrar sesi&oacute;n
+        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Log out
       </h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">
-      &iquest;Est&aacute;s seguro de que deseas cerrar la sesi&oacute;n actual?
+      Are you sure you want to log out?
     </div>
     <div class="modal-footer" style="border-top:none;padding-top:.25rem">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
       <button type="button" class="btn btn-danger btn-sm" id="btnConfirmLogout">
-        <i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n
+        <i class="mdi mdi-logout"></i> Log out
       </button>
     </div>
   </div></div>
@@ -393,5 +393,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Ajustes de cuenta</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Perfil</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Nombre</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Apellidos</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Rol</label><input type="text" class="form-control form-control-sm" value="Nutricionista Central" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Seguridad</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Contrase&ntilde;a actual</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Nueva contrase&ntilde;a</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Confirmar contrase&ntilde;a</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Preferencias</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Idioma</label><select class="form-control form-control-sm"><option selected>Espa&ntilde;ol</option><option>English</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600">Notificaciones por email</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Ajustes guardados correctamente','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Guardar cambios</button></div></div></div></div>
+<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Account settings</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Security</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Current password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">New password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Confirm password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Preferences</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Language</label><select class="form-control form-control-sm"><option selected>English</option><option>Español</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600">Email notifications</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Settings saved successfully','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Save changes</button></div></div></div></div>
 </body></html>
