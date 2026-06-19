@@ -1,0 +1,725 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMART Menu &middot; Configuración</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMzEwLjI4IDIyMi4wMAogIEwgMzAyLjA0IDIyMi4wMAogIFEgMjY3LjUxIDIyMC40MSAyNDEuNDIgMjAwLjg2CiAgQyAxNzguODQgMTUzLjk5IDE4NC4wNiA1Mi4yOSAyNTMuNjQgMTQuMTkKICBRIDI4My4yMCAtMi4wMSAzMTcuNzYgMS40NAogIEMgMzY4LjYzIDYuNTIgNDA3LjQ3IDQ1LjYyIDQxMy44OSA5Ni4yMgogIEMgNDIyLjE2IDE2MS4yOSAzNzcuMDAgMjE5LjUzIDMxMC4yOCAyMjIuMDAKICBaCiAgTSAzNzYuNzggMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSA0MC40MAogIEEgNzAuNDMgNzAuNDMgMC4wIDAgMCAyMzUuOTIgMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSAxODEuMjYKICBBIDcwLjQzIDcwLjQzIDAuMCAwIDAgMzc2Ljc4IDExMC44MwogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gNDgwLjYxIDIxNS4yNAogIEwgNDM4LjAzIDIxNS4yNAogIEEgMC4zMyAwLjMzIDAuMCAwIDEgNDM3LjcwIDIxNC45MQogIEwgNDM3LjcwIDU1LjI2CiAgQSA0LjM0IDQuMjYgLTMyLjYgMCAxIDQzOC4xMyA1My4zOQogIEMgNDU0LjA1IDIwLjYxIDQ4Ni42OSA1LjM2IDUyMi4xNSA2LjUwCiAgQyA1NDEuOTQgNy4xNCA1NjEuNzUgMTQuNjMgNTc2LjQ4IDI4LjI1CiAgQSAwLjUwIDAuNDggNDMuMyAwIDEgNTc2LjUxIDI4Ljk0CiAgTCA1NDYuOTQgNTkuODEKICBBIDAuNDYgMC40NiAwLjAgMCAxIDU0Ni4zMCA1OS44MwogIFEgNTM4LjUyIDUyLjY1IDUyOC4xNyA1MC44OAogIEMgNTExLjYzIDQ4LjA2IDQ5Mi42NCA1MS42NyA0ODEuODAgNjUuMzUKICBBIDIuNDAgMi4zNyAtMjYuMiAwIDAgNDgxLjI5IDY2LjgyCiAgTCA0ODEuMjkgMjE0LjU2CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA0ODAuNjEgMjE1LjI0CiAgWiIKLz4KPHBhdGggZmlsbD0iIzM4YjAwMCIgZD0iCiAgTSA4NjcuMTcgMjE0LjU4CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA4NjYuNDkgMjE1LjI2CiAgTCA4MjMuOTAgMjE1LjI1CiAgQSAwLjMzIDAuMzMgMC4wIDAgMSA4MjMuNTcgMjE0LjkyCiAgTCA4MjMuNjEgNTUuMjUKICBBIDQuMzQgNC4yNiAtMzIuNiAwIDEgODI0LjA0IDUzLjM4CiAgQyA4MzkuOTcgMjAuNjAgODcyLjYyIDUuMzYgOTA4LjA5IDYuNTEKICBDIDkyNy44OCA3LjE1IDk0Ny42OSAxNC42NSA5NjIuNDIgMjguMjcKICBBIDAuNTAgMC40OCA0My40IDAgMSA5NjIuNDUgMjguOTYKICBMIDkzMi44NyA1OS44MwogIEEgMC40NiAwLjQ2IDAuMCAwIDEgOTMyLjIzIDU5Ljg1CiAgUSA5MjQuNDUgNTIuNjcgOTE0LjEwIDUwLjg5CiAgQyA4OTcuNTUgNDguMDcgODc4LjU2IDUxLjY3IDg2Ny43MiA2NS4zNQogIEEgMi40MCAyLjM3IC0yNi4yIDAgMCA4NjcuMjEgNjYuODIKICBMIDg2Ny4xNyAyMTQuNTgKICBaIgovPgo8cGF0aCBmaWxsPSIjMzhiMDAwIiBkPSIKICBNIDc0NS45NyAxOTUuNTYKICBRIDcwMi45NSAyMjUuNjMgNjUxLjI4IDIxMC44MQogIFEgNjE3Ljc4IDIwMS4yMSA1OTcuNDQgMTc0LjMwCiAgUSA1NjMuMTUgMTI4LjkzIDU4Mi4yOCA3NS4xOQogIFEgNTkzLjIzIDQ0LjQyIDYyMi4wOSAyNS4wNwogIFEgNjI1LjY2IDIyLjY3IDYyOC4zNyAyMS41MAogIEMgNjMxLjIyIDIwLjI3IDYzNC4yMiAxOC40MSA2MzYuOTUgMTcuMTcKICBRIDY3Ni42NyAtMC45MCA3MTkuMTAgMTMuMzQKICBRIDc1Ny4xOCAyNi4xMiA3NzcuMTUgNjIuMDEKICBRIDc4NS4zOSA3Ni44MSA3ODguNTMgOTMuOTUKICBRIDc5MC4wNyAxMDIuMzggNzkwLjAzIDExNy40MQogIFEgNzg5LjkxIDE1NS41MyA3OTAuMDEgMjE0LjkxCiAgQSAwLjM0IDAuMzQgMC4wIDAgMSA3ODkuNjcgMjE1LjI1CiAgTCA3NDcuMDkgMjE1LjI1CiAgQSAwLjU4IDAuNTcgLTAuMCAwIDEgNzQ2LjUxIDIxNC42OAogIEwgNzQ2LjUxIDE5NS44NQogIEEgMC4zNSAwLjM0IDczLjAgMCAwIDc0NS45NyAxOTUuNTYKICBaCiAgTSA3NDYuNDQ4NCAxMTAuOTA1MAogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjgyLjI4NTcgNTAuNTgxNQogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjE4Ljk3MTYgMTExLjc5NTAKICBBIDYzLjc0IDYwLjc3IC0wLjQgMCAwIDY4My4xMzQzIDE3Mi4xMTg1CiAgQSA2My43NCA2MC43NyAtMC40IDAgMCA3NDYuNDQ4NCAxMTAuOTA1MAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMTE3Mi41MSA3Ny44NAogIEEgMC4yNCAwLjI0IDAuMCAwIDEgMTE3Mi40MiA3OC4xNwogIEwgMTA1Ny40NCAxNDQuNTYKICBBIDAuNDggMC40OCAwLjAgMCAxIDEwNTYuNzkgMTQ0LjM5CiAgTCAxMDM1LjM5IDEwNy4zMwogIEEgMC40OCAwLjQ3IDYwLjggMCAxIDEwMzUuNTcgMTA2LjY4CiAgTCAxMTA4LjQ3IDY0LjU5CiAgQSAwLjQyIDAuNDEgNDguNiAwIDAgMTEwOC41MSA2My45MAogIFEgMTA5Ny40NyA1NS40OSAxMDgzLjc1IDUyLjI2CiAgUSAxMDYzLjUyIDQ3LjUwIDEwNDQuMzggNTUuMzkKICBDIDEwMjMuODQgNjMuODUgMTAxMC42NSA3OC4yNyAxMDA2LjE0IDEwMC44OQogIFEgMTAwMy4yOSAxMTUuMTYgMTAwNy4yNCAxMjcuNTAKICBRIDEwMTYuOTIgMTU3Ljc1IDEwNDYuNTEgMTY4LjI1CiAgQyAxMDcxLjM5IDE3Ny4wOSAxMDk4LjY4IDE3MC41MyAxMTE2LjU0IDE1MS4zNQogIFEgMTEyNi4zNCAxNDAuODIgMTEzMC4xOCAxMjcuMzcKICBBIDAuNDggMC40NiAtNzQuMyAwIDEgMTEzMC43NSAxMjcuMDQKICBMIDExNzEuNjUgMTM4LjExCiAgQSAwLjYxIDAuNjAgLTc0LjIgMCAxIDExNzIuMDcgMTM4Ljg3CiAgUSAxMTYwLjM2IDE3Ny41NyAxMTI2LjU1IDE5OC45OQogIFEgMTEwMC4wNSAyMTUuNzcgMTA2OS4yNiAyMTUuNzQKICBRIDEwNTcuMTkgMjE1LjczIDEwNDIuNDkgMjEyLjE4CiAgQyAxMDA5LjY4IDIwNC4yNSA5ODQuMzYgMTgzLjc2IDk3MC4zMiAxNTIuNjkKICBRIDk2MC40MyAxMzAuODEgOTYxLjU3IDEwNy45OAogIEMgOTYyLjczIDg0LjY1IDk3MS4zMyA2MS4wOSA5ODcuMDQgNDMuMzMKICBRIDk5Ni44NSAzMi4yNCAxMDA4LjA3IDI1LjIwCiAgUSAxMDE5LjY4IDE3LjkzIDEwMzMuMTEgMTMuMTEKICBDIDEwNzQuNzkgLTEuODMgMTEyNS41OSAxMS42NCAxMTUzLjEyIDQ2LjkwCiAgQyAxMTYwLjI4IDU2LjA3IDExNjUuOTYgNjYuODYgMTE3Mi41MSA3Ny44NAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gODguMzYgMTUxLjgzCiAgQSAwLjM4IDAuMzggMC4wIDAgMCA4OS4wMiAxNTEuOTYKICBRIDEwOS4xNyAxMjcuMzcgMTE4Ljc0IDk4LjUyCiAgQyAxMjguNTAgNjkuMTEgMTMxLjMyIDM3LjQ5IDEzMS41OCA3Ljg5CiAgQSAwLjY2IDAuNjUgLTg5LjYgMCAxIDEzMi4yMyA3LjI0CiAgTCAxNzQuMDcgNy4yNAogIEEgMC44NSAwLjg0IDg5LjcgMCAxIDE3NC45MSA4LjA4CiAgUSAxNzUuMDkgNDAuMDcgMTcwLjIxIDcwLjc0CiAgQyAxNjYuMzUgOTUuMDIgMTU5LjI0IDExOS4wNiAxNDguMTIgMTQwLjgyCiAgUSAxMzEuOTAgMTcyLjU1IDEwNS42NiAxOTcuNjcKICBRIDk2LjU1IDIwNi4zOCA4NS45NCAyMTQuOTUKICBBIDEuMzUgMS4zMiAtNjQuMCAwIDEgODUuMTAgMjE1LjI1CiAgTCA2Mi4yMiAyMTUuMjUKICBBIDAuODAgMC43OSAtOC40IDAgMSA2MS40NiAyMTQuNjkKICBMIDAuMTMgNy44MAogIEEgMC40MyAwLjQyIC04LjUgMCAxIDAuNTQgNy4yNQogIEwgNDQuOTMgNy4yNQogIEEgMC43NiAwLjc2IDAuMCAwIDEgNDUuNjYgNy44MAogIEwgODguMzYgMTUxLjgzCiAgWiIKLz4KPHBhdGggZmlsbD0iI2VkNzE2NCIgZD0iCiAgTSAzNjAuMzQgMTEwLjc2CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAzNjAuNTUgMTEwLjk3CiAgTCAzNjAuNTUgMTExLjA5CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAzMDYuNTkgMTY1LjA0CiAgTCAzMDYuMTMgMTY1LjA0CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAyNTIuMTcgMTExLjA5CiAgTCAyNTIuMTcgMTEwLjk3CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAyNTIuMzggMTEwLjc2CiAgTCAzNjAuMzQgMTEwLjc2CiAgWiIKLz4KPC9zdmc+Cg==">
+<link rel="stylesheet" href="assets_custom/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="assets_custom/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="assets_custom/css/style.css">
+<link rel="stylesheet" href="assets/css/smart-menu-theme.css?v=6">
+</head><body><div id="sm-toast-container"></div><div class="container-scroller"><div class="container-fluid page-body-wrapper"><nav class="sidebar sidebar-offcanvas" id="sidebar"><a class="sm-sidebar-brand" href="dashboard.html" style="display:flex;padding:1rem 1.2rem;gap:.7rem;align-items:center">
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMzEwLjI4IDIyMi4wMAogIEwgMzAyLjA0IDIyMi4wMAogIFEgMjY3LjUxIDIyMC40MSAyNDEuNDIgMjAwLjg2CiAgQyAxNzguODQgMTUzLjk5IDE4NC4wNiA1Mi4yOSAyNTMuNjQgMTQuMTkKICBRIDI4My4yMCAtMi4wMSAzMTcuNzYgMS40NAogIEMgMzY4LjYzIDYuNTIgNDA3LjQ3IDQ1LjYyIDQxMy44OSA5Ni4yMgogIEMgNDIyLjE2IDE2MS4yOSAzNzcuMDAgMjE5LjUzIDMxMC4yOCAyMjIuMDAKICBaCiAgTSAzNzYuNzggMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSA0MC40MAogIEEgNzAuNDMgNzAuNDMgMC4wIDAgMCAyMzUuOTIgMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSAxODEuMjYKICBBIDcwLjQzIDcwLjQzIDAuMCAwIDAgMzc2Ljc4IDExMC44MwogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gNDgwLjYxIDIxNS4yNAogIEwgNDM4LjAzIDIxNS4yNAogIEEgMC4zMyAwLjMzIDAuMCAwIDEgNDM3LjcwIDIxNC45MQogIEwgNDM3LjcwIDU1LjI2CiAgQSA0LjM0IDQuMjYgLTMyLjYgMCAxIDQzOC4xMyA1My4zOQogIEMgNDU0LjA1IDIwLjYxIDQ4Ni42OSA1LjM2IDUyMi4xNSA2LjUwCiAgQyA1NDEuOTQgNy4xNCA1NjEuNzUgMTQuNjMgNTc2LjQ4IDI4LjI1CiAgQSAwLjUwIDAuNDggNDMuMyAwIDEgNTc2LjUxIDI4Ljk0CiAgTCA1NDYuOTQgNTkuODEKICBBIDAuNDYgMC40NiAwLjAgMCAxIDU0Ni4zMCA1OS44MwogIFEgNTM4LjUyIDUyLjY1IDUyOC4xNyA1MC44OAogIEMgNTExLjYzIDQ4LjA2IDQ5Mi42NCA1MS42NyA0ODEuODAgNjUuMzUKICBBIDIuNDAgMi4zNyAtMjYuMiAwIDAgNDgxLjI5IDY2LjgyCiAgTCA0ODEuMjkgMjE0LjU2CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA0ODAuNjEgMjE1LjI0CiAgWiIKLz4KPHBhdGggZmlsbD0iIzM4YjAwMCIgZD0iCiAgTSA4NjcuMTcgMjE0LjU4CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA4NjYuNDkgMjE1LjI2CiAgTCA4MjMuOTAgMjE1LjI1CiAgQSAwLjMzIDAuMzMgMC4wIDAgMSA4MjMuNTcgMjE0LjkyCiAgTCA4MjMuNjEgNTUuMjUKICBBIDQuMzQgNC4yNiAtMzIuNiAwIDEgODI0LjA0IDUzLjM4CiAgQyA4MzkuOTcgMjAuNjAgODcyLjYyIDUuMzYgOTA4LjA5IDYuNTEKICBDIDkyNy44OCA3LjE1IDk0Ny42OSAxNC42NSA5NjIuNDIgMjguMjcKICBBIDAuNTAgMC40OCA0My40IDAgMSA5NjIuNDUgMjguOTYKICBMIDkzMi44NyA1OS44MwogIEEgMC40NiAwLjQ2IDAuMCAwIDEgOTMyLjIzIDU5Ljg1CiAgUSA5MjQuNDUgNTIuNjcgOTE0LjEwIDUwLjg5CiAgQyA4OTcuNTUgNDguMDcgODc4LjU2IDUxLjY3IDg2Ny43MiA2NS4zNQogIEEgMi40MCAyLjM3IC0yNi4yIDAgMCA4NjcuMjEgNjYuODIKICBMIDg2Ny4xNyAyMTQuNTgKICBaIgovPgo8cGF0aCBmaWxsPSIjMzhiMDAwIiBkPSIKICBNIDc0NS45NyAxOTUuNTYKICBRIDcwMi45NSAyMjUuNjMgNjUxLjI4IDIxMC44MQogIFEgNjE3Ljc4IDIwMS4yMSA1OTcuNDQgMTc0LjMwCiAgUSA1NjMuMTUgMTI4LjkzIDU4Mi4yOCA3NS4xOQogIFEgNTkzLjIzIDQ0LjQyIDYyMi4wOSAyNS4wNwogIFEgNjI1LjY2IDIyLjY3IDYyOC4zNyAyMS41MAogIEMgNjMxLjIyIDIwLjI3IDYzNC4yMiAxOC40MSA2MzYuOTUgMTcuMTcKICBRIDY3Ni42NyAtMC45MCA3MTkuMTAgMTMuMzQKICBRIDc1Ny4xOCAyNi4xMiA3NzcuMTUgNjIuMDEKICBRIDc4NS4zOSA3Ni44MSA3ODguNTMgOTMuOTUKICBRIDc5MC4wNyAxMDIuMzggNzkwLjAzIDExNy40MQogIFEgNzg5LjkxIDE1NS41MyA3OTAuMDEgMjE0LjkxCiAgQSAwLjM0IDAuMzQgMC4wIDAgMSA3ODkuNjcgMjE1LjI1CiAgTCA3NDcuMDkgMjE1LjI1CiAgQSAwLjU4IDAuNTcgLTAuMCAwIDEgNzQ2LjUxIDIxNC42OAogIEwgNzQ2LjUxIDE5NS44NQogIEEgMC4zNSAwLjM0IDczLjAgMCAwIDc0NS45NyAxOTUuNTYKICBaCiAgTSA3NDYuNDQ4NCAxMTAuOTA1MAogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjgyLjI4NTcgNTAuNTgxNQogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjE4Ljk3MTYgMTExLjc5NTAKICBBIDYzLjc0IDYwLjc3IC0wLjQgMCAwIDY4My4xMzQzIDE3Mi4xMTg1CiAgQSA2My43NCA2MC43NyAtMC40IDAgMCA3NDYuNDQ4NCAxMTAuOTA1MAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMTE3Mi41MSA3Ny44NAogIEEgMC4yNCAwLjI0IDAuMCAwIDEgMTE3Mi40MiA3OC4xNwogIEwgMTA1Ny40NCAxNDQuNTYKICBBIDAuNDggMC40OCAwLjAgMCAxIDEwNTYuNzkgMTQ0LjM5CiAgTCAxMDM1LjM5IDEwNy4zMwogIEEgMC40OCAwLjQ3IDYwLjggMCAxIDEwMzUuNTcgMTA2LjY4CiAgTCAxMTA4LjQ3IDY0LjU5CiAgQSAwLjQyIDAuNDEgNDguNiAwIDAgMTEwOC41MSA2My45MAogIFEgMTA5Ny40NyA1NS40OSAxMDgzLjc1IDUyLjI2CiAgUSAxMDYzLjUyIDQ3LjUwIDEwNDQuMzggNTUuMzkKICBDIDEwMjMuODQgNjMuODUgMTAxMC42NSA3OC4yNyAxMDA2LjE0IDEwMC44OQogIFEgMTAwMy4yOSAxMTUuMTYgMTAwNy4yNCAxMjcuNTAKICBRIDEwMTYuOTIgMTU3Ljc1IDEwNDYuNTEgMTY4LjI1CiAgQyAxMDcxLjM5IDE3Ny4wOSAxMDk4LjY4IDE3MC41MyAxMTE2LjU0IDE1MS4zNQogIFEgMTEyNi4zNCAxNDAuODIgMTEzMC4xOCAxMjcuMzcKICBBIDAuNDggMC40NiAtNzQuMyAwIDEgMTEzMC43NSAxMjcuMDQKICBMIDExNzEuNjUgMTM4LjExCiAgQSAwLjYxIDAuNjAgLTc0LjIgMCAxIDExNzIuMDcgMTM4Ljg3CiAgUSAxMTYwLjM2IDE3Ny41NyAxMTI2LjU1IDE5OC45OQogIFEgMTEwMC4wNSAyMTUuNzcgMTA2OS4yNiAyMTUuNzQKICBRIDEwNTcuMTkgMjE1LjczIDEwNDIuNDkgMjEyLjE4CiAgQyAxMDA5LjY4IDIwNC4yNSA5ODQuMzYgMTgzLjc2IDk3MC4zMiAxNTIuNjkKICBRIDk2MC40MyAxMzAuODEgOTYxLjU3IDEwNy45OAogIEMgOTYyLjczIDg0LjY1IDk3MS4zMyA2MS4wOSA5ODcuMDQgNDMuMzMKICBRIDk5Ni44NSAzMi4yNCAxMDA4LjA3IDI1LjIwCiAgUSAxMDE5LjY4IDE3LjkzIDEwMzMuMTEgMTMuMTEKICBDIDEwNzQuNzkgLTEuODMgMTEyNS41OSAxMS42NCAxMTUzLjEyIDQ2LjkwCiAgQyAxMTYwLjI4IDU2LjA3IDExNjUuOTYgNjYuODYgMTE3Mi41MSA3Ny44NAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gODguMzYgMTUxLjgzCiAgQSAwLjM4IDAuMzggMC4wIDAgMCA4OS4wMiAxNTEuOTYKICBRIDEwOS4xNyAxMjcuMzcgMTE4Ljc0IDk4LjUyCiAgQyAxMjguNTAgNjkuMTEgMTMxLjMyIDM3LjQ5IDEzMS41OCA3Ljg5CiAgQSAwLjY2IDAuNjUgLTg5LjYgMCAxIDEzMi4yMyA3LjI0CiAgTCAxNzQuMDcgNy4yNAogIEEgMC44NSAwLjg0IDg5LjcgMCAxIDE3NC45MSA4LjA4CiAgUSAxNzUuMDkgNDAuMDcgMTcwLjIxIDcwLjc0CiAgQyAxNjYuMzUgOTUuMDIgMTU5LjI0IDExOS4wNiAxNDguMTIgMTQwLjgyCiAgUSAxMzEuOTAgMTcyLjU1IDEwNS42NiAxOTcuNjcKICBRIDk2LjU1IDIwNi4zOCA4NS45NCAyMTQuOTUKICBBIDEuMzUgMS4zMiAtNjQuMCAwIDEgODUuMTAgMjE1LjI1CiAgTCA2Mi4yMiAyMTUuMjUKICBBIDAuODAgMC43OSAtOC40IDAgMSA2MS40NiAyMTQuNjkKICBMIDAuMTMgNy44MAogIEEgMC40MyAwLjQyIC04LjUgMCAxIDAuNTQgNy4yNQogIEwgNDQuOTMgNy4yNQogIEEgMC43NiAwLjc2IDAuMCAwIDEgNDUuNjYgNy44MAogIEwgODguMzYgMTUxLjgzCiAgWiIKLz4KPHBhdGggZmlsbD0iI2VkNzE2NCIgZD0iCiAgTSAzNjAuMzQgMTEwLjc2CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAzNjAuNTUgMTEwLjk3CiAgTCAzNjAuNTUgMTExLjA5CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAzMDYuNTkgMTY1LjA0CiAgTCAzMDYuMTMgMTY1LjA0CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAyNTIuMTcgMTExLjA5CiAgTCAyNTIuMTcgMTEwLjk3CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAyNTIuMzggMTEwLjc2CiAgTCAzNjAuMzQgMTEwLjc2CiAgWiIKLz4KPC9zdmc+Cg==" alt="Vorare" style="height:26px;width:auto;flex-shrink:0">
+  <div style="display:flex;flex-direction:column;line-height:1.05">
+    <span style="font-size:.95rem;font-weight:900;color:#fff;letter-spacing:.5px">SMART</span>
+    <span style="font-size:.95rem;font-weight:900;color:var(--sm-green);letter-spacing:.5px">Menu</span>
+  </div>
+</a><ul class="nav"><li class="nav-item nav-category">Principal</li><li class="nav-item "><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li><li class="nav-item "><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li><li class="nav-item "><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title">Men&uacute; Basal</span></a></li><li class="nav-item "><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title">Cambios y Excepciones</span></a></li><li class="nav-item "><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li><li class="nav-item "><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li><li class="nav-item active"><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li></ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Nutricionista Central</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav><div class="main-panel"><div class="content-wrapper"><div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem"><div><h4><i class="mdi mdi-tune mr-2" style="color:var(--sm-green)"></i>Configuración del Sistema</h4>
+<p class="sm-page-subtitle">Configuraci&oacute;n del Sistema</p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><button class="btn btn-primary btn-sm" onclick="abrirNuevoTipoCentro()"><i class="mdi mdi-plus-circle-outline mr-1"></i>Nuevo tipo de centro</button></div></div><ul class="nav nav-tabs mb-0" id="cfgTipoTabsNav" style="padding-top:.5rem"><li class="nav-item"><a class="nav-link active" href="#" onclick="switchConfigTipo('escolar');return false"><span class="ico-tipo ico-escolar"></span>Escolar</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="switchConfigTipo('hospital');return false"><span class="ico-tipo ico-hospital"></span>Hospital</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="switchConfigTipo('tercera-edad');return false"><span class="ico-tipo ico-tercera-edad"></span>Tercera Edad</a></li><li class="nav-item"><a class="nav-link" href="#" onclick="switchConfigTipo('empresa');return false"><span class="ico-tipo ico-empresa"></span>Empresa</a></li></ul><div class="card" style="border-top-left-radius:0"><div class="card-body"><ul class="nav nav-tabs mb-4"><li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#cfgParams">Parámetros globales</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfgReglas">Reglas de negocio</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfgNutricion">Nutrición</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfgDietas">Dietas y alérgenos</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfgIntegracion">Integración Crownet</a></li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfgNormativa">Marco regulatorio</a></li></ul><div class="tab-content"><div class="tab-pane fade show active" id="cfgParams"><h6 class="font-weight-700 mb-3">Parámetros operativos globales</h6><div class="row"><div class="col-md-6 mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Target máx. desviación costo (%)</label><input class="form-control" id="paramCosto" value="5" type="number"></div><div class="col-md-6 mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Semanas historial para IA</label><input class="form-control" id="paramHist" value="12" type="number"></div><div class="col-md-6 mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Variantes mínimas por menú</label><input class="form-control" id="paramVar" value="2" type="number"></div><div class="col-md-6 mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Días mínimos antelación publicación</label><input class="form-control" id="paramAnt" value="3" type="number"></div><div class="col-md-6 mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Aprobación automática si cumple (%)</label><input class="form-control" id="paramAuto" value="95" type="number"></div></div><button class="btn btn-primary btn-sm" onclick="smToast('Parámetros guardados correctamente','success')"><i class="mdi mdi-content-save"></i> Guardar parámetros</button></div><div class="tab-pane fade" id="cfgReglas"><div class="d-flex justify-content-between align-items-center mb-3"><h6 class="font-weight-700 mb-0">Reglas de negocio activas</h6><button class="btn btn-primary btn-sm" onclick="nuevaRegla()"><i class="mdi mdi-plus"></i> Nueva regla</button></div><table class="table table-clean"><thead><tr><th>C&oacute;digo</th><th>Nombre</th><th>Condici&oacute;n</th><th>Sem&aacute;foro / Severidad</th><th>Impacto</th><th class="text-center">On/Off</th><th>Acciones</th></tr></thead><tbody>
+<tr>
+  <td><code>RN-01</code></td>
+  <td><strong style="font-size:.84rem">Control alérgenos</strong></td>
+  <td style="font-size:.81rem">Alérgeno incompatible detectado en menú</td>
+  <td><span class="semaforo semaforo-rojo mr-1"></span><span class="badge-critico">CR&Iacute;TICA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Bloquea men&uacute;</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-01',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-01','Control alérgenos','Si alérgeno incompatible detectado en perfil del centro o alumno → bloquear menú y alertar','critica')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+<tr>
+  <td><code>RN-02</code></td>
+  <td><strong style="font-size:.84rem">Target de costo</strong></td>
+  <td style="font-size:.81rem">Costo &gt; target + umbral configurable</td>
+  <td><span class="semaforo semaforo-ambar mr-1"></span><span class="badge-moderado">MODERADA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Genera excepci&oacute;n</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-02',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-02','Target de costo','Si costo > target + 5% → generar excepción moderada y notificar nutricionista','moderada')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+<tr>
+  <td><code>RN-03</code></td>
+  <td><strong style="font-size:.84rem">Frecuencia pescado</strong></td>
+  <td style="font-size:.81rem">Pescado: 1–3 raciones/semana (RD 315/2025)</td>
+  <td><span class="semaforo semaforo-ambar mr-1"></span><span class="badge-moderado">MODERADA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Alerta &aacute;mbar</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-03',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-03','Frecuencia pescado','Mín 1 ración/semana, máx 3 raciones/semana según RD 315/2025 art. 9','moderada')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+<tr>
+  <td><code>RN-04</code></td>
+  <td><strong style="font-size:.84rem">Variedad 15 d&iacute;as</strong></td>
+  <td style="font-size:.81rem">No repetir plato principal en menos de 15 d&iacute;as</td>
+  <td><span class="semaforo semaforo-ambar mr-1"></span><span class="badge-moderado">MODERADA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Alerta &aacute;mbar</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-04',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-04','Variedad 15 días','No repetir el mismo plato principal en un período inferior a 15 días naturales','moderada')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+<tr>
+  <td><code>RN-05</code></td>
+  <td><strong style="font-size:.84rem">Cumplimiento nutricional</strong></td>
+  <td style="font-size:.81rem">Cumpl. &lt; 90% bloquea publicaci&oacute;n</td>
+  <td><span class="semaforo semaforo-rojo mr-1"></span><span class="badge-critico">CR&Iacute;TICA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Bloquea publicaci&oacute;n</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-05',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-05','Cumplimiento nutricional','Si cumplimiento nutricional < 90% → bloquear publicación en Crownet hasta resolver','critica')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+<tr>
+  <td><code>RN-06</code></td>
+  <td><strong style="font-size:.84rem">Lunes sin legumbres</strong></td>
+  <td style="font-size:.81rem">Lunes no se planifican legumbres salvo lentejas</td>
+  <td><span class="semaforo semaforo-verde mr-1"></span><span class="badge-ok">OPERATIVA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Corrige autom.</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-06',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-06','Lunes sin legumbres','Los lunes no se asignan legumbres salvo lentejas por necesidad de remojo previo','operativa')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+<tr>
+  <td><code>RN-07</code></td>
+  <td><strong style="font-size:.84rem">Guarnición coherente</strong></td>
+  <td style="font-size:.81rem">Si 1er plato es arroz/pasta/patata → guarnici&oacute;n = ensalada</td>
+  <td><span class="semaforo semaforo-verde mr-1"></span><span class="badge-ok">OPERATIVA</span></td>
+  <td style="font-size:.8rem;color:var(--sm-text-muted)">Corrige autom.</td>
+  <td class="text-center">
+    <label class="d-flex align-items-center justify-content-center mb-0" style="gap:.4rem;cursor:pointer;font-size:.8rem">
+      <input type="checkbox" checked onchange="toggleRegla('RN-07',this)"> Activa
+    </label>
+  </td>
+  <td><button class="btn btn-sm btn-outline-primary" onclick="editarRegla('RN-07','Guarnición coherente','Si primer plato es arroz, pasta o patata → la guarnición debe ser ensalada','operativa')"><i class="mdi mdi-pencil"></i> Editar</button></td>
+</tr>
+</tbody></table></div><div class="tab-pane fade" id="cfgNutricion"><h6 class="font-weight-700 mb-3">Parámetros nutricionales y frecuencias</h6><div class="row"><div class="col-md-6"><div class="sm-section-label">Objetivos calóricos por servicio</div><div class="mb-3"><label style="font-size:.85rem;font-weight:600">Almuerzo (kcal objetivo)</label><div class="input-group input-group-sm"><input class="form-control" id="nutAlmuerzo" value="850" type="number"><button class="btn btn-primary" onclick="smToast('Almuerzo actualizado','success')"><i class="mdi mdi-content-save"></i></button></div></div><div class="mb-3"><label style="font-size:.85rem;font-weight:600">Cena (kcal objetivo)</label><div class="input-group input-group-sm"><input class="form-control" id="nutCena" value="650" type="number"><button class="btn btn-primary" onclick="smToast('Cena actualizada','success')"><i class="mdi mdi-content-save"></i></button></div></div></div><div class="col-md-6"><div class="sm-section-label">Frecuencia proteínas (días/semana mínimo)</div><div class="mb-3"><label style="font-size:.85rem;font-weight:600">Carne</label><div class="input-group input-group-sm"><input class="form-control" id="nutCarne" value="3" type="number" min="0" max="5"><button class="btn btn-primary" onclick="smToast('Carne actualizado','success')"><i class="mdi mdi-content-save"></i></button></div></div><div class="mb-3"><label style="font-size:.85rem;font-weight:600">Pescado</label><div class="input-group input-group-sm"><input class="form-control" id="nutPescado" value="2" type="number" min="0" max="5"><button class="btn btn-primary" onclick="smToast('Pescado actualizado','success')"><i class="mdi mdi-content-save"></i></button></div></div><div class="mb-3"><label style="font-size:.85rem;font-weight:600">Legumbres</label><div class="input-group input-group-sm"><input class="form-control" id="nutLeg" value="1" type="number" min="0" max="5"><button class="btn btn-primary" onclick="smToast('Legumbres actualizado','success')"><i class="mdi mdi-content-save"></i></button></div></div></div></div><div class="sm-section-label mt-2">Umbrales de alerta</div><div class="row"><div class="col-md-4 mb-3"><label style="font-size:.85rem;font-weight:600">Alerta costo (%)</label><div class="input-group input-group-sm"><input class="form-control" value="5" type="number"><button class="btn btn-warning" onclick="smToast('Umbral guardado','warning')"><i class="mdi mdi-content-save"></i></button></div></div><div class="col-md-4 mb-3"><label style="font-size:.85rem;font-weight:600">Alerta nutricional (%)</label><div class="input-group input-group-sm"><input class="form-control" value="90" type="number"><button class="btn btn-warning" onclick="smToast('Umbral guardado','warning')"><i class="mdi mdi-content-save"></i></button></div></div><div class="col-md-4 mb-3"><label style="font-size:.85rem;font-weight:600">Bloqueo publicación (%)</label><div class="input-group input-group-sm"><input class="form-control" value="80" type="number"><button class="btn btn-danger" onclick="smToast('Umbral guardado','warning')"><i class="mdi mdi-content-save"></i></button></div></div></div></div><div class="tab-pane fade" id="cfgDietas"><div class="row"><div class="col-md-6 mb-4"><div class="sm-section-label">Dietas especiales activas</div><div class="card p-3"><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Dieta sin gluten</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Dieta sin lactosa</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Dieta vegetariana</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Dieta vegan</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Dieta blanda</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Sin cerdo</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Halal</label></div><div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Kosher</label></div><button class="btn btn-primary btn-sm mt-2" onclick="smToast('Dietas actualizadas','success')"><i class="mdi mdi-content-save"></i> Guardar dietas</button></div></div><div class="col-md-6 mb-4"><div class="sm-section-label">Alérgenos a controlar (14 principales)</div><div class="card p-3"><div class="row"><div class="col-6"><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Gluten</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Crustáceos</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Huevo</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Pescado</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Cacahuetes</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Soja</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Lácteos</label></div></div><div class="col-6"><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Frutos secos</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" checked> Apio</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Mostaza</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Sésamo</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Sulfitos</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Altramuces</label></div><div class="mb-1"><label class="d-flex" style="gap:.5rem;font-size:.87rem;cursor:pointer"><input type="checkbox" > Moluscos</label></div></div></div><button class="btn btn-primary btn-sm mt-2" onclick="smToast('Alérgenos actualizados','success')"><i class="mdi mdi-content-save"></i> Guardar alérgenos</button></div></div></div></div><div class="tab-pane fade" id="cfgIntegracion"><h6 class="font-weight-700 mb-3">Configuración integración ERP Crownet</h6><div class="row"><div class="col-md-6"><div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">URL endpoint Crownet</label><input class="form-control" value="https://api.crownet.es/v2/menus" readonly></div><div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Token de autenticación</label><input class="form-control" value="••••••••••••••••••••" readonly></div><div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Frecuencia sincronización</label><select class="form-control"><option>Tiempo real</option><option>Cada 15 min</option><option>Cada hora</option></select></div></div><div class="col-md-6"><div class="alert-sm-ok p-3 mb-3"><i class="mdi mdi-check-circle mr-2"></i><strong>Conexión activa</strong><br><span style="font-size:.82rem">&#218;ltima sincronización: hace 2 minutos</span></div><button class="btn btn-outline-primary btn-sm" onclick="testConexion()"><i class="mdi mdi-lan-connect"></i> Test conexión</button>
+<button class="btn btn-primary btn-sm ml-2" onclick="smToast('Sincronizando...','info');setTimeout(function(){smToast('Sincronización completada','success');},2000)"><i class="mdi mdi-sync"></i> Sincronizar ahora</button>
+<button class="btn btn-outline-secondary btn-sm ml-2" onclick="smToast('Funcionalidad disponible en próxima versión: alta de nuevo tipo de organización/centro.','info',4000)"><i class="mdi mdi-plus-circle-outline"></i> Nuevo tipo de organización</button></div></div></div><div class="tab-pane fade" id="cfgNormativa">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h6 class="font-weight-700 mb-0">Marco regulatorio vigente</h6>
+      <p class="text-muted mb-0" style="font-size:.8rem">Normativa que el motor IA aplica seg&uacute;n el tipo de centro. Cada tipo de centro puede tener su propia normativa activa.</p>
+    </div>
+    <div class="d-flex" style="gap:.5rem"><button class="btn btn-sm btn-primary" onclick="abrirUploadNormativa()"><i class="mdi mdi-file-upload-outline"></i> A&ntilde;adir normativa</button></div>
+  </div>
+
+  <div class="mb-3 d-flex align-items-center" style="gap:.5rem">
+    <span style="font-size:.82rem;color:var(--sm-text-muted)">Normativa activa para:</span>
+    <span id="cfgNormativaLabel" class="badge badge-secondary" style="font-size:.78rem">Escolar</span>
+  </div>
+
+  <!-- NORMATIVA ESCOLAR -->
+  <div class="card mb-3 normativa-card" data-tipo="escolar" style="border:1px solid rgba(22,163,73,.2);background:rgba(22,163,73,.03)">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <strong style="font-size:.9rem">RD 315/2025 &mdash; Comedores escolares</strong>
+          <span class="badge-aprobado ml-2">Vigente</span>
+          <span class="badge badge-secondary ml-1" style="font-size:.72rem">Escolar</span>
+        </div>
+        <span class="text-muted" style="font-size:.78rem">Cargado: 10/06/2026</span>
+      </div>
+      <p class="text-muted mb-2" style="font-size:.82rem">Real Decreto 315/2025, de 8 de abril. Normas de calidad nutricional para comedores escolares.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="sm-section-label">Par&aacute;metros activos</div>
+          <table class="table table-sm mb-0" style="font-size:.8rem"><tbody>
+            <tr><td style="color:var(--sm-text-muted)">Energ&iacute;a almuerzo (6&#8211;9 a&ntilde;os)</td><td class="font-weight-bold">600&#8211;700 kcal</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Prote&iacute;nas</td><td class="font-weight-bold">12&#8211;15%</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">L&iacute;pidos</td><td class="font-weight-bold">30&#8211;35%</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Pescado (art. 9)</td><td class="font-weight-bold">1&#8211;3 raciones/sem</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Carne m&aacute;x.</td><td class="font-weight-bold">3 raciones/sem</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Variedad m&iacute;nima</td><td class="font-weight-bold">Sin repetir en 15 d&iacute;as</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+          </tbody></table>
+        </div>
+        <div class="col-md-6">
+          <div class="sm-section-label">Tabla I &mdash; Frecuencias (art. 9)</div>
+          <table class="table table-sm mb-0" style="font-size:.79rem">
+            <thead><tr><th>Grupo</th><th>Frec. semanal</th></tr></thead>
+            <tbody>
+              <tr><td>Legumbres</td><td>1&#8211;2 raciones</td></tr>
+              <tr><td>Verdura diaria</td><td>Diario</td></tr>
+              <tr><td>Fruta fresca</td><td>4&#8211;5 raciones</td></tr>
+              <tr><td>Carne procesada</td><td>M&aacute;x. 2/mes</td></tr>
+              <tr><td>Frituras</td><td>M&aacute;x. 1/sem</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NORMATIVA HOSPITALARIA -->
+  <div class="card mb-3 normativa-card" data-tipo="hospitalario" style="border:1px solid rgba(21,101,192,.2);background:rgba(21,101,192,.03)">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <strong style="font-size:.9rem">SENPE 2023 &mdash; Nutrici&oacute;n hospitalaria</strong>
+          <span class="badge-aprobado ml-2">Vigente</span>
+          <span class="badge badge-info ml-1" style="font-size:.72rem">Hospitalario</span>
+        </div>
+        <span class="text-muted" style="font-size:.78rem">Cargado: 10/06/2026</span>
+      </div>
+      <p class="text-muted mb-2" style="font-size:.82rem">Gu&iacute;a SENPE de nutrici&oacute;n hospitalaria. Est&aacute;ndares nutricionales para centros hospitalarios y cl&iacute;nicos.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="sm-section-label">Par&aacute;metros activos</div>
+          <table class="table table-sm mb-0" style="font-size:.8rem"><tbody>
+            <tr><td style="color:var(--sm-text-muted)">Energ&iacute;a diaria</td><td class="font-weight-bold">1.800&#8211;2.200 kcal</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Prote&iacute;nas</td><td class="font-weight-bold">15&#8211;20%</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Sodio (dieta baja)</td><td class="font-weight-bold">&lt;2g/d&iacute;a</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Textura adaptada</td><td class="font-weight-bold">Seg&uacute;n prescripci&oacute;n</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Dietas especiales</td><td class="font-weight-bold">Diab&eacute;tica, renal, hipocal&oacute;rica</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+          </tbody></table>
+        </div>
+        <div class="col-md-6">
+          <div class="sm-section-label">Restricciones activas</div>
+          <table class="table table-sm mb-0" style="font-size:.79rem">
+            <thead><tr><th>Condici&oacute;n</th><th>Restricci&oacute;n</th></tr></thead>
+            <tbody>
+              <tr><td>Diab&eacute;tica</td><td>Sin az&uacute;cares simples</td></tr>
+              <tr><td>Renal</td><td>Bajo potasio/f&oacute;sforo</td></tr>
+              <tr><td>Disfagia</td><td>Textura IDDSI 3&#8211;4</td></tr>
+              <tr><td>Sin gluten</td><td>Celiaq&uiacute;a confirmada</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NORMATIVA 3a EDAD -->
+  <div class="card mb-3 normativa-card" data-tipo="residencia" style="border:1px solid rgba(147,51,234,.2);background:rgba(147,51,234,.03)">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <strong style="font-size:.9rem">Gu&iacute;a AESAN 2022 &mdash; Personas mayores</strong>
+          <span class="badge-aprobado ml-2">Vigente</span>
+          <span class="badge badge-secondary ml-1" style="font-size:.72rem;background:rgba(147,51,234,.15);color:#9333ea">3&ordf; Edad</span>
+        </div>
+        <span class="text-muted" style="font-size:.78rem">Cargado: 10/06/2026</span>
+      </div>
+      <p class="text-muted mb-2" style="font-size:.82rem">Gu&iacute;a AESAN de alimentaci&oacute;n saludable para personas mayores en residencias.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="sm-section-label">Par&aacute;metros activos</div>
+          <table class="table table-sm mb-0" style="font-size:.8rem"><tbody>
+            <tr><td style="color:var(--sm-text-muted)">Energ&iacute;a diaria</td><td class="font-weight-bold">1.600&#8211;2.000 kcal</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Prote&iacute;nas</td><td class="font-weight-bold">1.0&#8211;1.2g/kg/d&iacute;a</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Calcio</td><td class="font-weight-bold">1.200mg/d&iacute;a</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Hidrataci&oacute;n</td><td class="font-weight-bold">M&iacute;n. 1.5L/d&iacute;a</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Textura</td><td class="font-weight-bold">Blanda / triturada seg&uacute;n caso</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+          </tbody></table>
+        </div>
+        <div class="col-md-6">
+          <div class="sm-section-label">Recomendaciones espec&iacute;ficas</div>
+          <table class="table table-sm mb-0" style="font-size:.79rem">
+            <thead><tr><th>Nutriente</th><th>Objetivo</th></tr></thead>
+            <tbody>
+              <tr><td>Vitamina D</td><td>800&#8211;1000 UI/d&iacute;a</td></tr>
+              <tr><td>Fibra</td><td>25&#8211;30g/d&iacute;a</td></tr>
+              <tr><td>Sodio</td><td>&lt;5g sal/d&iacute;a</td></tr>
+              <tr><td>L&aacute;cteos</td><td>3&#8211;4 raciones/d&iacute;a</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NORMATIVA EMPRESA -->
+  <div class="card mb-3 normativa-card" data-tipo="empresa" style="border:1px solid rgba(232,119,34,.2);background:rgba(232,119,34,.03)">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <strong style="font-size:.9rem">Gu&iacute;a NAOS 2021 &mdash; Comedores de empresa</strong>
+          <span class="badge-aprobado ml-2">Vigente</span>
+          <span class="badge badge-warning ml-1" style="font-size:.72rem">Empresa</span>
+        </div>
+        <span class="text-muted" style="font-size:.78rem">Cargado: 10/06/2026</span>
+      </div>
+      <p class="text-muted mb-2" style="font-size:.82rem">Estrategia NAOS de alimentaci&oacute;n saludable en entornos laborales.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="sm-section-label">Par&aacute;metros activos</div>
+          <table class="table table-sm mb-0" style="font-size:.8rem"><tbody>
+            <tr><td style="color:var(--sm-text-muted)">Energ&iacute;a almuerzo</td><td class="font-weight-bold">700&#8211;900 kcal</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Variedad semanal</td><td class="font-weight-bold">M&iacute;n. 5 grupos alim.</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Frutas y verduras</td><td class="font-weight-bold">Presencia diaria</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+            <tr><td style="color:var(--sm-text-muted)">Grasas saturadas</td><td class="font-weight-bold">&lt;10% energ&iacute;a</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>
+          </tbody></table>
+        </div>
+        <div class="col-md-6">
+          <div class="sm-section-label">Recomendaciones NAOS</div>
+          <table class="table table-sm mb-0" style="font-size:.79rem">
+            <thead><tr><th>Elemento</th><th>Recomendaci&oacute;n</th></tr></thead>
+            <tbody>
+              <tr><td>Men&uacute; saludable</td><td>Identificaci&oacute;n visible</td></tr>
+              <tr><td>Raciones</td><td>Tama&ntilde;os adecuados</td></tr>
+              <tr><td>Agua</td><td>Bebida principal</td></tr>
+              <tr><td>Opciones vegetales</td><td>M&iacute;n. 1 opci&oacute;n/d&iacute;a</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOADER -->
+  <div class="card mb-3" id="panelUploadNormativa" style="display:none">
+    <div class="card-body">
+      <h6 class="font-weight-700 mb-1">A&ntilde;adir nueva normativa con IA</h6>
+      <div class="mb-3">
+        <label class="form-label" style="font-size:.82rem;font-weight:600">Tipo de centro al que aplica</label>
+        <select class="form-control form-control-sm" style="width:200px">
+          <option>Escolar</option><option>Hospitalario</option><option>3&ordf; Edad / Residencia</option><option>Empresa</option><option>Todos</option>
+        </select>
+      </div>
+      <div id="uploadZona" class="p-4 rounded text-center mb-3" style="border:2px dashed var(--sm-border);cursor:pointer" onclick="document.getElementById('inputNormativa').click()">
+        <i class="mdi mdi-file-pdf-box" style="font-size:2.5rem;color:var(--sm-danger);opacity:.6"></i>
+        <div style="font-size:.85rem;margin-top:.5rem">Haz clic o arrastra el PDF aqu&iacute;</div>
+        <div class="text-muted" style="font-size:.78rem">Formatos aceptados: PDF &middot; Tama&ntilde;o m&aacute;x: 10MB</div>
+        <input type="file" id="inputNormativa" accept=".pdf" style="display:none" onchange="procesarNormativaPDF(this)">
+      </div>
+      <div id="progresoNormativa" style="display:none" class="mb-3">
+        <div class="d-flex align-items-center mb-2" style="gap:.5rem;font-size:.83rem">
+          <span class="spinner-border spinner-border-sm text-success"></span>
+          <span id="msgNormativa">Leyendo documento&hellip;</span>
+        </div>
+        <div class="progress" style="height:6px"><div class="progress-bar bg-success" id="barNormativa" style="width:0%;transition:width .5s"></div></div>
+      </div>
+      <div id="resultadoNormativa" style="display:none">
+        <div class="d-flex align-items-center mb-2" style="gap:.5rem">
+          <i class="mdi mdi-check-circle" style="color:var(--sm-green);font-size:1.1rem"></i>
+          <strong style="font-size:.85rem">Extracci&oacute;n completada</strong>
+          <span class="text-muted" style="font-size:.78rem">&mdash; Revisa antes de activar</span>
+        </div>
+        <div id="tablaExtraida" class="mb-3"></div>
+        <div class="d-flex" style="gap:.5rem">
+          <button class="btn btn-success btn-sm" onclick="activarNormativaExtraida()"><i class="mdi mdi-check-circle-outline"></i> Activar esta normativa</button>
+          <button class="btn btn-outline-secondary btn-sm" onclick="cancelarUpload()"><i class="mdi mdi-close"></i> Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORIAL -->
+  <div class="card" id="historialNormativaCard">
+    <div class="card-body">
+      <h6 class="card-title"><i class="mdi mdi-history mr-1" style="color:var(--sm-green)"></i>Historial de normativas</h6>
+      <table class="table table-sm mb-0">
+        <thead><tr><th>Normativa</th><th>Tipo centro</th><th>Fecha carga</th><th>Cargada por</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RD 315/2025</strong></td><td><span class="badge badge-secondary" style="font-size:.72rem">Escolar</span></td><td style="font-size:.82rem">10/06/2026</td><td style="font-size:.82rem">Ana Garc&iacute;a</td><td><span class="badge-aprobado">Activa</span></td></tr>
+          <tr><td><strong>SENPE 2023</strong></td><td><span class="badge badge-info" style="font-size:.72rem">Hospitalario</span></td><td style="font-size:.82rem">10/06/2026</td><td style="font-size:.82rem">Ana Garc&iacute;a</td><td><span class="badge-aprobado">Activa</span></td></tr>
+          <tr><td><strong>AESAN 2022</strong></td><td><span class="badge badge-secondary" style="font-size:.72rem">3&ordf; Edad</span></td><td style="font-size:.82rem">10/06/2026</td><td style="font-size:.82rem">Ana Garc&iacute;a</td><td><span class="badge-aprobado">Activa</span></td></tr>
+          <tr><td><strong>NAOS 2021</strong></td><td><span class="badge badge-warning" style="font-size:.72rem">Empresa</span></td><td style="font-size:.82rem">10/06/2026</td><td style="font-size:.82rem">Ana Garc&iacute;a</td><td><span class="badge-aprobado">Activa</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<div class="modal fade" id="modalNuevoTipoCentro" tabindex="-1" style="z-index:1200">
+  <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-plus-circle-outline mr-1" style="color:var(--sm-green)"></i>Nuevo tipo de centro</h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" style="font-size:.85rem">
+      <!-- Datos básicos -->
+      <div class="row mb-3">
+        <div class="col-md-7">
+          <label class="form-label" style="font-size:.82rem;font-weight:600">Nombre del tipo <span class="text-danger">*</span></label>
+          <input type="text" class="form-control form-control-sm" id="ntcNombre" placeholder="Ej: Guarder&iacute;a, Centro deportivo&hellip;">
+        </div>
+        <div class="col-md-5">
+          <label class="form-label" style="font-size:.82rem;font-weight:600">Color identificativo</label>
+          <select class="form-control form-control-sm" id="ntcColor">
+            <option value="cyan">Cian (nuevo)</option>
+            <option value="green">Verde</option>
+            <option value="blue">Azul</option>
+            <option value="purple">Morado</option>
+            <option value="orange">Naranja</option>
+            <option value="red">Rojo</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label" style="font-size:.82rem;font-weight:600">Descripci&oacute;n breve</label>
+          <textarea class="form-control form-control-sm" id="ntcDesc" rows="2" placeholder="Tipo de comensales y contexto que abarca&hellip;"></textarea>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" style="font-size:.82rem;font-weight:600">Normativa de referencia</label>
+          <input type="text" class="form-control form-control-sm" id="ntcNormRef" placeholder="Ej: RD 315/2025, Gu&iacute;a AESAN 2024&hellip;">
+        </div>
+      </div>
+      <!-- Upload IA -->
+      <hr style="margin:.5rem 0 .75rem">
+      <div class="mb-2" style="font-size:.82rem;font-weight:600">
+        <i class="mdi mdi-robot-outline mr-1" style="color:var(--sm-green)"></i>Documento normativo
+        <span class="text-muted" style="font-weight:400"> &mdash; la IA extraer&aacute; los par&aacute;metros autom&aacute;ticamente</span>
+      </div>
+      <div id="ntcUploadZona" class="p-4 rounded text-center mb-2" style="border:2px dashed var(--sm-border);cursor:pointer" onclick="document.getElementById('ntcInputDoc').click()">
+        <i class="mdi mdi-file-pdf-box" style="font-size:2.2rem;color:var(--sm-danger);opacity:.6"></i>
+        <div style="font-size:.85rem;margin-top:.4rem">Haz clic o arrastra el PDF aqu&iacute;</div>
+        <div class="text-muted" style="font-size:.78rem">Formatos aceptados: PDF &middot; Tama&ntilde;o m&aacute;x: 10MB</div>
+        <input type="file" id="ntcInputDoc" accept=".pdf" style="display:none" onchange="procesarNTCPDF(this)">
+      </div>
+      <!-- Progreso -->
+      <div id="ntcProgreso" style="display:none" class="mb-2">
+        <div class="d-flex align-items-center mb-1" style="gap:.5rem;font-size:.83rem">
+          <span class="spinner-border spinner-border-sm text-success"></span>
+          <span id="ntcMsgProgreso">Leyendo documento&hellip;</span>
+        </div>
+        <div class="progress" style="height:6px"><div class="progress-bar bg-success" id="ntcBarProgreso" style="width:0%;transition:width .5s"></div></div>
+      </div>
+      <!-- Resultado extracción -->
+      <div id="ntcResultado" style="display:none">
+        <div class="d-flex align-items-center mb-2" style="gap:.5rem">
+          <i class="mdi mdi-check-circle" style="color:var(--sm-green);font-size:1.1rem"></i>
+          <strong style="font-size:.85rem">Extracci&oacute;n completada por IA</strong>
+          <span class="text-muted" style="font-size:.78rem">&mdash; Revisa antes de activar</span>
+        </div>
+        <div id="ntcTablaExtraida"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-primary btn-sm" id="ntcBtnCrear" disabled onclick="guardarNuevoTipoCentro()"><i class="mdi mdi-content-save-outline"></i> Crear tipo de centro</button>
+    </div>
+  </div></div>
+</div>
+</div></div></div></div></div></div><div class="modal fade" id="modalRegla" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title" id="mReglaTitle"><i class="mdi mdi-pencil mr-2" style="color:var(--sm-green)"></i>Editar regla</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
+  <div class="modal-body">
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Nombre</label><input class="form-control" id="rNom"></div>
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Condición</label><textarea class="form-control" rows="3" id="rCond"></textarea></div>
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Severidad</label><select class="form-control"><option>Crítica</option><option>Moderada</option><option>Baja</option><option>Operativa</option></select></div>
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Estado</label><select class="form-control"><option>Activa</option><option>Inactiva</option></select></div>
+  </div>
+  <div class="modal-footer"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button class="btn btn-primary btn-sm" onclick="guardarRegla()"><i class="mdi mdi-content-save"></i> Guardar regla</button></div>
+</div></div></div></div></div></div></div>
+<script src="assets_custom/vendors/js/vendor.bundle.base.js"></script>
+<script src="assets/js/sidebar.js?v=7" defer></script>
+<script src="assets/js/router.js" defer></script>
+<script src="assets_custom/js/off-canvas.js"></script>
+<script>
+function smToast(msg,type,dur){type=type||'success';dur=dur||3200;var icons={success:'mdi-check-circle',error:'mdi-alert-circle',warning:'mdi-alert',info:'mdi-information'};var t=document.createElement('div');t.className='sm-toast '+type;t.innerHTML='<i class="mdi '+icons[type]+' toast-icon"></i><span>'+msg+'</span><span class="toast-close" onclick="this.parentNode.remove()">&times;</span>';document.getElementById('sm-toast-container').appendChild(t);setTimeout(function(){if(t.parentNode)t.remove();},dur);}
+document.addEventListener('DOMContentLoaded',function(){if(typeof $!=='undefined'&&$.fn.tooltip)$('[data-toggle="tooltip"]').tooltip();});
+</script><script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tab = sessionStorage.getItem('cfgTab');
+  if (tab) {
+    sessionStorage.removeItem('cfgTab');
+    var el = document.querySelector('[href="#' + tab + '"]');
+    if (el) setTimeout(function(){ el.click(); }, 200);
+  }
+});
+function testConexion(){smToast('Testeando conexión con Crownet…','info');setTimeout(function(){smToast('Conexión exitosa — Latencia: 42ms','success');},1500);}
+
+function toggleRegla(cod, chk) {
+  var estado = chk.checked ? 'activada' : 'desactivada';
+  smToast('Regla ' + cod + ' ' + estado, chk.checked ? 'success' : 'warning', 2500);
+  var label = chk.parentNode;
+  label.lastChild.textContent = chk.checked ? ' Activa' : ' Inactiva';
+  var fila = chk.closest('tr');
+  fila.style.opacity = chk.checked ? '1' : '0.5';
+}
+
+function editarRegla(cod, nom, cond, sev) {
+  document.getElementById('mReglaTitle').innerHTML = "<i class='mdi mdi-pencil mr-2' style='color:var(--sm-green)'></i>Editar: " + cod;
+  document.getElementById('rNom').value = nom || '';
+  document.getElementById('rCond').value = cond || '';
+  var sel = document.querySelector('#modalRegla select');
+  if (sel && sev) {
+    var map = {critica:'Crítica', moderada:'Moderada', baja:'Baja', operativa:'Operativa'};
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === (map[sev] || sev)) { sel.selectedIndex = i; break; }
+    }
+  }
+  $('#modalRegla').modal('show');
+}
+
+function nuevaRegla() {
+  document.getElementById('mReglaTitle').innerHTML = "<i class='mdi mdi-plus-circle mr-2' style='color:var(--sm-green)'></i>Nueva regla";
+  document.getElementById('rNom').value = '';
+  document.getElementById('rCond').value = '';
+  $('#modalRegla').modal('show');
+}
+
+function guardarRegla() {
+  $('#modalRegla').modal('hide');
+  smToast('Regla guardada. El motor IA la aplicará en la próxima generación.', 'success', 3500);
+}
+
+function abrirUploadNormativa() {
+  var p = document.getElementById('panelUploadNormativa');
+  if (p) p.style.display = p.style.display === 'none' ? '' : 'none';
+}
+function procesarNormativaPDF(input) {
+  if (!input.files.length) return;
+  var prog = document.getElementById('progresoNormativa');
+  var res = document.getElementById('resultadoNormativa');
+  var bar = document.getElementById('barNormativa');
+  var msg = document.getElementById('msgNormativa');
+  prog.style.display = '';
+  res.style.display = 'none';
+  var pasos = ['Leyendo documento…','Identificando artículos…','Extrayendo parámetros nutricionales…','Validando contra normativa anterior…','Generando tabla de parámetros…'];
+  var i = 0;
+  var iv = setInterval(function() {
+    if (i >= pasos.length) {
+      clearInterval(iv);
+      prog.style.display = 'none';
+      res.style.display = '';
+      document.getElementById('tablaExtraida').innerHTML = '<div class="alert-sm-ok p-2" style="font-size:.82rem"><i class="mdi mdi-check-circle mr-1"></i>14 parámetros extraídos del PDF — listos para activar</div>';
+      return;
+    }
+    msg.textContent = pasos[i];
+    bar.style.width = Math.round(((i + 1) / pasos.length) * 100) + '%';
+    i++;
+  }, 700);
+}
+function activarNormativaExtraida() {
+  smToast('Normativa activada. El motor IA usará los nuevos parámetros.', 'success', 4000);
+  var p = document.getElementById('panelUploadNormativa');
+  if (p) p.style.display = 'none';
+}
+function cancelarUpload() {
+  var p = document.getElementById('panelUploadNormativa');
+  if (p) p.style.display = 'none';
+}
+
+function filtrarNormativa(tipo, btn) {
+  document.querySelectorAll('.normativa-card').forEach(function(card){
+    card.style.display = (tipo === 'todos' || card.getAttribute('data-tipo') === tipo) ? '' : 'none';
+  });
+}
+
+var CONFIG_TIPO='escolar';
+var CONFIG_TIPOS=[
+  {key:'escolar',       label:'Escolar',      normKey:'escolar',      normLabel:'Escolar'},
+  {key:'hospital',      label:'Hospital',     normKey:'hospitalario', normLabel:'Hospitalario'},
+  {key:'tercera-edad',  label:'Tercera Edad', normKey:'residencia',   normLabel:'3ª Edad'},
+  {key:'empresa',       label:'Empresa',      normKey:'empresa',      normLabel:'Empresa'}
+];
+var CONFIG_DATA={
+  'escolar':      {params:{costo:5,  hist:12, variantes:2, antelacion:3, autoAprov:95}, nut:{almuerzo:700, cena:550, carne:3, pescado:2, leg:1}},
+  'hospital':     {params:{costo:8,  hist:16, variantes:3, antelacion:5, autoAprov:90}, nut:{almuerzo:900, cena:750, carne:2, pescado:3, leg:2}},
+  'tercera-edad': {params:{costo:10, hist:20, variantes:2, antelacion:3, autoAprov:88}, nut:{almuerzo:800, cena:650, carne:2, pescado:2, leg:2}},
+  'empresa':      {params:{costo:5,  hist:8,  variantes:2, antelacion:2, autoAprov:95}, nut:{almuerzo:750, cena:600, carne:3, pescado:2, leg:1}}
+};
+
+function switchConfigTipo(tipo){
+  CONFIG_TIPO=tipo;
+  document.querySelectorAll('#cfgTipoTabsNav .nav-link').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('onclick').indexOf("'"+tipo+"'")>-1);
+  });
+  var d=CONFIG_DATA[tipo];
+  if(d){
+    var p=d.params;
+    var pFields=['paramCosto','paramHist','paramVar','paramAnt','paramAuto'];
+    var pVals=[p.costo,p.hist,p.variantes,p.antelacion,p.autoAprov];
+    pFields.forEach(function(id,i){var el=document.getElementById(id);if(el)el.value=pVals[i];});
+    var n=d.nut;
+    var nMap={nutAlmuerzo:n.almuerzo,nutCena:n.cena,nutCarne:n.carne,nutPescado:n.pescado,nutLeg:n.leg};
+    Object.keys(nMap).forEach(function(id){var el=document.getElementById(id);if(el)el.value=nMap[id];});
+  }
+  var info=CONFIG_TIPOS.filter(function(t){return t.key===tipo;})[0];
+  if(info){
+    filtrarNormativa(info.normKey);
+    var lbl=document.getElementById('cfgNormativaLabel');
+    if(lbl)lbl.textContent=info.normLabel;
+  }
+}
+
+var _ntcExtraido=false;
+var _ntcDatos={};
+
+function abrirNuevoTipoCentro(){
+  var _m=document.getElementById('modalNuevoTipoCentro');
+  if(_m&&_m.closest('.tab-pane')){var _cw=document.querySelector('.content-wrapper');if(_cw)_cw.appendChild(_m);}
+  ['ntcNombre','ntcDesc','ntcNormRef'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('ntcColor').value='cyan';
+  document.getElementById('ntcProgreso').style.display='none';
+  document.getElementById('ntcResultado').style.display='none';
+  document.getElementById('ntcUploadZona').style.display='';
+  document.getElementById('ntcInputDoc').value='';
+  document.getElementById('ntcBtnCrear').disabled=true;
+  _ntcExtraido=false; _ntcDatos={};
+  $('#modalNuevoTipoCentro').modal('show');
+}
+
+function procesarNTCPDF(input){
+  if(!input.files.length)return;
+  var archivo=input.files[0].name;
+  var prog=document.getElementById('ntcProgreso');
+  var res=document.getElementById('ntcResultado');
+  var bar=document.getElementById('ntcBarProgreso');
+  var msg=document.getElementById('ntcMsgProgreso');
+  document.getElementById('ntcUploadZona').style.display='none';
+  prog.style.display=''; res.style.display='none';
+  var pasos=['Leyendo documento…','Identificando artículos y secciones…','Extrayendo parámetros nutricionales…','Validando frecuencias y restricciones…','Generando perfil normativo completo…'];
+  var i=0;
+  var iv=setInterval(function(){
+    if(i>=pasos.length){
+      clearInterval(iv);
+      prog.style.display='none';
+      _ntcDatos={
+        kcal:'700–900',prot:'12–15',lip:'30–35',
+        freqPesc:'1–2',freqCarne:'2–3',freqLeg:'1–2',freqFruta:'4–5',
+        params:[
+          ['Energía diaria','700–900 kcal'],
+          ['Proteínas','12–15%'],
+          ['Lípidos','30–35%'],
+          ['Hidratos de carbono','50–60%'],
+          ['Pescado','1–2 raciones/semana'],
+          ['Carne','2–3 raciones/semana'],
+          ['Legumbres','1–2 raciones/semana'],
+          ['Fruta fresca','4–5 raciones/semana'],
+          ['Verdura','Presencia diaria'],
+          ['Sal','Máx. 5g/día'],
+          ['Frituras','Máx. 1/semana'],
+          ['Carne procesada','Máx. 2/mes']
+        ]
+      };
+      _ntcExtraido=true;
+      var html='<table class="table table-sm mb-0" style="font-size:.8rem"><thead><tr><th>Parámetro</th><th>Valor extraído</th></tr></thead><tbody>';
+      _ntcDatos.params.forEach(function(p){html+='<tr><td>'+p[0]+'</td><td class="font-weight-bold">'+p[1]+'</td></tr>';});
+      html+='</tbody></table>';
+      document.getElementById('ntcTablaExtraida').innerHTML='<div class="p-2 mb-2 rounded" style="background:rgba(22,163,73,.05);border:1px solid rgba(22,163,73,.2);font-size:.79rem"><i class="mdi mdi-robot-outline mr-1" style="color:var(--sm-green)"></i>'+_ntcDatos.params.length+' parámetros extraídos de <strong>'+archivo+'</strong> — listos para activar</div>'+html;
+      res.style.display='';
+      document.getElementById('ntcBtnCrear').disabled=false;
+      return;
+    }
+    msg.textContent=pasos[i];
+    bar.style.width=Math.round(((i+1)/pasos.length)*100)+'%';
+    i++;
+  },700);
+}
+
+function guardarNuevoTipoCentro(){
+  var nombre=document.getElementById('ntcNombre').value.trim();
+  if(!nombre){smToast('El nombre del tipo de centro es obligatorio','warning');return;}
+  if(!_ntcExtraido){smToast('Adjunta el documento normativo para que la IA extraiga los parámetros','warning');return;}
+  var colorKey=document.getElementById('ntcColor').value;
+  var colorMap={
+    cyan:  {r:'rgba(6,182,212,',  cls:'info'},
+    green: {r:'rgba(22,163,73,',  cls:'success'},
+    blue:  {r:'rgba(21,101,192,', cls:'primary'},
+    purple:{r:'rgba(147,51,234,', cls:'secondary'},
+    orange:{r:'rgba(232,119,34,', cls:'warning'},
+    red:   {r:'rgba(220,53,69,',  cls:'danger'}
+  };
+  var col=colorMap[colorKey]||colorMap.cyan;
+  var desc=document.getElementById('ntcDesc').value.trim();
+  var normRef=document.getElementById('ntcNormRef').value.trim()||'Normativa interna';
+  var d=_ntcDatos;
+  var tipoKey=nombre.toLowerCase()
+    .replace(/[áàä]/g,'a').replace(/[éèë]/g,'e')
+    .replace(/[íìï]/g,'i').replace(/[óòö]/g,'o')
+    .replace(/[úùü]/g,'u').replace(/ñ/g,'n')
+    .replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
+  // 1. Añadir botón al grupo de filtros
+  var btnGroup=document.querySelector('#cfgNormativa .btn-group');
+  if(btnGroup){
+    var nb=document.createElement('button');
+    nb.className='btn btn-outline-secondary';
+    nb.textContent=nombre;
+    nb.setAttribute('onclick','filtrarNormativa("'+tipoKey+'",this)');
+    btnGroup.appendChild(nb);
+  }
+  // 2. Insertar tarjeta de normativa antes del panel de upload
+  var cardHtml='<div class="card mb-3 normativa-card" data-tipo="'+tipoKey+'" style="border:1px solid '+col.r+'.2);background:'+col.r+'.03)">'+
+    '<div class="card-body">'+
+    '<div class="d-flex justify-content-between align-items-start mb-2">'+
+    '<div><strong style="font-size:.9rem">'+normRef+' — '+nombre+'</strong>'+
+    '<span class="badge-aprobado ml-2">Vigente</span>'+
+    '<span class="badge badge-'+col.cls+' ml-1" style="font-size:.72rem">'+nombre+'</span>'+
+    '<span class="badge badge-secondary ml-1" style="font-size:.72rem;background:rgba(22,163,73,.12);color:var(--sm-green)"><i class="mdi mdi-robot-outline"></i> IA</span></div>'+
+    '<span class="text-muted" style="font-size:.78rem">Creado: 16/06/2026</span></div>'+
+    (desc?'<p class="text-muted mb-2" style="font-size:.82rem">'+desc+'</p>':'')+
+    '<div class="row"><div class="col-md-6"><div class="sm-section-label">Parámetros activos</div>'+
+    '<table class="table table-sm mb-0" style="font-size:.8rem"><tbody>'+
+    '<tr><td style="color:var(--sm-text-muted)">Energía diaria</td><td class="font-weight-bold">'+d.kcal+' kcal</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>'+
+    '<tr><td style="color:var(--sm-text-muted)">Proteínas</td><td class="font-weight-bold">'+d.prot+'%</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>'+
+    '<tr><td style="color:var(--sm-text-muted)">Lípidos</td><td class="font-weight-bold">'+d.lip+'%</td><td><span class="semaforo semaforo-verde" style="width:7px;height:7px"></span></td></tr>'+
+    '</tbody></table></div>'+
+    '<div class="col-md-6"><div class="sm-section-label">Frecuencias semanales</div>'+
+    '<table class="table table-sm mb-0" style="font-size:.79rem"><thead><tr><th>Grupo</th><th>Frec. mín.</th></tr></thead><tbody>'+
+    '<tr><td>Pescado</td><td>'+d.freqPesc+' rac/sem</td></tr>'+
+    '<tr><td>Carne</td><td>'+d.freqCarne+' rac/sem</td></tr>'+
+    '<tr><td>Legumbres</td><td>'+d.freqLeg+' rac/sem</td></tr>'+
+    '<tr><td>Fruta fresca</td><td>'+d.freqFruta+' rac/sem</td></tr>'+
+    '</tbody></table></div></div></div></div>';
+  var panelUpload=document.getElementById('panelUploadNormativa');
+  if(panelUpload)panelUpload.insertAdjacentHTML('beforebegin',cardHtml);
+  // 3. Añadir fila al historial
+  var histTbody=document.querySelector('#historialNormativaCard tbody');
+  if(histTbody){
+    var row=document.createElement('tr');
+    row.innerHTML='<td><strong>'+normRef+'</strong></td>'+
+      '<td><span class="badge badge-'+col.cls+'" style="font-size:.72rem">'+nombre+'</span></td>'+
+      '<td style="font-size:.82rem">16/06/2026</td>'+
+      '<td style="font-size:.82rem">Ana García</td>'+
+      '<td><span class="badge-aprobado">Activa</span></td>';
+    histTbody.appendChild(row);
+  }
+  // 4. Actualizar select del uploader
+  var uploadSel=document.querySelector('#panelUploadNormativa select');
+  if(uploadSel){var opt=document.createElement('option');opt.textContent=nombre;uploadSel.appendChild(opt);}
+  $('#modalNuevoTipoCentro').modal('hide');
+  smToast('Tipo de centro "'+nombre+'" creado correctamente','success',3500);
+  setTimeout(function(){smToast('El motor IA aplicará la nueva normativa a centros de este tipo','info',4000);},1000);
+  CONFIG_TIPOS.push({key:tipoKey, label:nombre, normKey:tipoKey, normLabel:nombre});
+  CONFIG_DATA[tipoKey]={params:{costo:5,hist:12,variantes:2,antelacion:3,autoAprov:90},nut:{almuerzo:750,cena:600,carne:3,pescado:2,leg:1}};
+  var tabNav=document.getElementById('cfgTipoTabsNav');
+  if(tabNav){var newLi=document.createElement('li');newLi.className='nav-item';newLi.innerHTML='<a class="nav-link" href="#" onclick="switchConfigTipo(\''+tipoKey+'\');return false">'+nombre+'</a>';tabNav.appendChild(newLi);}
+  switchConfigTipo(tipoKey);
+}
+switchConfigTipo('escolar');
+</script><div class="modal fade" id="modalLogout" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+    <div class="modal-header" style="border-bottom:none;padding-bottom:.5rem">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700">
+        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Cerrar sesi&oacute;n
+      </h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">
+      &iquest;Est&aacute;s seguro de que deseas cerrar la sesi&oacute;n actual?
+    </div>
+    <div class="modal-footer" style="border-top:none;padding-top:.25rem">
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-danger btn-sm" id="btnConfirmLogout">
+        <i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n
+      </button>
+    </div>
+  </div></div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('btnConfirmLogout');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      $('#modalLogout').modal('hide');
+      setTimeout(function() { window.location.href = 'login.html'; }, 300);
+    });
+  }
+});
+</script>
+<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Ajustes de cuenta</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Perfil</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Nombre</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Apellidos</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Rol</label><input type="text" class="form-control form-control-sm" value="Nutricionista Central" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Seguridad</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Contrase&ntilde;a actual</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Nueva contrase&ntilde;a</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Confirmar contrase&ntilde;a</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Preferencias</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Idioma</label><select class="form-control form-control-sm"><option selected>Espa&ntilde;ol</option><option>English</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600">Notificaciones por email</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Ajustes guardados correctamente','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Guardar cambios</button></div></div></div></div>
+</body></html>

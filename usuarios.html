@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMART Menu &middot; Usuarios</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMzEwLjI4IDIyMi4wMAogIEwgMzAyLjA0IDIyMi4wMAogIFEgMjY3LjUxIDIyMC40MSAyNDEuNDIgMjAwLjg2CiAgQyAxNzguODQgMTUzLjk5IDE4NC4wNiA1Mi4yOSAyNTMuNjQgMTQuMTkKICBRIDI4My4yMCAtMi4wMSAzMTcuNzYgMS40NAogIEMgMzY4LjYzIDYuNTIgNDA3LjQ3IDQ1LjYyIDQxMy44OSA5Ni4yMgogIEMgNDIyLjE2IDE2MS4yOSAzNzcuMDAgMjE5LjUzIDMxMC4yOCAyMjIuMDAKICBaCiAgTSAzNzYuNzggMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSA0MC40MAogIEEgNzAuNDMgNzAuNDMgMC4wIDAgMCAyMzUuOTIgMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSAxODEuMjYKICBBIDcwLjQzIDcwLjQzIDAuMCAwIDAgMzc2Ljc4IDExMC44MwogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gNDgwLjYxIDIxNS4yNAogIEwgNDM4LjAzIDIxNS4yNAogIEEgMC4zMyAwLjMzIDAuMCAwIDEgNDM3LjcwIDIxNC45MQogIEwgNDM3LjcwIDU1LjI2CiAgQSA0LjM0IDQuMjYgLTMyLjYgMCAxIDQzOC4xMyA1My4zOQogIEMgNDU0LjA1IDIwLjYxIDQ4Ni42OSA1LjM2IDUyMi4xNSA2LjUwCiAgQyA1NDEuOTQgNy4xNCA1NjEuNzUgMTQuNjMgNTc2LjQ4IDI4LjI1CiAgQSAwLjUwIDAuNDggNDMuMyAwIDEgNTc2LjUxIDI4Ljk0CiAgTCA1NDYuOTQgNTkuODEKICBBIDAuNDYgMC40NiAwLjAgMCAxIDU0Ni4zMCA1OS44MwogIFEgNTM4LjUyIDUyLjY1IDUyOC4xNyA1MC44OAogIEMgNTExLjYzIDQ4LjA2IDQ5Mi42NCA1MS42NyA0ODEuODAgNjUuMzUKICBBIDIuNDAgMi4zNyAtMjYuMiAwIDAgNDgxLjI5IDY2LjgyCiAgTCA0ODEuMjkgMjE0LjU2CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA0ODAuNjEgMjE1LjI0CiAgWiIKLz4KPHBhdGggZmlsbD0iIzM4YjAwMCIgZD0iCiAgTSA4NjcuMTcgMjE0LjU4CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA4NjYuNDkgMjE1LjI2CiAgTCA4MjMuOTAgMjE1LjI1CiAgQSAwLjMzIDAuMzMgMC4wIDAgMSA4MjMuNTcgMjE0LjkyCiAgTCA4MjMuNjEgNTUuMjUKICBBIDQuMzQgNC4yNiAtMzIuNiAwIDEgODI0LjA0IDUzLjM4CiAgQyA4MzkuOTcgMjAuNjAgODcyLjYyIDUuMzYgOTA4LjA5IDYuNTEKICBDIDkyNy44OCA3LjE1IDk0Ny42OSAxNC42NSA5NjIuNDIgMjguMjcKICBBIDAuNTAgMC40OCA0My40IDAgMSA5NjIuNDUgMjguOTYKICBMIDkzMi44NyA1OS44MwogIEEgMC40NiAwLjQ2IDAuMCAwIDEgOTMyLjIzIDU5Ljg1CiAgUSA5MjQuNDUgNTIuNjcgOTE0LjEwIDUwLjg5CiAgQyA4OTcuNTUgNDguMDcgODc4LjU2IDUxLjY3IDg2Ny43MiA2NS4zNQogIEEgMi40MCAyLjM3IC0yNi4yIDAgMCA4NjcuMjEgNjYuODIKICBMIDg2Ny4xNyAyMTQuNTgKICBaIgovPgo8cGF0aCBmaWxsPSIjMzhiMDAwIiBkPSIKICBNIDc0NS45NyAxOTUuNTYKICBRIDcwMi45NSAyMjUuNjMgNjUxLjI4IDIxMC44MQogIFEgNjE3Ljc4IDIwMS4yMSA1OTcuNDQgMTc0LjMwCiAgUSA1NjMuMTUgMTI4LjkzIDU4Mi4yOCA3NS4xOQogIFEgNTkzLjIzIDQ0LjQyIDYyMi4wOSAyNS4wNwogIFEgNjI1LjY2IDIyLjY3IDYyOC4zNyAyMS41MAogIEMgNjMxLjIyIDIwLjI3IDYzNC4yMiAxOC40MSA2MzYuOTUgMTcuMTcKICBRIDY3Ni42NyAtMC45MCA3MTkuMTAgMTMuMzQKICBRIDc1Ny4xOCAyNi4xMiA3NzcuMTUgNjIuMDEKICBRIDc4NS4zOSA3Ni44MSA3ODguNTMgOTMuOTUKICBRIDc5MC4wNyAxMDIuMzggNzkwLjAzIDExNy40MQogIFEgNzg5LjkxIDE1NS41MyA3OTAuMDEgMjE0LjkxCiAgQSAwLjM0IDAuMzQgMC4wIDAgMSA3ODkuNjcgMjE1LjI1CiAgTCA3NDcuMDkgMjE1LjI1CiAgQSAwLjU4IDAuNTcgLTAuMCAwIDEgNzQ2LjUxIDIxNC42OAogIEwgNzQ2LjUxIDE5NS44NQogIEEgMC4zNSAwLjM0IDczLjAgMCAwIDc0NS45NyAxOTUuNTYKICBaCiAgTSA3NDYuNDQ4NCAxMTAuOTA1MAogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjgyLjI4NTcgNTAuNTgxNQogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjE4Ljk3MTYgMTExLjc5NTAKICBBIDYzLjc0IDYwLjc3IC0wLjQgMCAwIDY4My4xMzQzIDE3Mi4xMTg1CiAgQSA2My43NCA2MC43NyAtMC40IDAgMCA3NDYuNDQ4NCAxMTAuOTA1MAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMTE3Mi41MSA3Ny44NAogIEEgMC4yNCAwLjI0IDAuMCAwIDEgMTE3Mi40MiA3OC4xNwogIEwgMTA1Ny40NCAxNDQuNTYKICBBIDAuNDggMC40OCAwLjAgMCAxIDEwNTYuNzkgMTQ0LjM5CiAgTCAxMDM1LjM5IDEwNy4zMwogIEEgMC40OCAwLjQ3IDYwLjggMCAxIDEwMzUuNTcgMTA2LjY4CiAgTCAxMTA4LjQ3IDY0LjU5CiAgQSAwLjQyIDAuNDEgNDguNiAwIDAgMTEwOC41MSA2My45MAogIFEgMTA5Ny40NyA1NS40OSAxMDgzLjc1IDUyLjI2CiAgUSAxMDYzLjUyIDQ3LjUwIDEwNDQuMzggNTUuMzkKICBDIDEwMjMuODQgNjMuODUgMTAxMC42NSA3OC4yNyAxMDA2LjE0IDEwMC44OQogIFEgMTAwMy4yOSAxMTUuMTYgMTAwNy4yNCAxMjcuNTAKICBRIDEwMTYuOTIgMTU3Ljc1IDEwNDYuNTEgMTY4LjI1CiAgQyAxMDcxLjM5IDE3Ny4wOSAxMDk4LjY4IDE3MC41MyAxMTE2LjU0IDE1MS4zNQogIFEgMTEyNi4zNCAxNDAuODIgMTEzMC4xOCAxMjcuMzcKICBBIDAuNDggMC40NiAtNzQuMyAwIDEgMTEzMC43NSAxMjcuMDQKICBMIDExNzEuNjUgMTM4LjExCiAgQSAwLjYxIDAuNjAgLTc0LjIgMCAxIDExNzIuMDcgMTM4Ljg3CiAgUSAxMTYwLjM2IDE3Ny41NyAxMTI2LjU1IDE5OC45OQogIFEgMTEwMC4wNSAyMTUuNzcgMTA2OS4yNiAyMTUuNzQKICBRIDEwNTcuMTkgMjE1LjczIDEwNDIuNDkgMjEyLjE4CiAgQyAxMDA5LjY4IDIwNC4yNSA5ODQuMzYgMTgzLjc2IDk3MC4zMiAxNTIuNjkKICBRIDk2MC40MyAxMzAuODEgOTYxLjU3IDEwNy45OAogIEMgOTYyLjczIDg0LjY1IDk3MS4zMyA2MS4wOSA5ODcuMDQgNDMuMzMKICBRIDk5Ni44NSAzMi4yNCAxMDA4LjA3IDI1LjIwCiAgUSAxMDE5LjY4IDE3LjkzIDEwMzMuMTEgMTMuMTEKICBDIDEwNzQuNzkgLTEuODMgMTEyNS41OSAxMS42NCAxMTUzLjEyIDQ2LjkwCiAgQyAxMTYwLjI4IDU2LjA3IDExNjUuOTYgNjYuODYgMTE3Mi41MSA3Ny44NAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gODguMzYgMTUxLjgzCiAgQSAwLjM4IDAuMzggMC4wIDAgMCA4OS4wMiAxNTEuOTYKICBRIDEwOS4xNyAxMjcuMzcgMTE4Ljc0IDk4LjUyCiAgQyAxMjguNTAgNjkuMTEgMTMxLjMyIDM3LjQ5IDEzMS41OCA3Ljg5CiAgQSAwLjY2IDAuNjUgLTg5LjYgMCAxIDEzMi4yMyA3LjI0CiAgTCAxNzQuMDcgNy4yNAogIEEgMC44NSAwLjg0IDg5LjcgMCAxIDE3NC45MSA4LjA4CiAgUSAxNzUuMDkgNDAuMDcgMTcwLjIxIDcwLjc0CiAgQyAxNjYuMzUgOTUuMDIgMTU5LjI0IDExOS4wNiAxNDguMTIgMTQwLjgyCiAgUSAxMzEuOTAgMTcyLjU1IDEwNS42NiAxOTcuNjcKICBRIDk2LjU1IDIwNi4zOCA4NS45NCAyMTQuOTUKICBBIDEuMzUgMS4zMiAtNjQuMCAwIDEgODUuMTAgMjE1LjI1CiAgTCA2Mi4yMiAyMTUuMjUKICBBIDAuODAgMC43OSAtOC40IDAgMSA2MS40NiAyMTQuNjkKICBMIDAuMTMgNy44MAogIEEgMC40MyAwLjQyIC04LjUgMCAxIDAuNTQgNy4yNQogIEwgNDQuOTMgNy4yNQogIEEgMC43NiAwLjc2IDAuMCAwIDEgNDUuNjYgNy44MAogIEwgODguMzYgMTUxLjgzCiAgWiIKLz4KPHBhdGggZmlsbD0iI2VkNzE2NCIgZD0iCiAgTSAzNjAuMzQgMTEwLjc2CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAzNjAuNTUgMTEwLjk3CiAgTCAzNjAuNTUgMTExLjA5CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAzMDYuNTkgMTY1LjA0CiAgTCAzMDYuMTMgMTY1LjA0CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAyNTIuMTcgMTExLjA5CiAgTCAyNTIuMTcgMTEwLjk3CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAyNTIuMzggMTEwLjc2CiAgTCAzNjAuMzQgMTEwLjc2CiAgWiIKLz4KPC9zdmc+Cg==">
+<link rel="stylesheet" href="assets_custom/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="assets_custom/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="assets_custom/css/style.css">
+<link rel="stylesheet" href="assets/css/smart-menu-theme.css?v=6">
+</head><body><div id="sm-toast-container"></div><div class="container-scroller"><div class="container-fluid page-body-wrapper"><nav class="sidebar sidebar-offcanvas" id="sidebar"><a class="sm-sidebar-brand" href="dashboard.html" style="display:flex;padding:1rem 1.2rem;gap:.7rem;align-items:center">
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAuMDAgMC4wMCAxMTczLjAwIDIyMi4wMCI+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMzEwLjI4IDIyMi4wMAogIEwgMzAyLjA0IDIyMi4wMAogIFEgMjY3LjUxIDIyMC40MSAyNDEuNDIgMjAwLjg2CiAgQyAxNzguODQgMTUzLjk5IDE4NC4wNiA1Mi4yOSAyNTMuNjQgMTQuMTkKICBRIDI4My4yMCAtMi4wMSAzMTcuNzYgMS40NAogIEMgMzY4LjYzIDYuNTIgNDA3LjQ3IDQ1LjYyIDQxMy44OSA5Ni4yMgogIEMgNDIyLjE2IDE2MS4yOSAzNzcuMDAgMjE5LjUzIDMxMC4yOCAyMjIuMDAKICBaCiAgTSAzNzYuNzggMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSA0MC40MAogIEEgNzAuNDMgNzAuNDMgMC4wIDAgMCAyMzUuOTIgMTEwLjgzCiAgQSA3MC40MyA3MC40MyAwLjAgMCAwIDMwNi4zNSAxODEuMjYKICBBIDcwLjQzIDcwLjQzIDAuMCAwIDAgMzc2Ljc4IDExMC44MwogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gNDgwLjYxIDIxNS4yNAogIEwgNDM4LjAzIDIxNS4yNAogIEEgMC4zMyAwLjMzIDAuMCAwIDEgNDM3LjcwIDIxNC45MQogIEwgNDM3LjcwIDU1LjI2CiAgQSA0LjM0IDQuMjYgLTMyLjYgMCAxIDQzOC4xMyA1My4zOQogIEMgNDU0LjA1IDIwLjYxIDQ4Ni42OSA1LjM2IDUyMi4xNSA2LjUwCiAgQyA1NDEuOTQgNy4xNCA1NjEuNzUgMTQuNjMgNTc2LjQ4IDI4LjI1CiAgQSAwLjUwIDAuNDggNDMuMyAwIDEgNTc2LjUxIDI4Ljk0CiAgTCA1NDYuOTQgNTkuODEKICBBIDAuNDYgMC40NiAwLjAgMCAxIDU0Ni4zMCA1OS44MwogIFEgNTM4LjUyIDUyLjY1IDUyOC4xNyA1MC44OAogIEMgNTExLjYzIDQ4LjA2IDQ5Mi42NCA1MS42NyA0ODEuODAgNjUuMzUKICBBIDIuNDAgMi4zNyAtMjYuMiAwIDAgNDgxLjI5IDY2LjgyCiAgTCA0ODEuMjkgMjE0LjU2CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA0ODAuNjEgMjE1LjI0CiAgWiIKLz4KPHBhdGggZmlsbD0iIzM4YjAwMCIgZD0iCiAgTSA4NjcuMTcgMjE0LjU4CiAgQSAwLjY4IDAuNjggMC4wIDAgMSA4NjYuNDkgMjE1LjI2CiAgTCA4MjMuOTAgMjE1LjI1CiAgQSAwLjMzIDAuMzMgMC4wIDAgMSA4MjMuNTcgMjE0LjkyCiAgTCA4MjMuNjEgNTUuMjUKICBBIDQuMzQgNC4yNiAtMzIuNiAwIDEgODI0LjA0IDUzLjM4CiAgQyA4MzkuOTcgMjAuNjAgODcyLjYyIDUuMzYgOTA4LjA5IDYuNTEKICBDIDkyNy44OCA3LjE1IDk0Ny42OSAxNC42NSA5NjIuNDIgMjguMjcKICBBIDAuNTAgMC40OCA0My40IDAgMSA5NjIuNDUgMjguOTYKICBMIDkzMi44NyA1OS44MwogIEEgMC40NiAwLjQ2IDAuMCAwIDEgOTMyLjIzIDU5Ljg1CiAgUSA5MjQuNDUgNTIuNjcgOTE0LjEwIDUwLjg5CiAgQyA4OTcuNTUgNDguMDcgODc4LjU2IDUxLjY3IDg2Ny43MiA2NS4zNQogIEEgMi40MCAyLjM3IC0yNi4yIDAgMCA4NjcuMjEgNjYuODIKICBMIDg2Ny4xNyAyMTQuNTgKICBaIgovPgo8cGF0aCBmaWxsPSIjMzhiMDAwIiBkPSIKICBNIDc0NS45NyAxOTUuNTYKICBRIDcwMi45NSAyMjUuNjMgNjUxLjI4IDIxMC44MQogIFEgNjE3Ljc4IDIwMS4yMSA1OTcuNDQgMTc0LjMwCiAgUSA1NjMuMTUgMTI4LjkzIDU4Mi4yOCA3NS4xOQogIFEgNTkzLjIzIDQ0LjQyIDYyMi4wOSAyNS4wNwogIFEgNjI1LjY2IDIyLjY3IDYyOC4zNyAyMS41MAogIEMgNjMxLjIyIDIwLjI3IDYzNC4yMiAxOC40MSA2MzYuOTUgMTcuMTcKICBRIDY3Ni42NyAtMC45MCA3MTkuMTAgMTMuMzQKICBRIDc1Ny4xOCAyNi4xMiA3NzcuMTUgNjIuMDEKICBRIDc4NS4zOSA3Ni44MSA3ODguNTMgOTMuOTUKICBRIDc5MC4wNyAxMDIuMzggNzkwLjAzIDExNy40MQogIFEgNzg5LjkxIDE1NS41MyA3OTAuMDEgMjE0LjkxCiAgQSAwLjM0IDAuMzQgMC4wIDAgMSA3ODkuNjcgMjE1LjI1CiAgTCA3NDcuMDkgMjE1LjI1CiAgQSAwLjU4IDAuNTcgLTAuMCAwIDEgNzQ2LjUxIDIxNC42OAogIEwgNzQ2LjUxIDE5NS44NQogIEEgMC4zNSAwLjM0IDczLjAgMCAwIDc0NS45NyAxOTUuNTYKICBaCiAgTSA3NDYuNDQ4NCAxMTAuOTA1MAogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjgyLjI4NTcgNTAuNTgxNQogIEEgNjMuNzQgNjAuNzcgLTAuNCAwIDAgNjE4Ljk3MTYgMTExLjc5NTAKICBBIDYzLjc0IDYwLjc3IC0wLjQgMCAwIDY4My4xMzQzIDE3Mi4xMTg1CiAgQSA2My43NCA2MC43NyAtMC40IDAgMCA3NDYuNDQ4NCAxMTAuOTA1MAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gMTE3Mi41MSA3Ny44NAogIEEgMC4yNCAwLjI0IDAuMCAwIDEgMTE3Mi40MiA3OC4xNwogIEwgMTA1Ny40NCAxNDQuNTYKICBBIDAuNDggMC40OCAwLjAgMCAxIDEwNTYuNzkgMTQ0LjM5CiAgTCAxMDM1LjM5IDEwNy4zMwogIEEgMC40OCAwLjQ3IDYwLjggMCAxIDEwMzUuNTcgMTA2LjY4CiAgTCAxMTA4LjQ3IDY0LjU5CiAgQSAwLjQyIDAuNDEgNDguNiAwIDAgMTEwOC41MSA2My45MAogIFEgMTA5Ny40NyA1NS40OSAxMDgzLjc1IDUyLjI2CiAgUSAxMDYzLjUyIDQ3LjUwIDEwNDQuMzggNTUuMzkKICBDIDEwMjMuODQgNjMuODUgMTAxMC42NSA3OC4yNyAxMDA2LjE0IDEwMC44OQogIFEgMTAwMy4yOSAxMTUuMTYgMTAwNy4yNCAxMjcuNTAKICBRIDEwMTYuOTIgMTU3Ljc1IDEwNDYuNTEgMTY4LjI1CiAgQyAxMDcxLjM5IDE3Ny4wOSAxMDk4LjY4IDE3MC41MyAxMTE2LjU0IDE1MS4zNQogIFEgMTEyNi4zNCAxNDAuODIgMTEzMC4xOCAxMjcuMzcKICBBIDAuNDggMC40NiAtNzQuMyAwIDEgMTEzMC43NSAxMjcuMDQKICBMIDExNzEuNjUgMTM4LjExCiAgQSAwLjYxIDAuNjAgLTc0LjIgMCAxIDExNzIuMDcgMTM4Ljg3CiAgUSAxMTYwLjM2IDE3Ny41NyAxMTI2LjU1IDE5OC45OQogIFEgMTEwMC4wNSAyMTUuNzcgMTA2OS4yNiAyMTUuNzQKICBRIDEwNTcuMTkgMjE1LjczIDEwNDIuNDkgMjEyLjE4CiAgQyAxMDA5LjY4IDIwNC4yNSA5ODQuMzYgMTgzLjc2IDk3MC4zMiAxNTIuNjkKICBRIDk2MC40MyAxMzAuODEgOTYxLjU3IDEwNy45OAogIEMgOTYyLjczIDg0LjY1IDk3MS4zMyA2MS4wOSA5ODcuMDQgNDMuMzMKICBRIDk5Ni44NSAzMi4yNCAxMDA4LjA3IDI1LjIwCiAgUSAxMDE5LjY4IDE3LjkzIDEwMzMuMTEgMTMuMTEKICBDIDEwNzQuNzkgLTEuODMgMTEyNS41OSAxMS42NCAxMTUzLjEyIDQ2LjkwCiAgQyAxMTYwLjI4IDU2LjA3IDExNjUuOTYgNjYuODYgMTE3Mi41MSA3Ny44NAogIFoiCi8+CjxwYXRoIGZpbGw9IiMzOGIwMDAiIGQ9IgogIE0gODguMzYgMTUxLjgzCiAgQSAwLjM4IDAuMzggMC4wIDAgMCA4OS4wMiAxNTEuOTYKICBRIDEwOS4xNyAxMjcuMzcgMTE4Ljc0IDk4LjUyCiAgQyAxMjguNTAgNjkuMTEgMTMxLjMyIDM3LjQ5IDEzMS41OCA3Ljg5CiAgQSAwLjY2IDAuNjUgLTg5LjYgMCAxIDEzMi4yMyA3LjI0CiAgTCAxNzQuMDcgNy4yNAogIEEgMC44NSAwLjg0IDg5LjcgMCAxIDE3NC45MSA4LjA4CiAgUSAxNzUuMDkgNDAuMDcgMTcwLjIxIDcwLjc0CiAgQyAxNjYuMzUgOTUuMDIgMTU5LjI0IDExOS4wNiAxNDguMTIgMTQwLjgyCiAgUSAxMzEuOTAgMTcyLjU1IDEwNS42NiAxOTcuNjcKICBRIDk2LjU1IDIwNi4zOCA4NS45NCAyMTQuOTUKICBBIDEuMzUgMS4zMiAtNjQuMCAwIDEgODUuMTAgMjE1LjI1CiAgTCA2Mi4yMiAyMTUuMjUKICBBIDAuODAgMC43OSAtOC40IDAgMSA2MS40NiAyMTQuNjkKICBMIDAuMTMgNy44MAogIEEgMC40MyAwLjQyIC04LjUgMCAxIDAuNTQgNy4yNQogIEwgNDQuOTMgNy4yNQogIEEgMC43NiAwLjc2IDAuMCAwIDEgNDUuNjYgNy44MAogIEwgODguMzYgMTUxLjgzCiAgWiIKLz4KPHBhdGggZmlsbD0iI2VkNzE2NCIgZD0iCiAgTSAzNjAuMzQgMTEwLjc2CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAzNjAuNTUgMTEwLjk3CiAgTCAzNjAuNTUgMTExLjA5CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAzMDYuNTkgMTY1LjA0CiAgTCAzMDYuMTMgMTY1LjA0CiAgQSA1My45NiA1My45NSAtMC4wIDAgMSAyNTIuMTcgMTExLjA5CiAgTCAyNTIuMTcgMTEwLjk3CiAgQSAwLjIxIDAuMjEgMC4wIDAgMSAyNTIuMzggMTEwLjc2CiAgTCAzNjAuMzQgMTEwLjc2CiAgWiIKLz4KPC9zdmc+Cg==" alt="Vorare" style="height:26px;width:auto;flex-shrink:0">
+  <div style="display:flex;flex-direction:column;line-height:1.05">
+    <span style="font-size:.95rem;font-weight:900;color:#fff;letter-spacing:.5px">SMART</span>
+    <span style="font-size:.95rem;font-weight:900;color:var(--sm-green);letter-spacing:.5px">Menu</span>
+  </div>
+</a><ul class="nav"><li class="nav-item nav-category">Principal</li><li class="nav-item "><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li><li class="nav-item "><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li><li class="nav-item "><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title">Men&uacute; Basal</span></a></li><li class="nav-item "><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title">Cambios y Excepciones</span></a></li><li class="nav-item "><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li><li class="nav-item "><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li><li class="nav-item active"><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li></ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Nutricionista Central</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav><div class="main-panel"><div class="content-wrapper"><div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem"><div><h4><i class="mdi mdi-account-group-outline mr-2" style="color:var(--sm-green)"></i>Gestión de Usuarios</h4>
+<p class="sm-page-subtitle">Gesti&oacute;n de Usuarios</p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><button class="btn btn-primary btn-sm" onclick="abrirWizardUser()"><i class="mdi mdi-plus"></i> Crear nuevo usuario</button></div></div><div class="row mb-3" style="align-items:stretch">
+  <div class="col-md-3 col-sm-6 mb-3 d-flex">
+    <div class="kpi-card kpi-blue w-100 d-flex flex-column justify-content-between" style="min-height:110px">
+      <div><i class="mdi mdi-account-group kpi-icon"></i><div class="kpi-value text-blue">8</div><div class="kpi-label">Usuarios activos</div></div>
+      <div style="height:8px"></div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 mb-3 d-flex">
+    <div class="kpi-card kpi-green w-100 d-flex flex-column justify-content-between" style="min-height:110px">
+      <div><i class="mdi mdi-shield-check kpi-icon"></i><div class="kpi-value text-green">3</div><div class="kpi-label">Roles del sistema</div><div class="kpi-trend text-muted" style="font-size:.75rem"><i class="mdi mdi-information-outline"></i> Seg&uacute;n flujo oficial</div></div>
+      <div style="height:8px"></div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 mb-3 d-flex">
+    <div class="kpi-card kpi-orange w-100 d-flex flex-column justify-content-between" style="min-height:110px">
+      <div><i class="mdi mdi-account-off kpi-icon"></i><div class="kpi-value text-orange">1</div><div class="kpi-label">Usuarios inactivos</div></div>
+      <div style="height:8px"></div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 mb-3 d-flex">
+    <div class="kpi-card kpi-green w-100 d-flex flex-column justify-content-between" style="min-height:110px">
+      <div><i class="mdi mdi-login kpi-icon"></i><div class="kpi-value text-green">5</div><div class="kpi-label">Sesiones hoy</div></div>
+      <div style="height:8px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-end mb-2">
+  <button class="btn btn-sm btn-outline-secondary" onclick="if(typeof $!=='undefined'){$('#modalPermisos').modal('show');}else{document.getElementById('modalPermisos').style.display='block';}">
+    <i class="mdi mdi-shield-account-outline"></i> Ver roles y permisos
+  </button>
+</div>
+
+<!-- TABLA DE USUARIOS -->
+<div class="card">
+  <div class="card-body p-0">
+    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+      <h6 class="mb-0 font-weight-700">Lista de usuarios</h6>
+      <input type="text" class="form-control form-control-sm" style="width:220px" placeholder="Buscar usuario..." oninput="filtrarUsers(this.value)">
+    </div>
+    <table class="table mb-0" id="tUsers">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Centro asignado</th>
+          <th class="text-center">Estado</th>
+          <th>&Uacute;ltimo acceso</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">AG</div><strong>Ana Garc&iacute;a</strong></div></td>
+          <td style="font-size:.83rem">ana.garcia@vorare.es</td>
+          <td><span class="badge-aprobado" style="font-size:.75rem">Nutricionista Central</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Todos los centros</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hace 15 min</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Ana García','ana.garcia@vorare.es','Nutricionista Central','Todos')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('Ana García')"><i class="mdi mdi-lock-reset"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">CR</div><strong>Carlos Ruiz</strong></div></td>
+          <td style="font-size:.83rem">carlos.ruiz@vorare.es</td>
+          <td><span class="badge-ok" style="font-size:.75rem">Administrador</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Todos los centros</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hace 2h</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Carlos Ruiz','carlos.ruiz@vorare.es','Administrador','Todos')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('Carlos Ruiz')"><i class="mdi mdi-lock-reset"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">ML</div><strong>Mar&iacute;a L&oacute;pez</strong></div></td>
+          <td style="font-size:.83rem">maria.lopez@vorare.es</td>
+          <td><span class="badge-pendiente" style="font-size:.75rem">Gestor de Centro</span></td>
+          <td style="font-size:.82rem">C. San Marcos</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hoy 09:15</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('María López','maria.lopez@vorare.es','Gestor de Centro','C. San Marcos')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('María López')"><i class="mdi mdi-lock-reset"></i></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="toggleEstado(this,'María López','Activo')"><i class="mdi mdi-account-off"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">PS</div><strong>Pedro Sanz</strong></div></td>
+          <td style="font-size:.83rem">pedro.sanz@vorare.es</td>
+          <td><span class="badge-pendiente" style="font-size:.75rem">Gestor de Centro</span></td>
+          <td style="font-size:.82rem">C. La Paz</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Ayer</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Pedro Sanz','pedro.sanz@vorare.es','Gestor de Centro','C. La Paz')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('Pedro Sanz')"><i class="mdi mdi-lock-reset"></i></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="toggleEstado(this,'Pedro Sanz','Activo')"><i class="mdi mdi-account-off"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">LM</div><strong>Laura Mart&iacute;n</strong></div></td>
+          <td style="font-size:.83rem">laura.martin@vorare.es</td>
+          <td><span class="badge-pendiente" style="font-size:.75rem">Gestor de Centro</span></td>
+          <td style="font-size:.82rem">C. Montserrat</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hace 3h</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Laura Martín','laura.martin@vorare.es','Gestor de Centro','C. Montserrat')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('Laura Martín')"><i class="mdi mdi-lock-reset"></i></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="toggleEstado(this,'Laura Martín','Activo')"><i class="mdi mdi-account-off"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">JF</div><strong>Jos&eacute; Fern&aacute;ndez</strong></div></td>
+          <td style="font-size:.83rem">jose.fernandez@vorare.es</td>
+          <td><span class="badge-pendiente" style="font-size:.75rem">Gestor de Centro</span></td>
+          <td style="font-size:.82rem">Res. Los Pinos</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hoy 11:00</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('José Fernández','jose.fernandez@vorare.es','Gestor de Centro','Res. Los Pinos')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('José Fernández')"><i class="mdi mdi-lock-reset"></i></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="toggleEstado(this,'José Fernández','Activo')"><i class="mdi mdi-account-off"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">CD</div><strong>Carmen D&iacute;az</strong></div></td>
+          <td style="font-size:.83rem">carmen.diaz@vorare.es</td>
+          <td><span class="badge-pendiente" style="font-size:.75rem">Gestor de Centro</span></td>
+          <td style="font-size:.82rem">H. San Juan</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Ayer</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Carmen Díaz','carmen.diaz@vorare.es','Gestor de Centro','H. San Juan')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('Carmen Díaz')"><i class="mdi mdi-lock-reset"></i></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="toggleEstado(this,'Carmen Díaz','Activo')"><i class="mdi mdi-account-off"></i></button>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem">RG</div><strong>Roberto Gil</strong></div></td>
+          <td style="font-size:.83rem">roberto.gil@vorare.es</td>
+          <td><span class="badge-ok" style="font-size:.75rem">Administrador</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Todos los centros</td>
+          <td class="text-center"><span class="badge-aprobado">Activo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hace 4 d&iacute;as</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Roberto Gil','roberto.gil@vorare.es','Administrador','Todos')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-warning" onclick="resetPass('Roberto Gil')"><i class="mdi mdi-lock-reset"></i></button>
+            <button class="btn btn-sm btn-outline-secondary" onclick="toggleEstado(this,'Roberto Gil','Activo')"><i class="mdi mdi-account-off"></i></button>
+          </div></td>
+        </tr>
+        <tr style="opacity:.6">
+          <td><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar" style="width:32px;height:32px;font-size:.75rem;background:var(--sm-text-muted)">DT</div><strong>Diana Torres</strong></div></td>
+          <td style="font-size:.83rem">diana.torres@vorare.es</td>
+          <td><span class="badge-pendiente" style="font-size:.75rem">Gestor de Centro</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Sin asignar</td>
+          <td class="text-center"><span class="badge-borrador">Inactivo</span></td>
+          <td style="font-size:.82rem;color:var(--sm-text-muted)">Hace 2 semanas</td>
+          <td><div class="d-flex" style="gap:.3rem">
+            <button class="btn btn-sm btn-outline-primary" onclick="editarUser('Diana Torres','diana.torres@vorare.es','Gestor de Centro','Sin asignar')"><i class="mdi mdi-pencil"></i></button>
+            <button class="btn btn-sm btn-outline-success" onclick="toggleEstado(this,'Diana Torres','Inactivo')"><i class="mdi mdi-account-check"></i></button>
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div><div class="modal fade" id="modalNuevoUser" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title"><i class="mdi mdi-account-plus mr-2" style="color:var(--sm-green)"></i>Crear nuevo usuario</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
+  <div class="modal-body">
+    <div class="wizard-steps mb-4">
+      <div class="wizard-step active" id="us1"><div class="wizard-step-circle">1</div><div class="wizard-step-label">Datos</div></div>
+      <div class="wizard-step-line" id="ul1"></div>
+      <div class="wizard-step" id="us2"><div class="wizard-step-circle">2</div><div class="wizard-step-label">Rol y accesos</div></div>
+      <div class="wizard-step-line" id="ul2"></div>
+      <div class="wizard-step" id="us3"><div class="wizard-step-circle">3</div><div class="wizard-step-label">Confirmación</div></div>
+    </div>
+    <div id="uStep1">
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Nombre completo</label><input class="form-control" id="uNombre" placeholder="Nombre Apellido"></div>
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Email</label><input class="form-control" type="email" id="uEmail" placeholder="usuario@empresa.es"></div>
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Teléfono</label><input class="form-control" type="tel" placeholder="6XX XXX XXX"></div>
+    </div>
+    <div id="uStep2" style="display:none">
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Rol</label>
+        <select class="form-control" id="uRol" onchange="mostrarPermisosRol(this.value)">
+          <option>Nutricionista Central</option>
+          <option>Gestor de Centro</option>
+          <option>Administrador</option>
+        </select>
+        <div id="infoRol" class="mt-2 p-2 rounded" style="background:var(--sm-bg-subtle);font-size:.78rem;color:var(--sm-text-muted)">
+          <i class="mdi mdi-information-outline mr-1"></i>
+          <span id="textoRol">Acceso completo. Genera y aprueba men&uacute;s basales, gestiona excepciones y publica en Crownet.</span>
+        </div></div>
+      <div class="sm-section-label">Centros asignados</div>
+      <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox" checked> Todos los centros</label></div>
+      <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox"> Colegio San Marcos</label></div>
+      <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox"> Centro La Paz</label></div>
+      <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox"> Centro Montserrat</label></div>
+    </div>
+    <div id="uStep3" style="display:none"><div class="text-center py-3">
+      <i class="mdi mdi-account-check" style="font-size:3rem;color:var(--sm-green)"></i>
+      <h6 class="mt-2">Usuario listo para crearse</h6>
+      <div class="alert-sm-ok p-3 mt-3 text-left">
+        <div style="font-size:.85rem"><strong>Nombre:</strong> <span id="uResNom"></span></div>
+        <div style="font-size:.85rem"><strong>Email:</strong> <span id="uResEmail"></span></div>
+        <div style="font-size:.85rem"><strong>Rol:</strong> <span id="uResRol"></span></div>
+        <div class="mt-2 text-muted" style="font-size:.8rem"><i class="mdi mdi-email mr-1"></i>Se enviará email de bienvenida con contraseña temporal.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-secondary btn-sm" id="uBtnAnt" onclick="uAnterior()" style="display:none"><i class="mdi mdi-arrow-left"></i> Anterior</button>
+    <button class="btn btn-primary btn-sm" id="uBtnSig" onclick="uSiguiente()">Siguiente <i class="mdi mdi-arrow-right"></i></button>
+  </div>
+</div></div></div><div class="modal fade" id="modalEditUser" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title" id="editUTitle"><i class="mdi mdi-pencil mr-2" style="color:var(--sm-green)"></i>Editar usuario</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
+  <div class="modal-body">
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Nombre</label><input class="form-control" id="editUNom"></div>
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Email</label><input class="form-control" id="editUEmail" type="email"></div>
+    <div class="mb-3">
+      <label class="form-label" style="font-size:.85rem;font-weight:600">Rol</label>
+      <select class="form-control" id="editURol">
+        <option>Nutricionista Central</option>
+        <option>Gestor de Centro</option>
+        <option>Administrador</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" style="font-size:.85rem;font-weight:600">Centro asignado</label>
+      <select class="form-control" id="editUCentro">
+        <option>Todos los centros</option>
+        <option>C. San Marcos</option>
+        <option>C. La Paz</option>
+        <option>C. Montserrat</option>
+        <option>Res. Los Pinos</option>
+        <option>H. San Juan</option>
+        <option>Sin asignar</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button class="btn btn-primary btn-sm" onclick="guardarUser()"><i class="mdi mdi-content-save"></i> Guardar</button></div>
+</div></div></div>
+<div class="modal fade" id="modalPermisos" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-shield-account-outline mr-1" style="color:var(--sm-green)"></i>Roles y permisos del sistema</h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" style="font-size:.85rem">
+      <p class="text-muted mb-3" style="font-size:.82rem">Consulta qu&eacute; puede hacer cada rol antes de asignarlo a un usuario.</p>
+      <div class="table-responsive">
+        <table class="table table-sm mb-0" style="font-size:.8rem">
+          <thead>
+            <tr>
+              <th style="width:200px">Acci&oacute;n</th>
+              <th class="text-center"><span class="badge-aprobado">Nutricionista Central</span></th>
+              <th class="text-center"><span class="badge-pendiente">Gestor de Centro</span></th>
+              <th class="text-center"><span class="badge-ok">Administrador</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Ver dashboard global</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td>Generar men&uacute; basal</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td>Aprobar men&uacute; basal</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td>Generar men&uacute; por centro</td><td class="text-center text-success">&check;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td>Editar men&uacute; de su centro</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td>Aprobar / rechazar excepciones</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td>Solicitar excepci&oacute;n</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td>Publicar en Crownet</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td>Configurar reglas y normativa</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td>Gestionar usuarios</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
+            <tr><td>Ver todos los centros</td><td class="text-center text-success">&check;</td><td class="text-center text-muted" style="font-size:.77rem">Solo su centro</td><td class="text-center text-success">&check;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td>Configurar par&aacute;metros de centro</td><td class="text-center text-success">&check;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div></div>
+</div>
+<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+    <div class="modal-header" style="border-bottom:none;padding-bottom:.5rem">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700">
+        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Cerrar sesi&oacute;n
+      </h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">
+      &iquest;Est&aacute;s seguro de que deseas cerrar la sesi&oacute;n actual?
+    </div>
+    <div class="modal-footer" style="border-top:none;padding-top:.25rem">
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-danger btn-sm"
+        onclick="$('#modalLogout').modal('hide');setTimeout(function(){window.location.href='login.html';},300)">
+        <i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n
+      </button>
+    </div>
+  </div></div>
+</div>
+<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Ajustes de cuenta</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Perfil</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Nombre</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Apellidos</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Rol</label><input type="text" class="form-control form-control-sm" value="Nutricionista Central" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Seguridad</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Contrase&ntilde;a actual</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Nueva contrase&ntilde;a</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Confirmar contrase&ntilde;a</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Preferencias</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Idioma</label><select class="form-control form-control-sm"><option selected>Espa&ntilde;ol</option><option>English</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600">Notificaciones por email</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Ajustes guardados correctamente','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Guardar cambios</button></div></div></div></div>
+</div></div></div></div>
+<script src="assets_custom/vendors/js/vendor.bundle.base.js"></script>
+<script src="assets/js/sidebar.js?v=7" defer></script>
+<script src="assets/js/router.js" defer></script>
+<script src="assets_custom/js/off-canvas.js"></script>
+<script>
+function smToast(msg,type,dur){type=type||'success';dur=dur||3200;var icons={success:'mdi-check-circle',error:'mdi-alert-circle',warning:'mdi-alert',info:'mdi-information'};var t=document.createElement('div');t.className='sm-toast '+type;t.innerHTML='<i class="mdi '+icons[type]+' toast-icon"></i><span>'+msg+'</span><span class="toast-close" onclick="this.parentNode.remove()">&times;</span>';document.getElementById('sm-toast-container').appendChild(t);setTimeout(function(){if(t.parentNode)t.remove();},dur);}
+document.addEventListener('DOMContentLoaded',function(){if(typeof $!=='undefined'&&$.fn.tooltip)$('[data-toggle="tooltip"]').tooltip();});
+</script><script>
+var uStep=1;
+function abrirWizardUser(){uStep=1;uRender();$("#modalNuevoUser").modal("show");}
+function uRender(){
+  for(var i=1;i<=3;i++){
+    document.getElementById("uStep"+i).style.display=(i===uStep?"block":"none");
+    var s=document.getElementById("us"+i);
+    s.className="wizard-step"+(i<uStep?" done":i===uStep?" active":"");
+    if(i<uStep)s.querySelector(".wizard-step-circle").innerHTML="<i class='mdi mdi-check'></i>";
+    else s.querySelector(".wizard-step-circle").textContent=i;
+    var l=document.getElementById("ul"+i);if(l)l.style.background=i<uStep?"var(--sm-green)":"#e9ecef";
+  }
+  document.getElementById("uBtnAnt").style.display=uStep>1?"inline-flex":"none";
+  var btn=document.getElementById("uBtnSig");
+  if(uStep===3){btn.innerHTML="<i class='mdi mdi-check'></i> Crear usuario";btn.onclick=uGuardar;}
+  else{btn.innerHTML="Siguiente <i class='mdi mdi-arrow-right'></i>";btn.onclick=uSiguiente;}
+}
+function uSiguiente(){
+  if(uStep===1){
+    var n=document.getElementById("uNombre").value.trim();
+    var e=document.getElementById("uEmail").value.trim();
+    if(!n||!e){smToast("Completa nombre y email para continuar","warning");return;}
+    if(!e.includes("@")){smToast("Email no válido","error");return;}
+  }
+  if(uStep===2){
+    document.getElementById("uResNom").textContent=document.getElementById("uNombre").value;
+    document.getElementById("uResEmail").textContent=document.getElementById("uEmail").value;
+    document.getElementById("uResRol").textContent=document.getElementById("uRol").value;
+  }
+  if(uStep<3){uStep++;uRender();}
+}
+function uAnterior(){if(uStep>1){uStep--;uRender();}}
+function uGuardar(){$("#modalNuevoUser").modal("hide");smToast("Usuario creado correctamente","success");setTimeout(function(){smToast("Email de bienvenida enviado","info");},1200);}
+var permisosRol = {
+  'Nutricionista Central': 'Acceso completo. Genera y aprueba menús basales, gestiona excepciones y publica en Crownet.',
+  'Gestor de Centro': 'Acceso restringido a su centro asignado. Puede revisar y editar el menú de su centro y solicitar excepciones.',
+  'Administrador': 'Acceso a configuración, usuarios y parámetros del sistema. No gestiona menús.'
+};
+function mostrarPermisosRol(rol) {
+  var txt = document.getElementById('textoRol');
+  if (txt) txt.textContent = permisosRol[rol] || '';
+}
+function editarUser(nom, email, rol, centro) {
+  document.getElementById('editUTitle').innerHTML = "<i class='mdi mdi-pencil mr-2' style='color:var(--sm-green)'></i>Editar: " + nom;
+  document.getElementById('editUNom').value = nom;
+  document.getElementById('editUEmail').value = email;
+  document.getElementById('editURol').value = rol;
+  if (document.getElementById('editUCentro')) document.getElementById('editUCentro').value = centro || 'Sin asignar';
+  $('#modalEditUser').modal('show');
+}
+function guardarUser(){$("#modalEditUser").modal("hide");smToast("Usuario actualizado correctamente","success");}
+function resetPass(nom){smToast("Reseteando contraseña de "+nom+"...","info");setTimeout(function(){smToast("Email enviado con contraseña temporal","success");},1500);}
+function toggleEstado(btn,nom,estado){smToast(estado==="Activo"?nom+" desactivado":nom+" reactivado",estado==="Activo"?"warning":"success");}
+function filtrarUsers(v){document.querySelectorAll("#tUsers tbody tr").forEach(function(r){r.style.display=r.textContent.toLowerCase().includes(v.toLowerCase())?"":"none";});}
+</script>
+</body></html>
