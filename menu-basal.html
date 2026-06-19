@@ -31,7 +31,7 @@
 <div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem">
   <div>
     <h4><i class="mdi mdi-silverware-fork-knife mr-2" style="color:var(--sm-green)"></i><span data-i18n="basal.title">Base Menu</span></h4>
-    <p class="sm-page-subtitle" id="pageSubtitle">Propuesta maestra &mdash; School &middot; Base Menu Primary</p>
+    <p class="sm-page-subtitle" id="pageSubtitle" data-i18n="basal.subtitle">Propuesta maestra &mdash; School &middot; Base Menu Primary</p>
   </div>
   <div class="d-flex align-items-center flex-wrap" style="gap:.5rem">
     <select class="form-control form-control-sm" id="selPeriodo" style="width:160px;height:32px" onchange="cargarPeriodo()">
@@ -56,9 +56,9 @@
   <div class="col-xl-3 col-md-6 mb-3">
     <div class="kpi-card kpi-green">
       <i class="mdi mdi-check-circle kpi-icon"></i>
-      <div class="kpi-value text-green" id="kpiEstado">En revisi&oacute;n</div>
+      <div class="kpi-value text-green" id="kpiEstado" data-i18n="basal.kpi.estado.val">En revisi&oacute;n</div>
       <div class="kpi-label"><span data-i18n="basal.kpi.estado">Base menu status</span></div>
-      <div class="kpi-trend text-muted" id="kpiEstadoTrend"><i class="mdi mdi-clock-outline"></i> Generado hoy &middot; pendiente aprobaci&oacute;n</div>
+      <div class="kpi-trend text-muted" id="kpiEstadoTrend" data-i18n="basal.kpi.estado.trend"><i class="mdi mdi-clock-outline"></i> Generado hoy &middot; pendiente aprobaci&oacute;n</div>
     </div>
   </div>
   <div class="col-xl-3 col-md-6 mb-3">
@@ -66,7 +66,7 @@
       <i class="mdi mdi-leaf kpi-icon"></i>
       <div class="kpi-value text-green" id="kpiNutri">96.4%</div>
       <div class="kpi-label"><span data-i18n="basal.kpi.nutri">Nutritional compliance</span></div>
-      <div class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> Within range <span id="kpiKcalLabel">600&ndash;700 kcal</span></div>
+      <div class="kpi-trend text-success" data-i18n="basal.kpi.nutri.trend"><i class="mdi mdi-trending-up"></i> Within range <span id="kpiKcalLabel">600&ndash;700 kcal</span></div>
     </div>
   </div>
   <div class="col-xl-3 col-md-6 mb-3">
@@ -74,7 +74,7 @@
       <i class="mdi mdi-currency-eur kpi-icon"></i>
       <div class="kpi-value text-green" id="kpiCosto">98.1%</div>
       <div class="kpi-label"><span data-i18n="basal.kpi.costo">Cost compliance</span></div>
-      <div class="kpi-trend text-success"><i class="mdi mdi-trending-up"></i> Within corporate target</div>
+      <div class="kpi-trend text-success" data-i18n="basal.kpi.costo.trend"><i class="mdi mdi-trending-up"></i> Within corporate target</div>
     </div>
   </div>
   <div class="col-xl-3 col-md-6 mb-3">
@@ -82,7 +82,7 @@
       <i class="mdi mdi-alert kpi-icon"></i>
       <div class="kpi-value text-orange" id="kpiDesv">2</div>
       <div class="kpi-label"><span data-i18n="basal.kpi.desv">Rules with deviation</span></div>
-      <div class="kpi-trend" style="color:var(--sm-orange)"><i class="mdi mdi-alert-outline"></i> &Aacute;mbar &middot; no bloqueantes</div>
+      <div class="kpi-trend" style="color:var(--sm-orange)" data-i18n="basal.kpi.desv.trend"><i class="mdi mdi-alert-outline"></i> &Aacute;mbar &middot; no bloqueantes</div>
     </div>
   </div>
 </div>
@@ -100,7 +100,7 @@
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)">Sem 4</button>
         </div>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
-        <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> Generate center menus</button>
+        <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> <span data-i18n="basal.btn.genCentros">Generate center menus</span></button>
         <button class="btn btn-sm btn-outline-primary ml-1" onclick="exportarBasal()"><i class="mdi mdi-file-excel-outline"></i> Excel</button>
       </div>
     </div>
@@ -136,7 +136,7 @@
       <!-- TAB MENÚ -->
       <div id="tabBasalMenu">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <p class="text-muted mb-0" style="font-size:.85rem"><i class="mdi mdi-cursor-default-click mr-1"></i>Haz clic en cualquier plato para ver el detalle</p>
+          <p class="text-muted mb-0" style="font-size:.85rem"><i class="mdi mdi-cursor-default-click mr-1"></i><span data-i18n="basal.hint">Haz clic en cualquier plato para ver el detalle</span></p>
           <div class="d-flex" style="gap:.5rem">
             <button class="btn btn-sm btn-outline-primary" id="btnEditarTabla" onclick="toggleEdicionBasal(this)"><i class="mdi mdi-pencil"></i> <span data-i18n="basal.edit">Edit dishes</span></button>
             <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerating base menu with AI…','info');setTimeout(function(){smToast('Menu regenerated. Review and approve.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
@@ -145,7 +145,7 @@
         <div style="overflow-x:auto">
           <table class="menu-table" id="tBasal">
             <thead><tr>
-              <th style="width:110px">Dish</th>
+              <th style="width:110px" data-i18n="basal.col.plato">Dish</th>
               <th data-i18n="basal.col.lun">Mon</th><th data-i18n="basal.col.mar">Tue</th><th data-i18n="basal.col.mie">Wed</th><th data-i18n="basal.col.jue">Thu</th><th data-i18n="basal.col.vie">Fri</th>
             </tr></thead>
             <tbody id="tbodyBasal"></tbody>
@@ -153,9 +153,9 @@
         </div>
         <div class="d-flex align-items-center flex-wrap mt-2" style="gap:1.2rem;font-size:.76rem;color:var(--sm-text-muted)">
           <span style="font-weight:600">Leyenda:</span>
-          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(22,163,73,.12);border:1.5px solid rgba(22,163,73,.4)"></span>Dentro de par&aacute;metros</span>
-          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(232,119,34,.12);border:1.5px solid rgba(232,119,34,.5)"></span>Desviaci&oacute;n nutricional</span>
-          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(220,53,69,.12);border:1.5px solid rgba(220,53,69,.5)"></span>Al&eacute;rgeno detectado</span>
+          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(22,163,73,.12);border:1.5px solid rgba(22,163,73,.4)"></span><span data-i18n="basal.legend.ok">Dentro de par&aacute;metros</span></span>
+          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(232,119,34,.12);border:1.5px solid rgba(232,119,34,.5)"></span><span data-i18n="basal.legend.desv">Desviaci&oacute;n nutricional</span></span>
+          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(220,53,69,.12);border:1.5px solid rgba(220,53,69,.5)"></span><span data-i18n="basal.legend.alerg">Al&eacute;rgeno detectado</span></span>
         </div>
       </div>
 
@@ -203,10 +203,10 @@
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h6 class="card-title mb-0">
-        <i class="mdi mdi-traffic-light mr-1" style="color:var(--sm-green)"></i>Estado de reglas del motor IA
+        <i class="mdi mdi-traffic-light mr-1" style="color:var(--sm-green)"></i><span data-i18n="basal.rules.title">Estado de reglas del motor IA</span>
         <span id="normaBadge" class="badge badge-secondary ml-2" style="font-size:.72rem;font-weight:600">RD 315/2025</span>
       </h6>
-      <a href="configuracion.html" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-settings"></i> Configurar reglas</a>
+      <a href="configuracion.html" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-settings"></i> <span data-i18n="basal.rules.config">Configurar reglas</span></a>
     </div>
     <div class="row" id="semaforoContent"></div>
   </div>
