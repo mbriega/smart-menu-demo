@@ -138,6 +138,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
           <p class="text-muted mb-0" style="font-size:.85rem"><i class="mdi mdi-cursor-default-click mr-1"></i><span data-i18n="basal.hint">Haz clic en cualquier plato para ver el detalle</span></p>
           <div class="d-flex" style="gap:.5rem">
+            <button class="btn btn-sm btn-outline-secondary" onclick="$('#modalMensual').modal('show')"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
             <button class="btn btn-sm btn-outline-primary" id="btnEditarTabla" onclick="toggleEdicionBasal(this)"><i class="mdi mdi-pencil"></i> <span data-i18n="basal.edit">Edit dishes</span></button>
             <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerating base menu with AI…','info');setTimeout(function(){smToast('Menu regenerated. Review and approve.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
           </div>
@@ -214,6 +215,28 @@
 </div>
 
 <!-- MODAL GENERAR CON IA -->
+<div class="modal fade" id="modalMensual" tabindex="-1" style="z-index:1200">
+  <div class="modal-dialog modal-xl" role="document"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-calendar-month mr-1" style="color:var(--sm-green)"></i><span data-i18n="monthly.title">Vista mensual — Junio 2026</span></h5>
+      <div class="d-flex align-items-center" style="gap:.5rem">
+        <button class="btn btn-sm btn-outline-secondary" onclick="imprimirMensual()"><i class="mdi mdi-printer mr-1"></i><span data-i18n="monthly.print">Imprimir / PDF</span></button>
+        <button type="button" class="close ml-2" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+    </div>
+    <div class="modal-body" id="mensualBody" style="font-size:.78rem;max-height:72vh;overflow-y:auto">
+      <!-- Week 21 -->
+      <div class="mb-4"><div class="d-flex align-items-center mb-1" style="gap:.5rem"><span class="badge-publicado" style="font-size:.73rem" data-i18n="monthly.week">Sem</span><span style="font-weight:700">21</span><span class="text-muted" style="font-size:.77rem">26 May – 30 May 2026</span><span class="badge-publicado ml-auto" data-i18n="status.publicado">Publicado</span></div><table style="width:100%;border-collapse:collapse;font-size:.73rem"><thead><tr style="background:#f9fafb"><th style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600;width:90px" data-i18n="det.col.service">Servicio</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Lun 26</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Mar 27</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Mié 28</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Jue 29</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Vie 30</th></tr></thead><tbody><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.first">1er plato</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Crema de verduras</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ensalada mixta</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Gazpacho</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Sopa castellana</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Caldo de pollo</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.second">2do plato</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Pollo asado</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Merluza al vapor</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ternera estofada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Pechuga plancha</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Bacalao al horno</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.side">Guarnición</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Arroz blanco</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Patatas vapor</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Verduras salteadas</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ensalada verde</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Puré de patata</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.dessert">Postre</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Yogur natural</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Fruta del tiempo</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Naranja</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Manzana</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Sandía</td></tr></tbody></table><div style="text-align:right;font-size:.73rem;color:var(--sm-text-muted);margin-top:3px" data-i18n="monthly.costAvg">Coste medio/comensal: <strong>€3.15</strong></div></div>
+      <!-- Week 22 (current) -->
+      <div class="mb-4"><div class="d-flex align-items-center mb-1" style="gap:.5rem"><span class="badge-aprobado" style="font-size:.73rem" data-i18n="monthly.week">Sem</span><span style="font-weight:700">22</span><span class="text-muted" style="font-size:.77rem">2 Jun – 6 Jun 2026</span><span class="badge-aprobado ml-2" style="font-size:.73rem" data-i18n="monthly.current">Actual</span><span class="badge-publicado ml-auto" data-i18n="status.publicado">Publicado</span></div><table style="width:100%;border-collapse:collapse;font-size:.73rem"><thead><tr style="background:#f9fafb"><th style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600;width:90px" data-i18n="det.col.service">Servicio</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Lun 2</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Mar 3</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Mié 4</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Jue 5</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Vie 6</th></tr></thead><tbody><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.first">1er plato</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Sopa de fideos</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ensalada verde</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Crema de calabaza</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Garbanzos con espinacas</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Gazpacho</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.second">2do plato</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Pollo asado</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Merluza al vapor</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ternera estofada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Pechuga plancha</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Bacalao al horno</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.side">Guarnición</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Patatas al vapor</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Verduras salteadas</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Puré de patata</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ensalada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Arroz blanco</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.dessert">Postre</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Fruta del tiempo</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Yogur natural</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Manzana</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Naranja</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Sandía</td></tr></tbody></table><div style="text-align:right;font-size:.73rem;color:var(--sm-text-muted);margin-top:3px" data-i18n="monthly.costAvg">Coste medio/comensal: <strong>€3.18</strong></div></div>
+      <!-- Week 23 -->
+      <div class="mb-4"><div class="d-flex align-items-center mb-1" style="gap:.5rem"><span style="font-size:.73rem;padding:2px 7px;border-radius:4px;background:rgba(232,119,34,.12);color:#7c2d00;font-weight:700" data-i18n="monthly.week">Sem</span><span style="font-weight:700">23</span><span class="text-muted" style="font-size:.77rem">9 Jun – 13 Jun 2026</span><span class="badge-pendiente ml-auto" data-i18n="status.pendiente">Pendiente</span></div><table style="width:100%;border-collapse:collapse;font-size:.73rem"><thead><tr style="background:#f9fafb"><th style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600;width:90px" data-i18n="det.col.service">Servicio</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Lun 9</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Mar 10</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Mié 11</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Jue 12</th><th style="padding:3px 6px;border:1px solid #e5e7eb;text-align:center">Vie 13</th></tr></thead><tbody><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.first">1er plato</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Lentejas con calabaza</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Sopa ave con fideo</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Coliflor rehogada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Arroz integral con tomate</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Gazpacho</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.second">2do plato</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Albóndigas con tomate</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Tilapia guisada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ragout de pollo</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Merluza al vapor</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Pollo asado</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.side">Guarnición</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ensalada maíz</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Cous cous</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Patatas asadas</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Ensalada aceitunas</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Arroz blanco</td></tr><tr><td style="padding:3px 6px;border:1px solid #e5e7eb;font-weight:600" data-i18n="det.srv.dessert">Postre</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Fruta temporada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Yogur natural</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Manzana</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Fruta temporada</td><td style="padding:3px 6px;border:1px solid #e5e7eb">Naranja</td></tr></tbody></table><div style="text-align:right;font-size:.73rem;color:var(--sm-text-muted);margin-top:3px"><span data-i18n="monthly.pending">Coste estimado/comensal:</span> <strong>≈€3.20</strong></div></div>
+      <!-- Week 24 -->
+      <div class="mb-2"><div class="d-flex align-items-center mb-1" style="gap:.5rem"><span style="font-size:.73rem;padding:2px 7px;border-radius:4px;background:rgba(232,119,34,.12);color:#7c2d00;font-weight:700" data-i18n="monthly.week">Sem</span><span style="font-weight:700">24</span><span class="text-muted" style="font-size:.77rem">16 Jun – 20 Jun 2026</span><span class="badge-pendiente ml-auto" data-i18n="status.pendiente">Pendiente</span></div><div class="p-3 rounded text-center" style="background:#f9fafb;border:1.5px dashed #e5e7eb;color:var(--sm-text-muted);font-size:.8rem"><i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="monthly.notYetGen">Menú pendiente de generación por IA</span></div></div>
+    </div>
+    <div class="modal-footer" style="font-size:.8rem;padding:.5rem 1rem"><span class="text-muted" data-i18n="monthly.costSummary">Coste mensual proyectado (4 sem):</span> <strong class="ml-1 text-green">≈€15.556,60</strong> <span class="text-muted ml-2" data-i18n="monthly.comensales">· 245 comensales</span><button type="button" class="btn btn-outline-secondary btn-sm ml-auto" data-dismiss="modal" data-i18n="action.close">Cerrar</button></div>
+  </div></div>
+</div>
 <div class="modal fade" id="modalGenerar" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document"><div class="modal-content">
     <div class="modal-header">
@@ -295,34 +318,38 @@
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem">
-      <div class="p-2 mb-3 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
-        <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i><strong data-i18n="basal.modal.sust.motivo">Motivo:</strong> <span id="sustBasalMotivoTexto"></span>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" style="font-size:.82rem;font-weight:600" data-i18n="basal.modal.sust.platoLabel">Plato a sustituir</label>
-        <input type="text" class="form-control form-control-sm" id="sustBasalPlatoAfectado" disabled>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" style="font-size:.82rem;font-weight:600" data-i18n="basal.modal.sust.porLabel">Sustituir por (cat&aacute;logo Crownet)</label>
-        <select class="form-control form-control-sm" id="sustBasalPlatoSustituto">
-          <option value="">-- Seleccionar plato --</option>
-          <option>Arroz integral con tomate (sin gluten)</option><option>Patatas guisadas con verduras</option>
-          <option>Lentejas ECO con verduras</option><option>Cous cous con garbanzos</option>
-          <option>Tortilla de patatas sin gluten</option><option>Revuelto de verduras salteadas</option>
-          <option>Crema de calabaza ECO</option><option>Gazpacho andaluz</option>
-          <option>Garbanzos con espinacas</option><option>Jud&iacute;as verdes con jam&oacute;n</option>
-          <option>Ensalada de quinoa</option><option>Pisto de verduras</option>
-          <option>Arroz con verduras al wok</option><option>Pur&eacute; de boniato ECO</option>
-          <option>Espinacas a la catalana</option><option>Fideos de arroz con verduras</option>
-          <option>Sopa de verduras casera</option><option>Hummus con crud&iacute;t&eacute;s</option>
-          <option>Tortilla de ma&iacute;z</option><option>Guiso de lentejas rojas</option>
-        </select>
+      <div class="p-2 mb-2 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
+        <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i>
+        <strong data-i18n="det.sub.reason">Motivo:</strong> <span id="sustBasalMotivoTexto"></span>
       </div>
       <div class="mb-2">
-        <label class="form-label" style="font-size:.82rem;font-weight:600" data-i18n="basal.modal.sust.impactoLabel">Impacto en costo estimado</label>
+        <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
+        <input type="text" class="form-control form-control-sm" id="sustPlatoAfectado" disabled>
+      </div>
+      <div class="mb-2">
+        <div style="font-size:.78rem;font-weight:600;margin-bottom:.4rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
+        <div class="d-flex flex-wrap" style="gap:.35rem;margin-bottom:.6rem">
+          <button class="sust-filter-btn active" data-filter="all" onclick="sustFiltroPor('all')" data-i18n="sust.filter.all">TODOS</button>
+          <button class="sust-filter-btn" data-filter="soup" onclick="sustFiltroPor('soup')" data-i18n="sust.filter.soup">SOPAS</button>
+          <button class="sust-filter-btn" data-filter="vegetables" onclick="sustFiltroPor('vegetables')" data-i18n="sust.filter.vegetables">VERDURAS</button>
+          <button class="sust-filter-btn" data-filter="carbs" onclick="sustFiltroPor('carbs')" data-i18n="sust.filter.carbs">HIDRATOS</button>
+          <button class="sust-filter-btn" data-filter="legumes" onclick="sustFiltroPor('legumes')" data-i18n="sust.filter.legumes">LEGUMBRES</button>
+          <button class="sust-filter-btn" data-filter="protein" onclick="sustFiltroPor('protein')" data-i18n="sust.filter.protein">PROTEÍNA</button>
+          <button class="sust-filter-btn" data-filter="dairy" onclick="sustFiltroPor('dairy')" data-i18n="sust.filter.dairy">LÁCTEO</button>
+          <button class="sust-filter-btn" data-filter="fruit" onclick="sustFiltroPor('fruit')" data-i18n="sust.filter.fruit">FRUTA</button>
+        </div>
+        <div class="d-flex" style="gap:.4rem">
+          <input type="text" class="form-control form-control-sm" id="sustAIQuery" placeholder="Ej: plato vegetal ≥16g proteína, coste &lt;€1.00...">
+          <button class="btn btn-sm btn-success" onclick="buscarConIA()" style="flex-shrink:0"><i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="sust.ai.search">Buscar con IA</span></button>
+        </div>
+        <div id="sustIAStatus" style="min-height:18px;margin-top:4px"></div>
+      </div>
+      <div id="sustResultados" style="max-height:220px;overflow-y:auto"></div>
+      <div class="mt-2 pt-2" style="border-top:1px solid var(--sm-border)">
+        <label class="form-label mb-1" style="font-size:.78rem;font-weight:600" data-i18n="det.sub.impactoLabel">Impacto en costo estimado</label>
         <div class="d-flex align-items-center" style="gap:.5rem">
-          <input type="text" class="form-control form-control-sm" id="sustBasalImpactoCosto" placeholder="Ej: +&euro;0.15" style="width:120px">
-          <span class="text-muted" style="font-size:.78rem">El costo final se recalcular&aacute; autom&aacute;ticamente</span>
+          <input type="text" class="form-control form-control-sm" id="sustBasalImpactoCosto" placeholder="Ej: +&euro;0.15" style="width:110px">
+          <span class="text-muted" style="font-size:.77rem" data-i18n="det.sub.autoRecalc">Se recalculará automáticamente</span>
         </div>
       </div>
     </div>
@@ -977,25 +1004,84 @@ function verPlatoBasal(nombre, dia) {
   $('#modalPlato').modal('show');
 }
 
+var _sustSustituto='',_sustFiltroActivo='all';
+var _sustPool=[
+  {nombre:'Arroz integral con tomate',tipo:'carbs',kcal:160,prot:'4g',costo:'€0.35',alerg:'None'},
+  {nombre:'Patatas guisadas con verduras',tipo:'carbs',kcal:135,prot:'3g',costo:'€0.28',alerg:'None'},
+  {nombre:'Lentejas ECO con verduras',tipo:'legumes',kcal:220,prot:'14g',costo:'€0.42',alerg:'None'},
+  {nombre:'Cous cous con garbanzos',tipo:'legumes',kcal:240,prot:'12g',costo:'€0.45',alerg:'None'},
+  {nombre:'Tortilla de patatas sin gluten',tipo:'protein',kcal:190,prot:'11g',costo:'€0.55',alerg:'Huevo'},
+  {nombre:'Revuelto de verduras salteadas',tipo:'vegetables',kcal:95,prot:'5g',costo:'€0.32',alerg:'Huevo'},
+  {nombre:'Crema de calabaza ECO',tipo:'soup',kcal:90,prot:'2g',costo:'€0.38',alerg:'None'},
+  {nombre:'Gazpacho andaluz',tipo:'soup',kcal:65,prot:'1g',costo:'€0.30',alerg:'None'},
+  {nombre:'Garbanzos con espinacas',tipo:'legumes',kcal:210,prot:'13g',costo:'€0.40',alerg:'None'},
+  {nombre:'Pisto de verduras',tipo:'vegetables',kcal:105,prot:'3g',costo:'€0.35',alerg:'None'},
+  {nombre:'Judías verdes con patatas',tipo:'legumes',kcal:145,prot:'5g',costo:'€0.30',alerg:'None'},
+  {nombre:'Salmón a la plancha',tipo:'protein',kcal:285,prot:'34g',costo:'€1.45',alerg:'Pescado'},
+  {nombre:'Pollo al limón',tipo:'protein',kcal:260,prot:'36g',costo:'€1.15',alerg:'None'},
+  {nombre:'Merluza al vapor ECO',tipo:'protein',kcal:210,prot:'32g',costo:'€1.35',alerg:'Pescado'},
+  {nombre:'Yogur natural ECO',tipo:'dairy',kcal:80,prot:'5g',costo:'€0.45',alerg:'Lactosa'},
+  {nombre:'Fruta de temporada',tipo:'fruit',kcal:65,prot:'0g',costo:'€0.35',alerg:'None'},
+  {nombre:'Brócoli al vapor con limón',tipo:'vegetables',kcal:55,prot:'4g',costo:'€0.28',alerg:'None'},
+  {nombre:'Ensalada de quinoa con aguacate',tipo:'vegetables',kcal:185,prot:'8g',costo:'€0.52',alerg:'None'}
+];
+function sustFiltroPor(tipo){
+  _sustFiltroActivo=tipo;
+  document.querySelectorAll('#modalSustituir .sust-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter===tipo);});
+  renderSustResultados(_sustPool.filter(function(d){return tipo==='all'||d.tipo===tipo;}));
+}
+function buscarConIA(){
+  var q=(document.getElementById('sustAIQuery').value||'').toLowerCase();
+  var res=_sustPool.filter(function(d){if(_sustFiltroActivo!=='all'&&d.tipo!==_sustFiltroActivo)return false;if(!q)return true;return d.nombre.toLowerCase().indexOf(q)>=0||d.tipo.indexOf(q)>=0;});
+  var st=document.getElementById('sustIAStatus');
+  if(st)st.innerHTML='<span style="font-size:.74rem;color:var(--sm-text-muted)"><i class="mdi mdi-robot-outline mr-1"></i>'+(typeof t==='function'?t('sust.ai.found'):'IA encontró')+' '+res.length+' '+(typeof t==='function'?t('sust.ai.dishes'):'platos compatibles')+'</span>';
+  renderSustResultados(res);
+}
+var _dotC={soup:'#17a2b8',vegetables:'#28a745',carbs:'#fd7e14',protein:'#dc3545',legumes:'#6f42c1',fruit:'#f59e0b',dairy:'#007bff'};
+function renderSustResultados(lista){
+  var cont=document.getElementById('sustResultados');if(!cont)return;
+  if(!lista.length){cont.innerHTML='<p class="text-muted text-center py-3" style="font-size:.82rem">'+(typeof t==='function'?t('sust.noResults'):'Sin platos que coincidan')+'</p>';return;}
+  cont.innerHTML=lista.slice(0,6).map(function(d){
+    var alergTxt=d.alerg!=='None'?'&nbsp;·&nbsp;<span style="color:#dc3545">'+d.alerg+'</span>':'';
+    return '<div class="sust-dish-card" onclick="seleccionarSustituto(\''+d.nombre.replace(/'/g,"\\'")+'\')">'
+      +'<div class="d-flex align-items-center" style="gap:.45rem">'
+        +'<span style="width:8px;height:8px;border-radius:50%;background:'+(_dotC[d.tipo]||'#6c757d')+';flex-shrink:0"></span>'
+        +'<strong style="font-size:.82rem;flex:1">'+d.nombre+'</strong>'
+        +'<span class="badge-ok" style="font-size:.71rem">'+d.costo+'</span>'
+      +'</div>'
+      +'<div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+d.kcal+' kcal · Prot: '+d.prot+alergTxt+'</div>'
+      +'</div>';
+  }).join('');
+}
+function seleccionarSustituto(nombre){
+  _sustSustituto=nombre;
+  document.querySelectorAll('#sustResultados .sust-dish-card').forEach(function(c){
+    var isSelected=c.querySelector('strong').textContent===nombre;
+    c.style.background=isSelected?'rgba(22,163,74,.1)':'';
+    c.style.borderColor=isSelected?'rgba(22,163,74,.4)':'var(--sm-border)';
+  });
+}
 function abrirSustituirBasal(nombre,servicio){
   $('#modalPlato').modal('hide');
   nombre=nombre||_sustBasalNombre||'';servicio=servicio||_sustBasalServicio||'';
   var db=basalRecetasDB[nombre]||{};
   var motivo=(db.alerg&&db.alerg!=='None'&&db.alerg!=='No data')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
   document.getElementById('sustBasalMotivoTexto').textContent=motivo;
-  document.getElementById('sustBasalPlatoAfectado').value=(servicio?servicio+' · ':'')+nombre;
-  document.getElementById('sustBasalPlatoSustituto').value='';
+  document.getElementById('sustPlatoAfectado').value=(servicio?servicio+' · ':'')+nombre;
   document.getElementById('sustBasalImpactoCosto').value='';
+  _sustSustituto='';_sustFiltroActivo='all';
+  document.querySelectorAll('#modalSustituir .sust-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter==='all');});
+  var stEl=document.getElementById('sustIAStatus');if(stEl)stEl.innerHTML='';
+  var qEl=document.getElementById('sustAIQuery');if(qEl)qEl.value='';
+  renderSustResultados(_sustPool);
   $('#modalSustituir').modal('show');
 }
 
 function confirmarSustBasal(){
-  var s=document.getElementById('sustBasalPlatoSustituto').value;
-  if(!s){smToast('Select a replacement dish','warning');return;}
+  var sust=_sustSustituto||'';
+  if(!sust){smToast(typeof t==='function'?t('sust.toast.selectFirst'):'Selecciona un plato sustituto','warning');return;}
+  smToast((typeof t==='function'?t('sust.toast.confirmed'):'Sustitución confirmada')+': '+sust,'success');
   $('#modalSustituir').modal('hide');
-  smToast('Dish replaced with "'+s+'"','success');
-  setTimeout(function(){smToast('Validating new menu...','info');},1000);
-  setTimeout(function(){smToast('Validation complete. No new deviations.','success');},2500);
 }
 
 // ── GENERAR CON IA ────────────────────────────────────────────────────────────
@@ -1166,6 +1252,17 @@ function mostrarResultadosGen(idxs){
 
 function exportarBasal(){smToast('Exporting base menu to Excel…','info',2500);}
 function cargarPeriodo(){smToast('Loading selected period…','info',1800);}
+
+function imprimirMensual(){
+  var w=window.open('','_blank','width=1000,height=700');
+  var body=document.getElementById('mensualBody');
+  w.document.write('<html><head><title>Vista Mensual — Menú Basal</title><style>body{font-family:Arial,sans-serif;font-size:11px;padding:20px;color:#1f2937}table{width:100%;border-collapse:collapse;margin-bottom:16px}th,td{border:1px solid #d1d5db;padding:4px 7px}th{background:#f3f4f6;font-weight:600}h3{color:#16A349;margin:12px 0 4px 0;font-size:13px}</style></head><body>');
+  w.document.write('<h2 style="color:#16A349;margin-bottom:16px">Vista Mensual — Menú Basal — Junio 2026</h2>');
+  w.document.write(body.innerHTML);
+  w.document.write('</body></html>');
+  w.document.close();
+  setTimeout(function(){w.print();},300);
+}
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderPage();

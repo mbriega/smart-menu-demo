@@ -248,6 +248,12 @@ a:hover { color: var(--sm-green-dark); }
 .menu-cell[data-food-type="dairy"]::before,.w-cell[data-food-type="dairy"]::before{background:#007bff}
 
 
+/* AI substitution */
+.sust-filter-btn{font-size:.72rem;padding:.2rem .55rem;border-radius:12px;border:1px solid var(--sm-border);background:#fff;color:var(--sm-text-muted);cursor:pointer;transition:all .15s}
+.sust-filter-btn.active{background:var(--sm-green);color:#fff;border-color:var(--sm-green)}
+.sust-dish-card{border:1px solid var(--sm-border);border-radius:6px;padding:.45rem .55rem;margin-bottom:.35rem;cursor:pointer;transition:all .15s}
+.sust-dish-card:hover{background:rgba(22,163,73,.05);border-color:rgba(22,163,73,.3)}
+
 /* ── WIZARD ──────────────────────────────────────────────── */
 .wizard-steps { display:flex; align-items:center; margin-bottom:2rem; }
 .wizard-step  { display:flex; align-items:center; flex:1; }
