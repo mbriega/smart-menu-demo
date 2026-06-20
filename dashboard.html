@@ -18,7 +18,7 @@
 <ul class="nav nav-tabs mt-3 mb-0" id="dashTipoTabs" style="border-bottom:2px solid var(--sm-border)">
   <li class="nav-item"><a class="nav-link active" data-tipo="escolar" onclick="switchTipoDash('escolar');return false;" href="#"><span class="ico-tipo ico-escolar"></span><span data-i18n="dash.tab.escolar">School</span></a></li>
   <li class="nav-item"><a class="nav-link" data-tipo="hospital" onclick="switchTipoDash('hospital');return false;" href="#"><span class="ico-tipo ico-hospital"></span><span data-i18n="dash.tab.hospital">Hospital</span></a></li>
-  <li class="nav-item"><a class="nav-link" data-tipo="tercera-edad" onclick="switchTipoDash('tercera-edad');return false;" href="#"><span class="ico-tipo ico-tercera-edad"></span><span data-i18n="dash.tab.terceraEdad">Senior Care</span></a></li>
+  <li class="nav-item"><a class="nav-link" data-tipo="tercera-edad" onclick="switchTipoDash('tercera-edad');return false;" href="#"><span class="ico-tipo ico-tercera-edad"></span><span data-i18n="dash.tab.terceraEdad">Long Stay</span></a></li>
   <li class="nav-item"><a class="nav-link" data-tipo="empresa" onclick="switchTipoDash('empresa');return false;" href="#"><span class="ico-tipo ico-empresa"></span><span data-i18n="dash.tab.empresa">Corporate</span></a></li>
 </ul>
 <!-- ACCIONES RÁPIDAS -->
@@ -186,9 +186,9 @@ var DASH_DATA={
     barColor:'rgba(147,51,234,.75)',
     macros:[60,20,20],
     centros:[
-      {nombre:'Residencia Los Pinos',tipo:'3ª Edad',comensales:210,estadoMenu:'Borrador',estadoClass:'badge-borrador',costo:'91.0%',costoClass:'text-success',nutri:99,nutriBar:'bg-warning'},
-      {nombre:'Res. Buen Retiro',tipo:'3ª Edad',comensales:195,estadoMenu:'Publicado',estadoClass:'badge-publicado',costo:'90.5%',costoClass:'text-success',nutri:97,nutriBar:''},
-      {nombre:'Res. Vallparadís',tipo:'3ª Edad',comensales:178,estadoMenu:'Pendiente',estadoClass:'badge-pendiente',costo:'95.2%',costoClass:'text-success',nutri:88,nutriBar:'bg-warning'}
+      {nombre:'Residencia Los Pinos',tipo:'Larga Estancia',comensales:210,estadoMenu:'Borrador',estadoClass:'badge-borrador',costo:'91.0%',costoClass:'text-success',nutri:99,nutriBar:'bg-warning'},
+      {nombre:'Res. Buen Retiro',tipo:'Larga Estancia',comensales:195,estadoMenu:'Publicado',estadoClass:'badge-publicado',costo:'90.5%',costoClass:'text-success',nutri:97,nutriBar:''},
+      {nombre:'Res. Vallparadís',tipo:'Larga Estancia',comensales:178,estadoMenu:'Pendiente',estadoClass:'badge-pendiente',costo:'95.2%',costoClass:'text-success',nutri:88,nutriBar:'bg-warning'}
     ],
     actividad:[
       {icon:'mdi-check-circle',color:'var(--sm-green)',texto:'<strong data-i18n="dash.act.menuPublished">Menu published</strong> · Res. Los Pinos',tiempo:'30 min ago · Ana García'},
@@ -275,7 +275,7 @@ function switchTipoDash(tipo){
 
 function setDashPag(tipo,pag){DASH_PAGINAS[tipo]=pag;renderDashboard(tipo);}
 var _DASH_DETALLE={'Aprobado':'menu-detalle-sanmarcos.html','Publicado':'menu-detalle-montserrat.html','Borrador':'menu-detalle-lospinos.html','Pendiente':'menu-detalle-lapaz.html'};
-var _TIPO_BASAL={'Escolar':'escolar','Hospitalario':'hospital','3ª Edad':'tercera-edad','Empresa':'empresa'};
+var _TIPO_BASAL={'Escolar':'escolar','Hospitalario':'hospital','Larga Estancia':'tercera-edad','Empresa':'empresa'};
 function irMenuBasal(tipo){sessionStorage.setItem('menuBasalTipo',tipo);var l=document.querySelector('.sidebar a.nav-link[href="menu-basal.html"]');if(l)l.click();else window.location.href='menu-basal.html';}
 function irConFiltro(url){sessionStorage.setItem('dashFiltroTipo',DASH_TIPO);window.location.href=url;}
 

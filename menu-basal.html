@@ -47,7 +47,7 @@
 <ul class="nav nav-tabs mb-3" id="tipoTabs">
   <li class="nav-item"><a class="nav-link active" href="#" data-tipo="escolar" onclick="switchTipo('escolar');return false;"><span class="ico-tipo ico-escolar"></span><span data-i18n="basal.tab.escolar">School</span></a></li>
   <li class="nav-item"><a class="nav-link" href="#" data-tipo="hospital" onclick="switchTipo('hospital');return false;"><span class="ico-tipo ico-hospital"></span><span data-i18n="basal.tab.hospital">Hospital</span></a></li>
-  <li class="nav-item"><a class="nav-link" href="#" data-tipo="tercera-edad" onclick="switchTipo('tercera-edad');return false;"><span class="ico-tipo ico-tercera-edad"></span><span data-i18n="basal.tab.tercera">Senior Care</span></a></li>
+  <li class="nav-item"><a class="nav-link" href="#" data-tipo="tercera-edad" onclick="switchTipo('tercera-edad');return false;"><span class="ico-tipo ico-tercera-edad"></span><span data-i18n="basal.tab.tercera">Larga Estancia</span></a></li>
   <li class="nav-item"><a class="nav-link" href="#" data-tipo="empresa" onclick="switchTipo('empresa');return false;"><span class="ico-tipo ico-empresa"></span><span data-i18n="basal.tab.empresa">Corporate</span></a></li>
 </ul>
 
@@ -131,6 +131,7 @@
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-costo" href="#" onclick="switchBasalTab('costo');return false;"><span data-i18n="basal.tab.costo">Cost</span></a></li>
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-alerg" href="#" onclick="switchBasalTab('alerg');return false;"><span data-i18n="basal.tab.alerg">Allergens</span></a></li>
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-hist"  href="#" onclick="switchBasalTab('hist'); return false;"><span data-i18n="basal.tab.hist">History</span></a></li>
+      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-chat" href="#" onclick="switchBasalTab('chat');return false;"><i class="mdi mdi-robot mr-1"></i><span data-i18n="basal.tab.chat">Chat IA</span></a></li>
     </ul>
     <div id="basalTabContent">
 
@@ -195,6 +196,45 @@
         </table>
       </div>
 
+      <!-- TAB CHAT IA -->
+      <div id="tabBasalChat" style="display:none">
+        <style>@keyframes chatDot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}</style>
+        <div style="max-width:760px">
+          <div class="d-flex align-items-center mb-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.75rem;flex-shrink:0">
+              <i class="mdi mdi-robot" style="color:#fff;font-size:1.1rem"></i>
+            </div>
+            <div>
+              <h6 class="mb-0" style="font-weight:700" data-i18n="basal.chat.title">Asistente IA — Edición masiva de menú</h6>
+              <small class="text-muted" data-i18n="basal.chat.subtitle">Describe en lenguaje natural los cambios que quieres aplicar al menú generado</small>
+            </div>
+          </div>
+          <!-- Messages area -->
+          <div id="chatIAMsgs" style="min-height:220px;max-height:380px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:8px;padding:1rem;background:#fafafa;margin-bottom:.6rem;font-size:.85rem">
+            <div class="d-flex align-items-start mb-3">
+              <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.85rem"></i></div>
+              <div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 8px 8px 8px;padding:.55rem .8rem;max-width:90%">
+                Hola. Soy el asistente IA de Smart Menu. Puedo modificar masivamente el menú generado. Por ejemplo:<br>
+                <em style="color:var(--sm-text-muted);font-size:.82rem">"Sustituye <strong>Arroz con tomate</strong> por <strong>Arroz integral con verduras</strong>"</em><br>
+                <em style="color:var(--sm-text-muted);font-size:.82rem">"Cambia <strong>Patatas fritas</strong> por <strong>Patatas panadera</strong> en toda la semana"</em>
+              </div>
+            </div>
+          </div>
+          <!-- Quick actions -->
+          <div class="d-flex flex-wrap mb-2" style="gap:.35rem">
+            <span style="font-size:.72rem;color:var(--sm-text-muted);line-height:1.8;margin-right:.2rem" data-i18n="basal.chat.quick">Acciones rápidas:</span>
+            <button class="btn btn-xs" style="font-size:.72rem;padding:.2rem .55rem;border:1px solid var(--sm-border);border-radius:12px;background:#fff;cursor:pointer" onclick="chatIAQuick('Sustituye Arroz con tomate por Arroz integral con verduras')">💡 Sustituir arroz</button>
+            <button class="btn btn-xs" style="font-size:.72rem;padding:.2rem .55rem;border:1px solid var(--sm-border);border-radius:12px;background:#fff;cursor:pointer" onclick="chatIAQuick('Cambia Patatas fritas por Patatas panadera en toda la semana')">💡 Cambiar patatas</button>
+            <button class="btn btn-xs" style="font-size:.72rem;padding:.2rem .55rem;border:1px solid var(--sm-border);border-radius:12px;background:#fff;cursor:pointer" onclick="chatIAQuick('Sustituye Fruta temporada · pan por Yogur natural s/azúcar · pan')">💡 Cambiar postre pan</button>
+          </div>
+          <!-- Input -->
+          <div class="d-flex" style="gap:.5rem">
+            <input type="text" id="chatIAInput" class="form-control form-control-sm" placeholder="Describe el cambio que quieres aplicar al menú..." style="font-size:.85rem" onkeydown="if(event.key==='Enter'){enviarChatIA();return false;}">
+            <button class="btn btn-sm btn-success" onclick="enviarChatIA()" style="white-space:nowrap"><i class="mdi mdi-send mr-1"></i><span data-i18n="basal.chat.send">Enviar</span></button>
+          </div>
+        </div>
+      </div>
+
     </div>
     </div>
   </div>
@@ -250,7 +290,7 @@
           <select class="form-control form-control-sm" id="generarTipoSelect" onchange="onGenerarTipoChange()">
             <option value="escolar"><span data-i18n="basal.tab.escolar">School</span></option>
             <option value="hospital"><span data-i18n="basal.tab.hospital">Hospital</span></option>
-            <option value="tercera-edad"><span data-i18n="basal.tab.tercera">Senior Care</span></option>
+            <option value="tercera-edad"><span data-i18n="basal.tab.tercera">Larga Estancia</span></option>
             <option value="empresa"><span data-i18n="basal.tab.empresa">Corporate</span></option>
           </select>
         </div>
@@ -459,7 +499,7 @@ function getActiveKey() {
   return STATE.tipo === 'escolar' ? 'escolar-' + STATE.subtipo : STATE.tipo;
 }
 
-var TIPO_LABELS = { 'escolar':'Escolar', 'hospital':'Hospital', 'tercera-edad':'Tercera Edad', 'empresa':'Empresa' };
+var TIPO_LABELS = { 'escolar':'Escolar', 'hospital':'Hospital', 'tercera-edad':'Larga Estancia', 'empresa':'Empresa' };
 var SUBTIPO_LABELS = { 'primaria':'Primary', 'secundaria':'Secondary', 'infantil':'Infant', 'residencia-escolar':'School Residence' };
 
 var TIPO_CONFIG = {
@@ -492,7 +532,7 @@ var CENTROS_BY_TIPO = {
     {nombre:'Hospital San Juan',subtipo:'Hospitalario',comensales:420,nutri:'92.4%',costo:'€4.18'}
   ],
   'tercera-edad': [
-    {nombre:'Residencia Los Pinos',subtipo:'3ª Edad',comensales:210,nutri:'99.1%',costo:'€3.21'},
+    {nombre:'Residencia Los Pinos',subtipo:'Larga Estancia',comensales:210,nutri:'99.1%',costo:'€3.21'},
     {nombre:'C. Montserrat',subtipo:'Residencia',comensales:156,nutri:'97.3%',costo:'€3.52'}
   ],
   'empresa': [
@@ -885,10 +925,93 @@ function cambiarSemana(num, btn) {
   }
 }
 
+// ── CHAT IA ───────────────────────────────────────────────────────────────────
+function chatIAQuick(text) {
+  var inp = document.getElementById('chatIAInput');
+  if (inp) { inp.value = text; enviarChatIA(); }
+}
+
+function enviarChatIA() {
+  var inp = document.getElementById('chatIAInput');
+  var msgs = document.getElementById('chatIAMsgs');
+  if (!inp || !msgs) return;
+  var msg = inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  msgs.insertAdjacentHTML('beforeend',
+    '<div class="d-flex justify-content-end mb-2"><div style="background:var(--sm-green);color:#fff;border-radius:8px 0 8px 8px;padding:.5rem .8rem;max-width:85%;font-size:.85rem">' + _chatEsc(msg) + '</div></div>');
+  var tid = 'chatTyping_' + new Date().getTime();
+  msgs.insertAdjacentHTML('beforeend',
+    '<div id="' + tid + '" class="d-flex align-items-center mb-2">' +
+    '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.85rem"></i></div>' +
+    '<div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 8px 8px 8px;padding:.55rem .8rem"><span style="display:inline-flex;gap:4px">' +
+    '<span style="width:6px;height:6px;border-radius:50%;background:#aaa;animation:chatDot 1.2s infinite 0s;display:inline-block"></span>' +
+    '<span style="width:6px;height:6px;border-radius:50%;background:#aaa;animation:chatDot 1.2s infinite .2s;display:inline-block"></span>' +
+    '<span style="width:6px;height:6px;border-radius:50%;background:#aaa;animation:chatDot 1.2s infinite .4s;display:inline-block"></span>' +
+    '</span></div></div>');
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(function() {
+    var tel = document.getElementById(tid); if (tel) tel.remove();
+    var reply = _procesarChatIA(msg);
+    msgs.insertAdjacentHTML('beforeend',
+      '<div class="d-flex align-items-start mb-2">' +
+      '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.85rem"></i></div>' +
+      '<div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 8px 8px 8px;padding:.55rem .8rem;max-width:90%;font-size:.85rem">' + reply + '</div></div>');
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 800 + Math.floor(Math.random() * 700));
+}
+
+function _procesarChatIA(msg) {
+  var msgL = msg.toLowerCase();
+  var recetas = Object.keys(basalRecetasDB);
+  var origen = null, destino = null;
+  recetas.forEach(function(r) {
+    if (!origen && r !== '—' && msgL.indexOf(r.toLowerCase()) > -1) origen = r;
+  });
+  var porIdx = msgL.indexOf(' por ');
+  if (porIdx > -1) {
+    var afterPorL = msgL.substring(porIdx + 5);
+    recetas.forEach(function(r) {
+      if (!destino && r !== '—' && r !== origen && afterPorL.indexOf(r.toLowerCase()) > -1) destino = r;
+    });
+  }
+  if (origen && destino) {
+    var changes = 0, sem = STATE.semana, db = menuBasalDB[sem];
+    if (db && db.rows) {
+      db.rows.forEach(function(row) {
+        row.dias.forEach(function(plato, i) { if (plato === origen) { row.dias[i] = destino; changes++; } });
+      });
+    }
+    if (changes > 0) {
+      renderTabla(sem);
+      smToast('Menú actualizado por IA', 'success', 2000);
+      return '✅ He sustituido <strong>' + _chatEsc(origen) + '</strong> por <strong>' + _chatEsc(destino) + '</strong> en <strong>' + changes + ' celda(s)</strong> de la semana ' + sem + '. Los cambios ya están visibles en la pestaña Menú.';
+    }
+    return '⚠️ No he encontrado <strong>' + _chatEsc(origen) + '</strong> en el menú de la semana ' + sem + '. Puede que ese plato no esté disponible esta semana.';
+  }
+  if (origen && !destino && porIdx > -1) {
+    return '⚠️ No he reconocido el plato de destino. Asegúrate de que el plato de sustitución existe en la base de datos de recetas.';
+  }
+  if (msgL.indexOf('regenera') > -1 || msgL.indexOf('genera de nuevo') > -1) {
+    return '🔄 Para regenerar el menú completo usa el botón <strong>Regenerate AI</strong> en la pestaña Menú. ¿Quieres que te ayude con una sustitución concreta?';
+  }
+  if (msgL.indexOf('alerg') > -1) {
+    return '⚠️ Para gestionar alérgenos consulta la pestaña <strong>Alérgenos</strong>. Si quieres eliminar un plato con alérgeno, dime cuál y el sustituto que prefieres.';
+  }
+  if (msgL.indexOf('ayuda') > -1 || msgL.indexOf('help') > -1 || msgL.indexOf('qué puedes') > -1) {
+    return '🤖 Puedo sustituir platos del menú generado de forma masiva. Dime el plato a cambiar y el sustituto:<br><em>"Sustituye <strong>[plato A]</strong> por <strong>[plato B]</strong>"</em>';
+  }
+  return '🤖 Entendido, pero necesito conocer los platos involucrados. Indícame el plato a cambiar y el sustituto:<br><em>"Sustituye <strong>[plato A]</strong> por <strong>[plato B]</strong>"</em><br><small style="color:var(--sm-text-muted)">Los nombres deben coincidir con los platos del menú.</small>';
+}
+
+function _chatEsc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 // ── INNER TABS ────────────────────────────────────────────────────────────────
 function switchBasalTab(tab) {
-  var tabs = ['menu','nutri','costo','alerg','hist'];
-  var paneIds = {menu:'tabBasalMenu',nutri:'tabBasalNutricion',costo:'tabBasalCosto',alerg:'tabBasalAlergenos',hist:'tabBasalHistorial'};
+  var tabs = ['menu','nutri','costo','alerg','hist','chat'];
+  var paneIds = {menu:'tabBasalMenu',nutri:'tabBasalNutricion',costo:'tabBasalCosto',alerg:'tabBasalAlergenos',hist:'tabBasalHistorial',chat:'tabBasalChat'};
   tabs.forEach(function(t) {
     var btn  = document.getElementById('basalTabBtn-'+t);
     var pane = document.getElementById(paneIds[t]);
