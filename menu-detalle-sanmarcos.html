@@ -338,7 +338,7 @@ function abrirDetalleVariante(idx) {
   var v = variantesDB[idx];
   var filas = menuVariantesData[v.nombre] || [];
   document.getElementById('varExpTitle-' + idx).innerHTML = '<i class="mdi ' + v.icono + ' mr-2" style="color:' + v.color + '"></i>' + v.nombre;
-  renderVarianteMenu(filas, false, 'varExpMenuWrap-' + idx);
+  renderVarianteMenu(filas, false, 'varExpMenuWrap-' + idx, idx);
   renderVarianteNutricion(filas, 'varExpNutriContent-' + idx);
   renderVarianteCosto(v, filas, 'varExpCostoContent-' + idx);
   document.getElementById('varExpBadge-' + idx).innerHTML = '<span class="badge-aprobado" style="font-size:.8rem">Generated &bull; ' + v.comensales + ' diners</span>';
@@ -358,7 +358,7 @@ function abrirEdicionVariante(idx) {
   var v = variantesDB[idx];
   var filas = menuVariantesData[v.nombre] || [];
   document.getElementById('varExpTitle-' + idx).innerHTML = '<i class="mdi ' + v.icono + ' mr-2" style="color:' + v.color + '"></i>Edit: ' + v.nombre;
-  renderVarianteMenu(filas, true, 'varExpMenuWrap-' + idx);
+  renderVarianteMenu(filas, true, 'varExpMenuWrap-' + idx, idx);
   renderVarianteNutricion(filas, 'varExpNutriContent-' + idx);
   renderVarianteCosto(v, filas, 'varExpCostoContent-' + idx);
   document.getElementById('varExpBadge-' + idx).innerHTML = '<span class="badge-pendiente" style="font-size:.8rem">'+(typeof t==="function"?t('det.edit.modeActive'):"Edit mode active")+"</span>";
@@ -375,7 +375,7 @@ function dayLabel(d) {
   var _m = {'Lun':'det.day.mon','Mar':'det.day.tue','Mié':'det.day.wed','Jue':'det.day.thu','Vie':'det.day.fri'};
   return (typeof t==='function'&&_m[d]) ? t(_m[d]) : d;
 }
-function renderVarianteMenu(filas, editMode, containerId) {
+function renderVarianteMenu(filas, editMode, containerId, varIdx) {
   var servicios = ['First course','Second course','Side dish','Dessert'];
   var campos    = ['p1','p2','guar','postre'];
   var html = '<table class="menu-table" style="table-layout:auto;min-width:560px"><thead><tr><th style="width:110px;white-space:nowrap">Service</th>';
@@ -386,10 +386,8 @@ function renderVarianteMenu(filas, editMode, containerId) {
     filas.forEach(function(f, fi) {
       var plato = f[campos[si]];
       if (editMode) {
-        html += '<td><select class="form-control form-control-sm p-0" style="font-size:.78rem;height:26px" data-fi="' + fi + '" data-campo="' + campos[si] + '">';
-        html += '<option value="' + plato + '" selected>' + plato + '</option>';
-        recetasCrownet.forEach(function(r){ if(r!==plato) html += '<option value="'+r+'">'+r+'</option>'; });
-        html += '</select></td>';
+        var diaKey = f.dia;
+        html += '<td><div class="menu-cell ok" style="cursor:pointer;border:1px dashed var(--sm-border);font-size:.78rem;padding:3px 6px;border-radius:4px" onclick="editarCeldaVarianteSM(\''+varIdx+'\',\''+diaKey+'\',\''+campos[si]+'\')">' + plato + '<i class="mdi mdi-pencil ml-1" style="font-size:.7rem;opacity:.5"></i></div></td>';
       } else {
         html += '<td onclick="verPlato(\'' + plato.replace(/'/g,"\\'") + '\',\'' + f.dia + '\')"><div class="menu-cell ok">' + plato + '</div></td>';
       }
@@ -429,14 +427,33 @@ function renderVarianteNutricion(filas, containerId) {
 }
 
 function renderVarianteCosto(v, filas, containerId) {
-  var html='<div class="d-flex justify-content-between align-items-center mb-3">';
-  html+='<h6 class="font-weight-700 mb-0" data-i18n="det.cost.title">Cost analysis</h6>';
-  html+='<div class="kpi-card kpi-green p-2 text-center" style="min-width:120px"><div class="kpi-value text-green" style="font-size:1.2rem">'+v.costo+'</div><div class="kpi-label" data-i18n="det.cost.avgDay">Avg cost/day</div></div>';
-  html+='</div><table class="table table-clean" style="font-size:.82rem"><thead><tr><th>Day</th><th>Service</th><th class="text-center">Cost/diner</th><th class="text-center">Diners</th><th class="text-center">Total</th><th class="text-center">Status</th></tr></thead><tbody>';
+  var costoNum = parseFloat((v.costo||'0').replace('€',''))||0;
+  var com = v.comensales || 1;
+  var avgColor = 'var(--sm-green)';
+  var html = '<div class="row g-0 mb-3" style="border:1px solid var(--sm-border);border-radius:6px;overflow:hidden;text-align:center">';
+  html += '<div class="col-4 p-3" style="border-right:1px solid var(--sm-border)">';
+  html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.day">DÍA</div>';
+  html += '<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(costoNum*com).toFixed(2)+'</div></div>';
+  html += '<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+costoNum.toFixed(2)+'</div></div></div>';
+  html += '<div class="col-4 p-3" style="border-right:1px solid var(--sm-border)">';
+  html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.week">SEMANA</div>';
+  html += '<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(costoNum*com*5).toFixed(2)+'</div></div>';
+  html += '<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(costoNum*5).toFixed(2)+'</div></div></div>';
+  html += '<div class="col-4 p-3">';
+  html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.month">MES (est.)</div>';
+  html += '<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(costoNum*com*20).toFixed(2)+'</div></div>';
+  html += '<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(costoNum*20).toFixed(2)+'</div></div></div></div>';
+  html += '<table class="table table-clean" style="font-size:.82rem"><thead><tr><th>Día</th><th>Servicio</th><th class="text-center">Coste/comensal</th><th class="text-center">Comensales</th><th class="text-center">Total</th><th class="text-center">Estado</th></tr></thead><tbody>';
   filas.forEach(function(f){
-    var costNum=parseFloat(f.costo.replace('€',''))||0;
-    var total=(costNum*v.comensales).toFixed(2);
-    html+='<tr><td><strong>'+f.dia+'</strong></td><td>Lunch</td><td class="text-center">'+f.costo+'</td><td class="text-center">'+v.comensales+'</td><td class="text-center font-weight-bold">€'+total+'</td><td class="text-center"><span class="badge-aprobado">Target</span></td></tr>';
+    var costNum=parseFloat((f.costo||'0').replace('€',''))||0;
+    var total=(costNum*com).toFixed(2);
+    html+='<tr><td><strong>'+f.dia+'</strong></td><td>Comida</td><td class="text-center">'+f.costo+'</td><td class="text-center">'+com+'</td><td class="text-center font-weight-bold">€'+total+'</td><td class="text-center"><span class="badge-aprobado">OK</span></td></tr>';
   });
   html+='</tbody></table>';
   document.getElementById(containerId).innerHTML = html;
@@ -511,5 +528,112 @@ function actualizarEstadoFlujoSM() {
 function publicarMenu(){smToast('Publicando en Crownet...','info');setTimeout(function(){smToast('Menu published to Crownet successfully!','success');},2200);}
 function exportarMenu(t){smToast(t==='excel'?'Exporting to Excel...':'Generating PDF...','success');}
 function irHistorial(){document.querySelector('[href="#tabHistorial"]').click();smToast('Showing change history','info',2000);}
+
+var _sustSMVarIdx = null, _sustSMDia = null, _sustSMCampo = null;
+var _sustSMSustituto = null, _sustSMFiltro = 'all';
+var _sustSMPool = [];
+
+function editarCeldaVarianteSM(varIdx, diaKey, campo) {
+  _sustSMVarIdx = parseInt(varIdx);
+  _sustSMDia = diaKey;
+  _sustSMCampo = campo;
+  _sustSMSustituto = null;
+  var v = variantesDB[_sustSMVarIdx];
+  var curRow = (menuVariantesData[v.nombre]||[]).find(function(r){return r.dia===diaKey;})||{};
+  var cur = curRow[campo] || '';
+  var mEl = document.getElementById('sustSMMotivoTexto');
+  if (mEl) mEl.textContent = 'Cambio de plato en variante ' + v.nombre;
+  var aEl = document.getElementById('sustSMPlatoAfectado');
+  if (aEl) aEl.value = cur;
+  _sustSMPool = recetasCrownet.slice();
+  _sustSMFiltro = 'all';
+  sustFiltroPorSM('all');
+  $('#modalSustSM').modal('show');
+}
+
+function sustFiltroPorSM(tipo) {
+  _sustSMFiltro = tipo;
+  document.querySelectorAll('#modalSustSM .sust-filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.filter === tipo);
+  });
+  renderSustResultadosSM();
+}
+
+function renderSustResultadosSM() {
+  var pool = _sustSMPool;
+  if (_sustSMFiltro !== 'all') {
+    pool = pool.filter(function(p){ return (typeof getDishType==='function'?getDishType(p):'')=== _sustSMFiltro; });
+  }
+  var html = '';
+  pool.forEach(function(p){
+    var db = recetasDB[p] || {};
+    html += '<div class="sust-dish-card" onclick="seleccionarSustitutoSM(''+p.replace(/'/g,"\'")+'')">';
+    html += '<div class="d-flex align-items-center" style="gap:.45rem">';
+    html += '<strong style="font-size:.82rem;flex:1">'+p+'</strong>';
+    if(db.costo) html += '<span class="badge-ok" style="font-size:.71rem">'+db.costo+'</span>';
+    html += '</div>';
+    if(db.kcal||db.prot) html += '<div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+(db.kcal?db.kcal+' kcal':'')+((db.kcal&&db.prot)?' · ':'')+(db.prot?'Prot: '+db.prot+'g':'')+'</div>';
+    html += '</div>';
+  });
+  var el = document.getElementById('sustSMResultados');
+  if(el) el.innerHTML = html || '<div class="text-muted p-2" style="font-size:.82rem">Sin resultados</div>';
+}
+
+function seleccionarSustitutoSM(plato) {
+  _sustSMSustituto = plato;
+  document.querySelectorAll('#modalSustSM .sust-dish-card').forEach(function(el){
+    el.style.background = el.getAttribute('onclick').includes("'"+plato+"'") ? 'rgba(16,185,129,.08)' : '';
+    el.style.borderColor = el.getAttribute('onclick').includes("'"+plato+"'") ? 'var(--sm-green)' : '';
+  });
+}
+
+function confirmarSustSM() {
+  if (!_sustSMSustituto) { smToast('Selecciona un plato sustituto', 'warning', 2000); return; }
+  var v = variantesDB[_sustSMVarIdx];
+  var filas = menuVariantesData[v.nombre] || [];
+  var fila = filas.find(function(r){return r.dia===_sustSMDia;});
+  if (fila) fila[_sustSMCampo] = _sustSMSustituto;
+  $('#modalSustSM').modal('hide');
+  smToast('Sustitución confirmada', 'success', 2000);
+  renderVarianteMenu(filas, true, 'varExpMenuWrap-' + _sustSMVarIdx, _sustSMVarIdx);
+  _sustSMVarIdx = null; _sustSMDia = null; _sustSMCampo = null; _sustSMSustituto = null;
+}
 </script>
+
+<div class="modal fade" id="modalSustSM" tabindex="-1" style="z-index:1200">
+  <div class="modal-dialog" role="document"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-swap-horizontal mr-1" style="color:var(--sm-orange)"></i><span data-i18n="det.modal.replaceDish.title">Sustituir plato</span></h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" style="font-size:.85rem">
+      <div class="p-2 mb-2 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
+        <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i>
+        <strong data-i18n="det.sub.reason">Motivo:</strong> <span id="sustSMMotivoTexto">Cambio manual de plato</span>
+      </div>
+      <div class="mb-2">
+        <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
+        <input type="text" class="form-control form-control-sm" id="sustSMPlatoAfectado" disabled>
+      </div>
+      <div class="mb-2">
+        <div style="font-size:.78rem;font-weight:600;margin-bottom:.4rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
+        <div class="d-flex flex-wrap" style="gap:.35rem;margin-bottom:.6rem">
+          <button class="sust-filter-btn active" data-filter="all" onclick="sustFiltroPorSM('all')" data-i18n="sust.filter.all">TODOS</button>
+          <button class="sust-filter-btn" data-filter="soup" onclick="sustFiltroPorSM('soup')" data-i18n="sust.filter.soup">SOPAS</button>
+          <button class="sust-filter-btn" data-filter="vegetables" onclick="sustFiltroPorSM('vegetables')" data-i18n="sust.filter.vegetables">VERDURAS</button>
+          <button class="sust-filter-btn" data-filter="carbs" onclick="sustFiltroPorSM('carbs')" data-i18n="sust.filter.carbs">HIDRATOS</button>
+          <button class="sust-filter-btn" data-filter="legumes" onclick="sustFiltroPorSM('legumes')" data-i18n="sust.filter.legumes">LEGUMBRES</button>
+          <button class="sust-filter-btn" data-filter="protein" onclick="sustFiltroPorSM('protein')" data-i18n="sust.filter.protein">PROTEÍNA</button>
+          <button class="sust-filter-btn" data-filter="dairy" onclick="sustFiltroPorSM('dairy')" data-i18n="sust.filter.dairy">LÁCTEO</button>
+          <button class="sust-filter-btn" data-filter="fruit" onclick="sustFiltroPorSM('fruit')" data-i18n="sust.filter.fruit">FRUTA</button>
+        </div>
+      </div>
+      <div id="sustSMResultados" style="max-height:260px;overflow-y:auto"></div>
+    </div>
+    <div class="modal-footer py-2">
+      <button class="btn btn-sm btn-secondary" data-dismiss="modal" data-i18n="det.modal.cancel">Cancelar</button>
+      <button class="btn btn-sm btn-success" onclick="confirmarSustSM()"><i class="mdi mdi-check mr-1"></i><span data-i18n="det.modal.confirm">Confirmar sustitución</span></button>
+    </div>
+  </div></div>
+</div>
 </body></html>

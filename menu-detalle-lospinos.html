@@ -685,7 +685,7 @@ function abrirDetalleVariante(idx) {
   var filas = diasLP.map(function(d){ return Object.assign({dia:(diasLabel[d]||d)}, menuVariantesData[v.nombre][d]); });
   renderVarianteMenu(filas, 'varExpMenuWrap-' + idx);
   renderVarianteNutricion(filas, 'varExpNutriContent-' + idx);
-  renderVarianteCosto(filas, 'varExpCostoContent-' + idx);
+  renderVarianteCosto(idx, filas, 'varExpCostoContent-' + idx);
   switchExpTab(idx, 'menu');
   if(expRow){expRow.style.display='';setTimeout(function(){expRow.scrollIntoView({behavior:'smooth',block:'nearest'});},80);}
 }
@@ -735,26 +735,50 @@ function renderVarianteNutricion(filas, containerId) {
   if(el) el.innerHTML = html;
 }
 
-function renderVarianteCosto(filas, containerId) {
+function renderVarianteCosto(varIdx, filas, containerId) {
+  var v = variantesDB[varIdx];
   var campos = ['p1','p2','guar','postre'];
   var daily = filas.map(function(f){
     var total=0;
-    campos.forEach(function(c){ var db=recetasDB[f[c]]; if(db){var cv=parseFloat((db.costo||'0').replace('€',''));total+=cv;} });
+    campos.forEach(function(cp){ var db=recetasDB[f[cp]]; if(db){var cv=parseFloat((db.costo||'0').replace('€',''));total+=cv;} });
     return {dia:f.dia, total:total};
   });
   var media = daily.reduce(function(s,x){return s+x.total;},0)/daily.length;
-  var html = '<div style="overflow-x:auto"><table class="menu-table" style="min-width:460px"><thead><tr><th>Item</th>';
+  var com = v ? (v.comensales||1) : 1;
+  var avgColor = media<=OBJETIVO_COMIDA?'var(--sm-green)':'var(--sm-orange)';
+  var html = '<div class="row g-0 mb-3" style="border:1px solid var(--sm-border);border-radius:6px;overflow:hidden;text-align:center">';
+  html += '<div class="col-4 p-3" style="border-right:1px solid var(--sm-border)">';
+  html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.day">DÍA</div>';
+  html += '<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(media*com).toFixed(2)+'</div></div>';
+  html += '<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+media.toFixed(2)+'</div></div></div>';
+  html += '<div class="col-4 p-3" style="border-right:1px solid var(--sm-border)">';
+  html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.week">SEMANA</div>';
+  html += '<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(media*com*5).toFixed(2)+'</div></div>';
+  html += '<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(media*5).toFixed(2)+'</div></div></div>';
+  html += '<div class="col-4 p-3">';
+  html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.month">MES (est.)</div>';
+  html += '<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(media*com*20).toFixed(2)+'</div></div>';
+  html += '<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
+  html += '<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+(media*20).toFixed(2)+'</div></div></div></div>';
+  html += '<div style="overflow-x:auto"><table class="menu-table" style="min-width:460px"><thead><tr><th>Día</th>';
   daily.forEach(function(d){html+='<th>'+d.dia+'</th>';});
-  html+='<th style="background:#f0fdf4">Avg</th></tr></thead><tbody>';
-  html+='<tr><td>Lunch cost</td>';
+  html+='<th style="background:#f0fdf4">Media</th></tr></thead><tbody>';
+  html+='<tr><td>Coste comida</td>';
   daily.forEach(function(d){
     var ok=d.total<=OBJETIVO_COMIDA;
     html+='<td style="font-size:.8rem;color:'+(ok?'var(--sm-green)':'var(--sm-danger)')+'">'+'€'+d.total.toFixed(2)+'</td>';
   });
-  html+='<td style="font-size:.8rem;background:#f0fdf4;font-weight:600;color:'+(media<=OBJETIVO_COMIDA?'var(--sm-green)':'var(--sm-danger)')+'">'+'€'+media.toFixed(2)+'</td></tr>';
-  html+='<tr><td>Lunch target</td>';
-  daily.forEach(function(){html+='<td style="font-size:.8rem;color:#6c757d">€'+OBJETIVO_COMIDA.toFixed(2)+'</td>';});
-  html+='<td style="font-size:.8rem;background:#f0fdf4;color:#6c757d">€'+OBJETIVO_COMIDA.toFixed(2)+'</td></tr>';
+  html+='<td style="font-size:.8rem;background:#f0fdf4;font-weight:600;color:'+avgColor+'">€'+media.toFixed(2)+'</td></tr>';
+  html+='<tr><td>Total ('+com+' com.)</td>';
+  daily.forEach(function(d){
+    html+='<td style="font-size:.8rem;color:#212529">€'+(d.total*com).toFixed(2)+'</td>';
+  });
+  html+='<td style="font-size:.8rem;background:#f0fdf4;font-weight:600;color:#212529">€'+(media*com).toFixed(2)+'</td></tr>';
   html+='</tbody></table></div>';
   var el = document.getElementById(containerId);
   if(el) el.innerHTML = html;
@@ -766,35 +790,51 @@ function toggleEdicionVariante(idx) {
   var wrap = document.getElementById('varExpMenuWrap-' + idx);
   var btn  = document.getElementById('varExpBtnEditar-' + idx);
   if (!wrap) return;
+  var v = variantesDB[idx];
   if (wrap.dataset.edicion === '1') {
     wrap.dataset.edicion = '0';
-    btn.innerHTML = '<i class="mdi mdi-pencil"></i> Edit';
+    btn.innerHTML = '<i class="mdi mdi-pencil"></i> Editar';
     btn.classList.replace('btn-primary','btn-outline-primary');
-    var v = variantesDB[idx];
-    var filas = diasLP.map(function(d){ return Object.assign({dia:(diasLabel[d]||d)}, menuVariantesData[v.nombre][d]); });
+    var filas = diasLP.map(function(d){ return Object.assign({dia:(diasLabel[d]||d),diaKey:d}, menuVariantesData[v.nombre][d]); });
     renderVarianteMenu(filas, 'varExpMenuWrap-' + idx);
   } else {
     wrap.dataset.edicion = '1';
-    btn.innerHTML = '<i class="mdi mdi-check"></i> Save';
+    btn.innerHTML = '<i class="mdi mdi-check"></i> Guardar';
     btn.classList.replace('btn-outline-primary','btn-primary');
-    var v = variantesDB[idx];
-    var filas = diasLP.map(function(d){ return Object.assign({dia:(diasLabel[d]||d)}, menuVariantesData[v.nombre][d]); });
-    var campos = [{k:'p1',l:'First course'},{k:'p2',l:'Second course'},{k:'guar',l:'Side dish'},{k:'postre',l:'Dessert'}];
-    var html = '<table class="menu-table" style="min-width:560px"><thead><tr><th>Service</th>';
+    var filas = diasLP.map(function(d){ return Object.assign({dia:(diasLabel[d]||d),diaKey:d}, menuVariantesData[v.nombre][d]); });
+    var campos = [{k:'p1',l:'Primer plato'},{k:'p2',l:'Segundo plato'},{k:'guar',l:'Guarnición'},{k:'postre',l:'Postre'}];
+    var html = '<table class="menu-table" style="min-width:560px"><thead><tr><th style="font-size:.8rem">Servicio</th>';
     filas.forEach(function(f){html+='<th>'+f.dia+'</th>';});
     html+='</tr></thead><tbody>';
-    campos.forEach(function(c){
-      html+='<tr><td style="font-size:.8rem">'+c.l+'</td>';
+    campos.forEach(function(cp){
+      html+='<tr><td style="font-size:.8rem">'+cp.l+'</td>';
       filas.forEach(function(f){
-        var plato=f[c.k]||'';
-        var opts=recetasCrownet.map(function(r){return '<option value="'+r+'"'+(r===plato?' selected':'')+'>'+r+'</option>';}).join('');
-        html+='<td><select class="form-control form-control-sm" style="font-size:.74rem;min-width:140px">'+opts+'</select></td>';
+        var plato=f[cp.k]||'';
+        html+='<td><div class="menu-cell ok" style="cursor:pointer;border:1px dashed var(--sm-border);font-size:.78rem;padding:3px 6px;border-radius:4px" onclick="editarCeldaVariante('+idx+',\''+f.diaKey+'\',\''+cp.k+'\')">'+plato+'<i class="mdi mdi-pencil ml-1" style="font-size:.7rem;opacity:.5"></i></div></td>';
       });
       html+='</tr>';
     });
     html+='</tbody></table>';
     wrap.innerHTML = html;
   }
+}
+
+var _variantEditIdx = null, _variantEditDia = null, _variantEditCampo = null;
+
+function editarCeldaVariante(varIdx, diaKey, campo) {
+  _sustMode = 'variantEdit';
+  _variantEditIdx = varIdx;
+  _variantEditDia = diaKey;
+  _variantEditCampo = campo;
+  _sustSustituto = null;
+  var v = variantesDB[varIdx];
+  var cur = (menuVariantesData[v.nombre][diaKey]||{})[campo] || '';
+  var mEl = document.getElementById('sustMotivoTexto');
+  if (mEl) mEl.textContent = 'Cambio de plato en variante ' + v.nombre;
+  var aEl = document.getElementById('sustPlatoAfectado');
+  if (aEl) aEl.value = cur;
+  sustFiltroPor('all');
+  $('#modalSustituir').modal('show');
 }
 
 function aprobarVariante(idx) {
@@ -893,6 +933,19 @@ function confirmarSust() {
       _varEditIdx = null;
       renderVariantes();
     }
+  } else if (_sustMode === 'variantEdit') {
+    if (_variantEditIdx !== null && _variantEditDia && _variantEditCampo) {
+      var vn = variantesDB[_variantEditIdx].nombre;
+      if (!menuVariantesData[vn]) menuVariantesData[vn] = {};
+      if (!menuVariantesData[vn][_variantEditDia]) menuVariantesData[vn][_variantEditDia] = {};
+      menuVariantesData[vn][_variantEditDia][_variantEditCampo] = _sustSustituto;
+      var filas = diasLP.map(function(d){ return Object.assign({dia:(diasLabel[d]||d),diaKey:d}, menuVariantesData[vn][d]); });
+      renderVarianteMenu(filas, 'varExpMenuWrap-' + _variantEditIdx);
+      document.getElementById('varExpMenuWrap-' + _variantEditIdx).dataset.edicion = '1';
+      toggleEdicionVariante(_variantEditIdx);
+      toggleEdicionVariante(_variantEditIdx);
+    }
+    _variantEditIdx = null; _variantEditDia = null; _variantEditCampo = null;
   }
   $('#modalSustituir').modal('hide');
   smToast(typeof t==='function'?t('sust.toast.confirmed'):'Sustitución confirmada', 'success', 2000);
