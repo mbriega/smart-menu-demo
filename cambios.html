@@ -51,7 +51,7 @@
       <div class="d-flex justify-content-center" style="gap:.3rem">
         <button class="btn btn-sm btn-success p-1" title="Approve" onclick="accionExcepcion(this,'aprobar','kpiExcPend')"><i class="mdi mdi-check" style="font-size:.85rem"></i></button>
         <button class="btn btn-sm btn-danger p-1" title="Reject" onclick="accionExcepcion(this,'rechazar','kpiExcPend')"><i class="mdi mdi-close" style="font-size:.85rem"></i></button>
-        <button class="btn btn-sm btn-outline-primary p-1" title="View detail" onclick="verDetalleExcepcion('H. La Paz','Costo','CRITICAL','Costo semana 22: €4.86/comensal vs target €4.50 (+8%). El centro justifica el incremento por coste de productos dietéticos especiales. Solicita aprobación excepcional para esta semana.','menu-detalle-lapaz.html')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>
+        <button class="btn btn-sm btn-outline-primary p-1" title="View detail" onclick="verDetalleExcepcion('H. La Paz','Cost','CRITICAL','Costo semana 22: €4.86/comensal vs target €4.50 (+8%). El centro justifica el incremento por coste de productos dietéticos especiales. Solicita aprobación excepcional para esta semana.','Week 22 cost: €4.86/diner vs target €4.50 (+8%). Center justifies increase due to special dietary product costs. Requests exceptional approval for this week.','menu-detalle-lapaz.html')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>
       </div>
     </td>
   </tr>
@@ -67,7 +67,7 @@
       <div class="d-flex justify-content-center" style="gap:.3rem">
         <button class="btn btn-sm btn-success p-1" title="Approve" onclick="accionExcepcion(this,'aprobar','kpiExcPend')"><i class="mdi mdi-check" style="font-size:.85rem"></i></button>
         <button class="btn btn-sm btn-danger p-1" title="Reject" onclick="accionExcepcion(this,'rechazar','kpiExcPend')"><i class="mdi mdi-close" style="font-size:.85rem"></i></button>
-        <button class="btn btn-sm btn-outline-primary p-1" title="View detail" onclick="verDetalleExcepcion('C. El Pinar','Cost','MODERATE','Week 22 cost: €3.30/diner vs target €3.20 (+3.1%). Increase due to protein substitution. Center requests one-time exception.','menu-detalle-lapaz.html')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>
+        <button class="btn btn-sm btn-outline-primary p-1" title="View detail" onclick="verDetalleExcepcion('C. El Pinar','Cost','MODERATE','Semana 22 costo: €3.30/comensal vs target €3.20 (+3.1%). Incremento por sustitución proteica. El centro solicita excepción puntual.','Week 22 cost: €3.30/diner vs target €3.20 (+3.1%). Increase due to protein substitution. Center requests one-time exception.','menu-detalle-lapaz.html')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>
       </div>
     </td>
   </tr>
@@ -83,7 +83,7 @@
       <div class="d-flex justify-content-center" style="gap:.3rem">
         <button class="btn btn-sm btn-success p-1" title="Approve" onclick="accionExcepcion(this,'aprobar','kpiExcPend')"><i class="mdi mdi-check" style="font-size:.85rem"></i></button>
         <button class="btn btn-sm btn-danger p-1" title="Reject" onclick="accionExcepcion(this,'rechazar','kpiExcPend')"><i class="mdi mdi-close" style="font-size:.85rem"></i></button>
-        <button class="btn btn-sm btn-outline-primary p-1" title="View detail" onclick="verDetalleExcepcion('C. Nou Barris','Nutrition','MODERATE','Week 22 caloric deviation: 935 kcal vs target 850 kcal (+11%). Center requests to keep menu due to family preferences.','menu-detalle-lapaz.html')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>
+        <button class="btn btn-sm btn-outline-primary p-1" title="View detail" onclick="verDetalleExcepcion('C. Nou Barris','Nutrition','MODERATE','Semana 22 desviación calórica: 935 kcal vs target 850 kcal (+11%). El centro solicita mantener el menú por preferencias familiares.','Week 22 caloric deviation: 935 kcal vs target 850 kcal (+11%). Center requests to keep menu due to family preferences.','menu-detalle-lapaz.html')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>
       </div>
     </td>
   </tr>
@@ -268,9 +268,17 @@ function accionCambio(btn, accion, kpiId) {
     window.location.href = 'menu-detalle.html';
   }
 }
-function verDetalleExcepcion(centro, tipo, severidad, desc, menuUrl) {
+function verDetalleExcepcion(centro, tipo, severidad, descEs, descEn, menuUrl) {
+  var isEs = (localStorage.getItem('smLang')||'en') === 'es';
+  var tipoMap = {Cost:'Cost',Costo:'Cost',Nutrition:'Nutrition',Nutrición:'Nutrition',Calidad:'Quality'};
+  var tipoEs = {Cost:'Costo',Nutrition:'Nutrición',Quality:'Calidad'};
+  var sevEs = {CRITICAL:'CRÍTICA',MODERATE:'MODERADA'};
+  var canonical = tipoMap[tipo] || tipo;
+  var tipoDisplay = isEs ? (tipoEs[canonical]||tipo) : canonical;
+  var sevDisplay = isEs ? (sevEs[severidad]||severidad) : severidad;
+  var desc = isEs ? descEs : descEn;
   document.getElementById('excDetCentro').textContent = centro;
-  document.getElementById('excDetTipo').innerHTML = tipo + ' &nbsp;<span class="badge-' + (severidad==='CRITICAL'?'critico':'moderado') + '">' + severidad + '</span>';
+  document.getElementById('excDetTipo').innerHTML = tipoDisplay + ' &nbsp;<span class="badge-' + (severidad==='CRITICAL'?'critico':'moderado') + '">' + sevDisplay + '</span>';
   document.getElementById('excDetDesc').textContent = desc;
   document.getElementById('excObs').value = '';
   var link = document.getElementById('excDetMenuLink');

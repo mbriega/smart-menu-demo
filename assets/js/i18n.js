@@ -491,6 +491,20 @@
       'dish.salmon-plancha': 'Salmón a la plancha',
       'dish.sopa-castellana': 'Sopa castellana',
       'dish.tortilla-francesa': 'Tortilla francesa',
+      'dish.albondigas-tomate': 'Albóndigas con tomate',
+      'dish.fruta-temporada': 'Fruta temporada',
+      'dish.lentejas-calabaza': 'Lentejas con calabaza',
+      'dish.tortilla-calabacin': 'Tortilla de calabacín',
+      'dish.ensalada-lechuga': 'Ensalada lechuga',
+      'dish.coliflor-rehogada': 'Coliflor rehogada',
+      'dish.ragout-pollo': 'Ragout de pollo',
+      'dish.cous-cous': 'Cous cous',
+      'dish.arroz-integral-tomate': 'Arroz integral con tomate',
+      'dish.tilapia-guisada': 'Tilapia guisada',
+      'dish.ensalada-maiz': 'Ensalada maíz',
+      'dish.sopa-ave-fideo': 'Sopa de ave con fideo',
+      'dish.garbanzos-sofrito': 'Garbanzos con sofrito',
+      'dish.ensalada-aceitunas': 'Ensalada aceitunas',
       'det.nutri.baseTarget': 'Objetivo base',
       'det.edit.modeActive': 'Modo edición activo',
       'det.cost.avgDay': 'Coste medio/día',
@@ -1608,6 +1622,20 @@
       'dish.salmon-plancha': 'Grilled salmon',
       'dish.sopa-castellana': 'Castilian garlic soup',
       'dish.tortilla-francesa': 'Plain omelette',
+      'dish.albondigas-tomate': 'Meatballs in tomato sauce',
+      'dish.fruta-temporada': 'Seasonal fruit',
+      'dish.lentejas-calabaza': 'Lentils with squash',
+      'dish.tortilla-calabacin': 'Zucchini omelette',
+      'dish.ensalada-lechuga': 'Lettuce salad',
+      'dish.coliflor-rehogada': 'Sautéed cauliflower',
+      'dish.ragout-pollo': 'Chicken ragout',
+      'dish.cous-cous': 'Couscous',
+      'dish.arroz-integral-tomate': 'Brown rice with tomato',
+      'dish.tilapia-guisada': 'Stewed tilapia',
+      'dish.ensalada-maiz': 'Corn salad',
+      'dish.sopa-ave-fideo': 'Chicken noodle soup',
+      'dish.garbanzos-sofrito': 'Chickpeas with sofrito',
+      'dish.ensalada-aceitunas': 'Olive salad',
       'det.nutri.baseTarget': 'Base target',
       'det.edit.modeActive': 'Edit mode active',
       'det.cost.avgDay': 'Avg cost/day',
@@ -2237,6 +2265,7 @@
   window.t = function (k) {
     return (_dict[_lang] || _dict.en)[k] || (_dict.en)[k] || k;
   };
+  window._i18nEs = _dict.es;
 
   window.setLang = function (l) {
     localStorage.setItem('smLang', l);
