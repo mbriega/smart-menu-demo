@@ -466,7 +466,7 @@ function toggleEdicionVariante(idx) {
   var btn = document.getElementById('varExpBtnEditar-' + idx);
   if (varianteModoEdicion) {
     if (btn) { btn.innerHTML = '<i class="mdi mdi-content-save"></i> Save'; btn.className = 'btn btn-sm btn-primary'; }
-    renderVarianteMenu(filas, true, 'varExpMenuWrap-' + idx);
+    renderVarianteMenu(filas, true, 'varExpMenuWrap-' + idx, idx);
   } else {
     var selects = document.querySelectorAll('#varExpMenuWrap-' + idx + ' select');
     selects.forEach(function(sel){
