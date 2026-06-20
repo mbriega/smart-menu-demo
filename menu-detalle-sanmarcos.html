@@ -564,26 +564,34 @@ function renderSustResultadosSM() {
   if (_sustSMFiltro !== 'all') {
     pool = pool.filter(function(p){ return (typeof getDishType==='function'?getDishType(p):'')=== _sustSMFiltro; });
   }
-  var html = '';
-  pool.forEach(function(p){
-    var db = recetasDB[p] || {};
-    html += '<div class="sust-dish-card" onclick="seleccionarSustitutoSM(''+p.replace(/'/g,"\'")+'')">';
-    html += '<div class="d-flex align-items-center" style="gap:.45rem">';
-    html += '<strong style="font-size:.82rem;flex:1">'+p+'</strong>';
-    if(db.costo) html += '<span class="badge-ok" style="font-size:.71rem">'+db.costo+'</span>';
-    html += '</div>';
-    if(db.kcal||db.prot) html += '<div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+(db.kcal?db.kcal+' kcal':'')+((db.kcal&&db.prot)?' · ':'')+(db.prot?'Prot: '+db.prot+'g':'')+'</div>';
-    html += '</div>';
-  });
   var el = document.getElementById('sustSMResultados');
-  if(el) el.innerHTML = html || '<div class="text-muted p-2" style="font-size:.82rem">Sin resultados</div>';
+  if (!el) return;
+  el.innerHTML = '';
+  if (!pool.length) {
+    el.innerHTML = '<div class="text-muted p-2" style="font-size:.82rem">Sin resultados</div>';
+    return;
+  }
+  pool.forEach(function(p) {
+    var db = recetasDB[p] || {};
+    var card = document.createElement('div');
+    card.className = 'sust-dish-card';
+    card.dataset.plato = p;
+    var inner = '<div class="d-flex align-items-center" style="gap:.45rem"><strong style="font-size:.82rem;flex:1">'+p+'</strong>';
+    if (db.costo) inner += '<span class="badge-ok" style="font-size:.71rem">'+db.costo+'</span>';
+    inner += '</div>';
+    if (db.kcal||db.prot) inner += '<div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+(db.kcal?db.kcal+' kcal':'')+((db.kcal&&db.prot)?' · ':'')+(db.prot?'Prot: '+db.prot+'g':'')+'</div>';
+    card.innerHTML = inner;
+    card.addEventListener('click', (function(plato){ return function(){ seleccionarSustitutoSM(plato); }; })(p));
+    el.appendChild(card);
+  });
 }
 
 function seleccionarSustitutoSM(plato) {
   _sustSMSustituto = plato;
   document.querySelectorAll('#modalSustSM .sust-dish-card').forEach(function(el){
-    el.style.background = el.getAttribute('onclick').includes("'"+plato+"'") ? 'rgba(16,185,129,.08)' : '';
-    el.style.borderColor = el.getAttribute('onclick').includes("'"+plato+"'") ? 'var(--sm-green)' : '';
+    var selected = el.dataset.plato === plato;
+    el.style.background = selected ? 'rgba(16,185,129,.08)' : '';
+    el.style.borderColor = selected ? 'var(--sm-green)' : '';
   });
 }
 
