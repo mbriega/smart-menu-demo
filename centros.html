@@ -223,7 +223,7 @@ function cRender(){
     var tipo = document.getElementById('cTipo') ? document.getElementById('cTipo').value : '—';
     var com = document.getElementById('cCom') ? document.getElementById('cCom').value : '200';
     var target = document.getElementById('cTarget') ? document.getElementById('cTarget').value : '3.20';
-    document.getElementById('cResumen').innerHTML = '<strong>'+(typeof t==="function"?t('centros.step5.summary'):'Resumen:')+'</strong> ' + (typeof tipoLabel==="function"?tipoLabel(tipo):tipo) + ' &middot; ' + nom + ' &middot; ' + com + ' '+(typeof t==="function"?t('centros.label.diners'):'comensales/día')+' &middot; Target €' + target;
+    document.getElementById('cResumen').innerHTML = '<strong">'+(typeof t==="function"?t('centros.step5.summary'):'Resumen:')+'</strong> ' + (typeof tipoLabel==="function"?tipoLabel(tipo):tipo) + ' &middot; ' + nom + ' &middot; ' + com + ' '+(typeof t==="function"?t('centros.label.diners'):'comensales/día')+' &middot; Target €' + target;
     btn.innerHTML="<i class='mdi mdi-check'></i> "+(typeof t==="function"?t('centros.btn.create'):'Crear centro');
     btn.onclick=cGuardar;
   } else {
@@ -437,37 +437,37 @@ function renderFicha(c) {
   var html = '<div class="d-flex align-items-center mb-3" style="gap:.5rem">';
   html += '<span style="width:10px;height:10px;border-radius:50%;background:'+semColor+';display:inline-block;flex-shrink:0"></span>';
   html += '<span class="sm-centro-badge"><i class="mdi mdi-office-building" style="font-size:.85rem"></i>'+(typeof tipoLabel==='function'?tipoLabel(c.tipo):c.tipo)+'</span>';
-  html += '<span style="font-size:.78rem;color:var(--sm-text-muted)">"+(typeof t==="function"?t('centros.label.created'):'Created:')+" '+c.fecha_alta+'</span>';
+  html += '<span style="font-size:.78rem;color:var(--sm-text-muted)">'+(typeof t==="function"?t('centros.label.created'):'Created:')+' '+c.fecha_alta+'</span>';
   html += '</div>';
 
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.label.generalData'):'General data')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.label.generalData'):'General data')+'</div>';
   html += '<div class="row">';
-  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.name'):'Center name')+"</div><input class="form-control form-control-sm" value="'+c.nombre+'" id="oc-nombre"></div>';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.type'):'Type')+"</div><select class="form-control form-control-sm" id="oc-tipo"><option'+(c.tipo==='Escolar'?' selected':'')+'+(typeof t==="function"?t('tipo.escolar'):'School')+'</option><option'+(c.tipo==='Hospitalario'?' selected':'')+">'+(typeof t==="function"?t('tipo.hospitalario'):'Hospital')+'</option><option'+(c.tipo==='Residencia'?' selected':'')+">'+(typeof t==="function"?t('tipo.residencia'):'Nursing home')+'</option><option'+(c.tipo==='3ª Edad'?' selected':'')+">'+(typeof t==="function"?t('tipo.terceraEdad'):'Senior Care')+'</option><option'+(c.tipo==='Empresa'?' selected':'')+">'+(typeof t==="function"?t('tipo.empresa'):'Corporate')+'</option></select></div>';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.editStatus'):'Status')+"</div><select class="form-control form-control-sm"><option selected>'+(typeof t==="function"?t('status.activo'):'Active')+'</option><option>'+(typeof t==="function"?t('status.inactivo'):'Inactive')+'</option><option>En configuración</option></select></div>';
-  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.address'):'Address')+"</div><input class="form-control form-control-sm" value="'+c.direccion+'" id="oc-dir"></div>';
+  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.name'):'Center name')+'</div><input class="form-control form-control-sm" value="'+c.nombre+'" id="oc-nombre"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.type'):'Type')+'</div><select class="form-control form-control-sm" id="oc-tipo"><option'+(c.tipo==='Escolar'?' selected':'')+'>'+(typeof t==="function"?t('tipo.escolar'):'School')+'</option><option'+(c.tipo==='Hospitalario'?' selected':'')+'>'+(typeof t==="function"?t('tipo.hospitalario'):'Hospital')+'</option><option'+(c.tipo==='Residencia'?' selected':'')+'>'+(typeof t==="function"?t('tipo.residencia'):'Nursing home')+'</option><option'+(c.tipo==='3ª Edad'?' selected':'')+'>'+(typeof t==="function"?t('tipo.terceraEdad'):'Senior Care')+'</option><option'+(c.tipo==='Empresa'?' selected':'')+'>'+(typeof t==="function"?t('tipo.empresa'):'Corporate')+'</option></select></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.editStatus'):'Status')+'</div><select class="form-control form-control-sm"><option selected>'+(typeof t==="function"?t('status.activo'):'Active')+'</option><option>'+(typeof t==="function"?t('status.inactivo'):'Inactive')+'</option><option>En configuración</option></select></div>';
+  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.address'):'Address')+'</div><input class="form-control form-control-sm" value="'+c.direccion+'" id="oc-dir"></div>';
   html += '</div>';
   html += '</div>';
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.label.managerSection'):'Manager')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.label.managerSection'):'Manager')+'</div>';
   html += '<div class="row">';
-  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.respName'):'Name')+"</div><input class="form-control form-control-sm" value="'+c.responsable+'" id="oc-resp"></div>';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.email'):'Email')+"</div><input class="form-control form-control-sm" type="email" value="'+c.email+'" id="oc-email"></div>';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.phone'):'Phone')+"</div><input class="form-control form-control-sm" type="tel" value="'+c.telefono+'" id="oc-tel"></div>';
+  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.respName'):'Name')+'</div><input class="form-control form-control-sm" value="'+c.responsable+'" id="oc-resp"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.email'):'Email')+'</div><input class="form-control form-control-sm" type="email" value="'+c.email+'" id="oc-email"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.phone'):'Phone')+'</div><input class="form-control form-control-sm" type="tel" value="'+c.telefono+'" id="oc-tel"></div>';
   html += '</div>';
   html += '</div>';
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.label.integration'):'Integration')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.label.integration'):'Integration')+'</div>';
   html += '<div class="row">';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.crownetCode'):'Crownet code')+"</div><input class="form-control form-control-sm" value="'+c.crownet+'" id="oc-crw"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.crownetCode'):'Crownet code')+'</div><input class="form-control form-control-sm" value="'+c.crownet+'" id="oc-crw"></div>';
 
-  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.lastPub'):'Last published to Crownet')+"</div><div style="font-size:.84rem;color:var(--sm-text-muted);padding:.3rem 0">'+c.ultima_pub+'</div></div>';
+  html += '<div class="col-12 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.lastPub'):'Last published to Crownet')+'</div><div style="font-size:.84rem;color:var(--sm-text-muted);padding:.3rem 0">'+c.ultima_pub+'</div></div>';
   html += '</div>';
   html += '</div>';
   if (c.notas) {
     html += '<div class="sm-section-block">';
-    html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.section.notes'):'Internal notes')+"</div>';
+    html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.section.notes'):'Internal notes')+'</div>';
     html += '<textarea class="form-control form-control-sm" rows="3" id="oc-notas">'+c.notas+'</textarea>';
     html += '</div>';
   }
@@ -476,23 +476,23 @@ function renderFicha(c) {
 
 function renderConfig(c) {
   var html = '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.config.operations'):'Operations')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.config.operations'):'Operations')+'</div>';
   html += '<div class="row">';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.diners'):'Diners/day')+"</div><input class="form-control form-control-sm" type="number" value="'+c.comensales+'" id="oc-com"></div>';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.costTarget'):'Cost target (€/diner)')+"</div><input class="form-control form-control-sm" value="'+c.target+'" id="oc-target"></div>';
-  html += '<div class="col-8 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.label.services'):'Active services')+"</div><select class="form-control form-control-sm"><option'+(c.servicios==='Almuerzo'?' selected':'')+'>Lunch</option><option'+(c.servicios==='Almuerzo + Cena'?' selected':'')+'>Lunch + Dinner</option><option'+(c.servicios==='Desayuno + Almuerzo + Cena'?' selected':'')+'>Breakfast + Lunch + Dinner</option></select></div>';
-  html += '<div class="col-4 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.config.minVariants'):'Min. variants')+"</div><input class="form-control form-control-sm" type="number" min="1" max="5" value="2" id="oc-var"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.diners'):'Diners/day')+'</div><input class="form-control form-control-sm" type="number" value="'+c.comensales+'" id="oc-com"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.costTarget'):'Cost target (€/diner)')+'</div><input class="form-control form-control-sm" value="'+c.target+'" id="oc-target"></div>';
+  html += '<div class="col-8 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.label.services'):'Active services')+'</div><select class="form-control form-control-sm"><option'+(c.servicios==='Almuerzo'?' selected':'')+'>Lunch</option><option'+(c.servicios==='Almuerzo + Cena'?' selected':'')+'>Lunch + Dinner</option><option'+(c.servicios==='Desayuno + Almuerzo + Cena'?' selected':'')+'>Breakfast + Lunch + Dinner</option></select></div>';
+  html += '<div class="col-4 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.config.minVariants'):'Min. variants')+'</div><input class="form-control form-control-sm" type="number" min="1" max="5" value="2" id="oc-var"></div>';
   html += '</div>';
   html += '</div>';
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.config.caloricTargets'):'Caloric targets (kcal)')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.config.caloricTargets'):'Caloric targets (kcal)')+'</div>';
   html += '<div class="row">';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.config.lunch'):'Lunch')+"</div><input class="form-control form-control-sm" type="number" value="'+c.kcal_almuerzo+'" id="oc-kal-a"></div>';
-  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">"+(typeof t==="function"?t('centros.config.dinner'):'Dinner')+"</div><input class="form-control form-control-sm" type="number" value="'+(c.kcal_cena||'—')+'" id="oc-kal-c"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.config.lunch'):'Lunch')+'</div><input class="form-control form-control-sm" type="number" value="'+c.kcal_almuerzo+'" id="oc-kal-a"></div>';
+  html += '<div class="col-6 sm-field-group"><div class="sm-field-label">'+(typeof t==="function"?t('centros.config.dinner'):'Dinner')+'</div><input class="form-control form-control-sm" type="number" value="'+(c.kcal_cena||'—')+'" id="oc-kal-c"></div>';
   html += '</div>';
   html += '</div>';
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.config.diets'):'Active special diets')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.config.diets'):'Active special diets')+'</div>';
   var dietasAll = [['sin_gluten',typeof t==="function"?t('centros.diet.sinGluten'):'Gluten-free'],['sin_lactosa',typeof t==="function"?t('centros.diet.sinLactosa'):'Lactose-free'],['blanda',typeof t==="function"?t('centros.diet.blanda'):'Soft diet'],['vegetariana',typeof t==="function"?t('centros.diet.vegetariana'):'Vegetarian'],['diabet',typeof t==="function"?t('centros.diet.diabetica'):'Diabetic'],['renal',typeof t==="function"?t('centros.diet.renal'):'Renal'],['vegan','Vegan']];
   dietasAll.forEach(function(d){
     var chk = c.dietas.indexOf(d[0])>=0 ? 'checked' : '';
@@ -500,7 +500,7 @@ function renderConfig(c) {
   });
   html += '</div>';
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.section.allergens'):'Allergens to track')+"</div>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.section.allergens'):'Allergens to track')+'</div>';
   var alergAll = [
     {key:'Gluten',es:'centros.alerg.gluten'},
     {key:'Lactosa',es:'centros.alerg.lactosa'},
@@ -522,8 +522,8 @@ function renderConfig(c) {
   html += '</div>';
 
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">"+(typeof t==="function"?t('centros.config.equip'):'Available equipment')+"</div>';
-  html += '<p style="font-size:.78rem;color:var(--sm-text-muted);margin-bottom:.5rem">"+(typeof t==="function"?t('centros.config.equipNote'):'AI uses this data to validate whether a dish is feasible at this center.')+"</p>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.config.equip'):'Available equipment')+'</div>';
+  html += '<p style="font-size:.78rem;color:var(--sm-text-muted);margin-bottom:.5rem">'+(typeof t==="function"?t('centros.config.equipNote'):'AI uses this data to validate whether a dish is feasible at this center.')+'</p>';
   html += '<div class="row">';
   var equipAll = [
     ['horno',typeof t==="function"?t('centros.equip.horno'):'Convection oven'],
@@ -631,11 +631,11 @@ function mostrarResultadosSinc() {
   badge.textContent = _sincCentrosNuevos.length + ' ' + (typeof t==="function" ? t('centros.sinc.newFound') : 'nuevos centros encontrados');
   var lista = document.getElementById('sincListaNuevos');
   if (_sincCentrosNuevos.length === 0) {
-    lista.innerHTML = '<p class="text-muted" style="font-size:.83rem">"+(typeof t==="function"?t('centros.sinc.noNew'):'No hay nuevos centros en Crownet. Todo está al día.')+"</p>';
+    lista.innerHTML = '<p class="text-muted" style="font-size:.83rem">'+(typeof t==="function"?t('centros.sinc.noNew'):'No hay nuevos centros en Crownet. Todo está al día.')+'</p>';
     document.getElementById('sincBotonesImport').style.display = 'none';
     return;
   }
-  var html = '<table class="table table-sm mb-0" style="font-size:.82rem"><thead><tr><th style="width:28px"></th><th data-i18n="col.centro">Center</th><th data-i18n="col.tipo">Type</th><th class="text-center">"+(typeof t==="function"?t('centros.sinc.diners'):'Comensales')+"</th><th>"+(typeof t==="function"?t('centros.sinc.crownetCode'):'Código Crownet')+"</th></tr></thead><tbody>';
+  var html = '<table class="table table-sm mb-0" style="font-size:.82rem"><thead><tr><th style="width:28px"></th><th data-i18n="col.centro">Center</th><th data-i18n="col.tipo">Type</th><th class="text-center">'+(typeof t==="function"?t('centros.sinc.diners'):'Comensales')+'</th><th>'+(typeof t==="function"?t('centros.sinc.crownetCode'):'Código Crownet')+'</th></tr></thead><tbody>';
   _sincCentrosNuevos.forEach(function(c, i) {
     html += '<tr><td><input type="checkbox" class="sincCheck" data-idx="' + i + '" checked></td><td><strong>' + c.nombre + '</strong></td><td>' + c.tipo + '</td><td class="text-center">' + c.comensales + '</td><td><code style="font-size:.78rem">' + c.codigo + '</code></td></tr>';
   });
@@ -651,7 +651,7 @@ function importarCentrosSeleccionados() {
   checks.forEach(function(ck) {
     var c = _sincCentrosNuevos[parseInt(ck.dataset.idx)];
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td><strong>' + c.nombre + '</strong></td><td style="font-size:.82rem">' + c.tipo + '</td><td class="text-center">' + c.comensales + '</td><td><span class="badge badge-warning" style="font-size:.75rem;padding:.3em .55em">"+(typeof t==="function"?t('status.pendiente'):'Pendiente')+"</span></td><td class="text-center text-muted" style="font-size:.8rem">—</td><td class="text-center text-muted" style="font-size:.8rem">—</td><td><div class="d-flex" style="gap:.3rem"><button class="btn btn-sm btn-outline-primary" onclick="smToast(\'Center profile\',\'info\')"><i class="mdi mdi-eye"></i> <span data-i18n="centros.action.profile">Profile</span></button><button class="btn btn-sm btn-outline-warning" onclick="smToast(typeof t===\'function\'?t(\'centros.modal.edit.title\'):\'Editar centro\',\'info\')"><i class="mdi mdi-pencil"></i></button></div></td>';
+    tr.innerHTML = '<td><strong>' + c.nombre + '</strong></td><td style="font-size:.82rem">' + c.tipo + '</td><td class="text-center">' + c.comensales + '</td><td><span class="badge badge-warning" style="font-size:.75rem;padding:.3em .55em">'+(typeof t==="function"?t('status.pendiente'):'Pendiente')+'</span></td><td class="text-center text-muted" style="font-size:.8rem">—</td><td class="text-center text-muted" style="font-size:.8rem">—</td><td><div class="d-flex" style="gap:.3rem"><button class="btn btn-sm btn-outline-primary" onclick="smToast(\'Center profile\',\'info\')"><i class="mdi mdi-eye"></i> <span data-i18n="centros.action.profile">Profile</span></button><button class="btn btn-sm btn-outline-warning" onclick="smToast(typeof t===\'function\'?t(\'centros.modal.edit.title\'):\'Editar centro\',\'info\')"><i class="mdi mdi-pencil"></i></button></div></td>';
     tbody.appendChild(tr);
   });
   $('#modalSincCrownet').modal('hide');
