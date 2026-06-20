@@ -401,6 +401,11 @@ function abrirCentro(id) {
   ocCurrentId = id;
   ocCurrentTab = 'ficha';
   var c = centrosDB[id];
+  if(!c){
+    var _cd=CENTROS_DATA.filter(function(x){return x.id===id;})[0];
+    if(!_cd)return;
+    c={id:id,nombre:_cd.nombre,tipo:_cd.tipo,zona:'—',responsable:'—',email:'—',telefono:'—',crownet:'CRW-—',zona:'—',comensales:String(_cd.comensales),servicios:'Almuerzo',target:'—',kcal_almuerzo:'—',kcal_cena:'—',estado:_cd.estadoMenu,semaforo:'verde',dietas:[],alergenos:[],notas:'—',fecha_alta:'—',ultima_pub:'—'};
+  }
   document.getElementById('ocTitle').textContent = c.nombre;
   document.getElementById('ocSubtitle').textContent = (typeof tipoLabel==='function'?tipoLabel(c.tipo):c.tipo) + ' · ' + c.zona;
   switchTab('ficha');
