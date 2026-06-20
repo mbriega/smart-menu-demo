@@ -51,7 +51,7 @@
   <div class="card-body p-0">
     <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
       <h6 class="mb-0 font-weight-700"><span data-i18n="users.list.title">User list</span></h6>
-      <input type="text" class="form-control form-control-sm" style="width:220px" placeholder="Search user..." oninput="filtrarUsers(this.value)">
+      <input type="text" class="form-control form-control-sm" style="width:220px" data-i18n-ph="users.search.ph" placeholder="Buscar usuario..." oninput="filtrarUsers(this.value)">
     </div>
     <table class="table mb-0" id="tUsers">
       <thead>
@@ -187,19 +187,19 @@
   <div class="modal-header"><h5 class="modal-title"><i class="mdi mdi-account-plus mr-2" style="color:var(--sm-green)"></i><span data-i18n="users.btn.new">Create new user</span></h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
   <div class="modal-body">
     <div class="wizard-steps mb-4">
-      <div class="wizard-step active" id="us1"><div class="wizard-step-circle">1</div><div class="wizard-step-label">Data</div></div>
+      <div class="wizard-step active" id="us1"><div class="wizard-step-circle">1</div><div class="wizard-step-label"><span data-i18n="users.wizard.step1">Datos</span></div></div>
       <div class="wizard-step-line" id="ul1"></div>
-      <div class="wizard-step" id="us2"><div class="wizard-step-circle">2</div><div class="wizard-step-label">Role &amp; access</div></div>
+      <div class="wizard-step" id="us2"><div class="wizard-step-circle">2</div><div class="wizard-step-label"><span data-i18n="users.wizard.step2">Rol y acceso</span></div></div>
       <div class="wizard-step-line" id="ul2"></div>
-      <div class="wizard-step" id="us3"><div class="wizard-step-circle">3</div><div class="wizard-step-label">Confirmation</div></div>
+      <div class="wizard-step" id="us3"><div class="wizard-step-circle">3</div><div class="wizard-step-label"><span data-i18n="users.wizard.step3">Confirmación</span></div></div>
     </div>
     <div id="uStep1">
-      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Full name</label><input class="form-control" id="uNombre" placeholder="Full Name"></div>
-      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Email</label><input class="form-control" type="email" id="uEmail" placeholder="usuario@empresa.es"></div>
-      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Phone</label><input class="form-control" type="tel" placeholder="6XX XXX XXX"></div>
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="users.form.fullname">Nombre completo</label><input class="form-control" id="uNombre" data-i18n-ph="users.form.fullname.ph" placeholder="Nombre completo"></div>
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="users.col.email">Email</label><input class="form-control" type="email" id="uEmail" placeholder="usuario@empresa.es"></div>
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="users.form.phone">Teléfono</label><input class="form-control" type="tel" placeholder="6XX XXX XXX"></div>
     </div>
     <div id="uStep2" style="display:none">
-      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Role</label>
+      <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="modal.settings.role">Role</label>
         <select class="form-control" id="uRol" onchange="mostrarPermisosRol(this.value)">
           <option>Central Nutritionist</option>
           <option>Center Manager</option>
@@ -207,36 +207,36 @@
         </select>
         <div id="infoRol" class="mt-2 p-2 rounded" style="background:var(--sm-bg-subtle);font-size:.78rem;color:var(--sm-text-muted)">
           <i class="mdi mdi-information-outline mr-1"></i>
-          <span id="textoRol">Acceso completo. Genera y aprueba men&uacute;s basales, manages exceptions and publishes to Crownet.</span>
+          <span id="textoRol">Acceso completo. Genera y aprueba men&uacute;s basales, gestiona excepciones y publica en Crownet.</span>
         </div></div>
-      <div class="sm-section-label">Assigned centers</div>
-      <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox" checked> All centers</label></div>
+      <div class="sm-section-label" data-i18n="users.form.centers">Centros asignados</div>
+      <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox" checked> <span data-i18n="users.center.all">Todos los centros</span></label></div>
       <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox"> Colegio San Marcos</label></div>
       <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox"> Centro La Paz</label></div>
       <div class="mb-2"><label class="d-flex" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox"> Centro Montserrat</label></div>
     </div>
     <div id="uStep3" style="display:none"><div class="text-center py-3">
       <i class="mdi mdi-account-check" style="font-size:3rem;color:var(--sm-green)"></i>
-      <h6 class="mt-2">User ready to be created</h6>
+      <h6 class="mt-2" data-i18n="users.step3.ready">Usuario listo para crear</h6>
       <div class="alert-sm-ok p-3 mt-3 text-left">
-        <div style="font-size:.85rem"><strong>Name:</strong> <span id="uResNom"></span></div>
-        <div style="font-size:.85rem"><strong>Email:</strong> <span id="uResEmail"></span></div>
-        <div style="font-size:.85rem"><strong>Role:</strong> <span id="uResRol"></span></div>
-        <div class="mt-2 text-muted" style="font-size:.8rem"><i class="mdi mdi-email mr-1"></i>A welcome email with a temporary password will be sent.</div>
+        <div style="font-size:.85rem"><strong data-i18n="users.step3.name">Nombre:</strong> <span id="uResNom"></span></div>
+        <div style="font-size:.85rem"><strong data-i18n="users.step3.email.label">Email:</strong> <span id="uResEmail"></span></div>
+        <div style="font-size:.85rem"><strong data-i18n="users.step3.role.label">Rol:</strong> <span id="uResRol"></span></div>
+        <div class="mt-2 text-muted" style="font-size:.8rem"><i class="mdi mdi-email mr-1"></i><span data-i18n="users.step3.welcome">Se enviará un email de bienvenida con contraseña temporal.</span></div>
       </div>
     </div></div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-outline-secondary btn-sm" id="uBtnAnt" onclick="uAnterior()" style="display:none"><i class="mdi mdi-arrow-left"></i> Back</button>
+    <button class="btn btn-outline-secondary btn-sm" id="uBtnAnt" onclick="uAnterior()" style="display:none"><i class="mdi mdi-arrow-left"></i> <span data-i18n="users.btn.back">Atrás</span></button>
     <button class="btn btn-primary btn-sm" id="uBtnSig" onclick="uSiguiente()">Next <i class="mdi mdi-arrow-right"></i></button>
   </div>
 </div></div></div><div class="modal fade" id="modalEditUser" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
-  <div class="modal-header"><h5 class="modal-title" id="editUTitle"><i class="mdi mdi-pencil mr-2" style="color:var(--sm-green)"></i>Edit user</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
+  <div class="modal-header"><h5 class="modal-title" id="editUTitle"><i class="mdi mdi-pencil mr-2" style="color:var(--sm-green)"></i><span data-i18n="users.modal.edit.title">Editar usuario</span></h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
   <div class="modal-body">
-    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Full name</label><input class="form-control" id="editUNom"></div>
-    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600">Email</label><input class="form-control" id="editUEmail" type="email"></div>
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="users.form.fullname">Nombre completo</label><input class="form-control" id="editUNom"></div>
+    <div class="mb-3"><label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="users.col.email">Email</label><input class="form-control" id="editUEmail" type="email"></div>
     <div class="mb-3">
-      <label class="form-label" style="font-size:.85rem;font-weight:600">Role</label>
+      <label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="modal.settings.role">Role</label>
       <select class="form-control" id="editURol">
         <option>Central Nutritionist</option>
         <option>Center Manager</option>
@@ -244,9 +244,9 @@
       </select>
     </div>
     <div class="mb-3">
-      <label class="form-label" style="font-size:.85rem;font-weight:600">Centro asignado</label>
+      <label class="form-label" style="font-size:.85rem;font-weight:600" data-i18n="users.col.centro">Centro asignado</label>
       <select class="form-control" id="editUCentro">
-        <option>All centers</option>
+        <option data-i18n="users.opt.allCenters">All centers</option>
         <option>C. San Marcos</option>
         <option>C. La Paz</option>
         <option>C. Montserrat</option>
@@ -256,45 +256,45 @@
       </select>
     </div>
   </div>
-  <div class="modal-footer"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button><button class="btn btn-primary btn-sm" onclick="guardarUser()"><i class="mdi mdi-content-save"></i> Save</button></div>
+  <div class="modal-footer"><button class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="action.cancel">Cancelar</button><button class="btn btn-primary btn-sm" onclick="guardarUser()"><i class="mdi mdi-content-save"></i> <span data-i18n="action.save">Guardar</span></button></div>
 </div></div></div>
 <div class="modal fade" id="modalPermisos" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-shield-account-outline mr-1" style="color:var(--sm-green)"></i>System roles &amp; permissions</h5>
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-shield-account-outline mr-1" style="color:var(--sm-green)"></i><span data-i18n="users.modal.permisos.title">Roles y permisos del sistema</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem">
-      <p class="text-muted mb-3" style="font-size:.82rem">Check what each role can do before assigning it to a user.</p>
+      <p class="text-muted mb-3" style="font-size:.82rem" data-i18n="users.modal.permisos.desc">Comprueba qué puede hacer cada rol antes de asignarlo.</p>
       <div class="table-responsive">
         <table class="table table-sm mb-0" style="font-size:.8rem">
           <thead>
             <tr>
-              <th style="width:200px">Action</th>
+              <th style="width:200px" data-i18n="users.permisos.col.action">Acción</th>
               <th class="text-center"><span class="badge-aprobado">Central Nutritionist</span></th>
               <th class="text-center"><span class="badge-pendiente">Center Manager</span></th>
               <th class="text-center"><span class="badge-ok">Administrator</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>View global dashboard</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
-            <tr style="background:rgba(22,163,73,.03)"><td>Generate base menu</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr><td>Approve base menu</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr style="background:rgba(22,163,73,.03)"><td>Generate center menu</td><td class="text-center text-success">&check;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr><td>Edit own center's menu</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr style="background:rgba(22,163,73,.03)"><td>Approve / reject exceptions</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr><td>Request exception</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr style="background:rgba(22,163,73,.03)"><td>Publish to Crownet</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
-            <tr><td>Configure rules &amp; regulations</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
-            <tr style="background:rgba(22,163,73,.03)"><td>Manage users</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
-            <tr><td>View all centers</td><td class="text-center text-success">&check;</td><td class="text-center text-muted" style="font-size:.77rem">Own center only</td><td class="text-center text-success">&check;</td></tr>
-            <tr style="background:rgba(22,163,73,.03)"><td>Configure center parameters</td><td class="text-center text-success">&check;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td data-i18n="users.perm.viewDash">View global dashboard</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td data-i18n="users.perm.genBase">Generate base menu</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td data-i18n="users.perm.approveBase">Approve base menu</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td data-i18n="users.perm.genCenter">Generate center menu</td><td class="text-center text-success">&check;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td data-i18n="users.perm.editOwn">Edit own center's menu</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td data-i18n="users.perm.approveExcep">Approve / reject exceptions</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td data-i18n="users.perm.reqExcep">Request exception</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td data-i18n="users.perm.publish">Publish to Crownet</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td></tr>
+            <tr><td data-i18n="users.perm.configRules">Configure rules &amp; regulations</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td data-i18n="users.perm.manageUsers">Manage users</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-muted">&mdash;</td><td class="text-center text-success">&check;</td></tr>
+            <tr><td data-i18n="users.perm.viewAllCenters">View all centers</td><td class="text-center text-success">&check;</td><td class="text-center text-muted" style="font-size:.77rem" data-i18n="users.perm.ownCenterOnly">Solo su centro</td><td class="text-center text-success">&check;</td></tr>
+            <tr style="background:rgba(22,163,73,.03)"><td data-i18n="users.perm.configCenter">Configure center parameters</td><td class="text-center text-success">&check;</td><td class="text-center text-success">&check;</td><td class="text-center text-muted">&mdash;</td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="action.close">Cerrar</button>
     </div>
   </div></div>
 </div>
@@ -302,23 +302,23 @@
   <div class="modal-dialog modal-sm" role="document"><div class="modal-content">
     <div class="modal-header" style="border-bottom:none;padding-bottom:.5rem">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700">
-        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Log out
+        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i><span data-i18n="modal.logout.title">Log out</span>
       </h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">
-      Are you sure you want to log out?
+      <span data-i18n="modal.logout.body">Are you sure you want to log out?</span>
     </div>
     <div class="modal-footer" style="border-top:none;padding-top:.25rem">
       <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
       <button type="button" class="btn btn-danger btn-sm"
         onclick="$('#modalLogout').modal('hide');setTimeout(function(){window.location.href='login.html';},300)">
-        <i class="mdi mdi-logout"></i> Log out
+        <i class="mdi mdi-logout"></i><span data-i18n="modal.logout.btn"> Log out</span>
       </button>
     </div>
   </div></div>
 </div>
-<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Account settings</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Security</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Current password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">New password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Confirm password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Preferences</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Language</label><select class="form-control form-control-sm"><option selected>English</option><option>Español</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600">Email notifications</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Settings saved successfully','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Save changes</button></div></div></div></div>
+<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i><span data-i18n="modal.settings.title">Account settings</span></h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.profile">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.name">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.lastname">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.role">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.security">Security</div><div><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.currentPass">Current password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.newPass">New password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.confirmPass">Confirm password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.prefs">Preferences</div><div><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.lang">Language</label><select class="form-control form-control-sm"><option selected>English</option><option>Español</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.notif">Email notifications</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="modal.settings.cancel">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast(typeof t==='function'?t('modal.settings.saved'):'Ajustes guardados correctamente','success'),'success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i><span data-i18n="modal.settings.save"> Save changes</span></button></div></div></div></div>
 </div></div></div></div>
 <script src="assets_custom/vendors/js/vendor.bundle.base.js"></script>
 <script src="assets/js/sidebar.js?v=7" defer></script>
@@ -361,7 +361,7 @@ function uSiguiente(){
 function uAnterior(){if(uStep>1){uStep--;uRender();}}
 function uGuardar(){$("#modalNuevoUser").modal("hide");smToast("User created successfully","success");setTimeout(function(){smToast("Welcome email sent","info");},1200);}
 var permisosRol = {
-  'Central Nutritionist': 'Full access. Generates and approves base menus, manages exceptions and publishes to Crownet.',
+  'Central Nutritionist': 'Full access. Generates and approves base menus, gestiona excepciones y publica en Crownet.',
   'Center Manager': 'Restricted access to their assigned center. Can review and edit their center\'s menu and request exceptions.',
   'Administrator': 'Access to system settings, users and parameters. Does not manage menus.'
 };

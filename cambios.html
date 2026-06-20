@@ -13,7 +13,7 @@
     <span style="font-size:.95rem;font-weight:900;color:var(--sm-green);letter-spacing:.5px">Menu</span>
   </div>
 </a><ul class="nav"><li class="nav-item nav-category">Principal</li><li class="nav-item "><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li><li class="nav-item "><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li><li class="nav-item "><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title">Men&uacute; Basal</span></a></li><li class="nav-item active"><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title"><span data-i18n="cambios.title">Changes &amp; Exceptions</span></span></a></li><li class="nav-item "><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li><li class="nav-item "><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li></ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Central Nutritionist</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav><div class="main-panel"><div class="sm-topbar"><div class="sm-lang-toggle"><button class="sm-lang-btn" data-lang="es" onclick="setLang('es')">ES</button><span class="sm-lang-sep">|</span><button class="sm-lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div></div><div class="content-wrapper"><div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem"><div><h4><i class="mdi mdi-swap-horizontal mr-2" style="color:var(--sm-green)"></i><span data-i18n="cambios.title">Changes &amp; Exceptions</span></h4>
-<p class="sm-page-subtitle"><span data-i18n="cambios.subtitle">Changes &amp; Exceptions Management</span></p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><select id="filtroCambiosTipo" class="form-control form-control-sm" style="width:155px" onchange="filtrarCambios()"><option value=""><span data-i18n="cambios.filter.tipo">All types</span></option><option value="Escolar" data-i18n="tipo.escolar">School</option><option value="Hospitalario" data-i18n="tipo.hospitalario">Hospital</option><option value="3ª Edad" data-i18n="tipo.terceraEdad">Senior Care</option><option value="Empresa" data-i18n="tipo.empresa">Corporate</option></select><select id="filtroCambiosMotivo" class="form-control form-control-sm" style="width:155px" onchange="filtrarCambios()"><option value=""><span data-i18n="cambios.filter.motivo">All reasons</span></option><option value="Costo" data-i18n="cambios.motivo.costo">Cost</option><option value="Nutricional" data-i18n="cambios.motivo.nutri">Nutritional</option><option value="Sustitución" data-i18n="cambios.motivo.sust">Substitution</option><option value="Ajuste" data-i18n="cambios.motivo.ajuste">Adjustment</option><option value="Variante dieta" data-i18n="cambios.motivo.dieta">Diet variant</option></select><button class="btn btn-sm btn-outline-primary" onclick="smToast('Exportando informe...','info')"><i class="mdi mdi-download"></i> Export</button></div></div><div class="row mb-3">
+<p class="sm-page-subtitle"><span data-i18n="cambios.subtitle">Changes &amp; Exceptions Management</span></p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><select id="filtroCambiosTipo" class="form-control form-control-sm" style="width:155px" onchange="filtrarCambios()"><option value=""><span data-i18n="cambios.filter.tipo">All types</span></option><option value="Escolar" data-i18n="tipo.escolar">School</option><option value="Hospitalario" data-i18n="tipo.hospitalario">Hospital</option><option value="3ª Edad" data-i18n="tipo.terceraEdad">Senior Care</option><option value="Empresa" data-i18n="tipo.empresa">Corporate</option></select><select id="filtroCambiosMotivo" class="form-control form-control-sm" style="width:155px" onchange="filtrarCambios()"><option value=""><span data-i18n="cambios.filter.motivo">All reasons</span></option><option value="Costo" data-i18n="cambios.motivo.costo">Cost</option><option value="Nutricional" data-i18n="cambios.motivo.nutri">Nutritional</option><option value="Sustitución" data-i18n="cambios.motivo.sust">Substitution</option><option value="Ajuste" data-i18n="cambios.motivo.ajuste">Adjustment</option><option value="Variante dieta" data-i18n="cambios.motivo.dieta">Diet variant</option></select><button class="btn btn-sm btn-outline-primary" onclick="smToast('Exportando informe...','info')"><i class="mdi mdi-download"></i> <span data-i18n="action.export">Export</span></button></div></div><div class="row mb-3">
   <div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-orange"><i class="mdi mdi-alert kpi-icon"></i><div class="kpi-value text-orange" id="kpiExcPend">3</div><div class="kpi-label"><span data-i18n="cambios.kpi.excep">Pending exceptions</span></div><div class="kpi-trend" style="color:var(--sm-danger)"><i class="mdi mdi-alert-circle-outline"></i> <span data-i18n="cambios.kpi.excep.trend">Require your decision</span></div></div></div>
   <div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-blue"><i class="mdi mdi-swap-horizontal kpi-icon"></i><div class="kpi-value text-blue" id="kpiCambiosPend">2</div><div class="kpi-label"><span data-i18n="cambios.kpi.cambios">Pending center changes</span></div><div class="kpi-trend text-muted"><i class="mdi mdi-clock-outline"></i> <span data-i18n="cambios.kpi.cambios.trend">Proposed by centers</span></div></div></div>
   <div class="col-md-3 col-sm-6 mb-3"><div class="kpi-card kpi-green"><i class="mdi mdi-check-circle kpi-icon"></i><div class="kpi-value text-green">8</div><div class="kpi-label"><span data-i18n="cambios.kpi.auto">Auto-approved</span></div><div class="kpi-trend text-success"><i class="mdi mdi-robot"></i> <span data-i18n="cambios.kpi.auto.trend">By AI this week</span></div></div></div>
@@ -42,10 +42,10 @@
   <tr data-tipo-centro="Hospitalario" data-motivo="Costo">
     <td><span class="badge-critico" style="font-size:.72rem" data-i18n="sev.critica">CRITICAL</span></td>
     <td style="font-size:.81rem"><strong>H. La Paz</strong></td>
-    <td style="font-size:.79rem;color:var(--sm-text-muted)">Hospital</td>
-    <td><span class="badge badge-danger" style="font-size:.7rem">Cost</span></td>
-    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Menu week 22</td>
-    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">+8% above target — blocks publication</td>
+    <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.hospitalario">Hospital</td>
+    <td><span class="badge badge-danger" style="font-size:.7rem" data-i18n="cambios.motivo.costo">Cost</span></td>
+    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal" data-i18n="cambios.exc.menuWeek22">Menu week 22</td>
+    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal" data-i18n="cambios.exc.row1.detail">+8% above target — blocks publication</td>
     <td style="font-size:.79rem;text-align:center;white-space:nowrap">26/05</td>
     <td style="text-align:center;padding-left:.25rem;padding-right:.25rem">
       <div class="d-flex justify-content-center" style="gap:.3rem">
@@ -59,9 +59,9 @@
     <td><span class="badge-moderado" style="font-size:.72rem" data-i18n="sev.moderada">MODERATE</span></td>
     <td style="font-size:.81rem"><strong>C. El Pinar</strong></td>
     <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td>
-    <td><span class="badge badge-warning" style="font-size:.7rem">Cost</span></td>
-    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Menu week 22</td>
-    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">+3% above target (€3.30 vs €3.20)</td>
+    <td><span class="badge badge-warning" style="font-size:.7rem" data-i18n="cambios.motivo.costo">Cost</span></td>
+    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal" data-i18n="cambios.exc.menuWeek22">Menu week 22</td>
+    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal" data-i18n="cambios.exc.row2.detail">+3% above target (€3.30 vs €3.20)</td>
     <td style="font-size:.79rem;text-align:center;white-space:nowrap">27/05</td>
     <td style="text-align:center;padding-left:.25rem;padding-right:.25rem">
       <div class="d-flex justify-content-center" style="gap:.3rem">
@@ -75,9 +75,9 @@
     <td><span class="badge-moderado" style="font-size:.72rem" data-i18n="sev.moderada">MODERATE</span></td>
     <td style="font-size:.81rem"><strong>C. Nou Barris</strong></td>
     <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td>
-    <td><span class="badge badge-warning" style="font-size:.7rem">Nutri.</span></td>
-    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Menu week 22</td>
-    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">+11% caloric intake above target — nutritional deviation</td>
+    <td><span class="badge badge-warning" style="font-size:.7rem" data-i18n="cambios.badge.nutri">Nutri.</span></td>
+    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal" data-i18n="cambios.exc.menuWeek22">Menu week 22</td>
+    <td style="font-size:.79rem;word-wrap:break-word;white-space:normal" data-i18n="cambios.exc.row3.detail">+11% caloric intake above target — nutritional deviation</td>
     <td style="font-size:.79rem;text-align:center;white-space:nowrap">27/05</td>
     <td style="text-align:center;padding-left:.25rem;padding-right:.25rem">
       <div class="d-flex justify-content-center" style="gap:.3rem">
@@ -113,7 +113,7 @@
 <tbody>
   <tr data-tipo-centro="3ª Edad" data-motivo="Substitution">
     <td style="font-size:.81rem"><strong>Res. Los Pinos</strong></td>
-    <td style="font-size:.79rem;color:var(--sm-text-muted)">Senior Care</td>
+    <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.terceraEdad">Senior Care</td>
     <td style="font-size:.79rem" data-i18n="cambios.motivo.sust">Substitution</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Merluza al vapor</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Dorada a la plancha</td>
@@ -128,7 +128,7 @@
   </tr>
   <tr data-tipo-centro="Hospitalario" data-motivo="Ajuste">
     <td style="font-size:.81rem"><strong>H. San Juan</strong></td>
-    <td style="font-size:.79rem;color:var(--sm-text-muted)">Hospital</td>
+    <td style="font-size:.79rem;color:var(--sm-text-muted)" data-i18n="tipo.hospitalario">Hospital</td>
     <td style="font-size:.79rem" data-i18n="cambios.motivo.ajuste">Side adjustment</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Patatas fritas</td>
     <td style="font-size:.79rem;word-wrap:break-word;white-space:normal">Verduras asadas</td>
@@ -157,9 +157,9 @@
       <thead><tr><th data-i18n="col.centro">Center</th><th data-i18n="col.tipo">Type</th><th data-i18n="cambios.col.motivo">Reason</th><th data-i18n="cambios.col.detalle">Detail</th><th data-i18n="col.fecha">Date</th><th data-i18n="cambios.col.impacto">Cost impact</th><th></th></tr></thead>
       <tbody>
         <tr data-tipo-centro="3ª Edad" data-motivo="Substitution"><td><strong>Residencia Los Pinos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.terceraEdad">Senior Care</td><td data-i18n="cambios.motivo.sust">Substitution</td><td style="font-size:.82rem">Merluza → Dorada (disponibilidad)</td><td style="font-size:.82rem">25/05/2026</td><td class="text-warning">+€0.05</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
-        <tr data-tipo-centro="Hospitalario" data-motivo="Ajuste"><td><strong>Hospital San Juan</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.hospitalario">Hospital</td><td data-i18n="cambios.motivo.costo">Cost adjustment</td><td style="font-size:.82rem">Side dish optimization week 22</td><td style="font-size:.82rem">25/05/2026</td><td class="text-success">-€0.12</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
-        <tr data-tipo-centro="Escolar" data-motivo="Variante dieta"><td><strong>C. Montserrat</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td><td data-i18n="cambios.motivo.dieta">Diet variant</td><td style="font-size:.82rem">New lactose-free variant generated</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-montserrat.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
-        <tr data-tipo-centro="Escolar" data-motivo="Ajuste"><td><strong>C. San Marcos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td><td data-i18n="cambios.motivo.nutri">Nutritional adjustment</td><td style="font-size:.82rem">Friday macronutrient rebalance</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-sanmarcos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="Hospitalario" data-motivo="Ajuste"><td><strong>Hospital San Juan</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.hospitalario">Hospital</td><td data-i18n="cambios.motivo.costo">Cost adjustment</td><td style="font-size:.82rem" data-i18n="cambios.auto.row2.detail">Side dish optimization week 22</td><td style="font-size:.82rem">25/05/2026</td><td class="text-success">-€0.12</td><td><a href="menu-detalle-lospinos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="Escolar" data-motivo="Variante dieta"><td><strong>C. Montserrat</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td><td data-i18n="cambios.motivo.dieta">Diet variant</td><td style="font-size:.82rem" data-i18n="cambios.auto.row3.detail">New lactose-free variant generated</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-montserrat.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
+        <tr data-tipo-centro="Escolar" data-motivo="Ajuste"><td><strong>C. San Marcos</strong></td><td style="font-size:.82rem;color:var(--sm-text-muted)" data-i18n="tipo.escolar">School</td><td data-i18n="cambios.motivo.nutri">Nutritional adjustment</td><td style="font-size:.82rem" data-i18n="cambios.auto.row4.detail">Friday macronutrient rebalance</td><td style="font-size:.82rem">24/05/2026</td><td class="text-success">€0.00</td><td><a href="menu-detalle-sanmarcos.html" class="btn btn-sm btn-outline-primary btn-sm"><i class="mdi mdi-eye"></i></a></td></tr>
       </tbody>
     </table>
   </div>
@@ -169,22 +169,22 @@
 <div class="modal fade" id="modalDetalleExc" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document"><div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-orange)"></i>Exception detail</h5>
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-orange)"></i><span data-i18n="cambios.modal.title">Exception detail</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem">
-      <div class="mb-2"><span class="text-muted" style="font-size:.78rem">Centro</span><div id="excDetCentro" class="font-weight-700"></div></div>
-      <div class="mb-2"><span class="text-muted" style="font-size:.78rem">Type / Severity</span><div id="excDetTipo"></div></div>
-      <div class="mb-3"><span class="text-muted" style="font-size:.78rem">Description</span><div id="excDetDesc" class="p-2 rounded mt-1" style="background:var(--sm-bg-subtle);font-size:.82rem"></div></div>
-      <div class="mb-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Nutritionist notes (optional)</label>
-        <textarea class="form-control form-control-sm" rows="2" id="excObs" placeholder="E.g.: approved for seasonality, review next week…"></textarea>
+      <div class="mb-2"><span class="text-muted" style="font-size:.78rem" data-i18n="col.centro">Centro</span><div id="excDetCentro" class="font-weight-700"></div></div>
+      <div class="mb-2"><span class="text-muted" style="font-size:.78rem" data-i18n="cambios.modal.tipoSev">Type / Severity</span><div id="excDetTipo"></div></div>
+      <div class="mb-3"><span class="text-muted" style="font-size:.78rem" data-i18n="cambios.modal.desc">Description</span><div id="excDetDesc" class="p-2 rounded mt-1" style="background:var(--sm-bg-subtle);font-size:.82rem"></div></div>
+      <div class="mb-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="cambios.modal.obs">Nutritionist notes (optional)</label>
+        <textarea class="form-control form-control-sm" rows="2" id="excObs" data-i18n-ph="cambios.modal.obsPh" placeholder="E.g.: approved for seasonality, review next week…"></textarea>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
-      <a id="excDetMenuLink" href="#" class="btn btn-outline-primary btn-sm"><i class="mdi mdi-food-fork-drink mr-1"></i>View menu</a>
-      <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalDetalleExc').modal('hide');smToast('Exception rejected.','warning')"><i class="mdi mdi-close"></i> Reject</button>
-      <button type="button" class="btn btn-success btn-sm" onclick="$('#modalDetalleExc').modal('hide');smToast('Exception approved. Menu can continue.','success')"><i class="mdi mdi-check"></i> Approve</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="action.close">Close</button>
+      <a id="excDetMenuLink" href="#" class="btn btn-outline-primary btn-sm"><i class="mdi mdi-food-fork-drink mr-1"></i><span data-i18n="cambios.modal.viewMenu">View menu</span></a>
+      <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalDetalleExc').modal('hide');smToast('Exception rejected.','warning')"><i class="mdi mdi-close"></i> <span data-i18n="action.reject">Reject</span></button>
+      <button type="button" class="btn btn-success btn-sm" onclick="$('#modalDetalleExc').modal('hide');smToast('Exception approved. Menu can continue.','success')"><i class="mdi mdi-check"></i> <span data-i18n="action.approve">Approve</span></button>
     </div>
   </div></div></div>
 
@@ -192,17 +192,17 @@
   <div class="modal-dialog modal-sm" role="document"><div class="modal-content">
     <div class="modal-header" style="border-bottom:none;padding-bottom:.5rem">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700">
-        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i>Log out
+        <i class="mdi mdi-logout mr-1" style="color:var(--sm-danger)"></i><span data-i18n="modal.logout.title">Log out</span>
       </h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
     <div class="modal-body" style="font-size:.85rem;padding-top:.25rem">
-      Are you sure you want to log out?
+      <span data-i18n="modal.logout.body">Are you sure you want to log out?</span>
     </div>
     <div class="modal-footer" style="border-top:none;padding-top:.25rem">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="modal.logout.cancel">Cancel</button>
       <button type="button" class="btn btn-danger btn-sm" onclick="$('#modalLogout').modal('hide');setTimeout(function(){window.location.href='login.html';},300)">
-        <i class="mdi mdi-logout"></i> Log out
+        <i class="mdi mdi-logout"></i><span data-i18n="modal.logout.btn"> Log out</span>
       </button>
     </div>
   </div></div>
@@ -210,7 +210,7 @@
 </div></div>
 </div>
 
-<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i>Account settings</h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Security</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Current password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">New password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Confirm password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem">Preferences</div><div><label class="form-label" style="font-size:.78rem;font-weight:600">Language</label><select class="form-control form-control-sm"><option selected>English</option><option>Español</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600">Email notifications</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast('Settings saved successfully','success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i> Save changes</button></div></div></div></div>
+<div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i><span data-i18n="modal.settings.title">Account settings</span></h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.profile">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.name">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.lastname">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.role">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.security">Security</div><div><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.currentPass">Current password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.newPass">New password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.confirmPass">Confirm password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.prefs">Preferences</div><div><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.lang">Language</label><select class="form-control form-control-sm"><option selected>English</option><option>Español</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.notif">Email notifications</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="modal.settings.cancel">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast(typeof t==='function'?t('modal.settings.saved'):'Ajustes guardados correctamente','success'),'success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i><span data-i18n="modal.settings.save"> Save changes</span></button></div></div></div></div>
 </div></div></div></div>
 <script src="assets_custom/vendors/js/vendor.bundle.base.js"></script>
 <script src="assets/js/sidebar.js?v=7" defer></script>
