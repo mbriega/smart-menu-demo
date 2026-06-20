@@ -668,6 +668,13 @@
       'det.btn.replaceDish': 'Sustituir plato',
       'det.legend.label': 'Leyenda:',
       'det.legend.alergActive': 'Alérgeno detectado / incidencia activa',
+      'legend.soup': 'Sopa',
+      'legend.vegetables': 'Verdura',
+      'legend.carbs': 'Cereal',
+      'legend.protein': 'Proteína',
+      'legend.legumes': 'Legumbre',
+      'legend.fruit': 'Fruta',
+      'legend.dairy': 'Lácteo',
       'det.nutri.weeklyTitle': 'Análisis nutricional semanal',
       'det.nutri.col.nutrient': 'Nutriente',
       'det.nutri.col.avg': 'Media',
@@ -1799,6 +1806,13 @@
       'det.btn.replaceDish': 'Replace dish',
       'det.legend.label': 'Legend:',
       'det.legend.alergActive': 'Allergen detected / active issue',
+      'legend.soup': 'Soup',
+      'legend.vegetables': 'Vegetable',
+      'legend.carbs': 'Cereal',
+      'legend.protein': 'Protein',
+      'legend.legumes': 'Legume',
+      'legend.fruit': 'Fruit',
+      'legend.dairy': 'Dairy',
       'det.nutri.weeklyTitle': 'Weekly nutritional analysis',
       'det.nutri.col.nutrient': 'Nutrient',
       'det.nutri.col.avg': 'Avg',
@@ -2266,6 +2280,61 @@
     return (_dict[_lang] || _dict.en)[k] || (_dict.en)[k] || k;
   };
   window._i18nEs = _dict.es;
+  window.dishTypeMap = {
+    'dish.sopa-fideos':'soup','dish.crema-calabaza':'soup','dish.crema-verduras':'soup',
+    'dish.caldo-pollo':'soup','dish.sopa-castellana':'soup','dish.sopa-ave-fideo':'soup','dish.gazpacho':'soup',
+    'dish.ensalada-verde':'vegetables','dish.verduras-salteadas':'vegetables','dish.ensalada':'vegetables',
+    'dish.ensalada-mixta':'vegetables','dish.ensalada-variada':'vegetables','dish.ensalada-lechuga':'vegetables',
+    'dish.ensalada-maiz':'vegetables','dish.ensalada-aceitunas':'vegetables','dish.coliflor-rehogada':'vegetables',
+    'dish.macarrones-bolonesa':'carbs','dish.patatas-vapor':'carbs','dish.patatas-vapor2':'carbs',
+    'dish.pure-patata':'carbs','dish.arroz-blanco':'carbs','dish.patatas-asadas':'carbs',
+    'dish.cous-cous':'carbs','dish.arroz-integral-tomate':'carbs',
+    'dish.pollo-asado':'protein','dish.merluza-vapor':'protein','dish.ternera-estofada':'protein',
+    'dish.pechuga-plancha':'protein','dish.bacalao-horno':'protein','dish.merluza-horno':'protein',
+    'dish.lomo-cerdo':'protein','dish.tortilla-francesa':'protein','dish.tortilla-calabacin':'protein',
+    'dish.albondigas-tomate':'protein','dish.ragout-pollo':'protein','dish.tilapia-guisada':'protein',
+    'dish.lentejas-calabaza':'legumes','dish.garbanzos-sofrito':'legumes',
+    'dish.fruta-tiempo':'fruit','dish.fruta-temporada':'fruit','dish.manzana':'fruit',
+    'dish.naranja':'fruit','dish.sandia':'fruit','dish.compota-manzana':'fruit','dish.gelatina':'fruit',
+    'dish.yogur-natural':'dairy','dish.flan-huevo':'dairy'
+  };
+  window.getDishType = function(nombre) {
+    var m = {
+      'Crema de verduras':'soup','Lentejas con calabaza':'legumes','Coliflor rehogada':'vegetables',
+      'Arroz integral con tomate':'carbs','Sopa de ave con fideo integral':'soup',
+      'Judías verdes rehogadas':'legumes','Espirales integrales carbonara':'carbs',
+      'Crema de calabacín':'soup','Calabaza gratinada':'vegetables','Judías pintas estofadas':'legumes',
+      'Hamburguesa soja tomate':'protein','Salmón a la naranja':'protein',
+      'Jamoncitos de pollo al ajillo':'protein','Arroz al horno':'carbs',
+      'Tortilla de patatas':'protein','Patatas panadera':'carbs',
+      'Verduras asadas con orégano':'vegetables','Ensalada lechuga y cebolla':'vegetables',
+      'Ensalada de tomate y maíz':'vegetables','Brócoli rehogado':'vegetables',
+      'Macarrones integrales amatriciana':'carbs','Patatas guisadas con pollo':'carbs',
+      'Judías blancas ECO guisadas':'legumes','Arroz ECO tres delicias':'carbs',
+      'Magro guisado a la jardinera':'protein','Bonito a la plancha encebollado':'protein',
+      'Cous cous completo':'carbs','Revuelto de jamón y queso':'protein','Merluza rebozada':'protein',
+      'Abadejo enharinado frito':'protein','Patatas asadas':'carbs',
+      'Ensalada lechuga y tomate':'vegetables','Ensalada lechuga y zanahoria':'vegetables',
+      'Ensalada lechuga y maíz':'vegetables','Ensalada lechuga, maíz y aceitunas':'vegetables',
+      'Ensalada lechuga, tomate y remolacha':'vegetables','Ensalada de tomate':'vegetables',
+      'Fruta temporada · pan':'fruit','Fruta temporada · pan integral':'fruit',
+      'Yogur natural s/azúcar · pan':'dairy','Arroz con tomate':'carbs',
+      'Judías verdes con patatas':'legumes','Revuelto de patatas y calabacín':'carbs',
+      'Espaguetis integrales verdura':'carbs','Coliflor al vapor con sofrito':'vegetables',
+      'Verduras asadas':'vegetables','Patatas fritas':'carbs',
+      'Cous cous':'carbs'
+    };
+    if (m[nombre]) return m[nombre];
+    var n = nombre.toLowerCase();
+    if (n.indexOf('sopa')>=0||n.indexOf('caldo')>=0||n.indexOf('crema')>=0||n.indexOf('gazpacho')>=0) return 'soup';
+    if (n.indexOf('judías')>=0||n.indexOf('judias')>=0||n.indexOf('lentejas')>=0||n.indexOf('garbanzos')>=0) return 'legumes';
+    if (n.indexOf('ensalada')>=0||n.indexOf('verdura')>=0||n.indexOf('brócoli')>=0||n.indexOf('calabaza')>=0) return 'vegetables';
+    if (n.indexOf('arroz')>=0||n.indexOf('pasta')>=0||n.indexOf('macarrones')>=0||n.indexOf('espagueti')>=0||n.indexOf('espiral')>=0||n.indexOf('patata')>=0||n.indexOf('cous')>=0) return 'carbs';
+    if (n.indexOf('fruta')>=0||n.indexOf('manzana')>=0||n.indexOf('naranja')>=0||n.indexOf('sandía')>=0||n.indexOf('compota')>=0) return 'fruit';
+    if (n.indexOf('yogur')>=0||n.indexOf('flan')>=0||n.indexOf('gelatina')>=0||n.indexOf('lácteo')>=0) return 'dairy';
+    return 'protein';
+  };
+
 
   window.setLang = function (l) {
     localStorage.setItem('smLang', l);

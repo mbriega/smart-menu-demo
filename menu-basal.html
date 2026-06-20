@@ -156,6 +156,7 @@
           <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(22,163,73,.12);border:1.5px solid rgba(22,163,73,.4)"></span><span data-i18n="basal.legend.ok">Dentro de par&aacute;metros</span></span>
           <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(232,119,34,.12);border:1.5px solid rgba(232,119,34,.5)"></span><span data-i18n="basal.legend.desv">Desviaci&oacute;n nutricional</span></span>
           <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(220,53,69,.12);border:1.5px solid rgba(220,53,69,.5)"></span><span data-i18n="basal.legend.alerg">Al&eacute;rgeno detectado</span></span>
+          <span style="color:#dee2e6;margin-left:.2rem">|</span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#17a2b8"></span><span data-i18n="legend.soup">Sopa</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#28a745"></span><span data-i18n="legend.vegetables">Verdura</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#fd7e14"></span><span data-i18n="legend.carbs">Cereal</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dc3545"></span><span data-i18n="legend.protein">Proteína</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#6f42c1"></span><span data-i18n="legend.legumes">Legumbre</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span data-i18n="legend.fruit">Fruta</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#007bff"></span><span data-i18n="legend.dairy">Lácteo</span></span>
         </div>
       </div>
 
@@ -767,7 +768,7 @@ function _renderServicioRows(rows, sem, sectionLabel, sectionColor, dias) {
   rows.forEach(function(row, rIdx) {
     html += '<tr><td style="padding-left:1.2rem">'+basalPlatoLabel(row.plato)+'</td>';
     row.dias.forEach(function(plato, dIdx) {
-      html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')"><div class="menu-cell ok">'+plato+'</div></td>';
+      html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')"><div class="menu-cell ok" data-food-type="'+getDishType(plato)+'">'+plato+'</div></td>';
     });
     html += '</tr>';
   });
@@ -809,7 +810,7 @@ function renderTabla(sem) {
               + '</select></td>';
       } else {
         html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')">'
-              + '<div class="menu-cell '+cellClass+'">'+plato+'</div></td>';
+              + '<div class="menu-cell '+cellClass+'" data-food-type="'+getDishType(plato)+'">'+plato+'</div></td>';
       }
     });
     html += '</tr>';
