@@ -750,10 +750,22 @@ var menuBasalResEscDB = {
 };
 
 // ── RENDER TABLA ──────────────────────────────────────────────────────────────
+
+// Translate basal menu row service labels
+function basalPlatoLabel(p) {
+  var _m = {
+    'Desayuno': t('basal.plato.breakfast'), 'Breakfast': t('basal.plato.breakfast'),
+    'First course': t('det.srv.first'), 'Second course': t('det.srv.second'),
+    'Side dish': t('det.srv.side'), 'Dessert': t('det.srv.dessert'),
+    'Dessert/Bread': t('basal.plato.dessertBread'),
+    'Postre': t('basal.plato.dessert'), 'Plato único': t('basal.plato.single')
+  };
+  return _m[p] || p;
+}
 function _renderServicioRows(rows, sem, sectionLabel, sectionColor, dias) {
   var html = '<tr><td colspan="6" style="background:'+sectionColor+';padding:.3rem .75rem;border-bottom:1px solid rgba(0,0,0,.07)"><strong style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em">'+sectionLabel+'</strong></td></tr>';
   rows.forEach(function(row, rIdx) {
-    html += '<tr><td style="padding-left:1.2rem">'+row.plato+'</td>';
+    html += '<tr><td style="padding-left:1.2rem">'+basalPlatoLabel(row.plato)+'</td>';
     row.dias.forEach(function(plato, dIdx) {
       html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')"><div class="menu-cell ok">'+plato+'</div></td>';
     });
@@ -783,7 +795,7 @@ function renderTabla(sem) {
 
   var data = menuBasalDB[sem];
   data.rows.forEach(function(row, rIdx) {
-    html += '<tr><td>' + row.plato + '</td>';
+    html += '<tr><td>' + basalPlatoLabel(row.plato) + '</td>';
     row.dias.forEach(function(plato, dIdx) {
       var db = basalRecetasDB[plato];
       var cellClass = 'ok';

@@ -402,7 +402,7 @@ function abrirCentro(id) {
   ocCurrentTab = 'ficha';
   var c = centrosDB[id];
   document.getElementById('ocTitle').textContent = c.nombre;
-  document.getElementById('ocSubtitle').textContent = c.tipo + ' · ' + c.zona;
+  document.getElementById('ocSubtitle').textContent = (typeof tipoLabel==='function'?tipoLabel(c.tipo):c.tipo) + ' · ' + c.zona;
   switchTab('ficha');
   $('#modalFichaCentro').modal('show');
 }
@@ -431,7 +431,7 @@ function renderFicha(c) {
   var semColor = c.semaforo==='verde'?'#16A349':c.semaforo==='ambar'?'#E87722':'#dc3545';
   var html = '<div class="d-flex align-items-center mb-3" style="gap:.5rem">';
   html += '<span style="width:10px;height:10px;border-radius:50%;background:'+semColor+';display:inline-block;flex-shrink:0"></span>';
-  html += '<span class="sm-centro-badge"><i class="mdi mdi-office-building" style="font-size:.85rem"></i>'+c.tipo+'</span>';
+  html += '<span class="sm-centro-badge"><i class="mdi mdi-office-building" style="font-size:.85rem"></i>'+(typeof tipoLabel==='function'?tipoLabel(c.tipo):c.tipo)+'</span>';
   html += '<span style="font-size:.78rem;color:var(--sm-text-muted)">Created: '+c.fecha_alta+'</span>';
   html += '</div>';
 
