@@ -99,6 +99,7 @@
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(3,this)"><span data-i18n="basal.sem">Sem</span> 3</button>
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)"><span data-i18n="basal.sem">Sem</span> 4</button>
         </div>
+        <button class="btn btn-sm btn-outline-secondary" onclick="$('#modalMensual').modal('show')"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
         <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> <span data-i18n="basal.btn.genCentros">Generate center menus</span></button>
         <button class="btn btn-sm btn-outline-primary ml-1" onclick="exportarBasal()"><i class="mdi mdi-file-excel-outline"></i> Excel</button>
@@ -138,7 +139,6 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
           <p class="text-muted mb-0" style="font-size:.85rem"><i class="mdi mdi-cursor-default-click mr-1"></i><span data-i18n="basal.hint">Haz clic en cualquier plato para ver el detalle</span></p>
           <div class="d-flex" style="gap:.5rem">
-            <button class="btn btn-sm btn-outline-secondary" onclick="$('#modalMensual').modal('show')"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
             <button class="btn btn-sm btn-outline-primary" id="btnEditarTabla" onclick="toggleEdicionBasal(this)"><i class="mdi mdi-pencil"></i> <span data-i18n="basal.edit">Edit dishes</span></button>
             <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerating base menu with AI…','info');setTimeout(function(){smToast('Menu regenerated. Review and approve.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
           </div>
@@ -831,10 +831,8 @@ function renderTabla(sem) {
         cellClass = db.alerg.split(',').length >= 2 ? 'danger' : 'warning';
       }
       if (modoEdicionBasal) {
-        html += '<td><select class="form-control form-control-sm p-0" style="font-size:.78rem;height:26px;border-color:rgba(0,0,0,.15)" onchange="editarPlatoDirecto('+sem+','+rIdx+','+dIdx+',this.value)">'
-              + '<option value="'+plato+'" selected>'+plato+'</option>'
-              + generarOpcionesReceta(plato)
-              + '</select></td>';
+        html += '<td onclick="editarCeldaBasal('+sem+','+rIdx+','+dIdx+',\''+plato.replace(/'/g,"\\'")+'\')" style="cursor:pointer">'
+              + '<div class="menu-cell '+cellClass+'" data-food-type="'+getDishType(plato)+'" style="border:1.5px dashed rgba(22,163,73,.5)">'+plato+'</div></td>';
       } else {
         html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')">'
               + '<div class="menu-cell '+cellClass+'" data-food-type="'+getDishType(plato)+'">'+plato+'</div></td>';
@@ -943,10 +941,12 @@ function renderBasalCosto(sem) {
   var totalSem=daily.reduce(function(a,d){return a+d.total;},0);
   var mediaDay=daily.length?totalSem/daily.length:0;
   var onTarget=daily.filter(function(d){return d.total<=TARGET;}).length;
+  var monthlyProj = totalSem * 4;
   var html='<div class="row mb-3">';
-  html+='<div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+mediaDay.toFixed(2)+'</div><div class="kpi-label" data-i18n="basal.kpi.avgDay">Avg cost / day</div></div></div>';
-  html+='<div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+totalSem.toFixed(2)+'</div><div class="kpi-label" data-i18n="basal.kpi.weekTotal">Weekly total / diner</div></div></div>';
-  html+='<div class="col-4"><div class="kpi-card '+(onTarget>=4?'kpi-green':'kpi-red')+' p-3 text-center"><div class="kpi-value '+(onTarget>=4?'text-green':'text-danger')+'" style="font-size:1.4rem">'+onTarget+'/5</div><div class="kpi-label">Days within target (€'+TARGET.toFixed(2)+')</div></div></div>';
+  html+='<div class="col-3"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+mediaDay.toFixed(2)+'</div><div class="kpi-label" data-i18n="basal.kpi.avgDay">Avg cost / day</div></div></div>';
+  html+='<div class="col-3"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€'+totalSem.toFixed(2)+'</div><div class="kpi-label" data-i18n="basal.kpi.weekTotal">Weekly total / diner</div></div></div>';
+  html+='<div class="col-3"><div class="kpi-card kpi-blue p-3 text-center"><div class="kpi-value text-blue" style="font-size:1.4rem">€'+monthlyProj.toFixed(2)+'</div><div class="kpi-label" data-i18n="cost.kpi.monthlyProj">Proyección mensual/comensal</div></div></div>';
+  html+='<div class="col-3"><div class="kpi-card '+(onTarget>=4?'kpi-green':'kpi-red')+' p-3 text-center"><div class="kpi-value '+(onTarget>=4?'text-green':'text-danger')+'" style="font-size:1.4rem">'+onTarget+'/5</div><div class="kpi-label">Days within target (€'+TARGET.toFixed(2)+')</div></div></div>';
   html+='</div>';
   html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Day</th><th>Service</th><th>No. dishes</th><th class="text-center">Unit cost</th><th class="text-center">Target</th><th class="text-center">Status</th></tr></thead><tbody style="line-height:2">';
   daily.forEach(function(d){
@@ -980,6 +980,7 @@ function renderBasalAlergenos(sem) {
 
 // ── ACCIONES PLATO ────────────────────────────────────────────────────────────
 var _sustBasalNombre='',_sustBasalServicio='';
+var _sustBasalMode='allergen',_sustBasalCelda=null;
 
 function verPlatoBasal(nombre, dia) {
   if (modoEdicionBasal || nombre === '—') return;
@@ -1061,7 +1062,24 @@ function seleccionarSustituto(nombre){
     c.style.borderColor=isSelected?'rgba(22,163,74,.4)':'var(--sm-border)';
   });
 }
+function editarCeldaBasal(sem,rIdx,dIdx,plato){
+  _sustBasalMode='cell';
+  _sustBasalCelda={sem:sem,rIdx:rIdx,dIdx:dIdx};
+  var mEl=document.getElementById('sustBasalMotivoTexto');
+  if(mEl)mEl.textContent=typeof t==='function'?t('sust.editReason'):'Cambio manual de plato';
+  var aEl=document.getElementById('sustPlatoAfectado');
+  if(aEl)aEl.value=plato;
+  document.getElementById('sustBasalImpactoCosto').value='';
+  _sustSustituto='';_sustFiltroActivo='all';
+  document.querySelectorAll('#modalSustituir .sust-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter==='all');});
+  var stEl=document.getElementById('sustIAStatus');if(stEl)stEl.innerHTML='';
+  var qEl=document.getElementById('sustAIQuery');if(qEl)qEl.value='';
+  renderSustResultados(_sustPool);
+  $('#modalSustituir').modal('show');
+}
 function abrirSustituirBasal(nombre,servicio){
+  _sustBasalMode='allergen';
+  _sustBasalCelda=null;
   $('#modalPlato').modal('hide');
   nombre=nombre||_sustBasalNombre||'';servicio=servicio||_sustBasalServicio||'';
   var db=basalRecetasDB[nombre]||{};
@@ -1080,6 +1098,11 @@ function abrirSustituirBasal(nombre,servicio){
 function confirmarSustBasal(){
   var sust=_sustSustituto||'';
   if(!sust){smToast(typeof t==='function'?t('sust.toast.selectFirst'):'Selecciona un plato sustituto','warning');return;}
+  if(_sustBasalMode==='cell'&&_sustBasalCelda){
+    var ctx=_sustBasalCelda;
+    editarPlatoDirecto(ctx.sem,ctx.rIdx,ctx.dIdx,sust);
+    _sustBasalCelda=null;
+  }
   smToast((typeof t==='function'?t('sust.toast.confirmed'):'Sustitución confirmada')+': '+sust,'success');
   $('#modalSustituir').modal('hide');
 }

@@ -385,7 +385,8 @@ function ensureModalFicha() {
     '<button type="button" class="close" data-dismiss="modal" style="margin-top:-.25rem"><span>&times;</span></button></div>' +
     '<div class="d-flex w-100" style="border-bottom:1px solid var(--sm-border);margin:0 -1rem;padding:0 1rem;margin-top:.5rem">' +
     '<div class="sm-offcanvas-tab active" id="tab-ficha" onclick="switchTab(\'ficha\')" style="cursor:pointer">'+(typeof t==='function'?t('centros.tab.profile'):'Center profile')+'</div>' +
-    '<div class="sm-offcanvas-tab" id="tab-config" onclick="switchTab(\'config\')" style="cursor:pointer">'+(typeof t==='function'?t('centros.tab.config'):'Configuration')+'</div>' +
+    '<div class="sm-offcanvas-tab" id="tab-config" onclick="switchTab(\'config\')" style="cursor:pointer">'+(typeof t==='function'?t('centros.tab.configCrownet'):'Config. CrowNet')+'</div>' +
+    '<div class="sm-offcanvas-tab" id="tab-vorare" onclick="switchTab(\'vorare\')" style="cursor:pointer">'+(typeof t==='function'?t('centros.tab.configVorare'):'Config. Vorare')+'</div>' +
     '<div class="sm-offcanvas-tab" id="tab-historial" onclick="switchTab(\'historial\')" style="cursor:pointer">'+(typeof t==='function'?t('centros.tab.history'):'History')+'</div>' +
     '</div></div>' +
     '<div class="modal-body" id="ocBody" style="max-height:65vh;overflow-y:auto;padding:1.25rem"></div>' +
@@ -418,8 +419,9 @@ function cerrarCentro() {
 
 function switchTab(tab) {
   ocCurrentTab = tab;
-  ['ficha','config','historial'].forEach(function(t) {
-    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  ['ficha','config','vorare','historial'].forEach(function(t) {
+    var el = document.getElementById('tab-'+t);
+    if(el) el.classList.toggle('active', t===tab);
   });
   var c = centrosDB[ocCurrentId];
   var body = document.getElementById('ocBody');
@@ -427,6 +429,8 @@ function switchTab(tab) {
     body.innerHTML = renderFicha(c);
   } else if (tab === 'config') {
     body.innerHTML = renderConfig(c);
+  } else if (tab === 'vorare') {
+    body.innerHTML = renderConfigVorare(c);
   } else {
     body.innerHTML = renderHistorial(c);
   }
@@ -542,43 +546,39 @@ function renderConfig(c) {
   html += '</div>';
   html += '</div>';
 
+  return html;
+}
+
+function renderConfigVorare(c) {
+  var html = '<div class="sm-section-block">';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.ai.params.manual'):'Parámetros manuales nutricionista')+'</div>';
+  html += '<p style="font-size:.78rem;color:var(--sm-text-muted);margin-bottom:.5rem">'+(typeof t==="function"?t('centros.ai.params.placeholder'):'Ej: Evitar cerdo en miércoles. Máximo 2 días de pescado. Sin fritos en diabéticos...')+'</p>';
+  html += '<textarea class="form-control form-control-sm mb-3" rows="5" id="oc-ai-params" placeholder="'+(typeof t==="function"?t('centros.ai.params.placeholder'):'Ej: Evitar cerdo en miércoles. Máximo 2 días de pescado. Sin fritos en diabéticos...')+'">'+( c.ai_params || '')+'</textarea>';
+  html += '</div>';
+
   html += '<div class="sm-section-block">';
-  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.ai.section'):'Inteligencia Artificial')+'</div>';
-  html += '<ul class="nav nav-tabs mb-3" id="centroIATabs" style="font-size:.78rem">';
-  html += '<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tabCrownet">'+(typeof t==="function"?t('centros.ai.crownet'):'Datos CrowNet')+'</a></li>';
-  html += '<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabVorare">'+(typeof t==="function"?t('centros.ai.vorare'):'Datos Vorare')+'</a></li>';
-  html += '<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabParams">'+(typeof t==="function"?t('centros.ai.params'):'Parámetros')+'</a></li>';
-  html += '<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabChatIA">'+(typeof t==="function"?t('centros.ai.chat'):'Chat IA')+'</a></li>';
-  html += '</ul>';
-  html += '<div class="tab-content">';
-  html += '<div class="tab-pane fade show active" id="tabCrownet">';
-  html += '<table class="table table-clean" style="font-size:.78rem"><thead><tr><th>'+(typeof t==="function"?t('centros.ai.crownet.param'):'Parámetro')+'</th><th>'+(typeof t==="function"?t('centros.ai.crownet.value'):'Valor')+'</th><th>'+(typeof t==="function"?t('centros.ai.crownet.source'):'Fuente')+'</th></tr></thead><tbody>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.crownet.maxKcal'):'Kcal máx/día')+'</td><td><strong>900 kcal</strong></td><td>CrowNet API</td></tr>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.crownet.minProt'):'Proteína mín')+'</td><td><strong>38g</strong></td><td>CrowNet API</td></tr>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.crownet.allergies'):'Alergias centro')+'</td><td><strong>Gluten, Lactosa</strong></td><td>CrowNet API</td></tr>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.crownet.costTarget'):'Target coste')+'</td><td><strong>'+c.target+' €/comensal</strong></td><td>CrowNet API</td></tr>'
-    +'</tbody></table>';
-  html += '<div class="d-flex align-items-center" style="gap:.5rem;font-size:.78rem"><span class="badge-aprobado">'+(typeof t==="function"?t('centros.ai.crownet.synced'):'Sincronizado')+'</span><span class="text-muted">'+c.ultima_pub+'</span></div>';
-  html += '</div>';
-  html += '<div class="tab-pane fade" id="tabVorare">';
-  html += '<table class="table table-clean" style="font-size:.78rem"><thead><tr><th>'+(typeof t==="function"?t('centros.ai.crownet.param'):'Parámetro')+'</th><th>'+(typeof t==="function"?t('centros.ai.crownet.value'):'Valor')+'</th></tr></thead><tbody>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.vorare.menus'):'Menús activos')+'</td><td><strong>3</strong></td></tr>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.vorare.diets'):'Dietas gestionadas')+'</td><td><strong>Estándar, Diabético, Celíaco</strong></td></tr>'
-    +'<tr><td>'+(typeof t==="function"?t('centros.ai.vorare.lastSync'):'Última sincronía')+'</td><td><strong>'+c.ultima_pub+'</strong></td></tr>'
-    +'</tbody></table>';
-  html += '</div>';
-  html += '<div class="tab-pane fade" id="tabParams">';
-  html += '<div class="sm-field-label mb-1">'+(typeof t==="function"?t('centros.ai.params.manual'):'Parámetros manuales nutricionista')+'</div>';
-  html += '<textarea class="form-control form-control-sm mb-2" rows="5" id="oc-ai-params" placeholder="'+(typeof t==="function"?t('centros.ai.params.placeholder'):'Ej: Evitar cerdo en miércoles. Máximo 2 días de pescado. Sin fritos en diabéticos...')+'">'+( c.ai_params || '')+'</textarea>';
-  html += '<div class="sm-field-label mb-1">'+(typeof t==="function"?t('centros.ai.params.restrictions'):'Restricciones adicionales')+'</div>';
-  html += '<div class="d-flex flex-wrap" style="gap:.4rem">';
-  ['Sin cerdo','Sin gluten','Sin lactosa','Sin frutos secos','Sin marisco','Halal','Kosher','Vegetariano'].forEach(function(r){
-    html += '<label style="font-size:.76rem;display:flex;align-items:center;gap:.3rem;cursor:pointer"><input type="checkbox"> '+r+'</label>';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.ai.params.restrictions'):'Restricciones adicionales')+'</div>';
+  var restrictions = [
+    ['sin_cerdo',   typeof t==="function"?t('centros.vorare.sinCerdo'):'Sin cerdo'],
+    ['sin_gluten',  typeof t==="function"?t('centros.diet.sinGluten'):'Sin gluten'],
+    ['sin_lactosa', typeof t==="function"?t('centros.diet.sinLactosa'):'Sin lactosa'],
+    ['sin_frutosSecos', typeof t==="function"?t('centros.vorare.sinFrutos'):'Sin frutos secos'],
+    ['sin_marisco', typeof t==="function"?t('centros.vorare.sinMarisco'):'Sin marisco'],
+    ['halal',       typeof t==="function"?t('centros.vorare.halal'):'Halal'],
+    ['kosher',      typeof t==="function"?t('centros.vorare.kosher'):'Kosher'],
+    ['vegetariano', typeof t==="function"?t('centros.diet.vegetariana'):'Vegetariano']
+  ];
+  html += '<div class="row">';
+  restrictions.forEach(function(r){
+    var chk = (c.restricciones && c.restricciones.indexOf(r[0])>=0) ? 'checked' : '';
+    html += '<div class="col-6 mb-2"><label class="d-flex align-items-center" style="gap:.5rem;font-size:.85rem;cursor:pointer"><input type="checkbox" '+chk+'> '+r[1]+'</label></div>';
   });
   html += '</div>';
   html += '</div>';
-  html += '<div class="tab-pane fade" id="tabChatIA">';
-  html += '<div id="centroIAChat" style="height:180px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:6px;padding:.6rem;margin-bottom:.5rem;font-size:.8rem;background:#fafafa">';
+
+  html += '<div class="sm-section-block">';
+  html += '<div class="sm-field-label sm-section-title" style="color:var(--sm-green)">'+(typeof t==="function"?t('centros.ai.section'):'Chat con IA Vorare')+'</div>';
+  html += '<div id="centroIAChat" style="height:200px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:6px;padding:.6rem;margin-bottom:.5rem;font-size:.8rem;background:#fafafa">';
   html += '<div style="margin-bottom:.5rem"><span style="font-size:.7rem;color:var(--sm-text-muted)">IA</span><div class="p-2 rounded" style="background:rgba(22,163,73,.08);border:1px solid rgba(22,163,73,.2);font-size:.8rem;margin-top:2px">'+(typeof t==="function"?t('centros.ai.chat.welcome'):'Hola! Puedo ayudarte a ajustar los parámetros nutricionales y de coste para este centro. ¿Qué deseas consultar?')+'</div></div>';
   html += '</div>';
   html += '<div class="d-flex" style="gap:.4rem">';
@@ -586,9 +586,6 @@ function renderConfig(c) {
   html += '<button class="btn btn-sm btn-success" onclick="enviarMensajeIA()" style="flex-shrink:0"><i class="mdi mdi-send"></i></button>';
   html += '</div>';
   html += '</div>';
-  html += '</div>';
-  html += '</div>';
-
   return html;
 }
 
