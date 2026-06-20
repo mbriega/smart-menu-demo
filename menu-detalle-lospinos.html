@@ -116,35 +116,7 @@
 <!-- COST TRACKER -->
 <div class="card mb-3" id="costCard">
   <div class="card-body py-2 px-3">
-    <div class="d-flex align-items-center justify-content-between flex-wrap" style="gap:.5rem">
-      <div class="d-flex align-items-center" style="gap:.75rem">
-        <div>
-          <div style="font-size:.75rem;color:var(--sm-text-muted);font-weight:600" data-i18n="det.cost.avgLunch">Avg lunch cost</div>
-          <div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)" id="costMedia">€2.22</div>
-        </div>
-        <div style="width:1px;height:36px;background:#e5e7eb"></div>
-        <div>
-          <div style="font-size:.75rem;color:var(--sm-text-muted);font-weight:600" data-i18n="det.cost.lunchTarget">Lunch target</div>
-          <div style="font-size:1.15rem;font-weight:800;color:#6c757d">€2.60</div>
-        </div>
-        <div style="width:1px;height:36px;background:#e5e7eb"></div>
-        <div>
-          <div style="font-size:.75rem;color:var(--sm-text-muted);font-weight:600" data-i18n="det.cost.fullDayTarget">Full day target</div>
-          <div style="font-size:.95rem;font-weight:700;color:#6c757d">€5.20</div>
-        </div>
-        <div style="width:1px;height:36px;background:#e5e7eb"></div>
-        <div>
-          <div style="font-size:.75rem;color:var(--sm-text-muted);font-weight:600" data-i18n="det.cost.avgFullDay">Avg full day cost</div>
-          <div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)" id="costMediaDia">€4.10</div>
-        </div>
-      </div>
-      <div style="min-width:200px;flex:1;max-width:320px">
-        <div class="d-flex justify-content-between" style="font-size:.73rem;margin-bottom:.2rem">
-          <span id="costStatus" style="color:var(--sm-green);font-weight:600"><i class="mdi mdi-check-circle mr-1"></i><span data-i18n="det.cost.withinTarget">Within target</span></span>
-          <span id="costPct" style="color:#6c757d">85%</span>
-        </div>
-        <div class="progress" style="height:8px;border-radius:4px"><div id="costBar" class="progress-bar" style="width:85%;border-radius:4px;background:var(--sm-green)"></div></div>
-      </div>
+    
     </div>
   </div>
 </div>
@@ -153,15 +125,7 @@
 <div class="card mb-3">
   <div class="card-body">
     <h6 class="font-weight-700 mb-3" data-i18n="det.cost.title">Análisis de costos</h6>
-    <div class="row mb-3">
-      <div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€2.22</div><div class="kpi-label" data-i18n="cost.kpi.dailyAvg">Media día/comensal</div></div></div>
-      <div class="col-4"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€11.10</div><div class="kpi-label" data-i18n="cost.kpi.weeklyAvg">Media semana/comensal</div></div></div>
-      <div class="col-4"><div class="kpi-card kpi-blue p-3 text-center"><div class="kpi-value text-blue" style="font-size:1.4rem">€44.40</div><div class="kpi-label" data-i18n="cost.kpi.monthlyProj">Proyección mensual/comensal</div></div></div>
-    </div>
-    <div class="row">
-      <div class="col-6"><div class="kpi-card kpi-green p-3 text-center"><div class="kpi-value text-green" style="font-size:1.4rem">€1.942,50</div><div class="kpi-label" data-i18n="cost.kpi.weekTotal">Coste total semana</div><div style="font-size:.72rem;color:var(--sm-text-muted);margin-top:2px">175 comensales × 5 días</div></div></div>
-      <div class="col-6"><div class="kpi-card kpi-blue p-3 text-center"><div class="kpi-value text-blue" style="font-size:1.4rem">€7.770,00</div><div class="kpi-label" data-i18n="cost.kpi.monthTotal">Proyección mes completo</div><div style="font-size:.72rem;color:var(--sm-text-muted);margin-top:2px" data-i18n="cost.kpi.monthTotalNote">4 semanas estimadas</div></div></div>
-    </div>
+    <div class="row g-0 mb-3" style="border:1px solid var(--sm-border);border-radius:6px;overflow:hidden;text-align:center"><div class="col-4 p-3" style="border-right:1px solid var(--sm-border)"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.day">DÍA</div><div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)">€388,50</div></div><div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)">€2,22</div></div></div><div class="col-4 p-3" style="border-right:1px solid var(--sm-border)"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.week">SEMANA</div><div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)">€1.942,50</div></div><div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)">€11,10</div></div></div><div class="col-4 p-3"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem" data-i18n="det.cost.period.month">MES (est.)</div><div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.fixed">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)">€7.770,00</div></div><div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:var(--sm-green)">€44,40</div></div></div></div>
   </div>
 </div>
 
