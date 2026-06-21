@@ -226,13 +226,28 @@ a:hover { color: var(--sm-green-dark); }
 .bg-primary   { background-color: var(--sm-green) !important; }
 .text-warning { color: var(--sm-orange) !important; }
 
-/* ── TEXTAREA FIX — vendor CSS forces fixed height on .form-control-sm,
-   overriding the rows attribute on textareas. Reset to auto here. ───── */
+/* ── FORM INPUT / TEXTAREA FIX ───────────────────────────────────────
+   Vendor CSS locks .form-control-sm to a fixed 2.875rem height which
+   collapses textareas and makes text inputs too small to read comfortably.
+   ──────────────────────────────────────────────────────────────────── */
 textarea.form-control,
 textarea.form-control-sm {
   height: auto !important;
   min-height: 5.5rem;
   resize: vertical;
+}
+input[type="text"].form-control,
+input[type="text"].form-control-sm,
+input[type="search"].form-control,
+input[type="search"].form-control-sm,
+input[type="email"].form-control,
+input[type="email"].form-control-sm,
+input[type="number"].form-control,
+input[type="number"].form-control-sm {
+  height: 3rem !important;
+  min-height: 3rem;
+  font-size: .9rem;
+  padding: .5rem .85rem;
 }
 
 /* ── MENU TABLE ──────────────────────────────────────────── */
