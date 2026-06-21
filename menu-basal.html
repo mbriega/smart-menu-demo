@@ -351,23 +351,35 @@
 
 <!-- MODAL SUSTITUIR -->
 <div class="modal fade" id="modalSustituir" tabindex="-1" style="z-index:1200">
-  <div class="modal-dialog" role="document"><div class="modal-content">
+  <div class="modal-dialog" style="max-width:600px" role="document"><div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-swap-horizontal mr-1" style="color:var(--sm-orange)"></i><span data-i18n="basal.modal.sust.title">Sustituir plato</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
-    <div class="modal-body" style="font-size:.85rem">
-      <div class="p-2 mb-2 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
+    <div class="modal-body sust-modal-body">
+      <div class="p-2 mb-3 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
         <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i>
         <strong data-i18n="det.sub.reason">Motivo:</strong> <span id="sustBasalMotivoTexto"></span>
       </div>
-      <div class="mb-2">
+      <div class="mb-3">
         <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
-        <input type="text" class="form-control form-control-sm" id="sustPlatoAfectado" disabled>
+        <input type="text" class="form-control" id="sustPlatoAfectado" disabled style="font-size:.85rem">
       </div>
-      <div class="mb-2">
-        <div style="font-size:.78rem;font-weight:600;margin-bottom:.4rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
-        <div class="d-flex flex-wrap" style="gap:.35rem;margin-bottom:.6rem">
+      <!-- AI SEARCH -->
+      <div class="sust-ai-box mb-3">
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">
+          <i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="det.sub.aiLabel">Buscar con IA:</span>
+        </div>
+        <textarea class="form-control" id="sustAIQuery" rows="3" placeholder="Ej: plato vegetal ≥16g proteína, coste &lt;€1.00, sin gluten…" style="font-size:.85rem;resize:vertical" onkeydown="if(event.key==='Enter'&&!event.shiftKey){buscarConIA();event.preventDefault();}"></textarea>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <div id="sustIAStatus" style="font-size:.75rem;color:var(--sm-text-muted)"></div>
+          <button class="btn btn-sm btn-success" onclick="buscarConIA()"><i class="mdi mdi-magnify mr-1"></i><span data-i18n="det.sub.aiBtn">Buscar</span></button>
+        </div>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="mb-3">
+        <div style="font-size:.78rem;font-weight:600;margin-bottom:.5rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
+        <div class="d-flex flex-wrap" style="gap:.4rem">
           <button class="sust-filter-btn active" data-filter="all" onclick="sustFiltroPor('all')" data-i18n="sust.filter.all">TODOS</button>
           <button class="sust-filter-btn" data-filter="soup" onclick="sustFiltroPor('soup')" data-i18n="sust.filter.soup">SOPAS</button>
           <button class="sust-filter-btn" data-filter="vegetables" onclick="sustFiltroPor('vegetables')" data-i18n="sust.filter.vegetables">VERDURAS</button>
@@ -377,24 +389,19 @@
           <button class="sust-filter-btn" data-filter="dairy" onclick="sustFiltroPor('dairy')" data-i18n="sust.filter.dairy">LÁCTEO</button>
           <button class="sust-filter-btn" data-filter="fruit" onclick="sustFiltroPor('fruit')" data-i18n="sust.filter.fruit">FRUTA</button>
         </div>
-        <div class="d-flex" style="gap:.4rem">
-          <input type="text" class="form-control form-control-sm" id="sustAIQuery" placeholder="Ej: plato vegetal ≥16g proteína, coste &lt;€1.00...">
-          <button class="btn btn-sm btn-success" onclick="buscarConIA()" style="flex-shrink:0"><i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="sust.ai.search">Buscar con IA</span></button>
-        </div>
-        <div id="sustIAStatus" style="min-height:18px;margin-top:4px"></div>
       </div>
-      <div id="sustResultados" style="max-height:220px;overflow-y:auto"></div>
-      <div class="mt-2 pt-2" style="border-top:1px solid var(--sm-border)">
+      <div id="sustResultados" style="max-height:300px;overflow-y:auto"></div>
+      <div class="mt-3 pt-3" style="border-top:1px solid var(--sm-border)">
         <label class="form-label mb-1" style="font-size:.78rem;font-weight:600" data-i18n="det.sub.impactoLabel">Impacto en costo estimado</label>
         <div class="d-flex align-items-center" style="gap:.5rem">
-          <input type="text" class="form-control form-control-sm" id="sustBasalImpactoCosto" placeholder="Ej: +&euro;0.15" style="width:110px">
+          <input type="text" class="form-control form-control-sm" id="sustBasalImpactoCosto" placeholder="Ej: +&euro;0.15" style="width:120px">
           <span class="text-muted" style="font-size:.77rem" data-i18n="det.sub.autoRecalc">Se recalculará automáticamente</span>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal"><span data-i18n="action.cancel">Cancel</span></button>
-      <button type="button" class="btn btn-primary btn-sm" onclick="confirmarSustBasal()"><i class="mdi mdi-check"></i> <span data-i18n="basal.modal.sust.confirmar">Confirmar sustituci&oacute;n</span></button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal"><span data-i18n="action.cancel">Cancelar</span></button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="confirmarSustBasal()"><i class="mdi mdi-check mr-1"></i><span data-i18n="basal.modal.sust.confirmar">Confirmar sustitución</span></button>
     </div>
   </div></div>
 </div>
