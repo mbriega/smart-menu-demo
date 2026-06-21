@@ -1,6 +1,6 @@
 /* SMART Menu — i18n · v1.0 */
 (function () {
-  var _lang = localStorage.getItem('smLang') || 'en';
+  var _lang = localStorage.getItem('smLang') || 'es';
   window.I18N_LANG = _lang;
 
   var _dict = {
@@ -15,6 +15,14 @@
       'nav.publicacion': 'Publicación',
       'nav.config': 'Configuración',
       'nav.users': 'Usuarios',
+      'nav.cat.comercial': 'Comercial',
+      'nav.comercial': 'Entorno Comercial',
+      'comercial.subtitle': 'Genera y presenta menús sin asignar un centro real',
+      'comercial.empty.title': 'Entorno Comercial',
+      'comercial.empty.desc': 'Este espacio te permitirá generar menú basal, menús por centro y menús por tipo de dieta sin necesidad de asignar un centro de la base de datos. Ideal para presentaciones y demostraciones comerciales.',
+      'comercial.btn.menus': 'Menús por Centro',
+      'comercial.btn.dieta': 'Menús por Tipo de Dieta',
+      'comercial.badge': 'Próximamente',
       'sidebar.role': 'Nutricionista Central',
       'sidebar.settings': 'Ajustes de cuenta',
       'sidebar.logout': 'Cerrar sesión',
@@ -339,6 +347,17 @@
       'basal.legend.ok': 'Dentro de parámetros',
       'basal.legend.desv': 'Desviación nutricional',
       'basal.legend.alerg': 'Alérgeno detectado',
+      'basal.col.numDishes': 'Nº platos',
+      'basal.col.costTarget': 'Objetivo',
+      'basal.col.status': 'Estado',
+      'basal.col.allergen': 'Alérgeno',
+      'basal.col.action': 'Acción',
+      'basal.col.lunch': 'Comida',
+      'basal.status.ok': '✓ Objetivo',
+      'basal.status.over': 'Superado',
+      'basal.alrg.none': 'No se detectaron alérgenos en esta semana de menú basal.',
+      'basal.alrg.found': 'plato(s) con alérgenos detectados esta semana',
+      'basal.alrg.replace': 'Sustituir',
       'basal.rules.costDiner': 'Costo por comensal',
       'basal.rules.costVal': 'Dentro del objetivo €3,50/comensal',
       'basal.rules.kcal': 'Rango calórico (600–700 kcal)',
@@ -1095,6 +1114,7 @@
       'det.exc.col.proposed': 'Propuesto',
       'det.exc.col.costImpact': 'Impacto coste',
       'det.exc.totalCostImpact': 'Impacto coste total',
+      'det.exc.perDiner': 'por comensal/día',
       'det.exc.exceedTarget': 'Los cambios superan el objetivo de costo.',
       'det.exc.reviewDishes': 'Revisa los platos seleccionados antes de enviar la excepción.',
       'det.exc.typeLabel': 'Tipo de excepción',
@@ -1180,6 +1200,14 @@
       'nav.publicacion': 'Publication',
       'nav.config': 'Settings',
       'nav.users': 'Users',
+      'nav.cat.comercial': 'Commercial',
+      'nav.comercial': 'Commercial Workspace',
+      'comercial.subtitle': 'Generate and present menus without assigning a real center',
+      'comercial.empty.title': 'Commercial Workspace',
+      'comercial.empty.desc': 'This space will allow you to generate a base menu, center menus, and diet-type menus without assigning a center from the database. Ideal for presentations and commercial demos.',
+      'comercial.btn.menus': 'Menus by Center',
+      'comercial.btn.dieta': 'Menus by Diet Type',
+      'comercial.badge': 'Coming soon',
       'sidebar.role': 'Central Nutritionist',
       'sidebar.settings': 'Account settings',
       'sidebar.logout': 'Log out',
@@ -1509,6 +1537,17 @@
       'basal.legend.ok': 'Within parameters',
       'basal.legend.desv': 'Nutritional deviation',
       'basal.legend.alerg': 'Allergen detected',
+      'basal.col.numDishes': 'No. dishes',
+      'basal.col.costTarget': 'Target',
+      'basal.col.status': 'Status',
+      'basal.col.allergen': 'Allergen',
+      'basal.col.action': 'Action',
+      'basal.col.lunch': 'Lunch',
+      'basal.status.ok': '✓ Target',
+      'basal.status.over': 'Over target',
+      'basal.alrg.none': 'No allergens detected in this base menu week.',
+      'basal.alrg.found': 'dish(es) with allergens detected this week',
+      'basal.alrg.replace': 'Replace',
       'basal.rules.costDiner': 'Cost per diner',
       'basal.rules.costVal': 'Within target €3.50/diner',
       'basal.rules.kcal': 'Caloric range (600–700 kcal)',
@@ -2264,6 +2303,7 @@
       'det.exc.col.proposed': 'Proposed',
       'det.exc.col.costImpact': 'Cost impact',
       'det.exc.totalCostImpact': 'Total cost impact',
+      'det.exc.perDiner': 'per diner/day',
       'det.exc.exceedTarget': 'The changes exceed the cost target.',
       'det.exc.reviewDishes': 'Review the selected dishes before submitting the exception.',
       'det.exc.typeLabel': 'Exception type',
@@ -2407,9 +2447,10 @@
   };
 
   function _translateSidebar() {
-    /* nav category */
-    var cat = document.querySelector('.sidebar .nav-category');
-    if (cat) cat.textContent = t('nav.cat.main');
+    /* nav categories */
+    var cats = document.querySelectorAll('.sidebar .nav-category');
+    var catKeys = ['nav.cat.main', 'nav.cat.comercial'];
+    cats.forEach(function(cat, i){ if (catKeys[i]) cat.textContent = t(catKeys[i]); });
 
     /* nav links by href */
     var _map = {
@@ -2420,7 +2461,8 @@
       'centros.html': 'nav.centros',
       'publicacion.html': 'nav.publicacion',
       'configuracion.html': 'nav.config',
-      'usuarios.html': 'nav.users'
+      'usuarios.html': 'nav.users',
+      'comercial.html': 'nav.comercial'
     };
     document.querySelectorAll('.sidebar .nav-link').forEach(function (a) {
       var href = a.getAttribute('href');

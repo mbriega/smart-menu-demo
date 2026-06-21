@@ -22,7 +22,7 @@
 <li class="nav-item"><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li>
 <li class="nav-item"><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li>
 <li class="nav-item"><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li>
-<li class="nav-item"><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li>
+<li class="nav-item"><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li><li class="nav-item nav-category">Comercial</li><li class="nav-item "><a class="nav-link" href="comercial.html"><span class="icon-bg"><i class="mdi mdi-briefcase-outline menu-icon"></i></span><span class="menu-title">Entorno Comercial</span></a></li>
 </ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Nutricionista Central</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav>
 
 <div class="main-panel"><div class="sm-topbar"><div class="sm-lang-toggle"><button class="sm-lang-btn" data-lang="es" onclick="setLang('es')">ES</button><span class="sm-lang-sep">|</span><button class="sm-lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div></div><div class="content-wrapper">
@@ -351,51 +351,57 @@
 
 <!-- MODAL SUSTITUIR -->
 <div class="modal fade" id="modalSustituir" tabindex="-1" style="z-index:1200">
-  <div class="modal-dialog" style="max-width:600px" role="document"><div class="modal-content">
+  <div class="modal-dialog" style="max-width:860px" role="document"><div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-swap-horizontal mr-1" style="color:var(--sm-orange)"></i><span data-i18n="basal.modal.sust.title">Sustituir plato</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
-    <div class="modal-body sust-modal-body">
-      <div class="p-2 mb-3 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
-        <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i>
-        <strong data-i18n="det.sub.reason">Motivo:</strong> <span id="sustBasalMotivoTexto"></span>
-      </div>
-      <div class="mb-3">
-        <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
-        <input type="text" class="form-control" id="sustPlatoAfectado" disabled style="font-size:.85rem">
-      </div>
-      <!-- AI SEARCH -->
-      <div class="sust-ai-box mb-3">
-        <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">
-          <i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="det.sub.aiLabel">Buscar con IA:</span>
+    <div class="modal-body sust-modal-body" style="padding:1rem 1.25rem">
+      <div class="row" style="margin:0 -0.6rem">
+        <!-- LEFT: motivo + plato + AI -->
+        <div class="col-md-5" style="padding:0 0.6rem;border-right:1px solid var(--sm-border)">
+          <div class="p-2 mb-3 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
+            <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i>
+            <strong data-i18n="det.sub.reason">Motivo:</strong> <span id="sustBasalMotivoTexto"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
+            <input type="text" class="form-control" id="sustPlatoAfectado" disabled style="font-size:.85rem">
+          </div>
+          <div class="sust-ai-box">
+            <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">
+              <i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="det.sub.aiLabel">Buscar con IA:</span>
+            </div>
+            <textarea class="form-control" id="sustAIQuery" rows="4" placeholder="Ej: plato vegetal ≥16g proteína, coste &lt;€1.00, sin gluten…" style="font-size:.85rem;resize:vertical" onkeydown="if(event.key==='Enter'&&!event.shiftKey){buscarConIA();event.preventDefault();}"></textarea>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <div id="sustIAStatus" style="font-size:.75rem;color:var(--sm-text-muted)"></div>
+              <button class="btn btn-sm btn-success" onclick="buscarConIA()"><i class="mdi mdi-magnify mr-1"></i><span data-i18n="det.sub.aiBtn">Buscar</span></button>
+            </div>
+          </div>
         </div>
-        <textarea class="form-control" id="sustAIQuery" rows="3" placeholder="Ej: plato vegetal ≥16g proteína, coste &lt;€1.00, sin gluten…" style="font-size:.85rem;resize:vertical" onkeydown="if(event.key==='Enter'&&!event.shiftKey){buscarConIA();event.preventDefault();}"></textarea>
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <div id="sustIAStatus" style="font-size:.75rem;color:var(--sm-text-muted)"></div>
-          <button class="btn btn-sm btn-success" onclick="buscarConIA()"><i class="mdi mdi-magnify mr-1"></i><span data-i18n="det.sub.aiBtn">Buscar</span></button>
-        </div>
-      </div>
-      <!-- FILTER BUTTONS -->
-      <div class="mb-3">
-        <div style="font-size:.78rem;font-weight:600;margin-bottom:.5rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
-        <div class="d-flex flex-wrap" style="gap:.4rem">
-          <button class="sust-filter-btn active" data-filter="all" onclick="sustFiltroPor('all')" data-i18n="sust.filter.all">TODOS</button>
-          <button class="sust-filter-btn" data-filter="soup" onclick="sustFiltroPor('soup')" data-i18n="sust.filter.soup">SOPAS</button>
-          <button class="sust-filter-btn" data-filter="vegetables" onclick="sustFiltroPor('vegetables')" data-i18n="sust.filter.vegetables">VERDURAS</button>
-          <button class="sust-filter-btn" data-filter="carbs" onclick="sustFiltroPor('carbs')" data-i18n="sust.filter.carbs">HIDRATOS</button>
-          <button class="sust-filter-btn" data-filter="legumes" onclick="sustFiltroPor('legumes')" data-i18n="sust.filter.legumes">LEGUMBRES</button>
-          <button class="sust-filter-btn" data-filter="protein" onclick="sustFiltroPor('protein')" data-i18n="sust.filter.protein">PROTEÍNA</button>
-          <button class="sust-filter-btn" data-filter="dairy" onclick="sustFiltroPor('dairy')" data-i18n="sust.filter.dairy">LÁCTEO</button>
-          <button class="sust-filter-btn" data-filter="fruit" onclick="sustFiltroPor('fruit')" data-i18n="sust.filter.fruit">FRUTA</button>
-        </div>
-      </div>
-      <div id="sustResultados" style="max-height:300px;overflow-y:auto"></div>
-      <div class="mt-3 pt-3" style="border-top:1px solid var(--sm-border)">
-        <label class="form-label mb-1" style="font-size:.78rem;font-weight:600" data-i18n="det.sub.impactoLabel">Impacto en costo estimado</label>
-        <div class="d-flex align-items-center" style="gap:.5rem">
-          <input type="text" class="form-control form-control-sm" id="sustBasalImpactoCosto" placeholder="Ej: +&euro;0.15" style="width:120px">
-          <span class="text-muted" style="font-size:.77rem" data-i18n="det.sub.autoRecalc">Se recalculará automáticamente</span>
+        <!-- RIGHT: filtros + resultados + impacto -->
+        <div class="col-md-7" style="padding:0 0.6rem 0 1rem">
+          <div class="mb-2">
+            <div style="font-size:.78rem;font-weight:600;margin-bottom:.5rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
+            <div class="d-flex flex-wrap" style="gap:.4rem">
+              <button class="sust-filter-btn active" data-filter="all" onclick="sustFiltroPor('all')" data-i18n="sust.filter.all">TODOS</button>
+              <button class="sust-filter-btn" data-filter="soup" onclick="sustFiltroPor('soup')" data-i18n="sust.filter.soup">SOPAS</button>
+              <button class="sust-filter-btn" data-filter="vegetables" onclick="sustFiltroPor('vegetables')" data-i18n="sust.filter.vegetables">VERDURAS</button>
+              <button class="sust-filter-btn" data-filter="carbs" onclick="sustFiltroPor('carbs')" data-i18n="sust.filter.carbs">HIDRATOS</button>
+              <button class="sust-filter-btn" data-filter="legumes" onclick="sustFiltroPor('legumes')" data-i18n="sust.filter.legumes">LEGUMBRES</button>
+              <button class="sust-filter-btn" data-filter="protein" onclick="sustFiltroPor('protein')" data-i18n="sust.filter.protein">PROTEÍNA</button>
+              <button class="sust-filter-btn" data-filter="dairy" onclick="sustFiltroPor('dairy')" data-i18n="sust.filter.dairy">LÁCTEO</button>
+              <button class="sust-filter-btn" data-filter="fruit" onclick="sustFiltroPor('fruit')" data-i18n="sust.filter.fruit">FRUTA</button>
+            </div>
+          </div>
+          <div id="sustResultados" style="max-height:370px;overflow-y:auto"></div>
+          <div class="mt-2 pt-2" style="border-top:1px solid var(--sm-border)">
+            <label class="form-label mb-1" style="font-size:.78rem;font-weight:600" data-i18n="det.sub.impactoLabel">Impacto en costo estimado</label>
+            <div class="d-flex align-items-center" style="gap:.5rem">
+              <input type="text" class="form-control form-control-sm" id="sustBasalImpactoCosto" placeholder="Ej: +&euro;0.15" style="width:120px">
+              <span class="text-muted" style="font-size:.77rem" data-i18n="det.sub.autoRecalc">Se recalculará automáticamente</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1092,13 +1098,13 @@ function renderBasalCosto(sem) {
   html+='<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
   html+='<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+monthlyProj.toFixed(2)+'</div></div></div>';
   html+='</div>';
-  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Day</th><th>Service</th><th>No. dishes</th><th class="text-center">Unit cost</th><th class="text-center">Target</th><th class="text-center">Status</th></tr></thead><tbody style="line-height:2">';
+  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>'+t('det.col.dia')+'</th><th>'+t('det.col.service')+'</th><th>'+t('basal.col.numDishes')+'</th><th class="text-center">'+t('det.cost.col.unitcost')+'</th><th class="text-center">'+t('basal.col.costTarget')+'</th><th class="text-center">'+t('basal.col.status')+'</th></tr></thead><tbody style="line-height:2">';
   daily.forEach(function(d){
     var ok=d.total<=TARGET;
-    html+='<tr><td><strong>'+d.dia+'</strong></td><td>Lunch</td><td>4 dishes</td>';
+    html+='<tr><td><strong>'+d.dia+'</strong></td><td>'+t('basal.col.lunch')+'</td><td>4</td>';
     html+='<td class="text-center '+(ok?'':'text-danger')+'">€'+d.total.toFixed(2)+'</td>';
     html+='<td class="text-center text-muted">€'+TARGET.toFixed(2)+'</td>';
-    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ Target</span>':'<span class="badge-critico">Over target</span>')+'</td></tr>';
+    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">'+t('basal.status.ok')+'</span>':'<span class="badge-critico">'+t('basal.status.over')+'</span>')+'</td></tr>';
   });
   html+='</tbody></table></div>';
   var el=document.getElementById('basalCostoContent');if(el)el.innerHTML=html;
@@ -1106,17 +1112,17 @@ function renderBasalCosto(sem) {
 
 function renderBasalAlergenos(sem) {
   var data=menuBasalDB[sem];if(!data)return;
-  var dias=['Mon','Tue','Wed','Thu','Fri'];
+  var dias=[t('basal.col.lun'),t('basal.col.mar'),t('basal.col.mie'),t('basal.col.jue'),t('basal.col.vie')];
   var alergList=[];
   data.rows.forEach(function(row){row.dias.forEach(function(plato,di){var db=basalRecetasDB[plato];if(db&&db.alerg&&db.alerg!=='None'&&db.alerg!=='No data')alergList.push({alerg:db.alerg,plato:plato,dia:dias[di],servicio:row.plato});});});
   var el=document.getElementById('basalAlergenosContent');if(!el)return;
-  if(!alergList.length){el.innerHTML='<div class="alert-sm-ok p-3 mb-0"><i class="mdi mdi-check-circle mr-2"></i>No allergens detected in this base menu week.</div>';return;}
-  var html='<div class="alert-sm-critico p-3 mb-3"><i class="mdi mdi-alert-circle mr-2"></i><strong>'+alergList.length+' dish(es) with allergens detected this week</strong></div>';
-  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Allergen</th><th data-i18n="basal.col.plato">Dish</th><th>Day</th><th>Service</th><th>Action</th></tr></thead><tbody style="line-height:2">';
+  if(!alergList.length){el.innerHTML='<div class="alert-sm-ok p-3 mb-0"><i class="mdi mdi-check-circle mr-2"></i>'+t('basal.alrg.none')+'</div>';return;}
+  var html='<div class="alert-sm-critico p-3 mb-3"><i class="mdi mdi-alert-circle mr-2"></i><strong>'+alergList.length+' '+t('basal.alrg.found')+'</strong></div>';
+  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>'+t('basal.col.allergen')+'</th><th>'+t('basal.col.plato')+'</th><th>'+t('det.col.dia')+'</th><th>'+t('det.col.service')+'</th><th>'+t('basal.col.action')+'</th></tr></thead><tbody style="line-height:2">';
   alergList.forEach(function(item){
     var tags=item.alerg.split(',').map(function(a){return '<span class="badge badge-danger mr-1" style="font-size:.75rem">'+a.trim()+'</span>';}).join('');
     html+='<tr><td>'+tags+'</td><td><strong>'+item.plato+'</strong></td><td>'+item.dia+'</td><td>'+item.servicio+'</td>';
-    html+='<td><button class="btn btn-sm btn-warning" onclick="abrirSustituirBasal(\''+item.plato.replace(/'/g,"\\'")+'\',\''+item.dia+' · '+item.servicio+'\')"><i class="mdi mdi-swap-horizontal"></i> Replace</button></td></tr>';
+    html+='<td><button class="btn btn-sm btn-warning" onclick="abrirSustituirBasal(\''+item.plato.replace(/'/g,"\\'")+'\',\''+item.dia+' · '+item.servicio+'\')"><i class="mdi mdi-swap-horizontal"></i> '+t('basal.alrg.replace')+'</button></td></tr>';
   });
   html+='</tbody></table></div>';
   el.innerHTML=html;
