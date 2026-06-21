@@ -199,40 +199,39 @@
       <!-- TAB CHAT IA -->
       <div id="tabBasalChat" style="display:none">
         <style>@keyframes chatDot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}</style>
-        <div style="max-width:760px">
-          <div class="d-flex align-items-center mb-3">
-            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.75rem;flex-shrink:0">
-              <i class="mdi mdi-robot" style="color:#fff;font-size:1.1rem"></i>
-            </div>
-            <div>
-              <h6 class="mb-0" style="font-weight:700" data-i18n="basal.chat.title">Asistente IA — Edición masiva de menú</h6>
-              <small class="text-muted" data-i18n="basal.chat.subtitle">Describe en lenguaje natural los cambios que quieres aplicar al menú generado</small>
-            </div>
+        <div class="d-flex align-items-center mb-4">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.9rem;flex-shrink:0">
+            <i class="mdi mdi-robot" style="color:#fff;font-size:1.25rem"></i>
           </div>
-          <!-- Messages area -->
-          <div id="chatIAMsgs" style="min-height:220px;max-height:380px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:8px;padding:1rem;background:#fafafa;margin-bottom:.6rem;font-size:.85rem">
-            <div class="d-flex align-items-start mb-3">
-              <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.85rem"></i></div>
-              <div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 8px 8px 8px;padding:.55rem .8rem;max-width:90%">
-                Hola. Soy el asistente IA de Smart Menu. Puedo modificar masivamente el menú generado. Por ejemplo:<br>
-                <em style="color:var(--sm-text-muted);font-size:.82rem">"Sustituye <strong>Arroz con tomate</strong> por <strong>Arroz integral con verduras</strong>"</em><br>
-                <em style="color:var(--sm-text-muted);font-size:.82rem">"Cambia <strong>Patatas fritas</strong> por <strong>Patatas panadera</strong> en toda la semana"</em>
-              </div>
-            </div>
-          </div>
-          <!-- Quick actions -->
-          <div class="d-flex flex-wrap mb-2" style="gap:.35rem">
-            <span style="font-size:.72rem;color:var(--sm-text-muted);line-height:1.8;margin-right:.2rem" data-i18n="basal.chat.quick">Acciones rápidas:</span>
-            <button class="btn btn-xs" style="font-size:.72rem;padding:.2rem .55rem;border:1px solid var(--sm-border);border-radius:12px;background:#fff;cursor:pointer" onclick="chatIAQuick('Sustituye Arroz con tomate por Arroz integral con verduras')">💡 Sustituir arroz</button>
-            <button class="btn btn-xs" style="font-size:.72rem;padding:.2rem .55rem;border:1px solid var(--sm-border);border-radius:12px;background:#fff;cursor:pointer" onclick="chatIAQuick('Cambia Patatas fritas por Patatas panadera en toda la semana')">💡 Cambiar patatas</button>
-            <button class="btn btn-xs" style="font-size:.72rem;padding:.2rem .55rem;border:1px solid var(--sm-border);border-radius:12px;background:#fff;cursor:pointer" onclick="chatIAQuick('Sustituye Fruta temporada · pan por Yogur natural s/azúcar · pan')">💡 Cambiar postre pan</button>
-          </div>
-          <!-- Input -->
-          <div class="d-flex" style="gap:.5rem">
-            <input type="text" id="chatIAInput" class="form-control form-control-sm" placeholder="Describe el cambio que quieres aplicar al menú..." style="font-size:.85rem" onkeydown="if(event.key==='Enter'){enviarChatIA();return false;}">
-            <button class="btn btn-sm btn-success" onclick="enviarChatIA()" style="white-space:nowrap"><i class="mdi mdi-send mr-1"></i><span data-i18n="basal.chat.send">Enviar</span></button>
+          <div>
+            <h6 class="mb-0" style="font-weight:700;font-size:1rem" data-i18n="basal.chat.title">Asistente IA — Edición masiva de menú</h6>
+            <small class="text-muted" data-i18n="basal.chat.subtitle">Describe en lenguaje natural los cambios que quieres aplicar al menú generado</small>
           </div>
         </div>
+        <!-- Messages area -->
+        <div id="chatIAMsgs" style="min-height:340px;max-height:560px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:10px;padding:1.25rem;background:#fafafa;margin-bottom:1rem;font-size:.875rem">
+          <div class="d-flex align-items-start mb-4">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.7rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.9rem"></i></div>
+            <div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 10px 10px 10px;padding:.75rem 1rem;max-width:88%">
+              Hola. Soy el asistente IA de Smart Menu. Puedo modificar masivamente el menú generado. Por ejemplo:<br>
+              <em style="color:var(--sm-text-muted);font-size:.83rem">"Sustituye <strong>Arroz con tomate</strong> por <strong>Arroz integral con verduras</strong>"</em><br>
+              <em style="color:var(--sm-text-muted);font-size:.83rem">"Cambia <strong>Patatas fritas</strong> por <strong>Patatas panadera</strong> en toda la semana"</em>
+            </div>
+          </div>
+        </div>
+        <!-- Quick actions -->
+        <div class="d-flex flex-wrap mb-3" style="gap:.45rem">
+          <span style="font-size:.75rem;color:var(--sm-text-muted);line-height:2;margin-right:.2rem" data-i18n="basal.chat.quick">Acciones rápidas:</span>
+          <button class="btn btn-xs" style="font-size:.75rem;padding:.3rem .7rem;border:1px solid var(--sm-border);border-radius:14px;background:#fff;cursor:pointer" onclick="chatIAQuick('Sustituye Arroz con tomate por Arroz integral con verduras')">💡 Sustituir arroz</button>
+          <button class="btn btn-xs" style="font-size:.75rem;padding:.3rem .7rem;border:1px solid var(--sm-border);border-radius:14px;background:#fff;cursor:pointer" onclick="chatIAQuick('Cambia Patatas fritas por Patatas panadera en toda la semana')">💡 Cambiar patatas</button>
+          <button class="btn btn-xs" style="font-size:.75rem;padding:.3rem .7rem;border:1px solid var(--sm-border);border-radius:14px;background:#fff;cursor:pointer" onclick="chatIAQuick('Sustituye Fruta temporada · pan por Yogur natural s/azúcar · pan')">💡 Cambiar postre pan</button>
+        </div>
+        <!-- Input -->
+        <div class="d-flex align-items-end" style="gap:.6rem">
+          <textarea id="chatIAInput" class="form-control" rows="3" placeholder="Describe el cambio que quieres aplicar al menú…" style="font-size:.875rem;resize:vertical" onkeydown="if(event.key==='Enter'&&!event.shiftKey){enviarChatIA();event.preventDefault();}"></textarea>
+          <button class="btn btn-success" onclick="enviarChatIA()" style="white-space:nowrap;height:fit-content;padding:.55rem .9rem"><i class="mdi mdi-send mr-1"></i><span data-i18n="basal.chat.send">Enviar</span></button>
+        </div>
+        <p class="text-muted mt-2 mb-0" style="font-size:.73rem">Shift+Enter para nueva línea · Enter para enviar</p>
       </div>
 
     </div>
@@ -326,7 +325,7 @@
       </div>
       <div class="mb-2">
         <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="basal.modal.gen.obsLabel">Observaciones adicionales (opcional)</label>
-        <textarea class="form-control form-control-sm" rows="2" placeholder="Ej: priorizar pescado azul esta temporada&hellip;"></textarea>
+        <textarea class="form-control form-control-sm" rows="4" placeholder="Ej: priorizar pescado azul esta temporada&hellip;"></textarea>
       </div>
       <div id="iaProgress" style="display:none" class="mt-3">
         <div class="d-flex align-items-center mb-2" style="gap:.5rem;font-size:.82rem">

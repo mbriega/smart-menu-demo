@@ -447,7 +447,14 @@
       'det.status.varAvail': 'Variante disponible',
       'det.status.varApproved': '✓ Variante aprobada',
       // Substitution modal
+      'det.sub.reason': 'Motivo:',
       'det.sub.dishLabel': 'Plato a sustituir',
+      'det.sub.aiLabel': 'Buscar con IA:',
+      'det.sub.aiPlaceholder': 'Ej: plato vegetal ≥16g proteína, coste <€1.00…',
+      'det.sub.aiBtn': 'Buscar',
+      'det.modal.cancel': 'Cancelar',
+      'det.modal.confirm': 'Confirmar sustitución',
+      'det.modal.replaceDish.confirm': 'Confirmar sustitución',
       // Nutrient check badge (page-specific lapaz)
       'det.nutri.reviewJue': '⚠ Revisar Jue',
       'det.mod.ingredients': 'Ingredientes / Receta',
@@ -1608,7 +1615,14 @@
       'det.status.varAvail': 'Available variant',
       'det.status.varApproved': '✓ Approved variant',
       // Substitution modal
+      'det.sub.reason': 'Reason:',
       'det.sub.dishLabel': 'Dish to substitute',
+      'det.sub.aiLabel': 'Search with AI:',
+      'det.sub.aiPlaceholder': 'E.g.: vegetable dish ≥16g protein, cost <€1.00…',
+      'det.sub.aiBtn': 'Search',
+      'det.modal.cancel': 'Cancel',
+      'det.modal.confirm': 'Confirm substitution',
+      'det.modal.replaceDish.confirm': 'Confirm substitution',
       // Nutrient check badge
       'det.nutri.reviewJue': '⚠ Check Thu',
       'det.mod.ingredients': 'Ingredients / Recipe',

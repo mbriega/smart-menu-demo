@@ -228,10 +228,10 @@ a:hover { color: var(--sm-green-dark); }
 
 /* ── MENU TABLE ──────────────────────────────────────────── */
 .menu-table { table-layout: fixed; width: 100%; }
-.menu-table th { background: #f5f6f9 !important; color:#374151 !important; text-align:center; font-size:.75rem; padding: 0.7rem !important; }
-.menu-table td { text-align:center; font-size:.8rem; padding:.5rem .4rem !important; cursor:pointer; }
-.menu-table td:first-child { text-align:left; font-weight:600; font-size:.8rem; background:#f9fafb; cursor:default; }
-.menu-cell { border-radius:5px; padding:.35rem .5rem; font-size:.78rem; line-height:1.3; transition: all 0.15s; }
+.menu-table th { background: #f5f6f9 !important; color:#374151 !important; text-align:center; font-size:.75rem; padding: 1rem 0.7rem !important; }
+.menu-table td { text-align:center; font-size:.8rem; padding:.75rem .5rem !important; cursor:pointer; }
+.menu-table td:first-child { text-align:left; font-weight:600; font-size:.8rem; background:#f9fafb; cursor:default; padding:.75rem .75rem !important; }
+.menu-cell { border-radius:5px; padding:.45rem .65rem; font-size:.78rem; line-height:1.45; transition: all 0.15s; min-height:2rem; }
 .menu-cell:hover { filter: brightness(0.94); transform: scale(1.02); }
 .menu-cell.ok      { background:rgba(22,163,73,0.10);  color:#14532d; }
 .menu-cell.warning { background:rgba(232,119,34,0.10); color:#7c2d00; }
@@ -249,10 +249,12 @@ a:hover { color: var(--sm-green-dark); }
 
 
 /* AI substitution */
-.sust-filter-btn{font-size:.72rem;padding:.2rem .55rem;border-radius:12px;border:1px solid var(--sm-border);background:#fff;color:var(--sm-text-muted);cursor:pointer;transition:all .15s}
+.sust-filter-btn{font-size:.73rem;padding:.28rem .65rem;border-radius:12px;border:1px solid var(--sm-border);background:#fff;color:var(--sm-text-muted);cursor:pointer;transition:all .15s}
 .sust-filter-btn.active{background:var(--sm-green);color:#fff;border-color:var(--sm-green)}
-.sust-dish-card{border:1px solid var(--sm-border);border-radius:6px;padding:.45rem .55rem;margin-bottom:.35rem;cursor:pointer;transition:all .15s}
+.sust-dish-card{border:1px solid var(--sm-border);border-radius:7px;padding:.65rem .8rem;margin-bottom:.5rem;cursor:pointer;transition:all .15s}
 .sust-dish-card:hover{background:rgba(22,163,73,.05);border-color:rgba(22,163,73,.3)}
+.sust-modal-body{padding:1.25rem 1.5rem}
+.sust-ai-box{background:linear-gradient(135deg,rgba(22,163,73,.04),rgba(22,163,73,.01));border:1px solid rgba(22,163,73,.2);border-radius:8px;padding:.9rem 1rem;margin-bottom:1rem}
 
 /* ── WIZARD ──────────────────────────────────────────────── */
 .wizard-steps { display:flex; align-items:center; margin-bottom:2rem; }

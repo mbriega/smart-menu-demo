@@ -606,26 +606,64 @@ function confirmarSustSM() {
   renderVarianteMenu(filas, true, 'varExpMenuWrap-' + _sustSMVarIdx, _sustSMVarIdx);
   _sustSMVarIdx = null; _sustSMDia = null; _sustSMCampo = null; _sustSMSustituto = null;
 }
+
+var _sustSMIAFiltro = 'all';
+function buscarConIASM() {
+  var q = (document.getElementById('sustSMAIQuery') ? document.getElementById('sustSMAIQuery').value : '').trim().toLowerCase();
+  var st = document.getElementById('sustSMIAStatus');
+  var pool = recetasCrownet.slice();
+  if (_sustSMFiltro !== 'all') pool = pool.filter(function(p){ return (typeof getDishType==='function'?getDishType(p):'')=== _sustSMFiltro; });
+  if (q) {
+    var qWords = q.split(/\s+/);
+    pool = pool.filter(function(p) {
+      var db = recetasDB[p] || {};
+      var haystack = (p + ' ' + (db.alerg||'') + ' ' + (db.receta||'')).toLowerCase();
+      var protMatch = q.match(/(\d+)\s*g?\s*prot/);
+      var costMatch = q.match(/[<€](\d+[\.,]?\d*)/);
+      if (protMatch) { var minProt = parseInt(protMatch[1]); var prot = parseInt((db.prot||'0').replace(/\D/g,'')); if (prot < minProt) return false; }
+      if (costMatch) { var maxCost = parseFloat(costMatch[1].replace(',','.')); var cost = parseFloat((db.costo||'€99').replace(/[^0-9.,]/g,'').replace(',','.')); if (cost > maxCost) return false; }
+      if (q.indexOf('sin gluten') > -1 || q.indexOf('gluten') > -1) { if ((db.alerg||'').toLowerCase().indexOf('gluten') > -1) return false; }
+      if (q.indexOf('vegetal') > -1 || q.indexOf('vegano') > -1) { var tipo = typeof getDishType==='function'?getDishType(p):''; if (tipo!=='vegetables'&&tipo!=='legumes'&&tipo!=='fruit') return false; }
+      if (q.indexOf('proteína') > -1 || q.indexOf('proteina') > -1 || q.indexOf('carne') > -1 || q.indexOf('pescado') > -1) { var tipo2 = typeof getDishType==='function'?getDishType(p):''; if (!protMatch && tipo2!=='protein') return false; }
+      return true;
+    });
+  }
+  if (st) st.innerHTML = pool.length ? '<i class="mdi mdi-robot-outline mr-1"></i>IA encontró <strong>' + pool.length + '</strong> platos' : '<span style="color:var(--sm-danger)">Sin resultados — prueba con otro criterio</span>';
+  _sustSMPool = pool;
+  renderSustResultadosSM();
+}
 </script>
 
 <div class="modal fade" id="modalSustSM" tabindex="-1" style="z-index:1200">
-  <div class="modal-dialog" role="document"><div class="modal-content">
+  <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-swap-horizontal mr-1" style="color:var(--sm-orange)"></i><span data-i18n="det.modal.replaceDish.title">Sustituir plato</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
     </div>
-    <div class="modal-body" style="font-size:.85rem">
-      <div class="p-2 mb-2 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
+    <div class="modal-body sust-modal-body">
+      <div class="p-2 mb-3 rounded" style="background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.2);font-size:.82rem">
         <i class="mdi mdi-alert-outline mr-1" style="color:var(--sm-danger)"></i>
         <strong data-i18n="det.sub.reason">Motivo:</strong> <span id="sustSMMotivoTexto">Cambio manual de plato</span>
       </div>
-      <div class="mb-2">
+      <div class="mb-3">
         <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
-        <input type="text" class="form-control form-control-sm" id="sustSMPlatoAfectado" disabled>
+        <input type="text" class="form-control" id="sustSMPlatoAfectado" disabled style="font-size:.85rem">
       </div>
-      <div class="mb-2">
-        <div style="font-size:.78rem;font-weight:600;margin-bottom:.4rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
-        <div class="d-flex flex-wrap" style="gap:.35rem;margin-bottom:.6rem">
+      <!-- AI SEARCH -->
+      <div class="sust-ai-box mb-3">
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">
+          <i class="mdi mdi-robot-outline mr-1"></i><span data-i18n="det.sub.aiLabel">Buscar con IA:</span>
+        </div>
+        <textarea class="form-control" id="sustSMAIQuery" rows="3" placeholder="Ej: plato vegetal ≥16g proteína, coste &lt;€1.00, sin gluten…" style="font-size:.85rem;resize:vertical" onkeydown="if(event.key==='Enter'&&!event.shiftKey){buscarConIASM();event.preventDefault();}"></textarea>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <div id="sustSMIAStatus" style="font-size:.75rem;color:var(--sm-text-muted)"></div>
+          <button class="btn btn-sm btn-success" onclick="buscarConIASM()"><i class="mdi mdi-magnify mr-1"></i><span data-i18n="det.sub.aiBtn">Buscar</span></button>
+        </div>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="mb-3">
+        <div style="font-size:.78rem;font-weight:600;margin-bottom:.5rem" data-i18n="sust.filter.label">Filtrar por tipo:</div>
+        <div class="d-flex flex-wrap" style="gap:.4rem">
           <button class="sust-filter-btn active" data-filter="all" onclick="sustFiltroPorSM('all')" data-i18n="sust.filter.all">TODOS</button>
           <button class="sust-filter-btn" data-filter="soup" onclick="sustFiltroPorSM('soup')" data-i18n="sust.filter.soup">SOPAS</button>
           <button class="sust-filter-btn" data-filter="vegetables" onclick="sustFiltroPorSM('vegetables')" data-i18n="sust.filter.vegetables">VERDURAS</button>
@@ -636,10 +674,10 @@ function confirmarSustSM() {
           <button class="sust-filter-btn" data-filter="fruit" onclick="sustFiltroPorSM('fruit')" data-i18n="sust.filter.fruit">FRUTA</button>
         </div>
       </div>
-      <div id="sustSMResultados" style="max-height:260px;overflow-y:auto"></div>
+      <div id="sustSMResultados" style="max-height:340px;overflow-y:auto"></div>
     </div>
-    <div class="modal-footer py-2">
-      <button class="btn btn-sm btn-secondary" data-dismiss="modal" data-i18n="det.modal.cancel">Cancelar</button>
+    <div class="modal-footer">
+      <button class="btn btn-sm btn-outline-secondary" data-dismiss="modal" data-i18n="det.modal.cancel">Cancelar</button>
       <button class="btn btn-sm btn-success" onclick="confirmarSustSM()"><i class="mdi mdi-check mr-1"></i><span data-i18n="det.modal.confirm">Confirmar sustitución</span></button>
     </div>
   </div></div>
