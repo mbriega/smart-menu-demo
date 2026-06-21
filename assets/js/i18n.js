@@ -2447,10 +2447,9 @@
   };
 
   function _translateSidebar() {
-    /* nav categories */
-    var cats = document.querySelectorAll('.sidebar .nav-category');
-    var catKeys = ['nav.cat.main', 'nav.cat.comercial'];
-    cats.forEach(function(cat, i){ if (catKeys[i]) cat.textContent = t(catKeys[i]); });
+    /* nav category */
+    var cat = document.querySelector('.sidebar .nav-category');
+    if (cat) cat.textContent = t('nav.cat.main');
 
     /* nav links by href */
     var _map = {
