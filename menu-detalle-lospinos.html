@@ -58,7 +58,7 @@
     <h6 class="mb-0 font-weight-700"><i class="mdi mdi-food-fork-drink mr-1" style="color:var(--sm-green)"></i>Men&uacute; semanal &mdash; Comida &middot; Semana 22 al 26 mayo 2026</h6>
     <span style="font-size:.78rem;color:var(--sm-text-muted)"><i class="mdi mdi-pencil mr-1"></i><span data-i18n="det.hint.edit">Click any dish to edit it</span></span>
   </div>
-  <div class="card-body p-0"><div style="overflow-x:auto">
+  <div class="card-body p-0"><div id="menuViewToolbar" class="d-flex align-items-center flex-wrap mb-2" style="gap:.75rem;font-size:.79rem"><span style="color:var(--sm-text-muted);font-weight:600;font-size:.76rem">Ver:</span><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkCodigos" onchange="smToggleVer('codigos')"> <span>Ver códigos</span></label><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkPrecios" onchange="smToggleVer('precios')"> <span>Ver precios</span></label><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkAceptacion" onchange="smToggleVer('aceptacion')"> <span>Ver aceptación</span></label></div><div style="overflow-x:auto">
     <table class="menu-table">
       <thead><tr>
         <th style="width:110px" data-i18n="det.srv.service">Service</th>
@@ -103,13 +103,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="d-flex align-items-center flex-wrap mt-2" style="gap:1.2rem;font-size:.76rem;color:var(--sm-text-muted)">
-      <span style="font-weight:600" data-i18n="det.legend.label">Leyenda:</span>
-      <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(22,163,73,.12);border:1.5px solid rgba(22,163,73,.4)"></span><span data-i18n="det.legend.ok">Dentro de parámetros</span></span>
-      <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(232,119,34,.12);border:1.5px solid rgba(232,119,34,.5)"></span><span data-i18n="det.legend.desv">Desviación nutricional o exceso de costo</span></span>
-      <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(220,53,69,.12);border:1.5px solid rgba(220,53,69,.5)"></span><span data-i18n="det.legend.alerg">Alérgeno / incidencia</span></span>
-      <span style="color:#dee2e6;margin-left:.2rem">|</span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#17a2b8"></span><span data-i18n="legend.soup">Sopa</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#28a745"></span><span data-i18n="legend.vegetables">Verdura</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#fd7e14"></span><span data-i18n="legend.carbs">Cereal</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dc3545"></span><span data-i18n="legend.protein">Proteína</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#6f42c1"></span><span data-i18n="legend.legumes">Legumbre</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span data-i18n="legend.fruit">Fruta</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#007bff"></span><span data-i18n="legend.dairy">Lácteo</span></span>
-    </div>
+    <div class="d-flex align-items-center flex-wrap mt-2" style="gap:.9rem;font-size:.75rem;color:var(--sm-text-muted)"><span style="font-weight:600">Grupo alimentario:</span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(37,99,235,.12);border:1.5px solid rgba(37,99,235,.4)"></span><span>Pescado</span></span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(245,158,11,.12);border:1.5px solid rgba(245,158,11,.4)"></span><span>Huevo</span></span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(136,19,55,.12);border:1.5px solid rgba(136,19,55,.4)"></span><span>Carne</span></span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(234,88,12,.12);border:1.5px solid rgba(234,88,12,.4)"></span><span>Legumbre</span></span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(120,72,23,.12);border:1.5px solid rgba(120,72,23,.4)"></span><span>Integral</span></span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(0,180,30,.15);border:1.5px solid rgba(0,180,30,.5)"></span><span>ECO</span></span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(220,38,38,.12);border:1.5px solid rgba(220,38,38,.4)"></span><span>Precocinado</span></span><span style="color:#dee2e6;margin-left:.15rem">|</span><span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span>Desviación / alérgeno</span></span></div>
   </div></div>
 </div>
 
@@ -1017,4 +1011,106 @@ function confirmarSust() {
     </div>
   </div></div>
 </div>
+<script>
+(function(){
+  var FGC={
+    pescado:   {bg:'rgba(37,99,235,.10)', border:'rgba(37,99,235,.45)'},
+    huevo:     {bg:'rgba(245,158,11,.10)',border:'rgba(245,158,11,.45)'},
+    carne:     {bg:'rgba(136,19,55,.10)', border:'rgba(136,19,55,.45)'},
+    legumbre:  {bg:'rgba(234,88,12,.10)', border:'rgba(234,88,12,.45)'},
+    integral:  {bg:'rgba(120,72,23,.10)', border:'rgba(120,72,23,.45)'},
+    eco:       {bg:'rgba(0,180,30,.13)',  border:'rgba(0,180,30,.50)'},
+    precocinado:{bg:'rgba(220,38,38,.10)',border:'rgba(220,38,38,.45)'}
+  };
+  function fGroup(t){
+    if(!t)return null; var p=t.toLowerCase();
+    if(/merluza|salm[oó]n|bacalao|dorada|lubina|at[uú]n|pescado|rape|sepia|gambas|mejillones|calamares/.test(p))return'pescado';
+    if(/huevo|tortilla|revuelto|escalfado/.test(p))return'huevo';
+    if(/ternera|cerdo|pollo|pavo|cordero|buey|carne|filete|alb[oó]ndiga|hamburguesa|lomo|costilla/.test(p))return'carne';
+    if(/lentejas|garbanzos|jud[ií]as|alubias|guisantes|soja/.test(p))return'legumbre';
+    if(/integral|salvado|espelta|centeno/.test(p))return'integral';
+    if(/eco[l ]|ecol[oó]gico|org[aá]nico/.test(p))return'eco';
+    if(/precocinado|nuggets|croquetas|palitos|empanad/.test(p))return'precocinado';
+    return null;
+  }
+  var PRICES=['€0.45','€0.85','€0.55','€0.40','€1.10','€0.70','€0.65','€0.50','€0.90','€0.35'];
+  var ACEP=['94%','96%','91%','98%','87%','95%','93%','89%','97%','92%'];
+  document.querySelectorAll('.menu-cell').forEach(function(cell,idx){
+    var isW=cell.classList.contains('warning'), isC=cell.classList.contains('critical');
+    if(isW||isC){
+      var dot=document.createElement('span');
+      dot.style.cssText='display:inline-block;width:7px;height:7px;border-radius:50%;background:'+(isC?'#ef4444':'#f59e0b')+';vertical-align:middle;margin-left:5px;flex-shrink:0';
+      dot.title=isC?'Fuera de parámetro':'Desviación / alérgeno';
+      cell.appendChild(dot);
+    }
+    var txt=(cell.childNodes[0]?cell.childNodes[0].textContent:'').replace('⚠','').trim();
+    var grp=fGroup(txt);
+    if(grp&&FGC[grp]){cell.style.background=FGC[grp].bg;cell.style.borderLeft='3px solid '+FGC[grp].border;cell.style.paddingLeft='6px';cell.style.borderRadius='2px';}
+    cell.classList.remove('ok','warning','critical');
+    var grpCode=grp?grp.substring(0,3).toUpperCase():'N00';
+    var code=document.createElement('span');code.className='sm-overlay-cod';code.style.cssText='display:none;font-size:.6rem;color:#6c757d;background:#f3f4f6;border-radius:2px;padding:0 3px;margin-left:4px;font-family:monospace';code.textContent=grpCode+(idx+1);
+    var price=document.createElement('span');price.className='sm-overlay-price';price.style.cssText='display:none;font-size:.65rem;color:#16a34a;font-weight:600;margin-left:4px';price.textContent=PRICES[idx%PRICES.length];
+    var acep=document.createElement('span');acep.className='sm-overlay-acep';acep.style.cssText='display:none;font-size:.65rem;color:#2563eb;font-weight:600;margin-left:4px';acep.textContent=ACEP[idx%ACEP.length];
+    cell.appendChild(code);cell.appendChild(price);cell.appendChild(acep);
+  });
+  window.smToggleVer=function(type){
+    var cls={'codigos':'sm-overlay-cod','precios':'sm-overlay-price','aceptacion':'sm-overlay-acep'}[type];
+    if(!cls)return;
+    var chk=document.getElementById('chk'+type.charAt(0).toUpperCase()+type.slice(1));
+    var show=chk?chk.checked:false;
+    document.querySelectorAll('.'+cls).forEach(function(el){el.style.display=show?'':'none';});
+  };
+  // Column filter dropdowns
+  var tbl=document.querySelector('.menu-table');
+  if(tbl){
+    var ths=tbl.querySelectorAll('thead th');
+    ths.forEach(function(th,ci){
+      if(ci===0)return;
+      var label=th.textContent.trim();
+      th.style.position='relative';th.style.whiteSpace='nowrap';
+      th.innerHTML='<span>'+label+'</span>';
+      var btn=document.createElement('button');
+      btn.style.cssText='background:none;border:none;padding:0 0 0 4px;cursor:pointer;color:#9ca3af;font-size:.7rem;vertical-align:middle';
+      btn.innerHTML='&#9660;';
+      var drop=document.createElement('div');
+      drop.style.cssText='display:none;position:absolute;left:0;top:100%;z-index:1050;background:#fff;border:1px solid #e5e7eb;border-radius:4px;box-shadow:0 3px 10px rgba(0,0,0,.1);padding:.2rem 0;min-width:160px;font-size:.77rem;max-height:220px;overflow-y:auto';
+      var rows=tbl.querySelectorAll('tbody tr');
+      var vals=['(Todos)'];
+      rows.forEach(function(row){
+        var tds=row.querySelectorAll('td');
+        var td=tds[ci];if(!td)return;
+        var mc=td.querySelector('.menu-cell');if(!mc)return;
+        var v=(mc.childNodes[0]?mc.childNodes[0].textContent:'').replace('⚠','').trim();
+        if(v&&vals.indexOf(v)===-1)vals.push(v);
+      });
+      vals.forEach(function(v){
+        var item=document.createElement('div');
+        item.style.cssText='padding:.25rem .75rem;cursor:pointer';
+        item.textContent=v;
+        item.onmouseover=function(){this.style.background='#f3f4f6'};
+        item.onmouseout=function(){this.style.background=''};
+        item.onclick=function(){
+          drop.style.display='none';
+          rows.forEach(function(row){
+            if(v==='(Todos)'){row.style.display='';return;}
+            var tds=row.querySelectorAll('td'),td=tds[ci];if(!td){row.style.display='';return;}
+            var mc=td.querySelector('.menu-cell');
+            var rv=mc?(mc.childNodes[0]?mc.childNodes[0].textContent:'').replace('⚠','').trim():'';
+            row.style.display=rv.toLowerCase().indexOf(v.toLowerCase())!==-1?'':'none';
+          });
+        };
+        drop.appendChild(item);
+      });
+      btn.onclick=function(e){
+        e.stopPropagation();
+        document.querySelectorAll('.sm-col-drop').forEach(function(d){if(d!==drop)d.style.display='none';});
+        drop.style.display=drop.style.display==='none'?'block':'none';
+      };
+      drop.className='sm-col-drop';
+      th.appendChild(btn);th.appendChild(drop);
+    });
+    document.addEventListener('click',function(){document.querySelectorAll('.sm-col-drop').forEach(function(d){d.style.display='none';});});
+  }
+})();
+</script>
 </body></html>
