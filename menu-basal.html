@@ -107,11 +107,10 @@
     </div>
     <!-- Sub-tabs escolar: en la cabecera del card, solo visibles cuando tipo=escolar -->
     <div id="escolarBasalSubTabs" style="display:none">
-      <ul class="nav nav-tabs mt-2 mb-0">
-        <li class="nav-item"><a class="nav-link active" href="#" data-subtipo="primaria" onclick="switchSubtipo('primaria');return false;"><span data-i18n="basal.tab.primary">Base Menu Primary</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="secundaria" onclick="switchSubtipo('secundaria');return false;"><span data-i18n="basal.tab.secondary">Base Menu Secondary</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="infantil" onclick="switchSubtipo('infantil');return false;"><span data-i18n="basal.tab.infant">Base Menu Infant</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-subtipo="residencia-escolar" onclick="switchSubtipo('residencia-escolar');return false;"><span data-i18n="basal.tab.residence">Men&uacute; Basal Residencia Escolar</span></a></li>
+      <ul class="nav nav-tabs mt-2 mb-0" id="escolarPerfilTabs">
+        <li class="nav-item"><a class="nav-link" href="#" data-perfil="secundaria" onclick="switchPerfilEscolar('secundaria');return false;">Secundaria <span class="badge badge-secondary ml-1" style="font-size:.66rem;vertical-align:middle;font-weight:600">100%</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-perfil="primaria" onclick="switchPerfilEscolar('primaria');return false;">Primaria <span class="badge badge-secondary ml-1" style="font-size:.66rem;vertical-align:middle;font-weight:600">75%</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-perfil="infantil" onclick="switchPerfilEscolar('infantil');return false;">Infantil <span class="badge badge-secondary ml-1" style="font-size:.66rem;vertical-align:middle;font-weight:600">50%</span></a></li>
       </ul>
     </div>
     <!-- Estado: no generado -->
@@ -125,11 +124,12 @@
     </div>
     <!-- Estado: generado -->
     <div id="basalContenido">
+    <div id="escolarVariantsView" style="display:none"></div>
+    <div id="basalNormalView">
     <ul class="nav nav-tabs mb-3 mt-3" id="basalTab">
       <li class="nav-item"><a class="nav-link active" id="basalTabBtn-menu"  href="#" onclick="switchBasalTab('menu'); return false;"><span data-i18n="basal.tab.menu">Menu</span></a></li>
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-nutri" href="#" onclick="switchBasalTab('nutri');return false;"><span data-i18n="basal.tab.nutri">Nutrition</span></a></li>
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-costo" href="#" onclick="switchBasalTab('costo');return false;"><span data-i18n="basal.tab.costo">Cost</span></a></li>
-      <li class="nav-item"><a class="nav-link"        id="basalTabBtn-alerg" href="#" onclick="switchBasalTab('alerg');return false;"><span data-i18n="basal.tab.alerg">Allergens</span></a></li>
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-hist"  href="#" onclick="switchBasalTab('hist'); return false;"><span data-i18n="basal.tab.hist">History</span></a></li>
       <li class="nav-item"><a class="nav-link"        id="basalTabBtn-chat" href="#" onclick="switchBasalTab('chat');return false;"><i class="mdi mdi-robot mr-1"></i><span data-i18n="basal.tab.chat">Chat IA</span></a></li>
     </ul>
@@ -153,12 +153,17 @@
             <tbody id="tbodyBasal"></tbody>
           </table>
         </div>
-        <div class="d-flex align-items-center flex-wrap mt-2" style="gap:1.2rem;font-size:.76rem;color:var(--sm-text-muted)">
-          <span style="font-weight:600" data-i18n="basal.legend.label">Leyenda:</span>
-          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(22,163,73,.12);border:1.5px solid rgba(22,163,73,.4)"></span><span data-i18n="basal.legend.ok">Dentro de par&aacute;metros</span></span>
-          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(232,119,34,.12);border:1.5px solid rgba(232,119,34,.5)"></span><span data-i18n="basal.legend.desv">Desviaci&oacute;n nutricional</span></span>
-          <span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:rgba(220,53,69,.12);border:1.5px solid rgba(220,53,69,.5)"></span><span data-i18n="basal.legend.alerg">Al&eacute;rgeno detectado</span></span>
-          <span style="color:#dee2e6;margin-left:.2rem">|</span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#17a2b8"></span><span data-i18n="legend.soup">Sopa</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#28a745"></span><span data-i18n="legend.vegetables">Verdura</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#fd7e14"></span><span data-i18n="legend.carbs">Cereal</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dc3545"></span><span data-i18n="legend.protein">Proteína</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#6f42c1"></span><span data-i18n="legend.legumes">Legumbre</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span data-i18n="legend.fruit">Fruta</span></span><span class="d-flex align-items-center" style="gap:.4rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#007bff"></span><span data-i18n="legend.dairy">Lácteo</span></span>
+        <div class="d-flex align-items-center flex-wrap mt-2" style="gap:.9rem;font-size:.75rem;color:var(--sm-text-muted)">
+          <span style="font-weight:600">Grupo alimentario:</span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(37,99,235,.12);border:1.5px solid rgba(37,99,235,.4)"></span><span>Pescado</span></span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(245,158,11,.12);border:1.5px solid rgba(245,158,11,.4)"></span><span>Huevo</span></span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(136,19,55,.12);border:1.5px solid rgba(136,19,55,.4)"></span><span>Carne (ternera/cerdo)</span></span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(234,88,12,.12);border:1.5px solid rgba(234,88,12,.4)"></span><span>Legumbre</span></span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(120,72,23,.12);border:1.5px solid rgba(120,72,23,.4)"></span><span>Integral</span></span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(0,180,30,.15);border:1.5px solid rgba(0,180,30,.5)"></span><span>ECO</span></span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(220,38,38,.12);border:1.5px solid rgba(220,38,38,.4)"></span><span>Precocinado</span></span>
+          <span style="color:#dee2e6;margin-left:.15rem">|</span>
+          <span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span>Fuera de parámetro</span></span>
         </div>
       </div>
 
@@ -171,11 +176,6 @@
       <!-- TAB COSTO -->
       <div id="tabBasalCosto" style="display:none">
         <div id="basalCostoContent"></div>
-      </div>
-
-      <!-- TAB ALÉRGENOS -->
-      <div id="tabBasalAlergenos" style="display:none">
-        <div id="basalAlergenosContent"></div>
       </div>
 
       <!-- TAB HISTORIAL -->
@@ -235,6 +235,7 @@
       </div>
 
     </div>
+    </div><!-- #basalNormalView -->
     </div>
   </div>
 </div>
@@ -505,14 +506,15 @@
 function smToast(msg,type,dur){type=type||'success';dur=dur||3200;var icons={success:'mdi-check-circle',error:'mdi-alert-circle',warning:'mdi-alert',info:'mdi-information'};var t=document.createElement('div');t.className='sm-toast '+type;t.innerHTML='<i class="mdi '+icons[type]+' toast-icon"></i><span>'+msg+'</span><span class="toast-close" onclick="this.parentNode.remove()">&times;</span>';document.getElementById('sm-toast-container').appendChild(t);setTimeout(function(){if(t.parentNode)t.remove();},dur);}
 
 // ── ESTADO GLOBAL ─────────────────────────────────────────────────────────────
-var STATE = { tipo: 'escolar', subtipo: 'primaria', semana: 1 };
+var STATE = { tipo: 'escolar', subtipo: 'secundaria', semana: 1, escolarVariante: null, varianteTabs: {} };
 
 function getActiveKey() {
   return STATE.tipo === 'escolar' ? 'escolar-' + STATE.subtipo : STATE.tipo;
 }
 
 var TIPO_LABELS = { 'escolar':'Escolar', 'hospital':'Hospital', 'tercera-edad':'Larga Estancia', 'empresa':'Empresa' };
-var SUBTIPO_LABELS = { 'primaria':'Primary', 'secundaria':'Secondary', 'infantil':'Infant', 'residencia-escolar':'School Residence' };
+var SUBTIPO_LABELS = { 'primaria':'Primaria', 'secundaria':'Secundaria', 'infantil':'Infantil', 'residencia-escolar':'Residencia Escolar' };
+var PERFIL_PCT = { 'secundaria':'100%', 'primaria':'75%', 'infantil':'50%' };
 
 var TIPO_CONFIG = {
   'escolar-primaria':           {kcalMin:600,kcalMax:700,kcalLabel:'600–700 kcal',norma:'RD 315/2025',target:3.50,nutri:'96.4%',costoKpi:'98.1%',desv:2},
@@ -529,7 +531,7 @@ var APROBADO = {
   'hospital':false,'tercera-edad':false,'empresa':false
 };
 var GENERADO = {
-  'escolar-primaria':true,'escolar-secundaria':false,'escolar-infantil':false,'escolar-residencia-escolar':false,
+  'escolar-primaria':false,'escolar-secundaria':true,'escolar-infantil':false,'escolar-residencia-escolar':false,
   'hospital':true,'tercera-edad':false,'empresa':false
 };
 
@@ -567,10 +569,20 @@ function switchTipo(tipo) {
 function switchSubtipo(subtipo) {
   STATE.subtipo = subtipo;
   STATE.semana = 1;
-  document.querySelectorAll('#escolarBasalSubTabs .nav-link').forEach(function(a){ a.classList.remove('active'); });
-  document.querySelectorAll('#escolarBasalSubTabs .nav-link[data-subtipo="'+subtipo+'"]').forEach(function(a){ a.classList.add('active'); });
   resetSemanaButtons();
   switchBasalTab('menu');
+  renderPage();
+}
+
+function switchPerfilEscolar(perfil) {
+  STATE.subtipo = perfil;
+  STATE.semana = 1;
+  STATE.escolarVariante = null;
+  STATE.varianteTabs = {};
+  document.querySelectorAll('#escolarPerfilTabs .nav-link').forEach(function(a){ a.classList.remove('active'); });
+  var al = document.querySelector('#escolarPerfilTabs .nav-link[data-perfil="'+perfil+'"]');
+  if (al) al.classList.add('active');
+  resetSemanaButtons();
   renderPage();
 }
 
@@ -588,9 +600,9 @@ function renderPage() {
 
   // Subtitle
   var subtitle = TIPO_LABELS[STATE.tipo];
-  if (STATE.tipo === 'escolar') subtitle += ' · Base Menu ' + SUBTIPO_LABELS[STATE.subtipo];
+  if (STATE.tipo === 'escolar') subtitle += ' · ' + SUBTIPO_LABELS[STATE.subtipo] + (PERFIL_PCT[STATE.subtipo] ? ' ('+PERFIL_PCT[STATE.subtipo]+')' : '');
   var el = document.getElementById('pageSubtitle');
-  if (el) el.textContent = 'Master proposal — ' + subtitle;
+  if (el) el.textContent = 'Propuesta maestra — ' + subtitle;
 
   // Botón "Generar menús por centro" en el card header — visible y habilitado solo si aprobado
   var btnGenCentros = document.getElementById('btnGenMenusCentros');
@@ -606,8 +618,17 @@ function renderPage() {
 
   // Sub-tabs escolar dentro del card
   var subTabs = document.getElementById('escolarBasalSubTabs');
-  if (subTabs) subTabs.style.display = STATE.tipo === 'escolar' ? '' : 'none';
+  if (subTabs) {
+    subTabs.style.display = STATE.tipo === 'escolar' ? '' : 'none';
+    if (STATE.tipo === 'escolar') {
+      subTabs.querySelectorAll('.nav-link').forEach(function(a){ a.classList.remove('active'); });
+      var aPerfilLink = subTabs.querySelector('.nav-link[data-perfil="'+STATE.subtipo+'"]');
+      if (aPerfilLink) aPerfilLink.classList.add('active');
+    }
+  }
 
+  var escolarView = document.getElementById('escolarVariantsView');
+  var normalView = document.getElementById('basalNormalView');
   var noGen = document.getElementById('basalNoGenerado');
   var contenido = document.getElementById('basalContenido');
   var weekCtrls = document.getElementById('basalWeekControls');
@@ -615,10 +636,17 @@ function renderPage() {
     if (noGen) noGen.style.display = 'none';
     if (contenido) contenido.style.display = '';
     if (weekCtrls) weekCtrls.style.display = '';
-    renderTabla(STATE.semana);
-    renderBasalNutricion(STATE.semana);
-    renderBasalCosto(STATE.semana);
-    renderBasalAlergenos(STATE.semana);
+    if (STATE.tipo === 'escolar') {
+      if (escolarView) escolarView.style.display = '';
+      if (normalView) normalView.style.display = 'none';
+      renderEscolarVariants(STATE.semana);
+    } else {
+      if (escolarView) escolarView.style.display = 'none';
+      if (normalView) normalView.style.display = '';
+      renderTabla(STATE.semana);
+      renderBasalNutricion(STATE.semana);
+      renderBasalCosto(STATE.semana);
+    }
   } else {
     if (noGen) noGen.style.display = '';
     if (contenido) contenido.style.display = 'none';
@@ -628,8 +656,8 @@ function renderPage() {
   // Titulo semana
   var tit = document.getElementById('tituloSemana');
   if (tit) {
-    var titLabel = STATE.tipo === 'escolar' ? 'Base Menu ' + SUBTIPO_LABELS[STATE.subtipo] : 'Base Menu ' + TIPO_LABELS[STATE.tipo];
-    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Week ' + STATE.semana;
+    var titLabel = STATE.tipo === 'escolar' ? 'Menú Basal Escolar · ' + SUBTIPO_LABELS[STATE.subtipo] + (PERFIL_PCT[STATE.subtipo]?' ('+PERFIL_PCT[STATE.subtipo]+')':'') : 'Menú Basal ' + TIPO_LABELS[STATE.tipo];
+    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Semana ' + STATE.semana;
   }
 
   // Aprobar button
@@ -847,7 +875,10 @@ function _renderServicioRows(rows, sem, sectionLabel, sectionColor, dias) {
   rows.forEach(function(row, rIdx) {
     html += '<tr><td style="padding-left:1.2rem">'+basalPlatoLabel(row.plato)+'</td>';
     row.dias.forEach(function(plato, dIdx) {
-      html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')"><div class="menu-cell ok" data-food-type="'+getDishType(plato)+'">'+plato+'</div></td>';
+      var grp = getDishFoodGroup(plato);
+      var gc = grp ? FOOD_GROUP_COLORS[grp] : null;
+      var divStyle = gc ? 'background:'+gc.bg+';border-left:3px solid '+gc.border+';padding-left:6px' : '';
+      html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')"><div class="menu-cell" style="'+divStyle+'">'+plato+'</div></td>';
     });
     html += '</tr>';
   });
@@ -877,17 +908,15 @@ function renderTabla(sem) {
   data.rows.forEach(function(row, rIdx) {
     html += '<tr><td>' + basalPlatoLabel(row.plato) + '</td>';
     row.dias.forEach(function(plato, dIdx) {
-      var db = basalRecetasDB[plato];
-      var cellClass = 'ok';
-      if (db && db.alerg && db.alerg !== 'None' && db.alerg !== 'No data') {
-        cellClass = db.alerg.split(',').length >= 2 ? 'danger' : 'warning';
-      }
+      var grp = getDishFoodGroup(plato);
+      var gc = grp ? FOOD_GROUP_COLORS[grp] : null;
+      var divStyle = gc ? 'background:'+gc.bg+';border-left:3px solid '+gc.border+';padding-left:6px' : '';
       if (modoEdicionBasal) {
         html += '<td onclick="editarCeldaBasal('+sem+','+rIdx+','+dIdx+',\''+plato.replace(/'/g,"\\'")+'\')" style="cursor:pointer">'
-              + '<div class="menu-cell '+cellClass+'" data-food-type="'+getDishType(plato)+'" style="border:1.5px dashed rgba(22,163,73,.5)">'+plato+'</div></td>';
+              + '<div class="menu-cell" style="'+divStyle+(divStyle?';':'')+' border:1.5px dashed rgba(22,163,73,.5)">'+plato+'</div></td>';
       } else {
         html += '<td onclick="verPlatoBasal(\''+plato.replace(/'/g,"\\'")+'\',\''+dias[dIdx]+'\')">'
-              + '<div class="menu-cell '+cellClass+'" data-food-type="'+getDishType(plato)+'">'+plato+'</div></td>';
+              + '<div class="menu-cell" style="'+divStyle+'">'+plato+'</div></td>';
       }
     });
     html += '</tr>';
@@ -929,11 +958,17 @@ function cambiarSemana(num, btn) {
   STATE.semana = num;
   document.querySelectorAll('#semanaGroup .btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
-  renderTabla(num);
+  if (STATE.tipo === 'escolar') {
+    renderEscolarVariants(num);
+  } else {
+    renderTabla(num);
+    renderBasalNutricion(num);
+    renderBasalCosto(num);
+  }
   var tit = document.getElementById('tituloSemana');
   if (tit) {
-    var titLabel = STATE.tipo === 'escolar' ? 'Base Menu ' + SUBTIPO_LABELS[STATE.subtipo] : 'Base Menu ' + TIPO_LABELS[STATE.tipo];
-    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Week ' + num;
+    var titLabel = STATE.tipo === 'escolar' ? 'Menú Basal Escolar · ' + SUBTIPO_LABELS[STATE.subtipo] + (PERFIL_PCT[STATE.subtipo] ? ' ('+PERFIL_PCT[STATE.subtipo]+')' : '') : 'Menú Basal ' + TIPO_LABELS[STATE.tipo];
+    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Semana ' + num;
   }
 }
 
@@ -1022,8 +1057,8 @@ function _chatEsc(s) {
 
 // ── INNER TABS ────────────────────────────────────────────────────────────────
 function switchBasalTab(tab) {
-  var tabs = ['menu','nutri','costo','alerg','hist','chat'];
-  var paneIds = {menu:'tabBasalMenu',nutri:'tabBasalNutricion',costo:'tabBasalCosto',alerg:'tabBasalAlergenos',hist:'tabBasalHistorial',chat:'tabBasalChat'};
+  var tabs = ['menu','nutri','costo','hist','chat'];
+  var paneIds = {menu:'tabBasalMenu',nutri:'tabBasalNutricion',costo:'tabBasalCosto',hist:'tabBasalHistorial',chat:'tabBasalChat'};
   tabs.forEach(function(t) {
     var btn  = document.getElementById('basalTabBtn-'+t);
     var pane = document.getElementById(paneIds[t]);
@@ -1034,6 +1069,7 @@ function switchBasalTab(tab) {
 
 // ── RENDER NUTRICIÓN / COSTO / ALÉRGENOS ─────────────────────────────────────
 function renderBasalNutricion(sem) {
+  if (STATE.tipo === 'escolar') return;
   var data = menuBasalDB[sem]; if (!data) return;
   var cfg = TIPO_CONFIG[getActiveKey()];
   var dias = ['Mon','Tue','Wed','Thu','Fri'];
@@ -1066,6 +1102,7 @@ function renderBasalNutricion(sem) {
 }
 
 function renderBasalCosto(sem) {
+  if (STATE.tipo === 'escolar') return;
   var data=menuBasalDB[sem];if(!data)return;
   var cfg=TIPO_CONFIG[getActiveKey()];
   var TARGET=cfg.target;
@@ -1435,6 +1472,499 @@ function imprimirMensual(){
   w.document.write('</body></html>');
   w.document.close();
   setTimeout(function(){w.print();},300);
+}
+
+// ── FOOD GROUP COLORS ─────────────────────────────────────────────────────────
+var FOOD_GROUP_COLORS = {
+  pescado:    { bg:'rgba(37,99,235,.10)',  border:'rgba(37,99,235,.45)',  color:'#1d4ed8' },
+  huevo:      { bg:'rgba(245,158,11,.10)', border:'rgba(245,158,11,.45)', color:'#b45309' },
+  carne:      { bg:'rgba(136,19,55,.10)',  border:'rgba(136,19,55,.45)',  color:'#881337' },
+  legumbre:   { bg:'rgba(234,88,12,.10)',  border:'rgba(234,88,12,.45)',  color:'#c2410c' },
+  integral:   { bg:'rgba(120,72,23,.10)',  border:'rgba(120,72,23,.45)',  color:'#78481b' },
+  eco:        { bg:'rgba(0,180,30,.13)',   border:'rgba(0,180,30,.50)',   color:'#166534' },
+  precocinado:{ bg:'rgba(220,38,38,.10)',  border:'rgba(220,38,38,.45)',  color:'#b91c1c' }
+};
+
+function getDishFoodGroup(plato) {
+  if (!plato) return null;
+  var p = plato.toLowerCase();
+  if (/merluza|salmón|salmon|bacalao|dorada|lubina|atún|atun|pescado|rape|sepia|gambas|mejillones|calamares/.test(p)) return 'pescado';
+  if (/huevo|tortilla|revuelto|escalfado/.test(p)) return 'huevo';
+  if (/ternera|cerdo|pollo|pavo|cordero|buey|carne|filete|albóndiga|albondiga|hamburguesa|lomo|costilla/.test(p)) return 'carne';
+  if (/lentejas|garbanzos|judías|judias|alubias|guisantes|soja/.test(p)) return 'legumbre';
+  if (/integral|salvado|espelta|centeno/.test(p)) return 'integral';
+  if (/eco|ecológico|ecologico|orgánico|organico|bio /.test(p)) return 'eco';
+  if (/precocinado|nuggets|croquetas|palitos|empanad/.test(p)) return 'precocinado';
+  return null;
+}
+
+function getLegendaGrupos() {
+  return '<div class="d-flex align-items-center flex-wrap mt-2" style="gap:.9rem;font-size:.75rem;color:var(--sm-text-muted)">'
+    + '<span style="font-weight:600">Grupo alimentario:</span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(37,99,235,.12);border:1.5px solid rgba(37,99,235,.4)"></span><span>Pescado</span></span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(245,158,11,.12);border:1.5px solid rgba(245,158,11,.4)"></span><span>Huevo</span></span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(136,19,55,.12);border:1.5px solid rgba(136,19,55,.4)"></span><span>Carne</span></span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(234,88,12,.12);border:1.5px solid rgba(234,88,12,.4)"></span><span>Legumbre</span></span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(120,72,23,.12);border:1.5px solid rgba(120,72,23,.4)"></span><span>Integral</span></span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(0,180,30,.15);border:1.5px solid rgba(0,180,30,.5)"></span><span>ECO</span></span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba(220,38,38,.12);border:1.5px solid rgba(220,38,38,.4)"></span><span>Precocinado</span></span>'
+    + '<span style="color:#dee2e6;margin-left:.15rem">|</span>'
+    + '<span class="d-flex align-items-center" style="gap:.35rem"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b"></span><span>Fuera de parámetro</span></span>'
+    + '</div>';
+}
+
+// ── ESCOLAR VARIANTES DATA ─────────────────────────────────────────────────────
+var ESCOLAR_VARIANTES = [
+  { id:'2+2', label:'2+2', desc:'2 primeros + 2 segundos', pct:100 },
+  { id:'2+1', label:'2+1', desc:'2 primeros + 1 segundo',  pct:95  },
+  { id:'1+1', label:'1+1', desc:'1 primero + 1 segundo',   pct:90  },
+  { id:'1+2', label:'1+2', desc:'1 primero + 2 segundos',  pct:90  }
+];
+
+var menuEscolarVariantesDB = {
+  1: {
+    '2+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada integral con aceite','Galletas integrales','Tostada con mermelada','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Lentejas estofadas','Ensalada mixta','Sopa de fideos','Crema de verduras','Arroz con verduras']},
+        {plato:'2º Primero',   dias:['Ensalada verde','Puré de calabaza','Ensalada de tomate','Macarrones boloñesa','Gazpacho']},
+        {plato:'1er Segundo',  dias:['Merluza al horno','Pollo asado','Ternera a la plancha','Bacalao con tomate','Salmón a la plancha']},
+        {plato:'2º Segundo',   dias:['Croquetas de jamón','Tortilla francesa','Filete de cerdo','Albóndigas en salsa','Huevo frito']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Yogur de frutas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Fruta fresca','Yogur natural','Fruta fresca','Bocadillo integral','Fruta fresca']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de calabacín','Sopa de verduras','Puré de patata','Ensalada templada','Crema de zanahoria']},
+        {plato:'Segundo',  dias:['Pavo a la plancha','Merluza al vapor','Tortilla de patata','Pollo salteado','Bacalao al pil pil']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Leche con miel','Yogur natural','Fruta del tiempo','Infusión']}
+      ]}
+    },
+    '2+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada integral','Galletas','Tostada con mermelada','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Lentejas estofadas','Ensalada mixta','Sopa de fideos','Crema de verduras','Arroz con verduras']},
+        {plato:'2º Primero',   dias:['Ensalada verde','Puré de calabaza','Ensalada de tomate','Macarrones boloñesa','Gazpacho']},
+        {plato:'Segundo',      dias:['Merluza al horno','Pollo asado','Ternera a la plancha','Bacalao con tomate','Salmón a la plancha']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Yogur de frutas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Fruta fresca','Yogur natural','Fruta fresca','Bocadillo integral','Fruta fresca']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de calabacín','Sopa de verduras','Puré de patata','Ensalada templada','Crema de zanahoria']},
+        {plato:'Segundo',  dias:['Pavo a la plancha','Merluza al vapor','Tortilla de patata','Pollo salteado','Bacalao al pil pil']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Leche con miel','Yogur natural','Fruta del tiempo','Infusión']}
+      ]}
+    },
+    '1+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada integral','Galletas','Tostada con mermelada','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',  dias:['Lentejas estofadas','Ensalada mixta','Sopa de fideos','Crema de verduras','Arroz con verduras']},
+        {plato:'Segundo',  dias:['Merluza al horno','Pollo asado','Ternera a la plancha','Bacalao con tomate','Salmón a la plancha']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Yogur de frutas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Fruta fresca','Yogur natural','Fruta fresca','Bocadillo integral','Fruta fresca']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de calabacín','Sopa de verduras','Puré de patata','Ensalada templada','Crema de zanahoria']},
+        {plato:'Segundo',  dias:['Pavo a la plancha','Merluza al vapor','Tortilla de patata','Pollo salteado','Bacalao al pil pil']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Leche con miel','Yogur natural','Fruta del tiempo','Infusión']}
+      ]}
+    },
+    '1+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada integral','Galletas','Tostada con mermelada','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',      dias:['Lentejas estofadas','Ensalada mixta','Sopa de fideos','Crema de verduras','Arroz con verduras']},
+        {plato:'1er Segundo',  dias:['Merluza al horno','Pollo asado','Ternera a la plancha','Bacalao con tomate','Salmón a la plancha']},
+        {plato:'2º Segundo',   dias:['Croquetas de jamón','Tortilla francesa','Filete de cerdo','Albóndigas en salsa','Huevo frito']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Yogur de frutas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Fruta fresca','Yogur natural','Fruta fresca','Bocadillo integral','Fruta fresca']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de calabacín','Sopa de verduras','Puré de patata','Ensalada templada','Crema de zanahoria']},
+        {plato:'Segundo',  dias:['Pavo a la plancha','Merluza al vapor','Tortilla de patata','Pollo salteado','Bacalao al pil pil']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Leche con miel','Yogur natural','Fruta del tiempo','Infusión']}
+      ]}
+    }
+  },
+  2: {
+    '2+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite','Magdalenas','Tostada con aceite','Fruta de temporada','Cereales con leche']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Arroz tres delicias','Judías verdes rehogadas','Menestra de verduras','Ensalada César','Garbanzos con espinacas']},
+        {plato:'2º Primero',   dias:['Puré de patata','Ensalada de pepino','Crema de puerros','Ensalada verde','Crema de tomate']},
+        {plato:'1er Segundo',  dias:['Dorada al horno','Pavo empanado','Cerdo a la plancha','Atún con tomate','Merluza frita']},
+        {plato:'2º Segundo',   dias:['Tortilla de patata','Pescado rebozado','Huevo duro con mayonesa','Croquetas de bacalao','Filete de ternera']},
+        {plato:'Postre',       dias:['Naranja','Yogur de sabores','Manzana','Yogur natural','Pera']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Manzana','Yogur natural','Naranja','Pan con tomate','Fruta de temporada']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Sopa de arroz','Verduras al vapor','Crema de lentejas','Ensalada de lechuga','Puré de calabaza']},
+        {plato:'Segundo',  dias:['Merluza al vapor','Pollo al horno','Revuelto de setas','Bacalao a la vizcaína','Pavo a la plancha']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche caliente','Manzana asada']}
+      ]}
+    },
+    '2+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite','Magdalenas','Tostada con aceite','Fruta de temporada','Cereales con leche']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Arroz tres delicias','Judías verdes','Menestra de verduras','Ensalada César','Garbanzos con espinacas']},
+        {plato:'2º Primero',   dias:['Puré de patata','Ensalada de pepino','Crema de puerros','Ensalada verde','Crema de tomate']},
+        {plato:'Segundo',      dias:['Dorada al horno','Pavo empanado','Cerdo a la plancha','Atún con tomate','Merluza frita']},
+        {plato:'Postre',       dias:['Naranja','Yogur de sabores','Manzana','Yogur natural','Pera']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Manzana','Yogur natural','Naranja','Pan con tomate','Fruta de temporada']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Sopa de arroz','Verduras al vapor','Crema de lentejas','Ensalada de lechuga','Puré de calabaza']},
+        {plato:'Segundo',  dias:['Merluza al vapor','Pollo al horno','Revuelto de setas','Bacalao a la vizcaína','Pavo a la plancha']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche caliente','Manzana asada']}
+      ]}
+    },
+    '1+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite','Magdalenas','Tostada con aceite','Fruta de temporada','Cereales con leche']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',  dias:['Arroz tres delicias','Judías verdes','Menestra de verduras','Ensalada César','Garbanzos con espinacas']},
+        {plato:'Segundo',  dias:['Dorada al horno','Pavo empanado','Cerdo a la plancha','Atún con tomate','Merluza frita']},
+        {plato:'Postre',   dias:['Naranja','Yogur de sabores','Manzana','Yogur natural','Pera']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Manzana','Yogur natural','Naranja','Pan con tomate','Fruta de temporada']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Sopa de arroz','Verduras al vapor','Crema de lentejas','Ensalada de lechuga','Puré de calabaza']},
+        {plato:'Segundo',  dias:['Merluza al vapor','Pollo al horno','Revuelto de setas','Bacalao a la vizcaína','Pavo a la plancha']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche caliente','Manzana asada']}
+      ]}
+    },
+    '1+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite','Magdalenas','Tostada con aceite','Fruta de temporada','Cereales con leche']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',      dias:['Arroz tres delicias','Judías verdes','Menestra de verduras','Ensalada César','Garbanzos con espinacas']},
+        {plato:'1er Segundo',  dias:['Dorada al horno','Pavo empanado','Cerdo a la plancha','Atún con tomate','Merluza frita']},
+        {plato:'2º Segundo',   dias:['Tortilla de patata','Pescado rebozado','Huevo duro','Croquetas de bacalao','Filete de ternera']},
+        {plato:'Postre',       dias:['Naranja','Yogur de sabores','Manzana','Yogur natural','Pera']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Manzana','Yogur natural','Naranja','Pan con tomate','Fruta de temporada']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Sopa de arroz','Verduras al vapor','Crema de lentejas','Ensalada de lechuga','Puré de calabaza']},
+        {plato:'Segundo',  dias:['Merluza al vapor','Pollo al horno','Revuelto de setas','Bacalao a la vizcaína','Pavo a la plancha']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche caliente','Manzana asada']}
+      ]}
+    }
+  },
+  3: {
+    '2+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada con tomate','Bizcocho casero','Pan con mantequilla','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Alubias blancas','Ensalada de tomate','Fideos con verduras','Pisto manchego','Arroz integral']},
+        {plato:'2º Primero',   dias:['Ensalada tibia','Sopa castellana','Ensalada caprese','Crema de guisantes','Taboulé']},
+        {plato:'1er Segundo',  dias:['Salmón al vapor','Pollo en pepitoria','Ternera guisada','Merluza en salsa verde','Rape a la plancha']},
+        {plato:'2º Segundo',   dias:['Huevo revuelto','Nuggets de pollo','Cerdo con champiñones','Tortilla de verduras','Bacalao rebozado']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Flan de vainilla','Fruta del tiempo','Natillas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Pera','Yogur con granola','Uvas','Bocadillo de pavo','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de espárragos','Caldo de pollo','Ensalada de espinacas','Puré de brócoli','Sopa de cebolla']},
+        {plato:'Segundo',  dias:['Salmón a la plancha','Ternera al vapor','Tortilla de champiñones','Pollo asado','Merluza al horno']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche con miel','Fruta del tiempo']}
+      ]}
+    },
+    '2+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada con tomate','Bizcocho casero','Pan con mantequilla','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Alubias blancas','Ensalada de tomate','Fideos con verduras','Pisto manchego','Arroz integral']},
+        {plato:'2º Primero',   dias:['Ensalada tibia','Sopa castellana','Ensalada caprese','Crema de guisantes','Taboulé']},
+        {plato:'Segundo',      dias:['Salmón al vapor','Pollo en pepitoria','Ternera guisada','Merluza en salsa verde','Rape a la plancha']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Flan de vainilla','Fruta del tiempo','Natillas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Pera','Yogur con granola','Uvas','Bocadillo de pavo','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de espárragos','Caldo de pollo','Ensalada de espinacas','Puré de brócoli','Sopa de cebolla']},
+        {plato:'Segundo',  dias:['Salmón a la plancha','Ternera al vapor','Tortilla de champiñones','Pollo asado','Merluza al horno']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche con miel','Fruta del tiempo']}
+      ]}
+    },
+    '1+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada con tomate','Bizcocho casero','Pan con mantequilla','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',  dias:['Alubias blancas','Ensalada de tomate','Fideos con verduras','Pisto manchego','Arroz integral']},
+        {plato:'Segundo',  dias:['Salmón al vapor','Pollo en pepitoria','Ternera guisada','Merluza en salsa verde','Rape a la plancha']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Flan de vainilla','Fruta del tiempo','Natillas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Pera','Yogur con granola','Uvas','Bocadillo de pavo','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de espárragos','Caldo de pollo','Ensalada de espinacas','Puré de brócoli','Sopa de cebolla']},
+        {plato:'Segundo',  dias:['Salmón a la plancha','Ternera al vapor','Tortilla de champiñones','Pollo asado','Merluza al horno']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche con miel','Fruta del tiempo']}
+      ]}
+    },
+    '1+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Tostada con tomate','Bizcocho casero','Pan con mantequilla','Fruta fresca','Cereales']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',      dias:['Alubias blancas','Ensalada de tomate','Fideos con verduras','Pisto manchego','Arroz integral']},
+        {plato:'1er Segundo',  dias:['Salmón al vapor','Pollo en pepitoria','Ternera guisada','Merluza en salsa verde','Rape a la plancha']},
+        {plato:'2º Segundo',   dias:['Huevo revuelto','Nuggets de pollo','Cerdo con champiñones','Tortilla de verduras','Bacalao rebozado']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Flan de vainilla','Fruta del tiempo','Natillas','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Pera','Yogur con granola','Uvas','Bocadillo de pavo','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de espárragos','Caldo de pollo','Ensalada de espinacas','Puré de brócoli','Sopa de cebolla']},
+        {plato:'Segundo',  dias:['Salmón a la plancha','Ternera al vapor','Tortilla de champiñones','Pollo asado','Merluza al horno']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Leche con miel','Fruta del tiempo']}
+      ]}
+    }
+  },
+  4: {
+    '2+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite y sal','Galletas integrales','Tostada integral','Fruta de temporada','Birchermüesli']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Potaje de garbanzos','Ensalada de rúcula','Paella de verduras','Gazpacho','Berenjenas rellenas']},
+        {plato:'2º Primero',   dias:['Ensalada de aguacate','Vichyssoise','Ensalada de pasta','Ajoblanco','Crema de coliflor']},
+        {plato:'1er Segundo',  dias:['Rodaballo al horno','Pechuga a la plancha','Lomo de cerdo','Bacalao confitado','Lubina al vapor']},
+        {plato:'2º Segundo',   dias:['Tortilla de espinacas','Croquetas de ternera','Huevo escalfado','Empanada de atún','Filete ruso']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Cuajada con miel','Fruta del tiempo','Mousse de limón','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Kiwi','Batido de frutas','Melocotón','Bocadillo de queso','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de remolacha','Minestrone','Ensalada de quinoa','Vichyssoise','Sopa de ajo']},
+        {plato:'Segundo',  dias:['Lubina al vapor','Pollo salteado','Revuelto de gambas','Merluza a la romana','Ternera con champiñones']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Fruta del tiempo','Infusión con miel']}
+      ]}
+    },
+    '2+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite y sal','Galletas integrales','Tostada integral','Fruta de temporada','Birchermüesli']}
+      ]},
+      comida: { rows:[
+        {plato:'1er Primero',  dias:['Potaje de garbanzos','Ensalada de rúcula','Paella de verduras','Gazpacho','Berenjenas rellenas']},
+        {plato:'2º Primero',   dias:['Ensalada de aguacate','Vichyssoise','Ensalada de pasta','Ajoblanco','Crema de coliflor']},
+        {plato:'Segundo',      dias:['Rodaballo al horno','Pechuga a la plancha','Lomo de cerdo','Bacalao confitado','Lubina al vapor']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Cuajada con miel','Fruta del tiempo','Mousse de limón','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Kiwi','Batido de frutas','Melocotón','Bocadillo de queso','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de remolacha','Minestrone','Ensalada de quinoa','Vichyssoise','Sopa de ajo']},
+        {plato:'Segundo',  dias:['Lubina al vapor','Pollo salteado','Revuelto de gambas','Merluza a la romana','Ternera con champiñones']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Fruta del tiempo','Infusión con miel']}
+      ]}
+    },
+    '1+1': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite y sal','Galletas integrales','Tostada integral','Fruta de temporada','Birchermüesli']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',  dias:['Potaje de garbanzos','Ensalada de rúcula','Paella de verduras','Gazpacho','Berenjenas rellenas']},
+        {plato:'Segundo',  dias:['Rodaballo al horno','Pechuga a la plancha','Lomo de cerdo','Bacalao confitado','Lubina al vapor']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Cuajada con miel','Fruta del tiempo','Mousse de limón','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Kiwi','Batido de frutas','Melocotón','Bocadillo de queso','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de remolacha','Minestrone','Ensalada de quinoa','Vichyssoise','Sopa de ajo']},
+        {plato:'Segundo',  dias:['Lubina al vapor','Pollo salteado','Revuelto de gambas','Merluza a la romana','Ternera con champiñones']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Fruta del tiempo','Infusión con miel']}
+      ]}
+    },
+    '1+2': {
+      desayuno: { rows:[
+        {plato:'Desayuno',dias:['Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao','Leche con cacao']},
+        {plato:'Acompañamiento',dias:['Pan con aceite y sal','Galletas integrales','Tostada integral','Fruta de temporada','Birchermüesli']}
+      ]},
+      comida: { rows:[
+        {plato:'Primero',      dias:['Potaje de garbanzos','Ensalada de rúcula','Paella de verduras','Gazpacho','Berenjenas rellenas']},
+        {plato:'1er Segundo',  dias:['Rodaballo al horno','Pechuga a la plancha','Lomo de cerdo','Bacalao confitado','Lubina al vapor']},
+        {plato:'2º Segundo',   dias:['Tortilla de espinacas','Croquetas de ternera','Huevo escalfado','Empanada de atún','Filete ruso']},
+        {plato:'Postre',       dias:['Fruta del tiempo','Cuajada con miel','Fruta del tiempo','Mousse de limón','Fruta del tiempo']}
+      ]},
+      merienda: { rows:[
+        {plato:'Merienda',dias:['Kiwi','Batido de frutas','Melocotón','Bocadillo de queso','Fruta del tiempo']}
+      ]},
+      cena: { rows:[
+        {plato:'Primero',  dias:['Crema de remolacha','Minestrone','Ensalada de quinoa','Vichyssoise','Sopa de ajo']},
+        {plato:'Segundo',  dias:['Lubina al vapor','Pollo salteado','Revuelto de gambas','Merluza a la romana','Ternera con champiñones']},
+        {plato:'Postre',   dias:['Fruta del tiempo','Yogur natural','Fruta del tiempo','Fruta del tiempo','Infusión con miel']}
+      ]}
+    }
+  }
+};
+
+// ── ESCOLAR VARIANTES RENDERING ───────────────────────────────────────────────
+function toggleVariante(varId) {
+  var wasOpen = STATE.escolarVariante === varId;
+  STATE.escolarVariante = wasOpen ? null : varId;
+  if (!wasOpen && !STATE.varianteTabs[varId]) STATE.varianteTabs[varId] = 'menu';
+  renderEscolarVariants(STATE.semana);
+}
+
+function switchVarianteTab(varId, tab, ev) {
+  if (ev) ev.stopPropagation();
+  STATE.varianteTabs[varId] = tab;
+  renderEscolarVariants(STATE.semana);
+}
+
+function _renderServicioEscolar(label, bgColor, rows, dias) {
+  var html = '<div class="mb-3">'
+    + '<div style="background:'+bgColor+';padding:4px 10px;border-radius:4px 4px 0 0;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#374151">'+label+'</div>'
+    + '<table class="table table-sm table-bordered mb-0" style="font-size:.8rem;border-top:none"><thead><tr style="background:#f9fafb"><th style="width:130px">Plato</th>';
+  dias.forEach(function(d){ html += '<th>'+d+'</th>'; });
+  html += '</tr></thead><tbody>';
+  rows.forEach(function(row) {
+    html += '<tr><td style="padding-left:.8rem;color:var(--sm-text-muted);font-size:.76rem">'+row.plato+'</td>';
+    row.dias.forEach(function(plato) {
+      var grp = getDishFoodGroup(plato);
+      var gc = grp ? FOOD_GROUP_COLORS[grp] : null;
+      var divStyle = gc ? 'background:'+gc.bg+';border-left:3px solid '+gc.border+';padding-left:5px;border-radius:2px' : '';
+      html += '<td><div class="menu-cell" style="'+divStyle+'">'+plato+'</div></td>';
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+  return html;
+}
+
+function renderVarianteMenuTab(varId, sem) {
+  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var semData = menuEscolarVariantesDB[sem];
+  var vData = semData ? semData[varId] : null;
+  if (!vData) return '<p class="text-muted p-3">Sin datos para esta semana.</p>';
+  var html = '<div class="p-3">';
+  html += _renderServicioEscolar('☀️ Desayuno', '#fef9c3', vData.desayuno.rows, dias);
+  html += _renderServicioEscolar('🍽 Comida',   '#f0fdf4', vData.comida.rows, dias);
+  html += _renderServicioEscolar('🍎 Merienda', '#fff7ed', vData.merienda.rows, dias);
+  html += _renderServicioEscolar('🌙 Cena',     '#f0f9ff', vData.cena.rows, dias);
+  html += getLegendaGrupos();
+  html += '</div>';
+  return html;
+}
+
+function renderVarianteContent(varId, sem) {
+  var activeTab = STATE.varianteTabs[varId] || 'menu';
+  var tabs = [
+    {id:'menu', label:'Menú'},
+    {id:'nutri', label:'Nutrición'},
+    {id:'costo', label:'Costo'},
+    {id:'hist', label:'Historial'},
+    {id:'chat', label:'Chat IA'}
+  ];
+  var html = '<div style="border:1px solid #e5e7eb;border-top:none;border-radius:0 0 6px 6px;overflow:hidden">';
+  html += '<ul class="nav nav-tabs px-3 pt-2" style="background:#f9fafb;border-bottom:1px solid #e5e7eb">';
+  tabs.forEach(function(t) {
+    var isActive = activeTab === t.id;
+    html += '<li class="nav-item"><a class="nav-link'+(isActive?' active':'')+'" href="#" onclick="switchVarianteTab(\''+varId+'\',\''+t.id+'\',event);return false;" style="font-size:.8rem;padding:.35rem .75rem">'+t.label+'</a></li>';
+  });
+  html += '</ul>';
+  html += '<div style="min-height:120px">';
+  if (activeTab === 'menu') {
+    html += renderVarianteMenuTab(varId, sem);
+  } else if (activeTab === 'nutri') {
+    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-chart-bar mr-1"></i>Análisis nutricional disponible próximamente.</div>';
+  } else if (activeTab === 'costo') {
+    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-currency-eur mr-1"></i>Desglose de costos disponible próximamente.</div>';
+  } else if (activeTab === 'hist') {
+    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-history mr-1"></i>Sin historial de cambios registrado.</div>';
+  } else if (activeTab === 'chat') {
+    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-robot-outline mr-1"></i>Chat IA disponible próximamente.</div>';
+  }
+  html += '</div></div>';
+  return html;
+}
+
+function renderEscolarVariants(sem) {
+  var el = document.getElementById('escolarVariantsView');
+  if (!el) return;
+  var perfil = STATE.subtipo;
+  var perfilLabel = SUBTIPO_LABELS[perfil] || perfil;
+  var pct = PERFIL_PCT[perfil] || '';
+  var html = '<div class="mb-3">';
+  html += '<div class="d-flex align-items-center mb-2" style="gap:.6rem">';
+  html += '<span style="font-size:.85rem;font-weight:600;color:var(--sm-text)">Variantes de menú</span>';
+  html += '<span class="badge badge-light" style="font-size:.73rem;border:1px solid #e5e7eb">'+perfilLabel+' · '+pct+'</span>';
+  html += '</div>';
+  html += '<table class="table table-hover mb-0" style="font-size:.83rem;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">';
+  html += '<thead><tr style="background:#f3f4f6"><th style="width:36px"></th><th>Variante</th><th>Descripción</th><th class="text-center" style="width:90px">Cobertura</th><th class="text-center" style="width:80px">Estado</th></tr></thead>';
+  html += '<tbody>';
+  ESCOLAR_VARIANTES.forEach(function(v) {
+    var isOpen = STATE.escolarVariante === v.id;
+    var chevron = isOpen ? 'mdi-chevron-up' : 'mdi-chevron-down';
+    html += '<tr onclick="toggleVariante(\''+v.id+'\')" style="cursor:pointer;'+(isOpen?'background:#f0fdf4;':'')+'border-bottom:'+(isOpen?'none':'1px solid #e5e7eb')+'">';
+    html += '<td class="text-center" style="vertical-align:middle"><i class="mdi '+chevron+'" style="font-size:1.1rem;color:var(--sm-green)"></i></td>';
+    html += '<td style="vertical-align:middle"><strong>'+v.label+'</strong></td>';
+    html += '<td style="vertical-align:middle;color:var(--sm-text-muted)">'+v.desc+'</td>';
+    html += '<td class="text-center" style="vertical-align:middle"><span class="badge badge-secondary" style="font-size:.74rem">'+v.pct+'%</span></td>';
+    html += '<td class="text-center" style="vertical-align:middle"><span class="badge badge-success" style="font-size:.74rem;background:#16a34a">Aprobado</span></td>';
+    html += '</tr>';
+    if (isOpen) {
+      html += '<tr style="background:#fafafa"><td colspan="5" style="padding:0">';
+      html += renderVarianteContent(v.id, sem);
+      html += '</td></tr>';
+    }
+  });
+  html += '</tbody></table></div>';
+  el.innerHTML = html;
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
