@@ -2435,10 +2435,6 @@ function renderEscolarVariants(sem) {
   var perfilLabel = SUBTIPO_LABELS[perfil] || perfil;
   var pct = PERFIL_PCT[perfil] || '';
   var html = '<div class="mb-3">';
-  html += '<div class="d-flex align-items-center mb-2" style="gap:.6rem">';
-  html += '<span style="font-size:.85rem;font-weight:600;color:var(--sm-text)">Variantes de menú</span>';
-  html += '<span class="badge badge-light" style="font-size:.73rem;border:1px solid #e5e7eb">'+perfilLabel+' · '+pct+'</span>';
-  html += '</div>';
   html += '<table class="table table-hover mb-0" style="font-size:.83rem;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">';
   html += '<thead><tr style="background:#f3f4f6"><th style="width:36px"></th><th>Variante</th><th>Descripción</th><th class="text-center" style="width:90px">Cobertura</th><th class="text-center" style="width:80px">Estado</th></tr></thead>';
   html += '<tbody>';
