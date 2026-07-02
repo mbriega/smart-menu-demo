@@ -1901,6 +1901,160 @@ function renderVarianteMenuTab(varId, sem) {
   return html;
 }
 
+function renderVarianteNutriTab(varId, sem) {
+  var semData = menuEscolarVariantesDB[sem];
+  var vData = semData ? semData[varId] : null;
+  if (!vData) return '<p class="text-muted p-3">Sin datos para esta semana.</p>';
+  var cfg = TIPO_CONFIG['escolar-'+STATE.subtipo] || TIPO_CONFIG['escolar-secundaria'];
+  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var allRows = [];
+  ['desayuno','comida','merienda','cena'].forEach(function(svc){
+    if (vData[svc] && vData[svc].rows) allRows = allRows.concat(vData[svc].rows);
+  });
+  var daily = dias.map(function(d, di){
+    var kcal=0,prot=0,grasa=0,hc=0;
+    allRows.forEach(function(row){
+      var db = basalRecetasDB[row.dias[di]];
+      if (db){kcal+=db.kcal||0;prot+=parseInt(db.prot)||0;grasa+=parseInt(db.grasa)||0;hc+=parseInt(db.hc)||0;}
+    });
+    return {kcal:kcal,prot:prot,grasa:grasa,hc:hc};
+  });
+  function avg(key){var vals=daily.map(function(d){return d[key];}).filter(function(v){return v>0;});return vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length):0;}
+  var nutriRows=[
+    {label:'Calorías',key:'kcal',unit:' kcal',min:cfg.kcalMin,max:cfg.kcalMax,obj:cfg.kcalLabel},
+    {label:'Proteínas',key:'prot',unit:'g',min:20,max:40,obj:'12–15%'},
+    {label:'Grasas',key:'grasa',unit:'g',min:20,max:30,obj:'30–35%'},
+    {label:'Hidratos',key:'hc',unit:'g',min:60,max:90,obj:'50–55%'}
+  ];
+  var html='<div class="p-3"><h6 class="font-weight-700 mb-3"><i class="mdi mdi-chart-bar mr-1" style="color:var(--sm-green)"></i>Análisis nutricional semanal — Variante '+varId+'</h6>';
+  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Nutriente</th>';
+  dias.forEach(function(d){html+='<th class="text-center">'+d.substring(0,3)+'</th>';});
+  html+='<th class="text-center">Media</th><th class="text-center">Objetivo</th><th class="text-center">Estado</th></tr></thead><tbody>';
+  nutriRows.forEach(function(row){
+    html+='<tr style="line-height:2"><td><strong>'+row.label+'</strong></td>';
+    daily.forEach(function(d){html+='<td class="text-center">'+(d[row.key]>0?d[row.key]+row.unit:'—')+'</td>';});
+    var a=avg(row.key);
+    html+='<td class="text-center font-weight-bold">'+(a>0?a+row.unit:'—')+'</td>';
+    html+='<td class="text-center text-muted" style="font-size:.82rem">'+row.obj+'</td>';
+    var ok=a>=row.min&&a<=row.max;
+    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ OK</span>':'<span class="badge-critico">Revisar</span>')+'</td></tr>';
+  });
+  html+='</tbody></table></div></div>';
+  return html;
+}
+
+function renderVarianteCostoTab(varId, sem) {
+  var semData = menuEscolarVariantesDB[sem];
+  var vData = semData ? semData[varId] : null;
+  if (!vData) return '<p class="text-muted p-3">Sin datos para esta semana.</p>';
+  var cfg = TIPO_CONFIG['escolar-'+STATE.subtipo] || TIPO_CONFIG['escolar-secundaria'];
+  var TARGET = cfg.target;
+  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var allRows = [];
+  ['desayuno','comida','merienda','cena'].forEach(function(svc){
+    if (vData[svc] && vData[svc].rows) allRows = allRows.concat(vData[svc].rows);
+  });
+  var daily = dias.map(function(d, di){
+    var total=0;
+    allRows.forEach(function(row){
+      var db=basalRecetasDB[row.dias[di]];
+      if(db&&db.costo)total+=parseFloat(String(db.costo).replace('€','').replace(',','.'))||0;
+    });
+    return {dia:d,total:total};
+  });
+  var totalSem=daily.reduce(function(a,d){return a+d.total;},0);
+  var mediaDay=daily.length?totalSem/daily.length:0;
+  var monthlyProj=totalSem*4;
+  var avgColor=(mediaDay<=TARGET)?'var(--sm-green)':'var(--sm-orange)';
+  var html='<div class="p-3">';
+  html+='<div class="row g-0 mb-3" style="border:1px solid var(--sm-border);border-radius:6px;overflow:hidden;text-align:center">';
+  html+='<div class="col-4 p-3" style="border-right:1px solid var(--sm-border)"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem">DÍA</div>';
+  html+='<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:#6c757d">€'+TARGET.toFixed(2)+'</div></div>';
+  html+='<div><div style="font-size:.7rem;color:var(--sm-text-muted)">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+mediaDay.toFixed(2)+'</div></div></div>';
+  html+='<div class="col-4 p-3" style="border-right:1px solid var(--sm-border)"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem">SEMANA</div>';
+  html+='<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:#6c757d">€'+(TARGET*5).toFixed(2)+'</div></div>';
+  html+='<div><div style="font-size:.7rem;color:var(--sm-text-muted)">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+totalSem.toFixed(2)+'</div></div></div>';
+  html+='<div class="col-4 p-3"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.7px;color:var(--sm-text-muted);font-weight:700;margin-bottom:.6rem">MES (est.)</div>';
+  html+='<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:#6c757d">€'+(TARGET*20).toFixed(2)+'</div></div>';
+  html+='<div><div style="font-size:.7rem;color:var(--sm-text-muted)">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+monthlyProj.toFixed(2)+'</div></div></div>';
+  html+='</div>';
+  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Día</th><th>Servicios</th><th>Nº platos</th><th class="text-center">Coste/comensal</th><th class="text-center">Objetivo</th><th class="text-center">Estado</th></tr></thead><tbody style="line-height:2">';
+  daily.forEach(function(d){
+    var ok=d.total<=TARGET;
+    html+='<tr><td><strong>'+d.dia+'</strong></td><td>D+C+M+C</td><td>'+allRows.length+'</td>';
+    html+='<td class="text-center '+(ok?'':'text-danger')+'">€'+d.total.toFixed(2)+'</td>';
+    html+='<td class="text-center text-muted">€'+TARGET.toFixed(2)+'</td>';
+    html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">OK</span>':'<span class="badge-critico">Excede</span>')+'</td></tr>';
+  });
+  html+='</tbody></table></div></div>';
+  return html;
+}
+
+function renderVarianteHistorialTab(varId) {
+  return '<div class="p-3">'
+    +'<h6 class="font-weight-700 mb-3"><i class="mdi mdi-history mr-1" style="color:var(--sm-green)"></i>Historial de versiones — Variante '+varId+'</h6>'
+    +'<table class="table table-clean"><thead><tr><th>Versión</th><th>Fecha</th><th>Generado por</th><th>Estado</th><th>Observaciones</th></tr></thead><tbody>'
+    +'<tr><td><strong>v3</strong> <span class="badge badge-success badge-sm ml-1">Actual</span></td><td>10/06/2025 14:48</td><td>IA + Ana García</td><td><span class="badge-pendiente">En revisión</span></td><td>Ajustada frecuencia pescado semana 2</td></tr>'
+    +'<tr><td>v2</td><td>09/06/2025 11:20</td><td>IA</td><td><span style="color:var(--sm-danger);font-size:.8rem">Rechazado</span></td><td>Coste semana 3 por encima de target</td></tr>'
+    +'<tr><td>v1</td><td>08/06/2025 09:05</td><td>IA</td><td><span style="color:var(--sm-danger);font-size:.8rem">Rechazado</span></td><td>Repetición de plato detectada en día 8</td></tr>'
+    +'</tbody></table></div>';
+}
+
+function renderVarianteChatTab(varId) {
+  var safeId = varId.replace(/\+/g,'_');
+  var msgId = 'chatIAMsgs_'+safeId;
+  var inputId = 'chatIAInput_'+safeId;
+  return '<div class="p-3">'
+    +'<div class="d-flex align-items-center mb-4">'
+    +'<div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.9rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:1.25rem"></i></div>'
+    +'<div><h6 class="mb-0" style="font-weight:700;font-size:1rem">Asistente IA — Variante '+varId+'</h6>'
+    +'<small class="text-muted">Describe en lenguaje natural los cambios que quieres aplicar al menú</small></div></div>'
+    +'<div id="'+msgId+'" style="min-height:200px;max-height:340px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:10px;padding:1.25rem;background:#fafafa;margin-bottom:1rem;font-size:.875rem">'
+    +'<div class="d-flex align-items-start mb-4">'
+    +'<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.7rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.9rem"></i></div>'
+    +'<div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 10px 10px 10px;padding:.75rem 1rem;max-width:88%">'
+    +'Hola. Soy el asistente IA de Smart Menu para la variante <strong>'+varId+'</strong>. Puedo modificar masivamente el menú. Por ejemplo:<br>'
+    +'<em style="color:var(--sm-text-muted);font-size:.83rem">"Sustituye el pescado del martes por pollo asado en toda la semana"</em><br>'
+    +'<em style="color:var(--sm-text-muted);font-size:.83rem">"Optimiza el coste sin bajar la calidad nutricional"</em>'
+    +'</div></div></div>'
+    +'<div class="d-flex flex-wrap mb-3" style="gap:.45rem">'
+    +'<span style="font-size:.75rem;color:var(--sm-text-muted);line-height:2;margin-right:.2rem">Acciones rápidas:</span>'
+    +'<button class="btn btn-xs" style="font-size:.75rem;padding:.3rem .7rem;border:1px solid var(--sm-border);border-radius:14px;background:#fff;cursor:pointer" onclick="chatIAQuickV(\''+varId+'\',\'Sustituye Arroz con tomate por Arroz integral con verduras\')">💡 Sustituir arroz</button>'
+    +'<button class="btn btn-xs" style="font-size:.75rem;padding:.3rem .7rem;border:1px solid var(--sm-border);border-radius:14px;background:#fff;cursor:pointer" onclick="chatIAQuickV(\''+varId+'\',\'Optimiza el coste de la semana sin bajar calidad nutricional\')">💡 Optimizar coste</button>'
+    +'<button class="btn btn-xs" style="font-size:.75rem;padding:.3rem .7rem;border:1px solid var(--sm-border);border-radius:14px;background:#fff;cursor:pointer" onclick="chatIAQuickV(\''+varId+'\',\'Cambia Patatas fritas por Patatas panadera en toda la semana\')">💡 Cambiar patatas</button>'
+    +'</div>'
+    +'<div class="d-flex align-items-end" style="gap:.6rem">'
+    +'<textarea id="'+inputId+'" class="form-control" rows="2" placeholder="Describe el cambio que quieres aplicar…" style="font-size:.875rem;resize:vertical" onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){enviarChatIAV(\''+varId+'\');event.preventDefault();}"></textarea>'
+    +'<button class="btn btn-success" onclick="enviarChatIAV(\''+varId+'\')" style="white-space:nowrap;height:fit-content;padding:.55rem .9rem"><i class="mdi mdi-send mr-1"></i>Enviar</button>'
+    +'</div>'
+    +'<p class="text-muted mt-2 mb-0" style="font-size:.73rem">Shift+Enter para nueva línea · Enter para enviar</p>'
+    +'</div>';
+}
+
+function chatIAQuickV(varId, text) {
+  var inp = document.getElementById('chatIAInput_'+varId.replace(/\+/g,'_'));
+  if (inp) { inp.value = text; enviarChatIAV(varId); }
+}
+
+function enviarChatIAV(varId) {
+  var safeId = varId.replace(/\+/g,'_');
+  var inp = document.getElementById('chatIAInput_'+safeId);
+  var msgs = document.getElementById('chatIAMsgs_'+safeId);
+  if (!inp || !msgs || !inp.value.trim()) return;
+  var msg = inp.value.trim();
+  inp.value = '';
+  msgs.innerHTML += '<div class="d-flex justify-content-end mb-3"><div style="background:var(--sm-green);color:#fff;border-radius:10px 10px 0 10px;padding:.6rem .9rem;max-width:80%;font-size:.875rem">'+msg+'</div></div>';
+  var dotHtml = '<div class="d-flex align-items-start mb-3 _typingRow"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--sm-green),#0a7a3e);display:flex;align-items:center;justify-content:center;margin-right:.6rem;flex-shrink:0"><i class="mdi mdi-robot" style="color:#fff;font-size:.8rem"></i></div><div style="background:#fff;border:1px solid var(--sm-border);border-radius:0 10px 10px 10px;padding:.6rem .9rem;max-width:85%;font-size:.875rem"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#aaa;margin:0 2px;animation:chatDot 1.4s infinite"></span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#aaa;margin:0 2px;animation:chatDot 1.4s infinite .2s"></span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#aaa;margin:0 2px;animation:chatDot 1.4s infinite .4s"></span></div></div>';
+  msgs.innerHTML += dotHtml;
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(function(){
+    var row = msgs.querySelector('._typingRow');
+    if (row) row.querySelector('div:last-child').innerHTML = 'Entendido. He aplicado el cambio: <em>"'+msg+'"</em>. El menú ha sido actualizado.';
+    if (row) row.classList.remove('_typingRow');
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1800);
+}
+
 function renderVarianteContent(varId, sem) {
   var activeTab = STATE.varianteTabs[varId] || 'menu';
   var tabs = [
@@ -1921,13 +2075,13 @@ function renderVarianteContent(varId, sem) {
   if (activeTab === 'menu') {
     html += renderVarianteMenuTab(varId, sem);
   } else if (activeTab === 'nutri') {
-    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-chart-bar mr-1"></i>Análisis nutricional disponible próximamente.</div>';
+    html += renderVarianteNutriTab(varId, sem);
   } else if (activeTab === 'costo') {
-    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-currency-eur mr-1"></i>Desglose de costos disponible próximamente.</div>';
+    html += renderVarianteCostoTab(varId, sem);
   } else if (activeTab === 'hist') {
-    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-history mr-1"></i>Sin historial de cambios registrado.</div>';
+    html += renderVarianteHistorialTab(varId);
   } else if (activeTab === 'chat') {
-    html += '<div class="p-4 text-center text-muted" style="font-size:.85rem"><i class="mdi mdi-robot-outline mr-1"></i>Chat IA disponible próximamente.</div>';
+    html += renderVarianteChatTab(varId);
   }
   html += '</div></div>';
   return html;
