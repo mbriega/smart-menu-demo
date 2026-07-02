@@ -906,10 +906,10 @@ function renderTabla(sem) {
   var msDB = getMultiServiceDB();
   if (msDB) {
     var msData = msDB[sem]; if (!msData) { tbody.innerHTML=''; return; }
-    html += _renderServicioRows(msData.desayuno, sem, '🌅 Desayuno', 'rgba(22,163,73,.06)', dias);
-    html += _renderServicioRows(msData.comida,   sem, '☀️ Comida',   'rgba(232,119,34,.06)', dias);
-    html += _renderServicioRows(msData.merienda, sem, '🍎 Merienda', 'rgba(245,158,11,.06)', dias);
-    html += _renderServicioRows(msData.cena,     sem, '🌙 Cena',     'rgba(21,101,192,.06)', dias);
+    html += _renderServicioRows(msData.desayuno.rows, sem, '🌅 Desayuno', 'rgba(22,163,73,.06)', dias);
+    html += _renderServicioRows(msData.comida.rows,   sem, '☀️ Comida',   'rgba(232,119,34,.06)', dias);
+    html += _renderServicioRows(msData.merienda.rows, sem, '🍎 Merienda', 'rgba(245,158,11,.06)', dias);
+    html += _renderServicioRows(msData.cena.rows,     sem, '🌙 Cena',     'rgba(21,101,192,.06)', dias);
     tbody.innerHTML = html;
     renderBasalNutricion(sem);
     renderBasalCosto(sem);
@@ -2215,7 +2215,7 @@ function _renderServicioEscolar(label, bgColor, rows, dias) {
   html += '</tr></thead><tbody>';
   rows.forEach(function(row) {
     html += '<tr><td style="padding-left:.8rem;color:var(--sm-text-muted);font-size:.76rem">'+row.plato+'</td>';
-    row.dias.forEach(function(plato) {
+    row.dias.forEach(function(plato, dIdx) {
       var grp = getDishFoodGroup(plato);
       var gc = grp ? FOOD_GROUP_COLORS[grp] : null;
       var divStyle = gc ? 'background:'+gc.bg+';border-left:3px solid '+gc.border+';padding-left:5px;border-radius:2px' : '';
