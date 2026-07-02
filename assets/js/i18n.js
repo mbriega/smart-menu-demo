@@ -57,9 +57,9 @@
       'status.activo': 'Activo',
       'status.inactivo': 'Inactivo',
       'tipo.escolar': 'Escolar',
-      'tipo.hospitalario': 'Hospitalario',
+      'tipo.hospitalario': 'Sociosanitario',
       'tipo.terceraEdad': 'Larga Estancia',
-      'tipo.empresa': 'Empresa',
+      'tipo.empresa': 'Universitario',
       'tipo.residencia': 'Residencia',
       /* ── ACCIONES ────────────────── */
       'action.view': 'Ver',
@@ -760,9 +760,9 @@
       'det.modal.rejectPh': 'Describa el motivo del rechazo...',
       'menus.filter.datePh': 'dd/mm/aaaa',
       'menus.filter.all': 'Todos',
-      'menus.tipo.hospital': 'Menú hospitalario',
-      'menus.tipo.senior': 'Menú residencia',
-      'menus.tipo.corp': 'Menú corporativo',
+      'menus.tipo.hospital': 'Menú sociosanitario',
+      'menus.tipo.senior': 'Menú sociosanitario',
+      'menus.tipo.corp': 'Menú universitario',
       'menus.sched.mwf': 'Lun, Mié, Vie',
       'menus.sched.mt': 'Lun, Jue',
       'basal.tab.primary': 'Menú Base Principal',
@@ -1242,9 +1242,9 @@
       'status.activo': 'Active',
       'status.inactivo': 'Inactive',
       'tipo.escolar': 'School',
-      'tipo.hospitalario': 'Hospital',
+      'tipo.hospitalario': 'Sociosanitario',
       'tipo.terceraEdad': 'Long Stay',
-      'tipo.empresa': 'Corporate',
+      'tipo.empresa': 'Universitario',
       'tipo.residencia': 'Care Home',
       /* ── ACCIONES ────────────────── */
       'action.view': 'View',
@@ -1950,9 +1950,9 @@
       'det.modal.rejectPh': 'Describe the reason for rejection...',
       'menus.filter.datePh': 'dd/mm/yyyy',
       'menus.filter.all': 'All',
-      'menus.tipo.hospital': 'Hospital menu',
-      'menus.tipo.senior': 'Senior care menu',
-      'menus.tipo.corp': 'Corporate menu',
+      'menus.tipo.hospital': 'Sociosanitario menu',
+      'menus.tipo.senior': 'Sociosanitario menu',
+      'menus.tipo.corp': 'Universitario menu',
       'menus.sched.mwf': 'Mon, Wed, Fri',
       'menus.sched.mt': 'Mon, Thu',
       'basal.tab.primary': 'Base Menu Primary',
@@ -2544,13 +2544,16 @@
     var _m = {
       'Escolar': t('tipo.escolar'),
       'Hospitalario': t('tipo.hospitalario'),
-      'Larga Estancia': t('tipo.terceraEdad'),
+      'Sociosanitario': t('tipo.hospitalario'),
       'Empresa': t('tipo.empresa'),
+      'Universitario': t('tipo.empresa'),
       'Residencia': t('tipo.residencia'),
       'School menu': t('menus.tipo.escolar'),
       'Hospital menu': t('menus.tipo.hospital'),
+      'Sociosanitario menu': t('menus.tipo.hospital'),
       'Senior care menu': t('menus.tipo.senior'),
-      'Corporate menu': t('menus.tipo.corp')
+      'Corporate menu': t('menus.tipo.corp'),
+      'Universitario menu': t('menus.tipo.corp')
     };
     return _m[s] || s;
   };
