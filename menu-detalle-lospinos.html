@@ -315,6 +315,7 @@ diasLP.forEach(function(d){ menuActualLP[d] = Object.assign({}, menuOriginalLP[d
 var cambiosLP = {};
 
 // ── Edición de celdas ─────────────────────────────────────────────────────────
+function getCrwCode(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))&0x7FFF;return'CRW-'+(1000+h%9000);}
 function editarCelda(dia, campo) {
   _sustMode = 'cell';
   _sustDiaLP = dia;
@@ -325,6 +326,7 @@ function editarCelda(dia, campo) {
   if (mEl) mEl.textContent = typeof t==='function' ? t('sust.editReason') : 'Cambio manual de plato';
   var aEl = document.getElementById('sustPlatoAfectado');
   if (aEl) aEl.value = cur;
+  var cEl=document.getElementById('sustCodigoActual');if(cEl)cEl.innerHTML='<i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">'+getCrwCode(cur)+'</strong>';
   sustFiltroPor('all');
   $('#modalSustituir').modal('show');
 }
@@ -820,6 +822,7 @@ function editarCeldaVariante(varIdx, diaKey, campo) {
   if (mEl) mEl.textContent = 'Cambio de plato en variante ' + v.nombre;
   var aEl = document.getElementById('sustPlatoAfectado');
   if (aEl) aEl.value = cur;
+  var cEl=document.getElementById('sustCodigoActual');if(cEl)cEl.innerHTML='<i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">'+getCrwCode(cur)+'</strong>';
   sustFiltroPor('all');
   $('#modalSustituir').modal('show');
 }
@@ -845,6 +848,7 @@ function abrirModalEditVariante(idx) {
   if (mEl) mEl.textContent = (v.motivo || 'Issue detected');
   var aEl = document.getElementById('sustPlatoAfectado');
   if (aEl) aEl.value = v.nombre;
+  var cEl=document.getElementById('sustCodigoActual');if(cEl)cEl.innerHTML='<i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">'+getCrwCode(v.nombre)+'</strong>';
   sustFiltroPor('all');
   $('#modalSustituir').modal('show');
 }
@@ -894,7 +898,7 @@ function renderSustResultados(lista){
   if(!lista.length){cont.innerHTML='<p class="text-muted text-center py-3" style="font-size:.82rem">'+(typeof t==='function'?t('sust.noResults'):'Sin platos que coincidan')+'</p>';return;}
   cont.innerHTML=lista.slice(0,6).map(function(d){
     var alergTxt=d.alerg!=='None'?'&nbsp;·&nbsp;<span style="color:#dc3545">'+d.alerg+'</span>':'';
-    return '<div class="sust-dish-card" onclick="seleccionarSustituto(\''+d.nombre.replace(/'/g,"\\'")+'\')"><div class="d-flex align-items-center" style="gap:.45rem"><span style="width:8px;height:8px;border-radius:50%;background:'+(_dotC[d.tipo]||'#6c757d')+';flex-shrink:0"></span><strong style="font-size:.82rem;flex:1">'+d.nombre+'</strong><span class="badge-ok" style="font-size:.71rem">'+d.costo+'</span></div><div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+d.kcal+' kcal · Prot: '+d.prot+alergTxt+'</div></div>';
+    return '<div class="sust-dish-card" onclick="seleccionarSustituto(\''+d.nombre.replace(/'/g,"\\'")+'\')"><div class="d-flex align-items-center" style="gap:.45rem"><span style="width:8px;height:8px;border-radius:50%;background:'+(_dotC[d.tipo]||'#6c757d')+';flex-shrink:0"></span><strong style="font-size:.82rem;flex:1">'+d.nombre+'</strong><span style="font-family:monospace;font-size:.7rem;color:#9ca3af;margin-right:.25rem">'+getCrwCode(d.nombre)+'</span><span class="badge-ok" style="font-size:.71rem">'+d.costo+'</span></div><div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+d.kcal+' kcal · Prot: '+d.prot+alergTxt+'</div></div>';
   }).join('');
 }
 function seleccionarSustituto(nombre){
@@ -960,6 +964,7 @@ function confirmarSust() {
           <div class="mb-3">
             <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
             <input type="text" class="form-control" id="sustPlatoAfectado" disabled style="font-size:.85rem">
+            <div id="sustCodigoActual" style="font-size:.74rem;color:var(--sm-text-muted);margin-top:3px"><i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">—</strong></div>
           </div>
           <div class="sust-ai-box">
             <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">

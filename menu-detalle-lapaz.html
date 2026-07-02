@@ -119,17 +119,18 @@
           <tr>
             <td><strong><span data-i18n="det.day.thu">Jue</span> 25</strong></td>
             <td style="color:#6c757d" data-i18n="det.srv.first">First course</td>
-            <td><span style="text-decoration:line-through;color:#6c757d;font-size:.8rem">Macarrones boloñesa</span></td>
+            <td><span style="text-decoration:line-through;color:#6c757d;font-size:.8rem">Macarrones boloñesa</span><div style="font-size:.71rem;font-family:monospace;color:#9ca3af;margin-top:1px">CRW-1082</div></td>
             <td>
-              <select class="form-control form-control-sm" style="font-size:.77rem" onchange="recalcularSust(this,'jue25','sustImpactoA','sustBadgeA')">
-                <option value="+0.48" data-sobre="1" data-label="Macarrones tofu bolognese" selected>⚠ [IA] Macarrones tofu bolognese — +€0.48</option>
-                <option value="+0.05" data-sobre="1" data-label="Arroz con verduras halal">⚠ Arroz con verduras halal — +€0.05</option>
-                <option value="-0.04" data-sobre="0" data-label="Pasta con tomate natural">✓ Pasta con tomate natural — −€0.04</option>
-                <option value="-0.08" data-sobre="0" data-label="Lentejas estofadas">✓ Lentejas estofadas — −€0.08</option>
-                <option value="-0.12" data-sobre="0" data-label="Ensalada de pasta fría">✓ Cold pasta salad — −€0.12</option>
-                <option value="-0.18" data-sobre="0" data-label="Cuscús con verduras">✓ Vegetable couscous — −€0.18</option>
+              <select class="form-control form-control-sm" style="font-size:.77rem" onchange="recalcularSust(this,'jue25','sustImpactoA','sustBadgeA');updateSustCode(this,'sustCodeA')">
+                <option value="+0.48" data-sobre="1" data-code="CRW-3847" data-label="Macarrones tofu bolognese" selected>⚠ [IA] Macarrones tofu bolognese — +€0.48</option>
+                <option value="+0.05" data-sobre="1" data-code="CRW-4219" data-label="Arroz con verduras halal">⚠ Arroz con verduras halal — +€0.05</option>
+                <option value="-0.04" data-sobre="0" data-code="CRW-1534" data-label="Pasta con tomate natural">✓ Pasta con tomate natural — −€0.04</option>
+                <option value="-0.08" data-sobre="0" data-code="CRW-2087" data-label="Lentejas estofadas">✓ Lentejas estofadas — −€0.08</option>
+                <option value="-0.12" data-sobre="0" data-code="CRW-3562" data-label="Ensalada de pasta fría">✓ Cold pasta salad — −€0.12</option>
+                <option value="-0.18" data-sobre="0" data-code="CRW-4730" data-label="Cuscús con verduras">✓ Vegetable couscous — −€0.18</option>
               </select>
-              <div id="sustLabelA" style="font-size:.72rem;color:#6c757d;margin-top:2px" data-i18n="det.modal.sustLabelA">Halal certified substitute · available in Crownet</div>
+              <div id="sustCodeA" style="font-size:.71rem;font-family:monospace;color:#6c757d;margin-top:2px">CRW-3847</div>
+              <div id="sustLabelA" style="font-size:.72rem;color:#6c757d;margin-top:1px" data-i18n="det.modal.sustLabelA">Halal certified substitute · available in Crownet</div>
             </td>
             <td class="text-center font-weight-bold" id="sustImpactoA" style="color:var(--sm-danger)">+€0.48</td>
             <td class="text-center" id="sustBadgeA"><span class="badge-critico">Over target</span></td>
@@ -137,17 +138,18 @@
           <tr>
             <td><strong><span data-i18n="det.day.fri">Vie</span> 26</strong></td>
             <td style="color:#6c757d" data-i18n="det.srv.side">Side dish</td>
-            <td><span style="text-decoration:line-through;color:#6c757d;font-size:.8rem">Jamón york</span></td>
+            <td><span style="text-decoration:line-through;color:#6c757d;font-size:.8rem">Jamón york</span><div style="font-size:.71rem;font-family:monospace;color:#9ca3af;margin-top:1px">CRW-2341</div></td>
             <td>
-              <select class="form-control form-control-sm" style="font-size:.77rem" onchange="recalcularSust(this,'vie26','sustImpactoB','sustBadgeB')">
-                <option value="+0.32" data-sobre="1" data-label="Pavo cocido loncheado" selected>⚠ [IA] Pavo cocido loncheado — +€0.32</option>
-                <option value="+0.10" data-sobre="1" data-label="Pollo deshuesado loncheado">⚠ Pollo deshuesado loncheado — +€0.10</option>
-                <option value="-0.05" data-sobre="0" data-label="Ensalada verde">✓ Ensalada verde — −€0.05</option>
-                <option value="-0.10" data-sobre="0" data-label="Patatas vapor">✓ Patatas vapor — −€0.10</option>
-                <option value="-0.08" data-sobre="0" data-label="Verduras salteadas">✓ Verduras salteadas — −€0.08</option>
-                <option value="-0.15" data-sobre="0" data-label="Arroz blanco">✓ Arroz blanco — −€0.15</option>
+              <select class="form-control form-control-sm" style="font-size:.77rem" onchange="recalcularSust(this,'vie26','sustImpactoB','sustBadgeB');updateSustCode(this,'sustCodeB')">
+                <option value="+0.32" data-sobre="1" data-code="CRW-5124" data-label="Pavo cocido loncheado" selected>⚠ [IA] Pavo cocido loncheado — +€0.32</option>
+                <option value="+0.10" data-sobre="1" data-code="CRW-2893" data-label="Pollo deshuesado loncheado">⚠ Pollo deshuesado loncheado — +€0.10</option>
+                <option value="-0.05" data-sobre="0" data-code="CRW-1471" data-label="Ensalada verde">✓ Ensalada verde — −€0.05</option>
+                <option value="-0.10" data-sobre="0" data-code="CRW-3256" data-label="Patatas vapor">✓ Patatas vapor — −€0.10</option>
+                <option value="-0.08" data-sobre="0" data-code="CRW-4018" data-label="Verduras salteadas">✓ Verduras salteadas — −€0.08</option>
+                <option value="-0.15" data-sobre="0" data-code="CRW-2642" data-label="Arroz blanco">✓ Arroz blanco — −€0.15</option>
               </select>
-              <div id="sustLabelB" style="font-size:.72rem;color:#6c757d;margin-top:2px" data-i18n="det.modal.sustLabelB">Pork-free meat alternative · available in Crownet</div>
+              <div id="sustCodeB" style="font-size:.71rem;font-family:monospace;color:#6c757d;margin-top:2px">CRW-5124</div>
+              <div id="sustLabelB" style="font-size:.72rem;color:#6c757d;margin-top:1px" data-i18n="det.modal.sustLabelB">Pork-free meat alternative · available in Crownet</div>
             </td>
             <td class="text-center font-weight-bold" id="sustImpactoB" style="color:var(--sm-danger)">+€0.32</td>
             <td class="text-center" id="sustBadgeB"><span class="badge-critico">Over target</span></td>
@@ -320,6 +322,8 @@ var _sustImpactos = {jue25: 0.48, vie26: 0.32};
 var TARGET_LP = 3.80;
 var COSTO_BASE = 3.80;
 
+function getCrwCode(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))&0x7FFF;return'CRW-'+(1000+h%9000);}
+function updateSustCode(sel,targetId){var c=(sel.options[sel.selectedIndex]&&sel.options[sel.selectedIndex].dataset.code)||'—';var el=document.getElementById(targetId);if(el)el.textContent=c;}
 function recalcularSust(sel, rowId, impactoId, badgeId) {
   var val = parseFloat(sel.value);
   var sobre = sel.options[sel.selectedIndex].dataset.sobre === '1';

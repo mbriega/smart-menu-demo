@@ -369,6 +369,7 @@
           <div class="mb-3">
             <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
             <input type="text" class="form-control" id="sustPlatoAfectado" disabled style="font-size:.85rem">
+            <div id="sustCodigoActual" style="font-size:.74rem;color:var(--sm-text-muted);margin-top:3px"><i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">—</strong></div>
           </div>
           <div class="sust-ai-box">
             <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">
@@ -1244,6 +1245,7 @@ function buscarConIA(){
   if(st)st.innerHTML='<span style="font-size:.74rem;color:var(--sm-text-muted)"><i class="mdi mdi-robot-outline mr-1"></i>'+(typeof t==='function'?t('sust.ai.found'):'IA encontró')+' '+res.length+' '+(typeof t==='function'?t('sust.ai.dishes'):'platos compatibles')+'</span>';
   renderSustResultados(res);
 }
+function getCrwCode(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))&0x7FFF;return'CRW-'+(1000+h%9000);}
 var _dotC={soup:'#17a2b8',vegetables:'#28a745',carbs:'#fd7e14',protein:'#dc3545',legumes:'#6f42c1',fruit:'#f59e0b',dairy:'#007bff'};
 function renderSustResultados(lista){
   var cont=document.getElementById('sustResultados');if(!cont)return;
@@ -1254,6 +1256,7 @@ function renderSustResultados(lista){
       +'<div class="d-flex align-items-center" style="gap:.45rem">'
         +'<span style="width:8px;height:8px;border-radius:50%;background:'+(_dotC[d.tipo]||'#6c757d')+';flex-shrink:0"></span>'
         +'<strong style="font-size:.82rem;flex:1">'+d.nombre+'</strong>'
+        +'<span style="font-family:monospace;font-size:.7rem;color:#9ca3af;margin-right:.25rem">'+getCrwCode(d.nombre)+'</span>'
         +'<span class="badge-ok" style="font-size:.71rem">'+d.costo+'</span>'
       +'</div>'
       +'<div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+d.kcal+' kcal · Prot: '+d.prot+alergTxt+'</div>'
@@ -1275,6 +1278,7 @@ function editarCeldaBasal(sem,rIdx,dIdx,plato){
   if(mEl)mEl.textContent=typeof t==='function'?t('sust.editReason'):'Cambio manual de plato';
   var aEl=document.getElementById('sustPlatoAfectado');
   if(aEl)aEl.value=plato;
+  var cEl=document.getElementById('sustCodigoActual');if(cEl)cEl.innerHTML='<i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">'+getCrwCode(plato)+'</strong>';
   document.getElementById('sustBasalImpactoCosto').value='';
   _sustSustituto='';_sustFiltroActivo='all';
   document.querySelectorAll('#modalSustituir .sust-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter==='all');});
@@ -1292,6 +1296,7 @@ function abrirSustituirBasal(nombre,servicio){
   var motivo=(db.alerg&&db.alerg!=='None'&&db.alerg!=='No data')?'Allergen detected: '+db.alerg+' in '+nombre:'Replacement requested for '+(nombre||'the selected dish');
   document.getElementById('sustBasalMotivoTexto').textContent=motivo;
   document.getElementById('sustPlatoAfectado').value=(servicio?servicio+' · ':'')+nombre;
+  var cElB=document.getElementById('sustCodigoActual');if(cElB)cElB.innerHTML='<i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">'+getCrwCode(nombre)+'</strong>';
   document.getElementById('sustBasalImpactoCosto').value='';
   _sustSustituto='';_sustFiltroActivo='all';
   document.querySelectorAll('#modalSustituir .sust-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter==='all');});

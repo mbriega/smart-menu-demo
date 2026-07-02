@@ -533,6 +533,7 @@ var _sustSMVarIdx = null, _sustSMDia = null, _sustSMCampo = null;
 var _sustSMSustituto = null, _sustSMFiltro = 'all';
 var _sustSMPool = [];
 
+function getCrwCode(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))&0x7FFF;return'CRW-'+(1000+h%9000);}
 function editarCeldaVarianteSM(varIdx, diaKey, campo) {
   _sustSMVarIdx = parseInt(varIdx);
   _sustSMDia = diaKey;
@@ -545,6 +546,7 @@ function editarCeldaVarianteSM(varIdx, diaKey, campo) {
   if (mEl) mEl.textContent = 'Cambio de plato en variante ' + v.nombre;
   var aEl = document.getElementById('sustSMPlatoAfectado');
   if (aEl) aEl.value = cur;
+  var cEl=document.getElementById('sustSMCodigoActual');if(cEl)cEl.innerHTML='<i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">'+getCrwCode(cur)+'</strong>';
   _sustSMPool = recetasCrownet.slice();
   _sustSMFiltro = 'all';
   sustFiltroPorSM('all');
@@ -577,6 +579,7 @@ function renderSustResultadosSM() {
     card.className = 'sust-dish-card';
     card.dataset.plato = p;
     var inner = '<div class="d-flex align-items-center" style="gap:.45rem"><strong style="font-size:.82rem;flex:1">'+p+'</strong>';
+    inner += '<span style="font-family:monospace;font-size:.7rem;color:#9ca3af;margin-right:.25rem">'+getCrwCode(p)+'</span>';
     if (db.costo) inner += '<span class="badge-ok" style="font-size:.71rem">'+db.costo+'</span>';
     inner += '</div>';
     if (db.kcal||db.prot) inner += '<div style="font-size:.73rem;color:var(--sm-text-muted);margin-top:2px">'+(db.kcal?db.kcal+' kcal':'')+((db.kcal&&db.prot)?' · ':'')+(db.prot?'Prot: '+db.prot+'g':'')+'</div>';
@@ -651,6 +654,7 @@ function buscarConIASM() {
           <div class="mb-3">
             <label class="form-label mb-1" style="font-size:.82rem;font-weight:600" data-i18n="det.sub.dishLabel">Plato a sustituir</label>
             <input type="text" class="form-control" id="sustSMPlatoAfectado" disabled style="font-size:.85rem">
+            <div id="sustSMCodigoActual" style="font-size:.74rem;color:var(--sm-text-muted);margin-top:3px"><i class="mdi mdi-barcode mr-1"></i>Código Crownet: <strong style="font-family:monospace">—</strong></div>
           </div>
           <div class="sust-ai-box">
             <div style="font-size:.8rem;font-weight:700;margin-bottom:.6rem;color:var(--sm-green)">
