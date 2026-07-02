@@ -701,10 +701,10 @@ function buscarConIASM() {
   };
   function fGroup(t){
     if(!t)return null; var p=t.toLowerCase();
-    if(/merluza|salm[oó]n|bacalao|dorada|lubina|at[uú]n|pescado|rape|sepia|gambas|mejillones|calamares/.test(p))return'pescado';
-    if(/huevo|tortilla|revuelto|escalfado/.test(p))return'huevo';
-    if(/ternera|cerdo|pollo|pavo|cordero|buey|carne|filete|alb[oó]ndiga|hamburguesa|lomo|costilla/.test(p))return'carne';
-    if(/lentejas|garbanzos|jud[ií]as|alubias|guisantes|soja/.test(p))return'legumbre';
+    if(/merluza|salm[oó]n|bacalao|dorada|lubina|at[uú]n|pescado|rape|sepia|gambas|mejillones|calamares|tilapia|anchoa|boquer[oó]n|sardina|lenguado|mero|trucha/.test(p))return'pescado';
+    if(/huevo|tortilla|revuelto|escalfado|flan/.test(p))return'huevo';
+    if(/ternera|cerdo|pollo|pavo|cordero|buey|carne|filete|alb[oó]ndiga|hamburguesa|lomo|costilla|pechuga|jam[oó]n|chuleta|salchicha|bolo[ñn]|ragout|estofado de|guiso de|muslo|contramuslo/.test(p))return'carne';
+    if(/lentejas|garbanzos|jud[ií]as|alubias|guisantes|soja|hab[ao]s/.test(p))return'legumbre';
     if(/integral|salvado|espelta|centeno/.test(p))return'integral';
     if(/eco[l ]|ecol[oó]gico|org[aá]nico/.test(p))return'eco';
     if(/precocinado|nuggets|croquetas|palitos|empanad/.test(p))return'precocinado';
@@ -724,6 +724,8 @@ function buscarConIASM() {
     var grp=fGroup(txt);
     if(grp&&FGC[grp]){cell.style.background=FGC[grp].bg;cell.style.borderLeft='3px solid '+FGC[grp].border;cell.style.paddingLeft='6px';cell.style.borderRadius='2px';}
     cell.classList.remove('ok','warning','critical');
+      cell.removeAttribute('data-food-type');
+      if(!grp){cell.style.background='rgba(248,249,250,.7)';cell.style.borderLeft='3px solid rgba(0,0,0,.07)';cell.style.paddingLeft='6px';cell.style.borderRadius='2px';}
     var grpCode=grp?grp.substring(0,3).toUpperCase():'N00';
     var code=document.createElement('span');code.className='sm-overlay-cod';code.style.cssText='display:none;font-size:.6rem;color:#6c757d;background:#f3f4f6;border-radius:2px;padding:0 3px;margin-left:4px;font-family:monospace';code.textContent=grpCode+(idx+1);
     var price=document.createElement('span');price.className='sm-overlay-price';price.style.cssText='display:none;font-size:.65rem;color:#16a34a;font-weight:600;margin-left:4px';price.textContent=PRICES[idx%PRICES.length];

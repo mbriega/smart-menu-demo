@@ -311,6 +311,7 @@ function renderCentrosTabla(pag){
       '</div></td>'+
     '</tr>';
   }).join('');
+  setTimeout(function(){smAddMgmtFilters(document.getElementById('tCentros'));},50);
   if(pager){
     var totalPags=Math.ceil(total/CENTROS_PPP);
     if(totalPags<=1){pager.innerHTML='';return;}
@@ -725,4 +726,62 @@ function enviarMensajeIA(){
 </script>
 <div class="modal fade" id="modalAjustes" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-cog-outline mr-1" style="color:var(--sm-green)"></i><span data-i18n="modal.settings.title">Account settings</span></h5><button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div><div class="modal-body" style="font-size:.85rem"><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.profile">Profile</div><div class="row"><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.name">First name</label><input type="text" class="form-control form-control-sm" value="Ana Garc&iacute;a"></div><div class="col-6"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.lastname">Last name</label><input type="text" class="form-control form-control-sm" value=""></div></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600">Email</label><input type="email" class="form-control form-control-sm" value="ana.garcia@vorare.com"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.role">Role</label><input type="text" class="form-control form-control-sm" value="Central Nutritionist" disabled></div></div><div class="mb-3"><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.security">Security</div><div><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.currentPass">Current password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.newPass">New password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div><div class="mt-2"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.confirmPass">Confirm password</label><input type="password" class="form-control form-control-sm" placeholder="••••••••"></div></div><div><div style="color:var(--sm-green);font-weight:700;font-size:.8rem;margin-bottom:.65rem" data-i18n="modal.settings.prefs">Preferences</div><div><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.lang">Language</label><select class="form-control form-control-sm"><option selected>English</option><option>Español</option></select></div><div class="mt-2 d-flex align-items-center justify-content-between"><label class="form-label mb-0" style="font-size:.78rem;font-weight:600" data-i18n="modal.settings.notif">Email notifications</label><input type="checkbox" checked></div></div></div><div class="modal-footer" style="border-top:1px solid var(--sm-border)"><button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" data-i18n="modal.settings.cancel">Cancel</button><button type="button" class="btn btn-primary btn-sm" onclick="smToast(typeof t==='function'?t('modal.settings.saved'):'Ajustes guardados correctamente','success'),'success');$('#modalAjustes').modal('hide')"><i class="mdi mdi-content-save-outline"></i><span data-i18n="modal.settings.save"> Save changes</span></button></div></div></div></div>
 
+<script>
+(function(){
+  function smAddMgmtFilters(tbl){
+    if(!tbl)return;
+    tbl.querySelectorAll('.sm-col-drop').forEach(function(d){d.parentNode&&d.parentNode.removeChild(d);});
+    tbl.querySelectorAll('thead th .sm-filter-btn').forEach(function(b){b.parentNode&&b.parentNode.removeChild(b);});
+    var ths=tbl.querySelectorAll('thead th'),n=ths.length;
+    ths.forEach(function(th,ci){
+      if(ci===n-1)return;
+      th.style.position='relative';th.style.whiteSpace='nowrap';
+      var btn=document.createElement('button');
+      btn.className='sm-filter-btn';
+      btn.style.cssText='background:none;border:none;padding:0 0 0 4px;cursor:pointer;color:#9ca3af;font-size:.7rem;vertical-align:middle';
+      btn.innerHTML='&#9660;';
+      var drop=document.createElement('div');
+      drop.className='sm-col-drop';
+      drop.style.cssText='display:none;position:absolute;left:0;top:100%;z-index:1050;background:#fff;border:1px solid #e5e7eb;border-radius:4px;box-shadow:0 3px 10px rgba(0,0,0,.1);padding:.2rem 0;min-width:150px;font-size:.77rem;max-height:200px;overflow-y:auto';
+      btn.onclick=function(e){
+        e.stopPropagation();
+        document.querySelectorAll('.sm-col-drop').forEach(function(d){if(d!==drop)d.style.display='none';});
+        if(drop.style.display!=='none'){drop.style.display='none';return;}
+        drop.innerHTML='';
+        var rows=tbl.querySelectorAll('tbody tr'),vals=['(Todos)'];
+        rows.forEach(function(row){
+          if(row.style.display==='none')return;
+          var td=row.querySelectorAll('td')[ci];if(!td)return;
+          var v=td.textContent.trim().replace(/\s+/g,' ');
+          if(v&&vals.indexOf(v)===-1)vals.push(v.substring(0,45));
+        });
+        vals.forEach(function(v){
+          var item=document.createElement('div');
+          item.style.cssText='padding:.25rem .75rem;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
+          item.textContent=v;item.title=v;
+          item.onmouseover=function(){this.style.background='#f3f4f6';};
+          item.onmouseout=function(){this.style.background='';};
+          item.onclick=function(){
+            drop.style.display='none';
+            tbl.querySelectorAll('tbody tr').forEach(function(row){
+              if(v==='(Todos)'){row.style.display='';return;}
+              var td=row.querySelectorAll('td')[ci];if(!td){row.style.display='';return;}
+              var rv=td.textContent.trim().replace(/\s+/g,' ');
+              row.style.display=rv.indexOf(v)!==-1?'':'none';
+            });
+          };
+          drop.appendChild(item);
+        });
+        drop.style.display='block';
+      };
+      th.appendChild(btn);th.appendChild(drop);
+    });
+    if(!window._smMgmtFilterListener){
+      document.addEventListener('click',function(){document.querySelectorAll('.sm-col-drop').forEach(function(d){d.style.display='none';});});
+      window._smMgmtFilterListener=true;
+    }
+  }
+  setTimeout(function(){smAddMgmtFilters(document.getElementById('tCentros'));},200);
+})();
+</script>
 </body></html>

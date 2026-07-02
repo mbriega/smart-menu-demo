@@ -261,15 +261,8 @@ input[type="number"].form-control-sm {
 .menu-cell.warning { background:rgba(232,119,34,0.10); color:#7c2d00; }
 .menu-cell.danger  { background:rgba(220,53,69,0.10);  color:#7f1d1d; }
 .menu-cell.editing { background:#fff; border: 2px solid var(--sm-green) !important; }
-/* Food type dots */
-.menu-cell[data-food-type]::before,.w-cell[data-food-type]::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;vertical-align:middle;flex-shrink:0}
-.menu-cell[data-food-type="soup"]::before,.w-cell[data-food-type="soup"]::before{background:#17a2b8}
-.menu-cell[data-food-type="vegetables"]::before,.w-cell[data-food-type="vegetables"]::before{background:#28a745}
-.menu-cell[data-food-type="carbs"]::before,.w-cell[data-food-type="carbs"]::before{background:#fd7e14}
-.menu-cell[data-food-type="protein"]::before,.w-cell[data-food-type="protein"]::before{background:#dc3545}
-.menu-cell[data-food-type="legumes"]::before,.w-cell[data-food-type="legumes"]::before{background:#6f42c1}
-.menu-cell[data-food-type="fruit"]::before,.w-cell[data-food-type="fruit"]::before{background:#f59e0b}
-.menu-cell[data-food-type="dairy"]::before,.w-cell[data-food-type="dairy"]::before{background:#007bff}
+/* Food type dots replaced by food-group cell shading */
+.menu-cell[data-food-type]::before,.w-cell[data-food-type]::before{content:none}
 
 
 /* AI substitution */

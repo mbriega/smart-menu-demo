@@ -14,7 +14,7 @@
     <span style="font-size:.95rem;font-weight:900;color:var(--sm-green);letter-spacing:.5px">Menu</span>
   </div>
 </a><ul class="nav"><li class="nav-item nav-category">Principal</li><li class="nav-item "><a class="nav-link" href="dashboard.html"><span class="icon-bg"><i class="mdi mdi-view-dashboard-outline menu-icon"></i></span><span class="menu-title">Dashboard</span></a></li><li class="nav-item active"><a class="nav-link" href="menus.html"><span class="icon-bg"><i class="mdi mdi-food-fork-drink menu-icon"></i></span><span class="menu-title">Men&uacute;s</span></a></li><li class="nav-item "><a class="nav-link" href="menu-basal.html"><span class="icon-bg"><i class="mdi mdi-silverware-fork-knife menu-icon"></i></span><span class="menu-title">Men&uacute; Basal</span></a></li><li class="nav-item "><a class="nav-link" href="comercial.html"><span class="icon-bg"><i class="mdi mdi-briefcase-outline menu-icon"></i></span><span class="menu-title">Entorno Comercial</span></a></li><li class="nav-item "><a class="nav-link" href="cambios.html"><span class="icon-bg"><i class="mdi mdi-swap-horizontal menu-icon"></i></span><span class="menu-title">Cambios y Excepciones</span></a></li><li class="nav-item "><a class="nav-link" href="centros.html"><span class="icon-bg"><i class="mdi mdi-office-building menu-icon"></i></span><span class="menu-title">Centros</span></a></li><li class="nav-item "><a class="nav-link" href="publicacion.html"><span class="icon-bg"><i class="mdi mdi-cloud-upload-outline menu-icon"></i></span><span class="menu-title">Publicaci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="configuracion.html"><span class="icon-bg"><i class="mdi mdi-settings menu-icon"></i></span><span class="menu-title">Configuraci&oacute;n</span></a></li><li class="nav-item "><a class="nav-link" href="usuarios.html"><span class="icon-bg"><i class="mdi mdi-account-group-outline menu-icon"></i></span><span class="menu-title">Usuarios</span></a></li></ul><div class="sm-sidebar-user"><div class="d-flex align-items-center" style="gap:.6rem"><div class="sm-avatar">AG</div><div><div class="sm-user-name">Ana Garc&iacute;a</div><div class="sm-user-role">Central Nutritionist</div></div></div><div class="sm-sidebar-actions"><a href="#" onclick="$('#modalAjustes').modal('show');return false;" class="sm-settings-btn"><i class="mdi mdi-cog-outline"></i> Ajustes de cuenta</a><a href="#" onclick="$('#modalLogout').modal('show');return false;" class="sm-logout-btn" style="margin-top:.55rem"><i class="mdi mdi-logout"></i> Cerrar sesi&oacute;n</a></div></div></nav><div class="main-panel"><div class="sm-topbar"><div class="sm-lang-toggle"><button class="sm-lang-btn" data-lang="es" onclick="setLang('es')">ES</button><span class="sm-lang-sep">|</span><button class="sm-lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div></div><div class="content-wrapper"><div class="sm-page-header d-flex justify-content-between align-items-center flex-wrap" style="gap:.75rem"><div><h4><i class="mdi mdi-food-fork-drink mr-2" style="color:var(--sm-green)"></i><span data-i18n="menus.title">Menu Management</span></h4>
-<p class="sm-page-subtitle"><span data-i18n="menus.title">Menu Management</span></p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><button class="btn btn-outline-primary btn-sm" onclick="abrirWizard()"><i class="mdi mdi-plus"></i> <span data-i18n="menus.btn.new">New Menu</span></button></div></div><div class="card mb-4"><div class="card-body"><div class="row align-items-end" style="gap:.5rem 0"><div class="col-md-3 col-sm-6"><label class="form-label" style="font-size:.78rem;font-weight:600"><span data-i18n="menus.filter.desde">From</span></label><input type="text" class="form-control form-control-sm" id="fechaDesde" readonly data-i18n-ph="menus.filter.datePh" placeholder="dd/mm/yyyy"></div><div class="col-md-3 col-sm-6"><label class="form-label" style="font-size:.78rem;font-weight:600"><span data-i18n="menus.filter.hasta">To</span></label><input type="text" class="form-control form-control-sm" id="fechaHasta" readonly data-i18n-ph="menus.filter.datePh" placeholder="dd/mm/yyyy"></div><div class="col-md-2 col-sm-4"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="menus.filter.tipo">Center type</label><select class="form-control form-control-sm" onchange="filtrarMenusTipo(this.value)"><option value="" data-i18n="menus.filter.all">All</option><option value="school" data-i18n="tipo.escolar">School</option><option value="hospital" data-i18n="tipo.hospitalario">Hospital</option><option value="senior care" data-i18n="tipo.terceraEdad">Long Stay</option><option value="corporate" data-i18n="tipo.empresa">Corporate</option></select></div><div class="col-md-2 col-sm-4"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="menus.filter.estado">Status</label><select class="form-control form-control-sm"><option data-i18n="menus.filter.all">All</option><option data-i18n="status.borrador">Draft</option><option data-i18n="status.aprobado">Approved</option><option data-i18n="status.publicado">Published</option><option data-i18n="status.pendiente">Pending</option></select></div><div class="col-md-2 col-sm-4 d-flex align-items-end"><button class="btn btn-outline-primary btn-sm w-100" style="height:32px" onclick="smToast('Filtros aplicados','info')"><i class="mdi mdi-magnify"></i> <span data-i18n="action.filter">Filter</span></button></div></div></div></div><div class="card"><div class="card-body p-0"><div class="d-flex justify-content-between align-items-center p-3 border-bottom"><h6 class="mb-0 font-weight-700"><span data-i18n="menus.list.title">Menu List</span> <span class="badge badge-secondary ml-2" id="menusBadge">30</span></h6><span style="font-size:.8rem;color:var(--sm-text-muted)">Week 22 — May 22–26, 2026</span></div><table class="table mb-0"><thead><tr><th data-i18n="col.centro">Center</th><th data-i18n="menus.col.tipo">Type</th><th data-i18n="menus.col.periodo">Period</th><th data-i18n="menus.col.estado">Status</th><th class="text-center" data-i18n="menus.col.cost">Cost</th><th class="text-center" data-i18n="menus.col.nutri">Nutritional</th><th class="text-center" data-i18n="menus.col.variantes">Variants</th><th data-i18n="menus.col.acciones">Actions</th></tr></thead><tbody id="menusTbody"></tbody></table><div id="menusPaginador" class="px-3 pb-2 pt-1"></div></div></div>
+<p class="sm-page-subtitle"><span data-i18n="menus.title">Menu Management</span></p></div><div class="d-flex align-items-center flex-wrap" style="gap:.5rem"><button class="btn btn-outline-primary btn-sm" onclick="abrirWizard()"><i class="mdi mdi-plus"></i> <span data-i18n="menus.btn.new">New Menu</span></button></div></div><div class="card mb-4"><div class="card-body"><div class="row align-items-end" style="gap:.5rem 0"><div class="col-md-3 col-sm-6"><label class="form-label" style="font-size:.78rem;font-weight:600"><span data-i18n="menus.filter.desde">From</span></label><input type="text" class="form-control form-control-sm" id="fechaDesde" readonly data-i18n-ph="menus.filter.datePh" placeholder="dd/mm/yyyy"></div><div class="col-md-3 col-sm-6"><label class="form-label" style="font-size:.78rem;font-weight:600"><span data-i18n="menus.filter.hasta">To</span></label><input type="text" class="form-control form-control-sm" id="fechaHasta" readonly data-i18n-ph="menus.filter.datePh" placeholder="dd/mm/yyyy"></div><div class="col-md-2 col-sm-4"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="menus.filter.tipo">Center type</label><select class="form-control form-control-sm" onchange="filtrarMenusTipo(this.value)"><option value="" data-i18n="menus.filter.all">All</option><option value="school" data-i18n="tipo.escolar">School</option><option value="hospital" data-i18n="tipo.hospitalario">Hospital</option><option value="senior care" data-i18n="tipo.terceraEdad">Long Stay</option><option value="corporate" data-i18n="tipo.empresa">Corporate</option></select></div><div class="col-md-2 col-sm-4"><label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="menus.filter.estado">Status</label><select class="form-control form-control-sm"><option data-i18n="menus.filter.all">All</option><option data-i18n="status.borrador">Draft</option><option data-i18n="status.aprobado">Approved</option><option data-i18n="status.publicado">Published</option><option data-i18n="status.pendiente">Pending</option></select></div><div class="col-md-2 col-sm-4 d-flex align-items-end"><button class="btn btn-outline-primary btn-sm w-100" style="height:32px" onclick="smToast('Filtros aplicados','info')"><i class="mdi mdi-magnify"></i> <span data-i18n="action.filter">Filter</span></button></div></div></div></div><div class="card"><div class="card-body p-0"><div class="d-flex justify-content-between align-items-center p-3 border-bottom"><h6 class="mb-0 font-weight-700"><span data-i18n="menus.list.title">Menu List</span> <span class="badge badge-secondary ml-2" id="menusBadge">30</span></h6><span style="font-size:.8rem;color:var(--sm-text-muted)">Week 22 — May 22–26, 2026</span></div><table class="table mb-0" id="tMenusList"><thead><tr><th data-i18n="col.centro">Center</th><th data-i18n="menus.col.tipo">Type</th><th data-i18n="menus.col.periodo">Period</th><th data-i18n="menus.col.estado">Status</th><th class="text-center" data-i18n="menus.col.cost">Cost</th><th class="text-center" data-i18n="menus.col.nutri">Nutritional</th><th class="text-center" data-i18n="menus.col.variantes">Variants</th><th data-i18n="menus.col.acciones">Actions</th></tr></thead><tbody id="menusTbody"></tbody></table><div id="menusPaginador" class="px-3 pb-2 pt-1"></div></div></div>
 <div class="modal fade" id="modalComercial" tabindex="-1">
   <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
     <div class="modal-header">
@@ -616,4 +616,62 @@ function imprimirPropuesta(){
   </div></div>
 </div>
 
+<script>
+(function(){
+  function smAddMgmtFilters(tbl){
+    if(!tbl)return;
+    tbl.querySelectorAll('.sm-col-drop').forEach(function(d){d.parentNode&&d.parentNode.removeChild(d);});
+    tbl.querySelectorAll('thead th .sm-filter-btn').forEach(function(b){b.parentNode&&b.parentNode.removeChild(b);});
+    var ths=tbl.querySelectorAll('thead th'),n=ths.length;
+    ths.forEach(function(th,ci){
+      if(ci===n-1)return;
+      th.style.position='relative';th.style.whiteSpace='nowrap';
+      var btn=document.createElement('button');
+      btn.className='sm-filter-btn';
+      btn.style.cssText='background:none;border:none;padding:0 0 0 4px;cursor:pointer;color:#9ca3af;font-size:.7rem;vertical-align:middle';
+      btn.innerHTML='&#9660;';
+      var drop=document.createElement('div');
+      drop.className='sm-col-drop';
+      drop.style.cssText='display:none;position:absolute;left:0;top:100%;z-index:1050;background:#fff;border:1px solid #e5e7eb;border-radius:4px;box-shadow:0 3px 10px rgba(0,0,0,.1);padding:.2rem 0;min-width:150px;font-size:.77rem;max-height:200px;overflow-y:auto';
+      btn.onclick=function(e){
+        e.stopPropagation();
+        document.querySelectorAll('.sm-col-drop').forEach(function(d){if(d!==drop)d.style.display='none';});
+        if(drop.style.display!=='none'){drop.style.display='none';return;}
+        drop.innerHTML='';
+        var rows=tbl.querySelectorAll('tbody tr'),vals=['(Todos)'];
+        rows.forEach(function(row){
+          if(row.style.display==='none')return;
+          var td=row.querySelectorAll('td')[ci];if(!td)return;
+          var v=td.textContent.trim().replace(/\s+/g,' ');
+          if(v&&vals.indexOf(v)===-1)vals.push(v.substring(0,45));
+        });
+        vals.forEach(function(v){
+          var item=document.createElement('div');
+          item.style.cssText='padding:.25rem .75rem;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
+          item.textContent=v;item.title=v;
+          item.onmouseover=function(){this.style.background='#f3f4f6';};
+          item.onmouseout=function(){this.style.background='';};
+          item.onclick=function(){
+            drop.style.display='none';
+            tbl.querySelectorAll('tbody tr').forEach(function(row){
+              if(v==='(Todos)'){row.style.display='';return;}
+              var td=row.querySelectorAll('td')[ci];if(!td){row.style.display='';return;}
+              var rv=td.textContent.trim().replace(/\s+/g,' ');
+              row.style.display=rv.indexOf(v)!==-1?'':'none';
+            });
+          };
+          drop.appendChild(item);
+        });
+        drop.style.display='block';
+      };
+      th.appendChild(btn);th.appendChild(drop);
+    });
+    if(!window._smMgmtFilterListener){
+      document.addEventListener('click',function(){document.querySelectorAll('.sm-col-drop').forEach(function(d){d.style.display='none';});});
+      window._smMgmtFilterListener=true;
+    }
+  }
+  setTimeout(function(){smAddMgmtFilters(document.getElementById('tMenusList'));},200);
+})();
+</script>
 </body></html>

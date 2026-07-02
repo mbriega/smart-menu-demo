@@ -124,6 +124,7 @@
     </div>
     <!-- Estado: generado -->
     <div id="basalContenido">
+    <div id="basalMenuToolbar" class="d-flex align-items-center flex-wrap mb-2 mt-2" style="gap:.75rem;font-size:.79rem"><span style="color:var(--sm-text-muted);font-weight:600;font-size:.76rem">Ver:</span><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkCodigos" onchange="smToggleVer('codigos')"> <span>Ver códigos</span></label><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkPrecios" onchange="smToggleVer('precios')"> <span>Ver precios</span></label><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkAceptacion" onchange="smToggleVer('aceptacion')"> <span>Ver aceptación</span></label></div>
     <div id="escolarVariantsView" style="display:none"></div>
     <div id="basalNormalView">
     <ul class="nav nav-tabs mb-3 mt-3" id="basalTab">
@@ -144,7 +145,6 @@
             <button class="btn btn-sm btn-outline-secondary" onclick="smToast('Regenerating base menu with AI…','info');setTimeout(function(){smToast('Menu regenerated. Review and approve.','success');},2800)"><i class="mdi mdi-robot"></i> <span data-i18n="basal.regen">Regenerate AI</span></button>
           </div>
         </div>
-        <div id="basalMenuToolbar" class="d-flex align-items-center flex-wrap mb-2" style="gap:.75rem;font-size:.79rem"><span style="color:var(--sm-text-muted);font-weight:600;font-size:.76rem">Ver:</span><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkCodigos" onchange="smToggleVer('codigos')"> <span>Ver códigos</span></label><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkPrecios" onchange="smToggleVer('precios')"> <span>Ver precios</span></label><label class="d-flex align-items-center mb-0" style="gap:.3rem;cursor:pointer"><input type="checkbox" id="chkAceptacion" onchange="smToggleVer('aceptacion')"> <span>Ver aceptación</span></label></div>
         <div style="overflow-x:auto">
           <table class="menu-table" id="tBasal">
             <thead><tr>
