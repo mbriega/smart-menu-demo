@@ -1208,6 +1208,7 @@ function verPlatoBasal(nombre, dia) {
     +'<div class="plato-nutri-row"><span style="color:#6c757d">'+(typeof t==="function"?t('det.mod.fat'):'Grasas')+'</span><strong>'+d.grasa+'</strong></div>'
     +'<div class="plato-nutri-row"><span style="color:#6c757d">'+(typeof t==="function"?t('det.mod.carbs'):'Hidratos')+'</span><strong>'+d.hc+'</strong></div>'
     +'<div class="plato-nutri-row" style="margin-top:.3rem;padding-top:.4rem;border-top:2px solid #e5e7eb"><span style="color:#6c757d">'+(typeof t==="function"?t('det.mod.costServ'):'Coste / ración')+'</span><strong style="color:var(--sm-green)">'+d.costo+'</strong></div>'
+    +'<div class="plato-nutri-row" style="border-top:1px dashed #e5e7eb;margin-top:.3rem;padding-top:.3rem"><span style="color:#9ca3af;font-size:.78rem"><i class="mdi mdi-barcode mr-1"></i>Cód. Crownet</span><strong style="font-family:monospace;font-size:.79rem;color:#6c757d">'+getCrwCode(nombre)+'</strong></div>'
     +'</div></div>';
   $('#modalPlato').modal('show');
 }
