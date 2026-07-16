@@ -522,6 +522,7 @@ function renderMenusTabla(pag){
   }
 }
 renderMenusTabla(1);
+window.renderTabla = function(){ renderMenusTabla(MENUS_PAG||1); };
 (function(){
   var _MAP={escolar:'school',hospital:'sociosanitario',empresa:'universitario'};
   var t=sessionStorage.getItem('dashFiltroTipo');
@@ -590,7 +591,7 @@ function imprimirPropuesta(){
   w.document.write('<table><thead><tr><th>Servicio</th><th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th></tr></thead><tbody>'+document.getElementById('comMenuBody').innerHTML+'</tbody></table>');
   w.document.write('<p><strong>Coste medio/comensal:</strong> '+document.getElementById('comCostoMedio').textContent+' &nbsp;|&nbsp; <strong>Proyección mensual:</strong> '+document.getElementById('comTotalMes').textContent+'</p>');
   w.document.write('<div class="footer">Generado automáticamente por Smart Menu AI &nbsp;·&nbsp; smart-menu-demo.github.io &nbsp;·&nbsp; '+new Date().toLocaleDateString('es-ES')+'</div>');
-  w.document.write('</body></html>');
+  w.document.write('<\/body><\/html>');
   w.document.close();
   setTimeout(function(){w.print();},300);
 }

@@ -394,6 +394,7 @@ var recetasDB = {
   'Yogur natural':       {kcal:65,prot:'4g',grasa:'3g',hc:'5g',alerg:'Lactosa',costo:'€0.28',receta:'Plain unsweetened yogurt.'}
 };
 
+function getCrwCode(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))&0x7FFF;return'CRW-'+(1000+h%9000);}
 function verPlato(nombre, dia) {
   if (modoEdicion) return;
   _sustNombre=nombre; _sustServicio=dia;
@@ -401,7 +402,7 @@ function verPlato(nombre, dia) {
   if ((localStorage.getItem('smLang')||'en') !== 'es' && window._i18nEs) {
     for (var _k in window._i18nEs) { if (_k.indexOf('dish.')===0 && window._i18nEs[_k]===nombre) { displayNombre=t(_k); break; } }
   }
-  document.getElementById('mPlatoTitle').innerHTML = '<i class="mdi mdi-food mr-2" style="color:var(--sm-green)"></i>' + displayNombre + ' — ' + dia;
+  document.getElementById('mPlatoTitle').innerHTML = '<i class="mdi mdi-food mr-2" style="color:var(--sm-green)"></i>' + displayNombre + (dia ? ' — ' + dia : '') + '<br><span style="font-size:.7rem;font-family:monospace;color:#9ca3af;font-weight:400"><i class="mdi mdi-barcode mr-1"></i>' + getCrwCode(nombre) + '</span>';
   var d = recetasDB[nombre] || {kcal:'—',prot:'—',grasa:'—',hc:'—',alerg:'No data',costo:'—',receta:'Information not available.'};
   var alergDisplay = d.alerg==='None'?(typeof t==='function'?t('det.mod.alergNone'):'Ninguno'):d.alerg==='No data'?(typeof t==='function'?t('det.mod.noData'):'Sin datos'):d.alerg;
   var recetaDisplay = d.receta==='Information not available.'?(typeof t==='function'?t('det.mod.noInfo'):'Información no disponible.'):d.receta;
@@ -867,7 +868,7 @@ function imprimirMensual(){
   w.document.write('<html><head><title>Vista Mensual — Menú</title><style>body{font-family:Arial,sans-serif;font-size:11px;padding:20px;color:#1f2937}table{width:100%;border-collapse:collapse;margin-bottom:16px}th,td{border:1px solid #d1d5db;padding:4px 7px}th{background:#f3f4f6;font-weight:600}h3{color:#16A349;margin:12px 0 4px 0;font-size:13px}</style></head><body>');
   w.document.write('<h2 style="color:#16A349;margin-bottom:16px">Vista Mensual — Junio 2026</h2>');
   w.document.write(body.innerHTML);
-  w.document.write('</body></html>');
+  w.document.write('<\/body><\/html>');
   w.document.close();
   setTimeout(function(){w.print();},300);
 }

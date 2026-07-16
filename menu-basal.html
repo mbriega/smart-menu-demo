@@ -1477,7 +1477,7 @@ function imprimirMensual(){
   w.document.write('<html><head><title>Vista Mensual — Menú Basal</title><style>body{font-family:Arial,sans-serif;font-size:11px;padding:20px;color:#1f2937}table{width:100%;border-collapse:collapse;margin-bottom:16px}th,td{border:1px solid #d1d5db;padding:4px 7px}th{background:#f3f4f6;font-weight:600}h3{color:#16A349;margin:12px 0 4px 0;font-size:13px}</style></head><body>');
   w.document.write('<h2 style="color:#16A349;margin-bottom:16px">Vista Mensual — Menú Basal — Junio 2026</h2>');
   w.document.write(body.innerHTML);
-  w.document.write('</body></html>');
+  w.document.write('<\/body><\/html>');
   w.document.close();
   setTimeout(function(){w.print();},300);
 }
