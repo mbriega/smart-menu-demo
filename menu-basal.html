@@ -89,6 +89,7 @@
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)"><span data-i18n="basal.sem">Sem</span> 4</button>
         </div>
         <button class="btn btn-sm btn-outline-secondary" onclick="abrirVistaMensual()"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
+        <button class="btn btn-sm btn-outline-secondary" onclick="abrirHistoricoBasal()"><i class="mdi mdi-history"></i> <span data-i18n="hist.btn">Ver histórico</span></button>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
         <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> <span data-i18n="basal.btn.genCentros">Generate center menus</span></button>
         <button class="btn btn-sm btn-outline-primary ml-1" onclick="exportarBasal()"><i class="mdi mdi-file-excel-outline"></i> Excel</button>
@@ -267,8 +268,75 @@
     <div class="modal-footer" style="font-size:.8rem;padding:.5rem 1rem"><span class="text-muted" data-i18n="monthly.costSummary">Coste mensual proyectado (4 sem):</span> <strong class="ml-1 text-green">≈€15.556,60</strong> <span class="text-muted ml-2" data-i18n="monthly.comensales">· 245 comensales</span><button type="button" class="btn btn-outline-secondary btn-sm ml-auto" data-dismiss="modal" data-i18n="action.close">Cerrar</button></div>
   </div></div>
 </div>
+
+<!-- MODAL HISTÓRICO GLOBAL DE MENÚS BASALES -->
+<div class="modal fade" id="modalHistoricoBasal" tabindex="-1" style="z-index:1200">
+  <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-history mr-1" style="color:var(--sm-green)"></i><span data-i18n="hist.modal.title">Histórico de menús basales</span></h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" style="font-size:.85rem">
+      <div class="row mb-3" style="row-gap:.5rem">
+        <div class="col-md-4">
+          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.tipo">Tipo de centro</label>
+          <select class="form-control form-control-sm" id="histFiltroTipo" onchange="renderHistoricoGlobal()">
+            <option value="todos" data-i18n="hist.filter.todos">Todos</option>
+            <option value="escolar-primaria">Escolar · Primaria</option>
+            <option value="escolar-secundaria">Escolar · Secundaria</option>
+            <option value="escolar-infantil">Escolar · Infantil</option>
+            <option value="escolar-residencia-escolar">Escolar · Residencia Escolar</option>
+            <option value="hospital">Sociosanitario</option>
+            <option value="empresa">Universitario</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.desde">Desde</label>
+          <input type="month" class="form-control form-control-sm" id="histFiltroDesde" onchange="renderHistoricoGlobal()">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.hasta">Hasta</label>
+          <input type="month" class="form-control form-control-sm" id="histFiltroHasta" onchange="renderHistoricoGlobal()">
+        </div>
+      </div>
+      <div style="max-height:52vh;overflow-y:auto">
+        <table class="table table-clean">
+          <thead><tr>
+            <th data-i18n="hist.col.tipo">Tipo de centro</th>
+            <th data-i18n="hist.col.mes">Mes</th>
+            <th data-i18n="basal.hist.version">Versión</th>
+            <th data-i18n="basal.hist.fecha">Fecha</th>
+            <th data-i18n="basal.hist.estado">Estado</th>
+            <th data-i18n="basal.hist.obs">Notas</th>
+            <th data-i18n="hist.col.acciones">Acciones</th>
+          </tr></thead>
+          <tbody id="tbodyHistoricoGlobal"></tbody>
+        </table>
+        <p id="histSinResultados" class="text-muted text-center py-3" style="display:none" data-i18n="hist.sinResultados">No hay menús basales en el rango seleccionado.</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal"><span data-i18n="action.close">Cerrar</span></button>
+    </div>
+  </div></div>
+</div>
+
+<!-- MODAL VISTA PREVIA MENÚ HISTÓRICO -->
+<div class="modal fade" id="modalHistoricoPreview" tabindex="-1" style="z-index:1300">
+  <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-eye-outline mr-1" style="color:var(--sm-green)"></i><span id="histPreviewTitulo" data-i18n="hist.preview.title">Vista previa del menú</span></h5>
+      <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+    </div>
+    <div class="modal-body" id="histPreviewBody" style="font-size:.8rem"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal"><span data-i18n="action.close">Cerrar</span></button>
+    </div>
+  </div></div>
+</div>
+
 <div class="modal fade" id="modalGenerar" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document"><div class="modal-content">
+  <div class="modal-dialog modal-lg" role="document"><div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" style="font-size:.95rem;font-weight:700"><i class="mdi mdi-robot mr-1" style="color:var(--sm-green)"></i><span data-i18n="basal.modal.gen.title">Generar men&uacute; basal con IA</span> &mdash; <span id="generarTipoLabel">Primary</span></h5>
       <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
@@ -300,8 +368,38 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="basal.modal.gen.periodLabel">Per&iacute;odo</label>
-        <select class="form-control form-control-sm"><option>Septiembre 2025</option><option>Octubre 2025</option><option>Noviembre 2025</option></select>
+        <label class="form-label d-block" style="font-size:.78rem;font-weight:600" data-i18n="gen.modo.label">Origen del men&uacute;</label>
+        <div class="btn-group btn-group-toggle" style="font-size:.8rem">
+          <label class="btn btn-outline-secondary btn-sm active" style="margin-bottom:0">
+            <input type="radio" name="gModo" id="gModoNuevo" checked onchange="onModoGenerarChange()"> <i class="mdi mdi-robot"></i> <span data-i18n="gen.modo.nuevo">Nuevo con IA</span>
+          </label>
+          <label class="btn btn-outline-secondary btn-sm" style="margin-bottom:0">
+            <input type="radio" name="gModo" id="gModoBase" onchange="onModoGenerarChange()"> <i class="mdi mdi-content-duplicate"></i> <span data-i18n="gen.modo.base">Basado en men&uacute; anterior</span>
+          </label>
+        </div>
+        <div id="generarBaseGroup" class="mt-2" style="display:none">
+          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="gen.modo.baseSelect">Elegir men&uacute; anterior</label>
+          <select class="form-control form-control-sm" id="generarBaseSelect"></select>
+          <p class="text-muted mt-1 mb-0" style="font-size:.72rem" data-i18n="gen.modo.baseHint">La IA partir&aacute; de la composici&oacute;n de este men&uacute; y la adaptar&aacute; al per&iacute;odo seleccionado.</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label d-block" style="font-size:.78rem;font-weight:600" data-i18n="basal.modal.gen.periodLabel">Per&iacute;odo</label>
+        <div class="row">
+          <div class="col-6">
+            <label class="form-label" style="font-size:.72rem;color:var(--sm-text-muted)" data-i18n="gen.periodo.inicio">Mes de inicio</label>
+            <input type="month" class="form-control form-control-sm" id="generarMesInicio">
+          </div>
+          <div class="col-6">
+            <label class="form-label" style="font-size:.72rem;color:var(--sm-text-muted)" data-i18n="gen.periodo.cantidad">N&uacute;mero de meses a generar</label>
+            <select class="form-control form-control-sm" id="generarNumMeses">
+              <option value="1">1 <span data-i18n="gen.periodo.mes">mes</span></option>
+              <option value="2">2 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="3">3 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="4">4 <span data-i18n="gen.periodo.meses">meses</span></option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="basal.modal.gen.paramsLabel">Par&aacute;metros aplicados</label>
@@ -523,6 +621,40 @@ var GENERADO = {
   'escolar-primaria':false,'escolar-secundaria':true,'escolar-infantil':false,'escolar-residencia-escolar':false,
   'hospital':true,'empresa':false
 };
+
+// ── HISTÓRICO DE MENÚS BASALES (registro histórico global por tipo de centro) ──
+var MESES_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+var HISTORICO_BASAL = {
+  'escolar-primaria': [
+    {mes:2,anio:2026,fecha:'02/03/2026 09:12',version:'v2',estado:'aprobado',generadoPor:'IA + Ana García',notas:'Ajuste ratio proteína animal/vegetal',basadoEn:null},
+    {mes:0,anio:2026,fecha:'03/01/2026 10:40',version:'v1',estado:'aprobado',generadoPor:'IA',notas:'Primera versión del curso 2025-26',basadoEn:null}
+  ],
+  'escolar-secundaria': [
+    {mes:5,anio:2026,fecha:'10/06/2026 14:48',version:'v3',estado:'aprobado',generadoPor:'IA + Ana García',notas:'Ajustada frecuencia pescado semana 2',basadoEn:null},
+    {mes:4,anio:2026,fecha:'02/05/2026 08:55',version:'v2',estado:'aprobado',generadoPor:'IA',notas:'Reducción de precocinados',basadoEn:null},
+    {mes:2,anio:2026,fecha:'01/03/2026 09:30',version:'v1',estado:'aprobado',generadoPor:'IA',notas:'Versión inicial',basadoEn:null}
+  ],
+  'escolar-infantil': [
+    {mes:3,anio:2026,fecha:'01/04/2026 11:15',version:'v1',estado:'aprobado',generadoPor:'IA',notas:'Versión inicial',basadoEn:null}
+  ],
+  'escolar-residencia-escolar': [],
+  'hospital': [
+    {mes:5,anio:2026,fecha:'05/06/2026 08:20',version:'v2',estado:'aprobado',generadoPor:'IA + Ana García',notas:'Adaptado a dieta blanda de invierno',basadoEn:null},
+    {mes:1,anio:2026,fecha:'03/02/2026 09:00',version:'v1',estado:'aprobado',generadoPor:'IA',notas:'Versión inicial',basadoEn:null}
+  ],
+  'empresa': [
+    {mes:4,anio:2026,fecha:'04/05/2026 12:30',version:'v1',estado:'aprobado',generadoPor:'IA',notas:'Versión inicial',basadoEn:null}
+  ]
+};
+
+function _histClave(tipo,subtipo){ return tipo==='escolar' ? 'escolar-'+subtipo : tipo; }
+function _histSiguienteVersion(key){
+  var lista=HISTORICO_BASAL[key]||[];
+  var max=0;
+  lista.forEach(function(it){ var n=parseInt((it.version||'v0').replace('v',''),10); if(n>max)max=n; });
+  return 'v'+(max+1);
+}
 
 var CENTROS_BY_TIPO = {
   'escolar': [
@@ -1318,8 +1450,9 @@ function onGenerarTipoChange() {
   if(subGroup)subGroup.style.display='none';
   if(notaEl)notaEl.style.display=tipo==='escolar'?'':'none';
   _actualizarParamsModal();
+  _poblarBaseSelect();
 }
-function onGenerarSubtipoChange(){_actualizarParamsModal();}
+function onGenerarSubtipoChange(){_actualizarParamsModal();_poblarBaseSelect();}
 
 function _actualizarParamsModal() {
   var m=_getModalKey();
@@ -1334,6 +1467,52 @@ function _actualizarParamsModal() {
   el=document.getElementById('generarTargetLabel');if(el)el.textContent='€'+cfg.target.toFixed(2);
 }
 
+// ── MODO DE GENERACIÓN: nuevo vs. basado en menú anterior ─────────────────────
+function onModoGenerarChange() {
+  var base=document.getElementById('gModoBase');
+  var group=document.getElementById('generarBaseGroup');
+  if(group)group.style.display=(base&&base.checked)?'block':'none';
+}
+
+function _poblarBaseSelect() {
+  var sel=document.getElementById('generarBaseSelect');
+  if(!sel)return;
+  var m=_getModalKey();
+  var lista=HISTORICO_BASAL[m.key]||[];
+  if(!lista.length){
+    sel.innerHTML='<option value="">'+'No hay menús anteriores para este tipo de centro'+'</option>';
+    return;
+  }
+  var ordenada=lista.slice().sort(function(a,b){return (b.anio*100+b.mes)-(a.anio*100+a.mes);});
+  sel.innerHTML=ordenada.map(function(it){
+    var origIdx=lista.indexOf(it);
+    return '<option value="'+m.key+'::'+origIdx+'">'+MESES_ES[it.mes]+' '+it.anio+' — '+it.version+' ('+it.estado+')</option>';
+  }).join('');
+}
+
+function _fechaAhora() {
+  var d=new Date();
+  function p(n){return (n<10?'0':'')+n;}
+  return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes());
+}
+
+function _mesesAGenerar(mesInicioVal, cantidad) {
+  var base;
+  if(mesInicioVal){
+    var partes=mesInicioVal.split('-');
+    base=new Date(parseInt(partes[0],10), parseInt(partes[1],10)-1, 1);
+  } else {
+    base=new Date();
+    base=new Date(base.getFullYear(), base.getMonth()+1, 1);
+  }
+  var out=[];
+  for(var i=0;i<cantidad;i++){
+    var d=new Date(base.getFullYear(), base.getMonth()+i, 1);
+    out.push({mes:d.getMonth(),anio:d.getFullYear()});
+  }
+  return out;
+}
+
 function abrirModalGenerar() {
   var tipoSel=document.getElementById('generarTipoSelect');
   var subSel=document.getElementById('generarSubtipoSelect');
@@ -1344,6 +1523,17 @@ function abrirModalGenerar() {
   if(subGroup)subGroup.style.display='none';
   if(notaEl)notaEl.style.display=STATE.tipo==='escolar'?'':'none';
   _actualizarParamsModal();
+  _poblarBaseSelect();
+  var modoNuevo=document.getElementById('gModoNuevo');
+  if(modoNuevo)modoNuevo.checked=true;
+  onModoGenerarChange();
+  var mesInicio=document.getElementById('generarMesInicio');
+  if(mesInicio){
+    var d=new Date();d=new Date(d.getFullYear(),d.getMonth()+1,1);
+    mesInicio.value=d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1);
+  }
+  var numMeses=document.getElementById('generarNumMeses');
+  if(numMeses)numMeses.value='1';
   var p=document.getElementById('iaProgress');var b=document.getElementById('btnGenerarIA');
   if(p)p.style.display='none';if(b)b.disabled=false;
   $('#modalGenerar').modal('show');
@@ -1354,23 +1544,52 @@ function ejecutarGeneracionIA() {
   document.getElementById('iaProgress').style.display='block';
   var m=_getModalKey();
   var cfg=TIPO_CONFIG[m.key];
-  var msgs=['Consulting Crownet recipes…','Applying nutritional rules '+cfg.norma+'…','Verifying variety and frequencies…','Optimizing costs (target €'+cfg.target.toFixed(2)+')…','Generating final proposal…'];
+  var esBase=!!(document.getElementById('gModoBase')&&document.getElementById('gModoBase').checked);
+  var baseRefVal=esBase?(document.getElementById('generarBaseSelect')||{}).value:'';
+  var baseLabel=null;
+  if(esBase&&baseRefVal){
+    var partes=baseRefVal.split('::');
+    var it=(HISTORICO_BASAL[partes[0]]||[])[parseInt(partes[1],10)];
+    if(it)baseLabel=MESES_ES[it.mes]+' '+it.anio+' ('+it.version+')';
+  }
+  var mesInicioVal=(document.getElementById('generarMesInicio')||{}).value;
+  var numMeses=parseInt((document.getElementById('generarNumMeses')||{}).value||'1',10);
+  var meses=_mesesAGenerar(mesInicioVal,numMeses);
+
+  var msgs=esBase
+    ? ['Cargando menú de referencia'+(baseLabel?' ('+baseLabel+')':'')+'…','Adaptando al período seleccionado…','Applying nutritional rules '+cfg.norma+'…','Optimizing costs (target €'+cfg.target.toFixed(2)+')…','Generating final proposal…']
+    : ['Consulting Crownet recipes…','Applying nutritional rules '+cfg.norma+'…','Verifying variety and frequencies…','Optimizing costs (target €'+cfg.target.toFixed(2)+')…','Generating final proposal…'];
   var paso=0,bar=document.getElementById('iaProgressBar'),msg=document.getElementById('iaProgressMsg');
   var iv=setInterval(function(){
-    if(paso>=msgs.length){
+    if(paso>=msgs.length*meses.length){
       clearInterval(iv);$('#modalGenerar').modal('hide');
+      var keysAfectadas=m.tipo==='escolar'?['primaria','secundaria','infantil','residencia-escolar'].map(function(s){return 'escolar-'+s;}):[m.key];
+      keysAfectadas.forEach(function(key){
+        if(!HISTORICO_BASAL[key])HISTORICO_BASAL[key]=[];
+        meses.forEach(function(mesInfo){
+          HISTORICO_BASAL[key].push({
+            mes:mesInfo.mes,anio:mesInfo.anio,fecha:_fechaAhora(),
+            version:_histSiguienteVersion(key),estado:'pendiente',
+            generadoPor:'IA',
+            notas:esBase?'Generado a partir de un menú anterior':'Generado desde cero con IA',
+            basadoEn:baseLabel
+          });
+        });
+      });
       if(m.tipo==='escolar'){
-        ['primaria','secundaria','infantil','residencia-escolar'].forEach(function(s){GENERADO['escolar-'+s]=true;});
+        keysAfectadas.forEach(function(key){GENERADO[key]=true;});
       } else {
         GENERADO[m.key]=true;
       }
       if(m.tipo===STATE.tipo)renderPage();
       var genLabel=TIPO_LABELS[m.tipo]+(m.tipo==='escolar'?' · Primary, Secondary, Infant and School Residence':'');
-      smToast('Base menu '+genLabel+' generated. Review and approve.','success',5000);
+      var mesesLabel=meses.map(function(x){return MESES_ES[x.mes]+' '+x.anio;}).join(', ');
+      smToast('Base menu '+genLabel+' generated for '+meses.length+' month(s) ('+mesesLabel+'). Review and approve each from the historical record.','success',6000);
       return;
     }
-    msg.textContent=msgs[paso];bar.style.width=((paso+1)/msgs.length*100)+'%';paso++;
-  },900);
+    msg.textContent=msgs[paso%msgs.length]+' ('+(Math.floor(paso/msgs.length)+1)+'/'+meses.length+')';
+    bar.style.width=((paso+1)/(msgs.length*meses.length)*100)+'%';paso++;
+  },700);
 }
 
 // ── APROBAR BASAL ─────────────────────────────────────────────────────────────
@@ -1385,6 +1604,10 @@ function confirmarAprobarBasal() {
   var key=getActiveKey();
   $('#modalAprobarBasal').modal('hide');
   APROBADO[key]=true;
+  var lista=HISTORICO_BASAL[key]||[];
+  for(var i=lista.length-1;i>=0;i--){
+    if(lista[i].estado==='pendiente'){lista[i].estado='aprobado';break;}
+  }
   renderPage();
   smToast('Base menu approved. You can now generate center menus from Menus.','success',5000);
 }
@@ -1802,6 +2025,115 @@ function abrirVistaMensual() {
     }
   }
   $('#modalMensual').modal('show');
+}
+
+// ── HISTÓRICO GLOBAL DE MENÚS BASALES ─────────────────────────────────────────
+function _histTipoLabel(key) {
+  if (key.indexOf('escolar-') === 0) return 'Escolar · ' + SUBTIPO_LABELS[key.replace('escolar-', '')];
+  return TIPO_LABELS[key] || key;
+}
+
+function _histEstadoBadge(estado) {
+  if (estado === 'aprobado') return '<span class="badge badge-success" style="font-size:.72rem">Aprobado</span>';
+  if (estado === 'rechazado') return '<span style="color:var(--sm-danger);font-size:.8rem">Rechazado</span>';
+  return '<span class="badge-pendiente">Pendiente de revisión</span>';
+}
+
+function abrirHistoricoBasal() {
+  var sel = document.getElementById('histFiltroTipo');
+  if (sel) sel.value = getActiveKey();
+  var desde = document.getElementById('histFiltroDesde'); if (desde) desde.value = '';
+  var hasta = document.getElementById('histFiltroHasta'); if (hasta) hasta.value = '';
+  renderHistoricoGlobal();
+  $('#modalHistoricoBasal').modal('show');
+}
+
+function renderHistoricoGlobal() {
+  var tipoFiltro = (document.getElementById('histFiltroTipo') || {}).value || 'todos';
+  var desdeVal = (document.getElementById('histFiltroDesde') || {}).value; // yyyy-mm
+  var hastaVal = (document.getElementById('histFiltroHasta') || {}).value;
+  var desdeN = desdeVal ? parseInt(desdeVal.replace('-', ''), 10) : null;
+  var hastaN = hastaVal ? parseInt(hastaVal.replace('-', ''), 10) : null;
+
+  var filas = [];
+  Object.keys(HISTORICO_BASAL).forEach(function (key) {
+    if (tipoFiltro !== 'todos' && key !== tipoFiltro) return;
+    (HISTORICO_BASAL[key] || []).forEach(function (item, idx) {
+      var itemN = item.anio * 100 + (item.mes + 1);
+      if (desdeN !== null && itemN < desdeN) return;
+      if (hastaN !== null && itemN > hastaN) return;
+      filas.push({ key: key, idx: idx, item: item });
+    });
+  });
+  filas.sort(function (a, b) { return (b.item.anio * 100 + b.item.mes) - (a.item.anio * 100 + a.item.mes); });
+
+  var tbody = document.getElementById('tbodyHistoricoGlobal');
+  var vacio = document.getElementById('histSinResultados');
+  if (!tbody) return;
+  if (!filas.length) {
+    tbody.innerHTML = '';
+    if (vacio) vacio.style.display = 'block';
+    return;
+  }
+  if (vacio) vacio.style.display = 'none';
+
+  tbody.innerHTML = filas.map(function (f) {
+    var it = f.item;
+    return '<tr>'
+      + '<td>' + _histTipoLabel(f.key) + '</td>'
+      + '<td>' + MESES_ES[it.mes] + ' ' + it.anio + '</td>'
+      + '<td><strong>' + it.version + '</strong></td>'
+      + '<td>' + it.fecha + '</td>'
+      + '<td>' + _histEstadoBadge(it.estado) + '</td>'
+      + '<td style="max-width:220px">' + (it.notas || '') + (it.basadoEn ? '<br><span class="text-muted" style="font-size:.72rem"><i class="mdi mdi-content-duplicate"></i> Basado en ' + it.basadoEn + '</span>' : '') + '</td>'
+      + '<td style="white-space:nowrap">'
+        + '<button class="btn btn-xs btn-outline-secondary" style="font-size:.72rem;padding:.15rem .5rem" onclick="verHistoricoItem(\'' + f.key + '\',' + f.idx + ')"><i class="mdi mdi-eye-outline"></i> Ver</button> '
+        + (it.estado === 'pendiente' ? '<button class="btn btn-xs btn-success" style="font-size:.72rem;padding:.15rem .5rem" onclick="aprobarHistoricoItem(\'' + f.key + '\',' + f.idx + ')"><i class="mdi mdi-check"></i> Aprobar</button> ' : '')
+        + '<button class="btn btn-xs btn-outline-primary" style="font-size:.72rem;padding:.15rem .5rem" onclick="usarComoBaseHistorico(\'' + f.key + '\',' + f.idx + ')"><i class="mdi mdi-content-duplicate"></i> Usar como base</button>'
+      + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+function verHistoricoItem(key, idx) {
+  var it = (HISTORICO_BASAL[key] || [])[idx];
+  if (!it) return;
+  document.getElementById('histPreviewTitulo').textContent = _histTipoLabel(key) + ' — ' + MESES_ES[it.mes] + ' ' + it.anio + ' (' + it.version + ')';
+  document.getElementById('histPreviewBody').innerHTML =
+    '<p class="text-muted mb-3" style="font-size:.78rem"><i class="mdi mdi-information-outline mr-1"></i>Vista previa de referencia. La composición semanal detallada se aplicará al usarlo como base de un nuevo menú.</p>'
+    + '<div class="p-2 rounded" style="background:var(--sm-bg-subtle);font-size:.8rem;line-height:1.9">'
+    + '<div><strong>Estado:</strong> ' + _histEstadoBadge(it.estado) + '</div>'
+    + '<div><strong>Generado:</strong> ' + it.fecha + ' · ' + it.generadoPor + '</div>'
+    + '<div><strong>Notas:</strong> ' + (it.notas || '—') + '</div>'
+    + '</div>';
+  $('#modalHistoricoPreview').modal('show');
+}
+
+function aprobarHistoricoItem(key, idx) {
+  var it = (HISTORICO_BASAL[key] || [])[idx];
+  if (!it) return;
+  it.estado = 'aprobado';
+  renderHistoricoGlobal();
+  smToast(_histTipoLabel(key) + ' — ' + MESES_ES[it.mes] + ' ' + it.anio + ' aprobado.', 'success');
+}
+
+function usarComoBaseHistorico(key, idx) {
+  var it = (HISTORICO_BASAL[key] || [])[idx];
+  if (!it) return;
+  $('#modalHistoricoBasal').modal('hide');
+  var parts = key.split('-');
+  var tipo = parts[0], subtipo = parts.length > 1 ? parts.slice(1).join('-') : STATE.subtipo;
+  setTimeout(function () {
+    abrirModalGenerar();
+    var tipoSel = document.getElementById('generarTipoSelect');
+    var subSel = document.getElementById('generarSubtipoSelect');
+    if (tipoSel) { tipoSel.value = tipo; onGenerarTipoChange(); }
+    if (subSel && tipo === 'escolar') { subSel.value = subtipo; onGenerarSubtipoChange(); }
+    var modoBase = document.getElementById('gModoBase');
+    if (modoBase) { modoBase.checked = true; onModoGenerarChange(); }
+    var baseSel = document.getElementById('generarBaseSelect');
+    if (baseSel) baseSel.value = key + '::' + idx;
+  }, 350);
 }
 
 // ── FOOD GROUP COLORS ─────────────────────────────────────────────────────────
