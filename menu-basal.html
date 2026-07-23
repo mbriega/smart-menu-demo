@@ -30,6 +30,7 @@
       <option value="2025-11" data-m-es="Noviembre 2025" data-m-en="November 2025">Noviembre 2025</option>
     </select>
     <button class="btn btn-outline-primary btn-sm" onclick="abrirModalGenerar()"><i class="mdi mdi-robot"></i> <span data-i18n="basal.btn.generate">Generate base menu</span></button>
+    <button class="btn btn-outline-secondary btn-sm" onclick="abrirHistoricoBasal()"><i class="mdi mdi-history"></i> <span data-i18n="hist.btn">Ver histórico</span></button>
   </div>
 </div>
 
@@ -89,7 +90,6 @@
           <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)"><span data-i18n="basal.sem">Sem</span> 4</button>
         </div>
         <button class="btn btn-sm btn-outline-secondary" onclick="abrirVistaMensual()"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
-        <button class="btn btn-sm btn-outline-secondary" onclick="abrirHistoricoBasal()"><i class="mdi mdi-history"></i> <span data-i18n="hist.btn">Ver histórico</span></button>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
         <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> <span data-i18n="basal.btn.genCentros">Generate center menus</span></button>
         <button class="btn btn-sm btn-outline-primary ml-1" onclick="exportarBasal()"><i class="mdi mdi-file-excel-outline"></i> Excel</button>
@@ -379,8 +379,14 @@
         </div>
         <div id="generarBaseGroup" class="mt-2" style="display:none">
           <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="gen.modo.baseSelect">Elegir men&uacute; anterior</label>
-          <select class="form-control form-control-sm" id="generarBaseSelect"></select>
-          <p class="text-muted mt-1 mb-0" style="font-size:.72rem" data-i18n="gen.modo.baseHint">La IA partir&aacute; de la composici&oacute;n de este men&uacute; y la adaptar&aacute; al per&iacute;odo seleccionado.</p>
+          <div class="d-flex align-items-center" style="gap:.5rem">
+            <input type="text" class="form-control form-control-sm" id="generarBaseRango" placeholder="Filtrar por rango de fechas…" data-i18n-ph="gen.modo.rangoPlaceholder" readonly style="cursor:pointer;background:#fff">
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="generarBaseRangoLimpiar" onclick="_limpiarBaseRango()" title="Quitar filtro" data-i18n-title="gen.modo.rangoLimpiar"><i class="mdi mdi-close"></i></button>
+          </div>
+          <div id="generarBaseLista" class="mt-2" style="max-height:200px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:6px"></div>
+          <p id="generarBaseVacio" class="text-muted text-center py-2 mb-0" style="font-size:.76rem;display:none" data-i18n="gen.modo.baseVacio">Sin resultados en ese rango de fechas.</p>
+          <input type="hidden" id="generarBaseSelect">
+          <p class="text-muted mt-2 mb-0" style="font-size:.72rem" data-i18n="gen.modo.baseHint">La IA partir&aacute; de la composici&oacute;n de este men&uacute; y la adaptar&aacute; al per&iacute;odo seleccionado.</p>
         </div>
       </div>
       <div class="mb-3">
@@ -590,6 +596,7 @@
 <script src="assets/js/router.js" defer></script>
 <script src="assets_custom/js/off-canvas.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.js"></script>
 <script>
 function smToast(msg,type,dur){type=type||'success';dur=dur||3200;var icons={success:'mdi-check-circle',error:'mdi-alert-circle',warning:'mdi-alert',info:'mdi-information'};var t=document.createElement('div');t.className='sm-toast '+type;t.innerHTML='<i class="mdi '+icons[type]+' toast-icon"></i><span>'+msg+'</span><span class="toast-close" onclick="this.parentNode.remove()">&times;</span>';document.getElementById('sm-toast-container').appendChild(t);setTimeout(function(){if(t.parentNode)t.remove();},dur);}
 
@@ -1474,20 +1481,72 @@ function onModoGenerarChange() {
   if(group)group.style.display=(base&&base.checked)?'block':'none';
 }
 
+// ── SELECTOR DE MENÚ BASE: calendario de rango + lista filtrable ─────────────
+var _generarBaseFP = null;
+
+function _initBaseRangoPicker() {
+  var el = document.getElementById('generarBaseRango');
+  if (!el || typeof flatpickr === 'undefined') return;
+  if (el._flatpickr) el._flatpickr.destroy();
+  _generarBaseFP = flatpickr(el, {
+    mode: 'range',
+    dateFormat: 'd/m/Y',
+    locale: (window.I18N_LANG === 'en') ? 'default' : (window.flatpickr && flatpickr.l10ns && flatpickr.l10ns.es) || 'default',
+    onChange: function (selectedDates) {
+      if (selectedDates.length === 2) _renderBaseLista();
+    }
+  });
+}
+
+function _limpiarBaseRango() {
+  if (_generarBaseFP) _generarBaseFP.clear();
+  _renderBaseLista();
+}
+
 function _poblarBaseSelect() {
   var sel=document.getElementById('generarBaseSelect');
   if(!sel)return;
+  sel.value='';
+  if(_generarBaseFP)_generarBaseFP.clear(false);
+  _renderBaseLista();
+}
+
+function _renderBaseLista() {
+  var cont=document.getElementById('generarBaseLista');
+  var vacio=document.getElementById('generarBaseVacio');
+  if(!cont)return;
   var m=_getModalKey();
-  var lista=HISTORICO_BASAL[m.key]||[];
+  var lista=(HISTORICO_BASAL[m.key]||[]).map(function(it,idx){return {it:it,idx:idx};});
+  var rango=_generarBaseFP?_generarBaseFP.selectedDates:[];
+  if(rango&&rango.length===2){
+    var desde=new Date(rango[0].getFullYear(),rango[0].getMonth(),1);
+    var hasta=new Date(rango[1].getFullYear(),rango[1].getMonth(),1);
+    lista=lista.filter(function(x){var d=new Date(x.it.anio,x.it.mes,1);return d>=desde&&d<=hasta;});
+  }
+  lista.sort(function(a,b){return (b.it.anio*100+b.it.mes)-(a.it.anio*100+a.it.mes);});
+
+  var seleccionActual=(document.getElementById('generarBaseSelect')||{}).value||'';
   if(!lista.length){
-    sel.innerHTML='<option value="">'+'No hay menús anteriores para este tipo de centro'+'</option>';
+    cont.innerHTML='';cont.style.display='none';
+    if(vacio)vacio.style.display='block';
     return;
   }
-  var ordenada=lista.slice().sort(function(a,b){return (b.anio*100+b.mes)-(a.anio*100+a.mes);});
-  sel.innerHTML=ordenada.map(function(it){
-    var origIdx=lista.indexOf(it);
-    return '<option value="'+m.key+'::'+origIdx+'">'+MESES_ES[it.mes]+' '+it.anio+' — '+it.version+' ('+it.estado+')</option>';
+  cont.style.display='block';
+  if(vacio)vacio.style.display='none';
+  cont.innerHTML=lista.map(function(x){
+    var val=m.key+'::'+x.idx;
+    var activo=(val===seleccionActual);
+    return '<div class="d-flex justify-content-between align-items-center px-2 py-2'+(activo?'':'')+'" style="cursor:pointer;font-size:.8rem;border-bottom:1px solid #f0f0f0'+(activo?';background:rgba(22,163,73,.08)':'')+'" onclick="_seleccionarBaseMenu(\''+m.key+'\','+x.idx+')">'
+      +'<span><strong>'+MESES_ES[x.it.mes]+' '+x.it.anio+'</strong> <span class="text-muted">— '+x.it.version+'</span></span>'
+      +(activo?'<i class="mdi mdi-check-circle text-success"></i>':_histEstadoBadge(x.it.estado))
+      +'</div>';
   }).join('');
+}
+
+function _seleccionarBaseMenu(key, idx) {
+  var sel=document.getElementById('generarBaseSelect');
+  if(sel)sel.value=key+'::'+idx;
+  _renderBaseLista();
 }
 
 function _fechaAhora() {
@@ -1523,6 +1582,7 @@ function abrirModalGenerar() {
   if(subGroup)subGroup.style.display='none';
   if(notaEl)notaEl.style.display=STATE.tipo==='escolar'?'':'none';
   _actualizarParamsModal();
+  _initBaseRangoPicker();
   _poblarBaseSelect();
   var modoNuevo=document.getElementById('gModoNuevo');
   if(modoNuevo)modoNuevo.checked=true;
@@ -2131,8 +2191,7 @@ function usarComoBaseHistorico(key, idx) {
     if (subSel && tipo === 'escolar') { subSel.value = subtipo; onGenerarSubtipoChange(); }
     var modoBase = document.getElementById('gModoBase');
     if (modoBase) { modoBase.checked = true; onModoGenerarChange(); }
-    var baseSel = document.getElementById('generarBaseSelect');
-    if (baseSel) baseSel.value = key + '::' + idx;
+    _seleccionarBaseMenu(key, idx);
   }, 350);
 }
 
