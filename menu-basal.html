@@ -278,7 +278,7 @@
     </div>
     <div class="modal-body" style="font-size:.85rem">
       <div class="row mb-3" style="row-gap:.5rem">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.tipo">Tipo de centro</label>
           <select class="form-control form-control-sm" id="histFiltroTipo" onchange="renderHistoricoGlobal()">
             <option value="todos" data-i18n="hist.filter.todos">Todos</option>
@@ -290,13 +290,12 @@
             <option value="empresa">Universitario</option>
           </select>
         </div>
-        <div class="col-md-4">
-          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.desde">Desde</label>
-          <input type="month" class="form-control form-control-sm" id="histFiltroDesde" onchange="renderHistoricoGlobal()">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.hasta">Hasta</label>
-          <input type="month" class="form-control form-control-sm" id="histFiltroHasta" onchange="renderHistoricoGlobal()">
+        <div class="col-md-7">
+          <label class="form-label" style="font-size:.78rem;font-weight:600" data-i18n="hist.filter.rango">Rango de fechas</label>
+          <div class="d-flex align-items-center" style="gap:.5rem">
+            <input type="text" class="form-control form-control-sm" id="histFiltroRango" placeholder="Filtrar por rango de fechas…" data-i18n-ph="gen.modo.rangoPlaceholder" readonly style="cursor:pointer;background:#fff">
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="histFiltroRangoLimpiar" onclick="_limpiarHistRango()" title="Quitar filtro" data-i18n-title="gen.modo.rangoLimpiar"><i class="mdi mdi-close"></i></button>
+          </div>
         </div>
       </div>
       <div style="max-height:52vh;overflow-y:auto">
@@ -2099,21 +2098,43 @@ function _histEstadoBadge(estado) {
   return '<span class="badge-pendiente">Pendiente de revisión</span>';
 }
 
+var _histRangoFP = null;
+
+function _initHistRangoPicker() {
+  var el = document.getElementById('histFiltroRango');
+  if (!el || typeof flatpickr === 'undefined') return;
+  if (el._flatpickr) el._flatpickr.destroy();
+  _histRangoFP = flatpickr(el, {
+    mode: 'range',
+    dateFormat: 'd/m/Y',
+    locale: (window.I18N_LANG === 'en') ? 'default' : (window.flatpickr && flatpickr.l10ns && flatpickr.l10ns.es) || 'default',
+    onChange: function (selectedDates) {
+      if (selectedDates.length === 2) renderHistoricoGlobal();
+    }
+  });
+}
+
+function _limpiarHistRango() {
+  if (_histRangoFP) _histRangoFP.clear();
+  renderHistoricoGlobal();
+}
+
 function abrirHistoricoBasal() {
   var sel = document.getElementById('histFiltroTipo');
   if (sel) sel.value = getActiveKey();
-  var desde = document.getElementById('histFiltroDesde'); if (desde) desde.value = '';
-  var hasta = document.getElementById('histFiltroHasta'); if (hasta) hasta.value = '';
+  _initHistRangoPicker();
   renderHistoricoGlobal();
   $('#modalHistoricoBasal').modal('show');
 }
 
 function renderHistoricoGlobal() {
   var tipoFiltro = (document.getElementById('histFiltroTipo') || {}).value || 'todos';
-  var desdeVal = (document.getElementById('histFiltroDesde') || {}).value; // yyyy-mm
-  var hastaVal = (document.getElementById('histFiltroHasta') || {}).value;
-  var desdeN = desdeVal ? parseInt(desdeVal.replace('-', ''), 10) : null;
-  var hastaN = hastaVal ? parseInt(hastaVal.replace('-', ''), 10) : null;
+  var rango = _histRangoFP ? _histRangoFP.selectedDates : [];
+  var desdeN = null, hastaN = null;
+  if (rango && rango.length === 2) {
+    desdeN = rango[0].getFullYear() * 100 + (rango[0].getMonth() + 1);
+    hastaN = rango[1].getFullYear() * 100 + (rango[1].getMonth() + 1);
+  }
 
   var filas = [];
   Object.keys(HISTORICO_BASAL).forEach(function (key) {
