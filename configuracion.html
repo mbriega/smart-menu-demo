@@ -148,23 +148,20 @@
 </div></div></div><div class="tab-pane fade" id="cfgFoodCost">
 <div class="row">
 <div class="col-md-4 mb-3">
-<label class="form-label" style="font-size:.85rem;font-weight:600">Food cost teórico</label>
+<label class="form-label" style="font-size:.85rem;font-weight:600">FCT</label>
 <input class="form-control" id="fcTeorico" value="28" type="number" step="0.1">
+<small class="text-muted d-block mt-1" style="font-size:.78rem"><strong>FCT:</strong> Coste teórico del menú basal</small>
 </div>
 <div class="col-md-4 mb-3">
 <label class="form-label" style="font-size:.85rem;font-weight:600">FCO</label>
 <input class="form-control" id="fcObjetivo" value="32" type="number" step="0.1">
+<small class="text-muted d-block mt-1" style="font-size:.78rem"><strong>FCO:</strong> Coste menú indicado en contrato</small>
 </div>
 <div class="col-md-4 mb-3">
 <label class="form-label" style="font-size:.85rem;font-weight:600">FCOp (%)</label>
 <input class="form-control" id="fcOperativo" value="35" type="number" step="0.1">
+<small class="text-muted d-block mt-1" style="font-size:.78rem"><strong>FCOp:</strong> FCT + % ajuste</small>
 </div>
-</div>
-<div class="p-2 rounded mb-3" style="background:var(--sm-bg-subtle);font-size:.78rem;line-height:1.9">
-<strong>Leyendas:</strong>
-<span class="ml-2"><strong>Food Cost Teórico:</strong> Coste teórico del menú basal</span>
-<span class="ml-3"><strong>FCO:</strong> Coste menú indicado en contrato</span>
-<span class="ml-3"><strong>FCOp:</strong> FCT + % ajuste</span>
 </div>
 <button class="btn btn-primary btn-sm" onclick="smToast('Parámetros food cost guardados','success')"><i class="mdi mdi-content-save"></i> Guardar parámetros</button>
 </div>
