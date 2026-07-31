@@ -1211,19 +1211,27 @@ function switchBasalTab(tab) {
 }
 
 // ── RENDER NUTRICIÓN / COSTO / ALÉRGENOS ─────────────────────────────────────
-function renderBasalNutricion(sem) {
-  if (STATE.tipo === 'escolar') return;
-  var msDB = getMultiServiceDB();
-  var rows;
-  if (msDB) { var msData=msDB[sem]; if(!msData)return; rows=msData.comida.rows; }
-  else { var data=menuBasalDB[sem]; if(!data)return; rows=data.rows; }
-  var cfg = TIPO_CONFIG[getActiveKey()];
-  var dias = ['Lun','Mar','Mié','Jue','Vie'];
-  var daily = dias.map(function(d,di){
+var SERVICIOS_ORDEN = [
+  {key:'desayuno',label:'Desayuno',emoji:'🌅'},
+  {key:'comida',label:'Comida',emoji:'☀️'},
+  {key:'merienda',label:'Merienda',emoji:'🍎'},
+  {key:'cena',label:'Cena',emoji:'🌙'}
+];
+
+function _serviciosDisponibles(msData) {
+  return SERVICIOS_ORDEN.filter(function(s){ return msData[s.key] && msData[s.key].rows; });
+}
+
+function _diarioNutri(rows, dias) {
+  return dias.map(function(d,di){
     var kcal=0,prot=0,grasa=0,hc=0;
     rows.forEach(function(row){var db=basalRecetasDB[row.dias[di]];if(db){kcal+=db.kcal||0;prot+=parseInt(db.prot)||0;grasa+=parseInt(db.grasa)||0;hc+=parseInt(db.hc)||0;}});
     return {kcal:kcal,prot:prot,grasa:grasa,hc:hc};
   });
+}
+
+function _buildNutriTabla(rows, cfg, dias, titulo) {
+  var daily = _diarioNutri(rows, dias);
   function avg(key){var vals=daily.map(function(d){return d[key];}).filter(function(v){return v>0;});return vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length):0;}
   var nutriRows=[
     {label:'Calories',key:'kcal',unit:' kcal',min:cfg.kcalMin,max:cfg.kcalMax,obj:cfg.kcalLabel},
@@ -1231,7 +1239,9 @@ function renderBasalNutricion(sem) {
     {label:'Fat',key:'grasa',unit:'g',min:20,max:30,obj:'30–35%'},
     {label:'Carbs',key:'hc',unit:'g',min:60,max:90,obj:'50–55%'}
   ];
-  var html='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Nutrient</th>';
+  var html='';
+  if (titulo) html+='<h6 class="mb-2" style="font-size:.83rem;font-weight:700">'+titulo+'</h6>';
+  html+='<div style="overflow-x:auto" class="mb-4"><table class="table table-clean"><thead><tr><th>Nutrient</th>';
   dias.forEach(function(d){html+='<th class="text-center">'+d.substring(0,3)+'</th>';});
   html+='<th class="text-center">Media</th><th class="text-center">Objetivo</th><th class="text-center">Estado</th></tr></thead><tbody>';
   nutriRows.forEach(function(row){
@@ -1244,24 +1254,76 @@ function renderBasalNutricion(sem) {
     html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ OK</span>':'<span class="badge-critico">Review</span>')+'</td></tr>';
   });
   html+='</tbody></table></div>';
-  var el=document.getElementById('basalNutriContent');if(el)el.innerHTML=html;
+  return html;
+}
+
+function renderBasalNutricion(sem) {
+  if (STATE.tipo === 'escolar') return;
+  var el = document.getElementById('basalNutriContent');
+  if (!el) return;
+  var cfg = TIPO_CONFIG[getActiveKey()];
+  var dias = ['Lun','Mar','Mié','Jue','Vie'];
+  var msDB = getMultiServiceDB();
+  var html = '';
+  if (msDB) {
+    var msData = msDB[sem]; if (!msData) { el.innerHTML=''; return; }
+    var servicios = _serviciosDisponibles(msData);
+    if (servicios.length > 1) {
+      servicios.forEach(function(s){ html += _buildNutriTabla(msData[s.key].rows, cfg, dias, s.emoji+' '+s.label); });
+      var totalRows = []; servicios.forEach(function(s){ totalRows = totalRows.concat(msData[s.key].rows); });
+      html += '<hr>' + _buildNutriTabla(totalRows, cfg, dias, '📊 Total del día');
+    } else if (servicios.length === 1) {
+      html = _buildNutriTabla(msData[servicios[0].key].rows, cfg, dias);
+    }
+  } else {
+    var data = menuBasalDB[sem]; if (!data) { el.innerHTML=''; return; }
+    html = _buildNutriTabla(data.rows, cfg, dias);
+  }
+  el.innerHTML = html;
+}
+
+function _diarioCosto(rows, dias) {
+  return dias.map(function(d,di){
+    var total=0;rows.forEach(function(row){var db=basalRecetasDB[row.dias[di]];if(db&&db.costo)total+=parseFloat(String(db.costo).replace('€','').replace(',','.'))||0;});return{dia:d,total:total};
+  });
+}
+
+function _buildCostoServicioTabla(rows, dias, titulo) {
+  var daily = _diarioCosto(rows, dias);
+  var media = daily.length ? daily.reduce(function(a,d){return a+d.total;},0)/daily.length : 0;
+  var html = '<h6 class="mb-2" style="font-size:.83rem;font-weight:700">'+titulo+'</h6>';
+  html += '<div style="overflow-x:auto" class="mb-4"><table class="table table-clean table-sm"><thead><tr><th>Día</th>';
+  daily.forEach(function(d){ html += '<th class="text-center">'+d.dia+'</th>'; });
+  html += '<th class="text-center">Media</th></tr></thead><tbody><tr><td><strong>Coste/comensal</strong></td>';
+  daily.forEach(function(d){ html += '<td class="text-center">'+(d.total>0?'€'+d.total.toFixed(2):'—')+'</td>'; });
+  html += '<td class="text-center font-weight-bold">€'+media.toFixed(2)+'</td></tr></tbody></table></div>';
+  return html;
 }
 
 function renderBasalCosto(sem) {
   if (STATE.tipo === 'escolar') return;
-  var msDB = getMultiServiceDB();
-  var rows;
-  if (msDB) { var msData=msDB[sem]; if(!msData)return; rows=msData.comida.rows; }
-  else { var data=menuBasalDB[sem]; if(!data)return; rows=data.rows; }
+  var el = document.getElementById('basalCostoContent');
+  if (!el) return;
   var cfg=TIPO_CONFIG[getActiveKey()];
   var TARGET=cfg.target;
   var dias=['Lun','Mar','Mié','Jue','Vie'];
-  var daily=dias.map(function(d,di){
-    var total=0;rows.forEach(function(row){var db=basalRecetasDB[row.dias[di]];if(db&&db.costo)total+=parseFloat(String(db.costo).replace('€','').replace(',','.'))||0;});return{dia:d,total:total};
-  });
+  var msDB = getMultiServiceDB();
+  var totalRows, serviciosHtml = '';
+  if (msDB) {
+    var msData = msDB[sem]; if (!msData) { el.innerHTML=''; return; }
+    var servicios = _serviciosDisponibles(msData);
+    totalRows = [];
+    servicios.forEach(function(s){ totalRows = totalRows.concat(msData[s.key].rows); });
+    if (servicios.length > 1) {
+      servicios.forEach(function(s){ serviciosHtml += _buildCostoServicioTabla(msData[s.key].rows, dias, s.emoji+' '+s.label); });
+    }
+  } else {
+    var data = menuBasalDB[sem]; if (!data) { el.innerHTML=''; return; }
+    totalRows = data.rows;
+  }
+  var daily=_diarioCosto(totalRows, dias);
   var totalSem=daily.reduce(function(a,d){return a+d.total;},0);
   var mediaDay=daily.length?totalSem/daily.length:0;
-  var onTarget=daily.filter(function(d){return d.total<=TARGET;}).length;
   var monthlyProj = totalSem * 4;
   var avgColor=(mediaDay<=TARGET)?'var(--sm-green)':'var(--sm-orange)';
   var html='<div class="row g-0 mb-3" style="border:1px solid var(--sm-border);border-radius:6px;overflow:hidden;text-align:center">';
@@ -1284,16 +1346,18 @@ function renderBasalCosto(sem) {
   html+='<div><div style="font-size:.7rem;color:var(--sm-text-muted)" data-i18n="det.cost.avg">Medio/comensal</div>';
   html+='<div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+monthlyProj.toFixed(2)+'</div></div></div>';
   html+='</div>';
+  html += serviciosHtml;
+  if (serviciosHtml) html += '<h6 class="mb-2" style="font-size:.83rem;font-weight:700">📊 Total del día</h6>';
   html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>'+t('det.col.dia')+'</th><th>'+t('det.col.service')+'</th><th>'+t('basal.col.numDishes')+'</th><th class="text-center">'+t('det.cost.col.unitcost')+'</th><th class="text-center">'+t('basal.col.costTarget')+'</th><th class="text-center">'+t('basal.col.status')+'</th></tr></thead><tbody style="line-height:2">';
   daily.forEach(function(d){
     var ok=d.total<=TARGET;
-    html+='<tr><td><strong>'+d.dia+'</strong></td><td>'+t('basal.col.lunch')+'</td><td>4</td>';
+    html+='<tr><td><strong>'+d.dia+'</strong></td><td>'+(serviciosHtml?'Todos':t('basal.col.lunch'))+'</td><td>'+totalRows.length+'</td>';
     html+='<td class="text-center '+(ok?'':'text-danger')+'">€'+d.total.toFixed(2)+'</td>';
     html+='<td class="text-center text-muted">€'+TARGET.toFixed(2)+'</td>';
     html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">'+t('basal.status.ok')+'</span>':'<span class="badge-critico">'+t('basal.status.over')+'</span>')+'</td></tr>';
   });
   html+='</tbody></table></div>';
-  var el=document.getElementById('basalCostoContent');if(el)el.innerHTML=html;
+  el.innerHTML = html;
 }
 
 function renderBasalAlergenos(sem) {
@@ -2654,24 +2718,8 @@ function renderVarianteMenuTab(varId, sem) {
   return html;
 }
 
-function renderVarianteNutriTab(varId, sem) {
-  var semData = menuEscolarVariantesDB[sem];
-  var vData = semData ? semData[varId] : null;
-  if (!vData) return '<p class="text-muted p-3">Sin datos para esta semana.</p>';
-  var cfg = TIPO_CONFIG['escolar-'+STATE.subtipo] || TIPO_CONFIG['escolar-secundaria'];
-  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
-  var allRows = [];
-  ['desayuno','comida','merienda','cena'].forEach(function(svc){
-    if (vData[svc] && vData[svc].rows) allRows = allRows.concat(vData[svc].rows);
-  });
-  var daily = dias.map(function(d, di){
-    var kcal=0,prot=0,grasa=0,hc=0;
-    allRows.forEach(function(row){
-      var db = basalRecetasDB[row.dias[di]];
-      if (db){kcal+=db.kcal||0;prot+=parseInt(db.prot)||0;grasa+=parseInt(db.grasa)||0;hc+=parseInt(db.hc)||0;}
-    });
-    return {kcal:kcal,prot:prot,grasa:grasa,hc:hc};
-  });
+function _buildNutriTablaEscolar(rows, cfg, dias, titulo) {
+  var daily = _diarioNutri(rows, dias);
   function avg(key){var vals=daily.map(function(d){return d[key];}).filter(function(v){return v>0;});return vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length):0;}
   var nutriRows=[
     {label:'Calorías',key:'kcal',unit:' kcal',min:cfg.kcalMin,max:cfg.kcalMax,obj:cfg.kcalLabel},
@@ -2679,8 +2727,9 @@ function renderVarianteNutriTab(varId, sem) {
     {label:'Grasas',key:'grasa',unit:'g',min:20,max:30,obj:'30–35%'},
     {label:'Hidratos',key:'hc',unit:'g',min:60,max:90,obj:'50–55%'}
   ];
-  var html='<div class="p-3"><h6 class="font-weight-700 mb-3"><i class="mdi mdi-chart-bar mr-1" style="color:var(--sm-green)"></i>Análisis nutricional semanal — Variante '+varId+'</h6>';
-  html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Nutriente</th>';
+  var html = '';
+  if (titulo) html += '<h6 class="mb-2" style="font-size:.83rem;font-weight:700">'+titulo+'</h6>';
+  html+='<div style="overflow-x:auto" class="mb-4"><table class="table table-clean"><thead><tr><th>Nutriente</th>';
   dias.forEach(function(d){html+='<th class="text-center">'+d.substring(0,3)+'</th>';});
   html+='<th class="text-center">Media</th><th class="text-center">Objetivo</th><th class="text-center">Estado</th></tr></thead><tbody>';
   nutriRows.forEach(function(row){
@@ -2692,7 +2741,26 @@ function renderVarianteNutriTab(varId, sem) {
     var ok=a>=row.min&&a<=row.max;
     html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">✓ OK</span>':'<span class="badge-critico">Revisar</span>')+'</td></tr>';
   });
-  html+='</tbody></table></div></div>';
+  html+='</tbody></table></div>';
+  return html;
+}
+
+function renderVarianteNutriTab(varId, sem) {
+  var semData = menuEscolarVariantesDB[sem];
+  var vData = semData ? semData[varId] : null;
+  if (!vData) return '<p class="text-muted p-3">Sin datos para esta semana.</p>';
+  var cfg = TIPO_CONFIG['escolar-'+STATE.subtipo] || TIPO_CONFIG['escolar-secundaria'];
+  var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  var servicios = _serviciosDisponibles(vData);
+  var html='<div class="p-3"><h6 class="font-weight-700 mb-3"><i class="mdi mdi-chart-bar mr-1" style="color:var(--sm-green)"></i>Análisis nutricional semanal — Variante '+varId+'</h6>';
+  if (servicios.length > 1) {
+    servicios.forEach(function(s){ html += _buildNutriTablaEscolar(vData[s.key].rows, cfg, dias, s.emoji+' '+s.label); });
+    var totalRows = []; servicios.forEach(function(s){ totalRows = totalRows.concat(vData[s.key].rows); });
+    html += '<hr>' + _buildNutriTablaEscolar(totalRows, cfg, dias, '📊 Total del día');
+  } else if (servicios.length === 1) {
+    html += _buildNutriTablaEscolar(vData[servicios[0].key].rows, cfg, dias);
+  }
+  html += '</div>';
   return html;
 }
 
@@ -2703,18 +2771,13 @@ function renderVarianteCostoTab(varId, sem) {
   var cfg = TIPO_CONFIG['escolar-'+STATE.subtipo] || TIPO_CONFIG['escolar-secundaria'];
   var TARGET = cfg.target;
   var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
-  var allRows = [];
-  ['desayuno','comida','merienda','cena'].forEach(function(svc){
-    if (vData[svc] && vData[svc].rows) allRows = allRows.concat(vData[svc].rows);
-  });
-  var daily = dias.map(function(d, di){
-    var total=0;
-    allRows.forEach(function(row){
-      var db=basalRecetasDB[row.dias[di]];
-      if(db&&db.costo)total+=parseFloat(String(db.costo).replace('€','').replace(',','.'))||0;
-    });
-    return {dia:d,total:total};
-  });
+  var servicios = _serviciosDisponibles(vData);
+  var totalRows = []; servicios.forEach(function(s){ totalRows = totalRows.concat(vData[s.key].rows); });
+  var serviciosHtml = '';
+  if (servicios.length > 1) {
+    servicios.forEach(function(s){ serviciosHtml += _buildCostoServicioTabla(vData[s.key].rows, dias, s.emoji+' '+s.label); });
+  }
+  var daily = _diarioCosto(totalRows, dias);
   var totalSem=daily.reduce(function(a,d){return a+d.total;},0);
   var mediaDay=daily.length?totalSem/daily.length:0;
   var monthlyProj=totalSem*4;
@@ -2731,10 +2794,13 @@ function renderVarianteCostoTab(varId, sem) {
   html+='<div class="mb-2"><div style="font-size:.7rem;color:var(--sm-text-muted)">Coste fijo</div><div style="font-size:1.15rem;font-weight:800;color:#6c757d">€'+(TARGET*20).toFixed(2)+'</div></div>';
   html+='<div><div style="font-size:.7rem;color:var(--sm-text-muted)">Medio/comensal</div><div style="font-size:1.15rem;font-weight:800;color:'+avgColor+'">€'+monthlyProj.toFixed(2)+'</div></div></div>';
   html+='</div>';
+  html += serviciosHtml;
+  if (serviciosHtml) html += '<h6 class="mb-2" style="font-size:.83rem;font-weight:700">📊 Total del día</h6>';
   html+='<div style="overflow-x:auto"><table class="table table-clean"><thead><tr><th>Día</th><th>Servicios</th><th>Nº platos</th><th class="text-center">Coste/comensal</th><th class="text-center">Objetivo</th><th class="text-center">Estado</th></tr></thead><tbody style="line-height:2">';
   daily.forEach(function(d){
     var ok=d.total<=TARGET;
-    html+='<tr><td><strong>'+d.dia+'</strong></td><td>D+C+M+C</td><td>'+allRows.length+'</td>';
+    var svcLabel = servicios.length>1 ? servicios.map(function(s){return s.label.charAt(0);}).join('+') : (servicios[0]?servicios[0].label:'');
+    html+='<tr><td><strong>'+d.dia+'</strong></td><td>'+svcLabel+'</td><td>'+totalRows.length+'</td>';
     html+='<td class="text-center '+(ok?'':'text-danger')+'">€'+d.total.toFixed(2)+'</td>';
     html+='<td class="text-center text-muted">€'+TARGET.toFixed(2)+'</td>';
     html+='<td class="text-center">'+(ok?'<span class="badge-aprobado">OK</span>':'<span class="badge-critico">Excede</span>')+'</td></tr>';
@@ -2813,7 +2879,7 @@ function renderVarianteContent(varId, sem) {
   var tabs = [
     {id:'menu', label:'Menú'},
     {id:'nutri', label:'Nutrición'},
-    {id:'costo', label:'Costo'},
+    {id:'costo', label:'Food Cost'},
     {id:'hist', label:'Historial'},
     {id:'chat', label:'Chat IA'}
   ];
