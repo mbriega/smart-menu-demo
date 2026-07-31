@@ -402,6 +402,14 @@
               <option value="2">2 <span data-i18n="gen.periodo.meses">meses</span></option>
               <option value="3">3 <span data-i18n="gen.periodo.meses">meses</span></option>
               <option value="4">4 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="5">5 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="6">6 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="7">7 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="8">8 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="9">9 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="10">10 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="11">11 <span data-i18n="gen.periodo.meses">meses</span></option>
+              <option value="12">12 <span data-i18n="gen.periodo.meses">meses</span></option>
             </select>
           </div>
         </div>
@@ -1475,8 +1483,11 @@ function _actualizarParamsModal() {
 
 // ── MODO DE GENERACIÓN: nuevo vs. basado en menú anterior ─────────────────────
 function onModoGenerarChange() {
+  var nuevo=document.getElementById('gModoNuevo');
   var base=document.getElementById('gModoBase');
   var group=document.getElementById('generarBaseGroup');
+  if(nuevo&&nuevo.parentElement)nuevo.parentElement.classList.toggle('active',!!nuevo.checked);
+  if(base&&base.parentElement)base.parentElement.classList.toggle('active',!!base.checked);
   if(group)group.style.display=(base&&base.checked)?'block':'none';
 }
 
