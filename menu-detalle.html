@@ -81,9 +81,12 @@
         <h6 class="card-title mb-0"><i class="mdi mdi-silverware-variant mr-1" style="color:var(--sm-green)"></i>Men&uacute;s por tipo de dieta</h6>
         <p class="text-muted mb-0" style="font-size:.8rem">Generados autom&aacute;ticamente a partir del men&uacute; de centro. Basados en las dietas activas y bloqueos configurados en Crownet.</p>
       </div>
-      <button class="btn btn-sm btn-primary" id="btnGenerarVariantes" onclick="generarVariantes()">
-        <i class="mdi mdi-robot"></i> <span data-i18n="det.diets.btn.generate">Generar con IA</span>
-      </button>
+      <div class="d-flex align-items-center" style="gap:.4rem">
+        <button class="btn btn-sm btn-outline-success" id="btnPublicarTodas" onclick="publicarTodasVariantes()"><i class="mdi mdi-cloud-upload-outline"></i> <span data-i18n="det.diets.btn.publishAll">Publicar todos</span></button>
+        <button class="btn btn-sm btn-primary" id="btnGenerarVariantes" onclick="generarVariantes()">
+          <i class="mdi mdi-robot"></i> <span data-i18n="det.diets.btn.generate">Generar con IA</span>
+        </button>
+      </div>
     </div>
 
     <div id="avisoVariantesPendientes" class="p-3 mb-3 rounded d-flex align-items-start" style="background:rgba(232,119,34,.07);border:1px solid rgba(232,119,34,.25)">
@@ -512,10 +515,10 @@ function confirmarSust(){
 
 var variantesGeneradas = false;
 var variantesDB = [
-  {nombre:'Gluten-free',   icono:'mdi-barley-off',      color:'#E87722', comensales:18, costo:'€3.45', alergenos:0, estado:'ok',         motivo:'', platoAfectado:''},
-  {nombre:'Lactose-free',  icono:'mdi-cup-off-outline',  color:'#1565C0', comensales:12, costo:'€3.28', alergenos:0, estado:'ok',         motivo:'', platoAfectado:''},
-  {nombre:'Vegetarian',  icono:'mdi-leaf',             color:'#16A349', comensales:8,  costo:'€3.10', alergenos:0, estado:'ok',         motivo:'', platoAfectado:''},
-  {nombre:'Soft diet', icono:'mdi-food-variant',     color:'#9333ea', comensales:5,  costo:'€3.35', alergenos:0, estado:'incidencia', motivo:'No substitute in Crownet for Bacalao al horno (Friday). Select an alternative dish.', platoAfectado:'Viernes · Segundo plato · Bacalao al horno'}
+  {nombre:'Gluten-free',   icono:'mdi-barley-off',      color:'#E87722', comensales:18, costo:'€3.45', alergenos:0, estado:'ok',         motivo:'', platoAfectado:'', publicado:false},
+  {nombre:'Lactose-free',  icono:'mdi-cup-off-outline',  color:'#1565C0', comensales:12, costo:'€3.28', alergenos:0, estado:'ok',         motivo:'', platoAfectado:'', publicado:false},
+  {nombre:'Vegetarian',  icono:'mdi-leaf',             color:'#16A349', comensales:8,  costo:'€3.10', alergenos:0, estado:'ok',         motivo:'', platoAfectado:'', publicado:false},
+  {nombre:'Soft diet', icono:'mdi-food-variant',     color:'#9333ea', comensales:5,  costo:'€3.35', alergenos:0, estado:'incidencia', motivo:'No substitute in Crownet for Bacalao al horno (Friday). Select an alternative dish.', platoAfectado:'Viernes · Segundo plato · Bacalao al horno', publicado:false}
 ];
 var varianteEditando = null;
 var varianteDetalleIdx = null;
@@ -549,15 +552,18 @@ function renderVariantes() {
   if (!document.getElementById('tbodyVariantes')) return;
   var html = '';
   variantesDB.forEach(function(v, idx) {
-    var estadoBadge = v.estado === 'ok'
-      ? '<span class="badge-aprobado">Generada</span>'
-      : '<span class="badge-critico" style="font-size:.75rem">Incidencia</span>';
+    var estadoBadge = v.publicado
+      ? '<span class="badge-publicado">Publicada</span>'
+      : (v.estado === 'ok'
+        ? '<span class="badge-aprobado">Generada</span>'
+        : '<span class="badge-critico" style="font-size:.75rem">Incidencia</span>');
     var detalle = v.estado === 'incidencia'
       ? '<div style="font-size:.74rem;color:var(--sm-danger);margin-top:12px;line-height:1.4;max-width:280px;padding-top:6px;border-top:1px solid rgba(220,53,69,.15)"><i class="mdi mdi-alert-outline"></i> ' + v.motivo + '</div>'
       : '';
     var acciones = v.estado === 'ok'
       ? '<button class="btn btn-sm btn-outline-primary p-1" title="View full menu" onclick="abrirDetalleVariante(' + idx + ')"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>'
         + ' <button class="btn btn-sm btn-outline-secondary p-1" title="Edit dishes" onclick="abrirEdicionVariante(' + idx + ')"><i class="mdi mdi-pencil" style="font-size:.85rem"></i></button>'
+        + ' <button class="btn btn-sm btn-outline-success p-1" title="' + (v.publicado ? 'Republicar' : 'Publicar') + '" onclick="publicarVariante(' + idx + ')"><i class="mdi mdi-cloud-upload-outline" style="font-size:.85rem"></i></button>'
       : '<button class="btn btn-sm btn-warning p-1" title="Resolve issue" onclick="abrirModalEditVariante(' + idx + ')"><i class="mdi mdi-wrench" style="font-size:.85rem"></i></button>';
     html += '<tr>'
       + '<td><i class="mdi ' + v.icono + ' mr-1" style="color:' + v.color + '"></i><strong style="font-size:.83rem">' + v.nombre + '</strong>' + detalle + '</td>'
@@ -830,6 +836,21 @@ function aprobarVariante(idx) {
   var badge = document.getElementById('varExpBadge-' + idx);
   if (badge) badge.innerHTML = '<span class="badge-publicado" style="font-size:.8rem" data-i18n="det.status.varApproved">'+(typeof t==='function'?t('det.status.varApproved'):'✓ Variante aprobada')+'</span>';
   smToast('Variante "' + v.nombre + '" approved successfully.', 'success', 3000);
+}
+
+function publicarVariante(idx) {
+  var v = variantesDB[idx];
+  v.publicado = true;
+  renderVariantes();
+  smToast('Menú "' + v.nombre + '" publicado.', 'success', 3000);
+}
+
+function publicarTodasVariantes() {
+  var pendientes = variantesDB.filter(function(v){ return v.estado === 'ok' && !v.publicado; });
+  if (!pendientes.length) { smToast('No hay menús pendientes de publicar.', 'info', 2500); return; }
+  pendientes.forEach(function(v){ v.publicado = true; });
+  renderVariantes();
+  smToast(pendientes.length + ' menú(s) por tipo de dieta publicados.', 'success', 3500);
 }
 
 function aprobarMenu() {

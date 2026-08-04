@@ -123,6 +123,7 @@
       <h6 class="mb-0 font-weight-700"><i class="mdi mdi-dna mr-1" style="color:var(--sm-green)"></i><span data-i18n="det.diets.title">Menus by diet type</span></h6>
       <div class="d-flex align-items-center" style="gap:.5rem">
         <span id="estadoVariantes" style="font-size:.78rem;color:var(--sm-text-muted)" data-i18n="det.diets.descPending">Not generated</span>
+        <button class="btn btn-sm btn-outline-success" id="btnPublicarTodas" onclick="publicarTodasVariantes()"><i class="mdi mdi-cloud-upload-outline"></i> <span data-i18n="det.diets.btn.publishAll">Publish all</span></button>
         <button class="btn btn-sm btn-primary" id="btnGenerarVariantes" onclick="generarVariantes()"><i class="mdi mdi-robot"></i> <span data-i18n="det.diets.btn.generate">Generate with AI</span></button>
       </div>
     </div>
@@ -542,9 +543,9 @@ var recetasDB = {
 };
 
 var variantesDB = [
-  {nombre:'Soft diet',   icono:'mdi-food-variant',    color:'#9333ea', comensales:95, costo:'€4.85', estado:'ok', motivo:null},
-  {nombre:'Lactose-free',    icono:'mdi-cup-off-outline',  color:'#1565C0', comensales:68, costo:'€4.92', estado:'ok', motivo:null},
-  {nombre:'Diabetic', icono:'mdi-needle',           color:'#dc2626', comensales:47, costo:'€4.78', estado:'ok', motivo:null}
+  {nombre:'Soft diet',   icono:'mdi-food-variant',    color:'#9333ea', comensales:95, costo:'€4.85', estado:'ok', motivo:null, publicado:false},
+  {nombre:'Lactose-free',    icono:'mdi-cup-off-outline',  color:'#1565C0', comensales:68, costo:'€4.92', estado:'ok', motivo:null, publicado:false},
+  {nombre:'Diabetic', icono:'mdi-needle',           color:'#dc2626', comensales:47, costo:'€4.78', estado:'ok', motivo:null, publicado:false}
 ];
 
 var menuVariantesData = {
@@ -601,7 +602,7 @@ function renderVariantes() {
   if (!tbody) return;
   var html = '';
   variantesDB.forEach(function(v, idx) {
-    var badge = '<span class="badge-aprobado">Generated</span>';
+    var badge = v.publicado ? '<span class="badge-publicado">Published</span>' : '<span class="badge-aprobado">Generated</span>';
     html += '<tr>';
     html += '<td><i class="mdi ' + v.icono + ' mr-1" style="color:' + v.color + '"></i><strong style="font-size:.83rem">' + v.nombre + '</strong></td>';
     html += '<td class="text-center" style="font-size:.82rem">' + v.comensales + '</td>';
@@ -611,6 +612,7 @@ function renderVariantes() {
     html += '<button class="btn btn-sm btn-outline-primary p-1" onclick="abrirDetalleVariante(' + idx + ')" title="View full menu"><i class="mdi mdi-eye" style="font-size:.85rem"></i></button>';
     html += '<button class="btn btn-sm btn-outline-secondary p-1" onclick="abrirEdicionVariante(' + idx + ')" title="Edit dishes"><i class="mdi mdi-pencil" style="font-size:.85rem"></i></button>';
     html += '<button class="btn btn-sm btn-success p-1" onclick="aprobarVariante(' + idx + ')" title="Approve variant"><i class="mdi mdi-check" style="font-size:.85rem"></i></button>';
+    html += '<button class="btn btn-sm btn-outline-success p-1" onclick="publicarVariante(' + idx + ')" title="' + (v.publicado ? 'Republish' : 'Publish') + '"><i class="mdi mdi-cloud-upload-outline" style="font-size:.85rem"></i></button>';
     html += '</div></td>';
     html += '</tr>';
     html += '<tr id="varExp-' + idx + '" style="display:none">';
@@ -835,6 +837,21 @@ function aprobarVariante(idx) {
   smToast('Variant "' + v.nombre + '" approved', 'success', 3000);
   var expRow = document.getElementById('varExp-' + idx);
   if(expRow) setTimeout(function(){expRow.style.display='none';},1500);
+}
+
+function publicarVariante(idx) {
+  var v = variantesDB[idx];
+  v.publicado = true;
+  renderVariantes();
+  smToast('Menu "' + v.nombre + '" published.', 'success', 3000);
+}
+
+function publicarTodasVariantes() {
+  var pendientes = variantesDB.filter(function(v){ return !v.publicado; });
+  if (!pendientes.length) { smToast('No pending menus to publish.', 'info', 2500); return; }
+  pendientes.forEach(function(v){ v.publicado = true; });
+  renderVariantes();
+  smToast(pendientes.length + ' diet menu(s) published.', 'success', 3500);
 }
 
 var _varEditIdx = null;

@@ -80,14 +80,12 @@
 <!-- TABLA MENÚ BASAL SEMANAL -->
 <div class="card mb-3">
   <div class="card-body">
-    <div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap" style="gap:.5rem">
       <h6 class="card-title mb-0" id="tituloSemana"><i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>Base Menu Primary &mdash; Week 1</h6>
-      <div class="d-flex align-items-center" style="gap:.5rem" id="basalWeekControls">
-        <div class="btn-group btn-group-sm" id="semanaGroup">
-          <button class="btn btn-outline-secondary active" onclick="cambiarSemana(1,this)"><span data-i18n="basal.sem">Sem</span> 1</button>
-          <button class="btn btn-outline-secondary" onclick="cambiarSemana(2,this)"><span data-i18n="basal.sem">Sem</span> 2</button>
-          <button class="btn btn-outline-secondary" onclick="cambiarSemana(3,this)"><span data-i18n="basal.sem">Sem</span> 3</button>
-          <button class="btn btn-outline-secondary" onclick="cambiarSemana(4,this)"><span data-i18n="basal.sem">Sem</span> 4</button>
+      <div class="d-flex align-items-center flex-wrap" style="gap:.5rem" id="basalWeekControls">
+        <div class="d-flex align-items-center" style="gap:.4rem" id="semanaGroup">
+          <select class="form-control form-control-sm" id="semanaMesSelect" style="width:135px" onchange="renderSemanaStrip()"></select>
+          <div id="semanaStrip" class="d-flex" style="gap:.3rem;overflow-x:auto;max-width:320px;padding:2px 0"></div>
         </div>
         <button class="btn btn-sm btn-outline-secondary" onclick="abrirVistaMensual()"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
@@ -390,7 +388,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label d-block" style="font-size:.78rem;font-weight:600" data-i18n="basal.modal.gen.periodLabel">Per&iacute;odo</label>
-        <div class="row">
+        <div id="periodoNormalGroup" class="row">
           <div class="col-6">
             <label class="form-label" style="font-size:.72rem;color:var(--sm-text-muted)" data-i18n="gen.periodo.inicio">Mes de inicio</label>
             <input type="month" class="form-control form-control-sm" id="generarMesInicio">
@@ -412,6 +410,15 @@
               <option value="12">12 <span data-i18n="gen.periodo.meses">meses</span></option>
             </select>
           </div>
+        </div>
+        <div id="periodoEscolarGroup" style="display:none">
+          <label class="form-label" style="font-size:.72rem;color:var(--sm-text-muted)" data-i18n="gen.periodo.rangoDias">Rango de fechas (d&iacute;a a d&iacute;a)</label>
+          <div class="d-flex align-items-center" style="gap:.5rem">
+            <input type="text" class="form-control form-control-sm" id="generarRangoEscolar" placeholder="Filtrar por rango de fechas…" data-i18n-ph="gen.modo.rangoPlaceholder" readonly style="cursor:pointer;background:#fff">
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="generarRangoEscolarLimpiar" onclick="_limpiarRangoEscolar()" title="Quitar filtro" data-i18n-title="gen.modo.rangoLimpiar"><i class="mdi mdi-close"></i></button>
+          </div>
+          <div id="generarSemanasPreview" class="mt-2" style="max-height:180px;overflow-y:auto;border:1px solid var(--sm-border);border-radius:6px;display:none"></div>
+          <p id="generarSemanasVacio" class="text-muted mt-2 mb-0" style="font-size:.76rem" data-i18n="gen.periodo.rangoHint">Elige un rango de fechas para ver en qu&eacute; semanas se generar&aacute; el men&uacute; basal.</p>
         </div>
       </div>
       <div class="mb-3">
@@ -639,6 +646,72 @@ var GENERADO = {
 // ── HISTÓRICO DE MENÚS BASALES (registro histórico global por tipo de centro) ──
 var MESES_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
+// ── CALENDARIO DE SEMANAS (soporta hasta TOTAL_SEMANAS, navegación por mes) ────
+var TOTAL_SEMANAS = 20;
+var BASAL_WEEK1_START = new Date(2025, 8, 1); // Lunes 1 sept. 2025 — ancla de la Semana 1
+
+function _fechaSemana(n) {
+  var inicio = new Date(BASAL_WEEK1_START.getFullYear(), BASAL_WEEK1_START.getMonth(), BASAL_WEEK1_START.getDate() + (n - 1) * 7);
+  var fin = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate() + 4); // Lun–Vie
+  return { inicio: inicio, fin: fin };
+}
+
+function _formatRangoSemana(n) {
+  var r = _fechaSemana(n);
+  var mesIni = MESES_ES[r.inicio.getMonth()].substring(0, 3);
+  var mesFin = MESES_ES[r.fin.getMonth()].substring(0, 3);
+  return r.inicio.getMonth() === r.fin.getMonth()
+    ? r.inicio.getDate() + '–' + r.fin.getDate() + ' ' + mesIni
+    : r.inicio.getDate() + ' ' + mesIni + '–' + r.fin.getDate() + ' ' + mesFin;
+}
+
+function _semanaMesKey(n) {
+  var r = _fechaSemana(n);
+  return r.inicio.getFullYear() + '-' + r.inicio.getMonth();
+}
+
+function _extenderSemanas(db, total) {
+  for (var n = 5; n <= total; n++) { if (!db[n]) db[n] = db[((n - 1) % 4) + 1]; }
+  return db;
+}
+
+function poblarSemanaMesSelect() {
+  var sel = document.getElementById('semanaMesSelect');
+  if (!sel) return;
+  var valorActual = sel.value || _semanaMesKey(STATE.semana);
+  var seen = {}, opts = [];
+  for (var n = 1; n <= TOTAL_SEMANAS; n++) {
+    var key = _semanaMesKey(n);
+    if (!seen[key]) {
+      seen[key] = true;
+      var r = _fechaSemana(n);
+      opts.push({ key: key, label: MESES_ES[r.inicio.getMonth()] + ' ' + r.inicio.getFullYear() });
+    }
+  }
+  sel.innerHTML = opts.map(function (o) { return '<option value="' + o.key + '">' + o.label + '</option>'; }).join('');
+  if (opts.some(function (o) { return o.key === valorActual; })) sel.value = valorActual;
+}
+
+function irASemanaMesDeSemana(n) {
+  STATE.semana = n;
+  var sel = document.getElementById('semanaMesSelect');
+  if (sel) sel.value = _semanaMesKey(n);
+}
+
+function renderSemanaStrip() {
+  var mesSel = document.getElementById('semanaMesSelect');
+  var strip = document.getElementById('semanaStrip');
+  if (!mesSel || !strip) return;
+  var mesKey = mesSel.value;
+  var html = '';
+  for (var n = 1; n <= TOTAL_SEMANAS; n++) {
+    if (_semanaMesKey(n) !== mesKey) continue;
+    var activo = STATE.semana === n;
+    html += '<button class="btn btn-sm ' + (activo ? 'btn-success' : 'btn-outline-secondary') + '" style="white-space:nowrap;font-size:.7rem;padding:.25rem .5rem;line-height:1.25" onclick="cambiarSemana(' + n + ')"><span data-i18n="basal.sem">Sem</span> ' + n + '<br><span style="font-size:.62rem;opacity:.85">' + _formatRangoSemana(n) + '</span></button>';
+  }
+  strip.innerHTML = html;
+}
+
 var HISTORICO_BASAL = {
   'escolar-primaria': [
     {mes:2,anio:2026,fecha:'02/03/2026 09:12',version:'v2',estado:'aprobado',generadoPor:'IA + Ana García',notas:'Ajuste ratio proteína animal/vegetal',basadoEn:null},
@@ -718,9 +791,9 @@ function switchPerfilEscolar(perfil) {
 }
 
 function resetSemanaButtons() {
-  var btns = document.querySelectorAll('#semanaGroup .btn');
-  btns.forEach(function(b){ b.classList.remove('active'); });
-  if (btns[0]) btns[0].classList.add('active');
+  irASemanaMesDeSemana(1);
+  poblarSemanaMesSelect();
+  renderSemanaStrip();
 }
 
 // ── RENDER PAGE ───────────────────────────────────────────────────────────────
@@ -1304,10 +1377,9 @@ function toggleEdicionBasal(btn) {
   renderTabla(STATE.semana);
 }
 
-function cambiarSemana(num, btn) {
+function cambiarSemana(num) {
   STATE.semana = num;
-  document.querySelectorAll('#semanaGroup .btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
+  renderSemanaStrip();
   if (STATE.tipo === 'escolar') {
     renderEscolarVariants(num);
   } else {
@@ -1318,7 +1390,7 @@ function cambiarSemana(num, btn) {
   var tit = document.getElementById('tituloSemana');
   if (tit) {
     var titLabel = STATE.tipo === 'escolar' ? 'Menú Basal Escolar · ' + SUBTIPO_LABELS[STATE.subtipo] + (PERFIL_PCT[STATE.subtipo] ? ' ('+PERFIL_PCT[STATE.subtipo]+')' : '') : 'Menú Basal ' + TIPO_LABELS[STATE.tipo];
-    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Semana ' + num;
+    tit.innerHTML = '<i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>' + titLabel + ' — Semana ' + num + ' <span class="text-muted" style="font-weight:400;font-size:.82rem">(' + _formatRangoSemana(num) + ')</span>';
   }
 }
 
@@ -1734,6 +1806,11 @@ function onGenerarTipoChange() {
   var notaEl=document.getElementById('generarEscolarNota');
   if(subGroup)subGroup.style.display='none';
   if(notaEl)notaEl.style.display=tipo==='escolar'?'':'none';
+  var esEscolar=tipo==='escolar';
+  var pNormal=document.getElementById('periodoNormalGroup');
+  var pEscolar=document.getElementById('periodoEscolarGroup');
+  if(pNormal)pNormal.style.display=esEscolar?'none':'';
+  if(pEscolar)pEscolar.style.display=esEscolar?'':'none';
   _actualizarParamsModal();
   _poblarBaseSelect();
 }
@@ -1760,6 +1837,88 @@ function onModoGenerarChange() {
   if(nuevo&&nuevo.parentElement)nuevo.parentElement.classList.toggle('active',!!nuevo.checked);
   if(base&&base.parentElement)base.parentElement.classList.toggle('active',!!base.checked);
   if(group)group.style.display=(base&&base.checked)?'block':'none';
+}
+
+// ── ESCOLAR: calendario de rango por días + troceo en semanas ISO ────────────
+var _generarRangoEscolarFP = null;
+
+function _initRangoEscolarPicker() {
+  var el = document.getElementById('generarRangoEscolar');
+  if (!el || typeof flatpickr === 'undefined') return;
+  if (el._flatpickr) el._flatpickr.destroy();
+  _generarRangoEscolarFP = flatpickr(el, {
+    mode: 'range',
+    dateFormat: 'd/m/Y',
+    locale: (window.I18N_LANG === 'en') ? 'default' : (window.flatpickr && flatpickr.l10ns && flatpickr.l10ns.es) || 'default',
+    onChange: function (selectedDates) {
+      if (selectedDates.length === 2) _renderSemanasPreview();
+    }
+  });
+}
+
+function _limpiarRangoEscolar() {
+  if (_generarRangoEscolarFP) _generarRangoEscolarFP.clear();
+  _renderSemanasPreview();
+}
+
+function _semanasEnRango(desde, hasta) {
+  var out = [];
+  var cursor = new Date(desde.getFullYear(), desde.getMonth(), desde.getDate());
+  var dow = cursor.getDay(); // 0=Dom..6=Sáb
+  var offsetALunes = (dow === 0 ? -6 : 1 - dow);
+  cursor.setDate(cursor.getDate() + offsetALunes);
+  var idx = 0;
+  while (cursor <= hasta) {
+    var finSemana = new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate() + 4); // Vie
+    var ini = cursor < desde ? new Date(desde) : new Date(cursor);
+    var fin = finSemana > hasta ? new Date(hasta) : finSemana;
+    // desde/hasta en fin de semana pueden caer fuera de la ventana Lun–Vie de su semana ISO
+    if (fin >= ini) {
+      out.push({ idx: idx, inicio: ini, fin: fin, parcial: (cursor < desde) || (finSemana > hasta) });
+      idx++;
+    }
+    cursor.setDate(cursor.getDate() + 7);
+  }
+  return out;
+}
+
+function _formatRangoDias(d1, d2) {
+  var mesIni = MESES_ES[d1.getMonth()].substring(0, 3);
+  var mesFin = MESES_ES[d2.getMonth()].substring(0, 3);
+  return d1.getMonth() === d2.getMonth()
+    ? d1.getDate() + '–' + d2.getDate() + ' ' + mesIni
+    : d1.getDate() + ' ' + mesIni + '–' + d2.getDate() + ' ' + mesFin;
+}
+
+function _renderSemanasPreview() {
+  var cont = document.getElementById('generarSemanasPreview');
+  var vacio = document.getElementById('generarSemanasVacio');
+  if (!cont) return;
+  var rango = _generarRangoEscolarFP ? _generarRangoEscolarFP.selectedDates : [];
+  if (!rango || rango.length !== 2) {
+    cont.style.display = 'none'; cont.innerHTML = '';
+    if (vacio) vacio.style.display = 'block';
+    return;
+  }
+  var semanas = _semanasEnRango(rango[0], rango[1]);
+  if (vacio) vacio.style.display = 'none';
+  cont.style.display = 'block';
+  cont.innerHTML = semanas.map(function (s, i) {
+    return '<label class="d-flex align-items-center justify-content-between px-2 py-2" style="font-size:.8rem;border-bottom:1px solid #f0f0f0;margin:0;cursor:pointer">'
+      + '<span><input type="checkbox" class="mr-2" id="chkSemGen-' + i + '" checked> ' + _formatRangoDias(s.inicio, s.fin) + '</span>'
+      + (s.parcial ? '<span class="text-muted" style="font-size:.72rem">parcial</span>' : '')
+      + '</label>';
+  }).join('');
+}
+
+function _semanasSeleccionadasEscolar() {
+  var rango = _generarRangoEscolarFP ? _generarRangoEscolarFP.selectedDates : [];
+  if (!rango || rango.length !== 2) return [];
+  var semanas = _semanasEnRango(rango[0], rango[1]);
+  return semanas.filter(function (s, i) {
+    var chk = document.getElementById('chkSemGen-' + i);
+    return chk ? chk.checked : true;
+  });
 }
 
 // ── SELECTOR DE MENÚ BASE: calendario de rango + lista filtrable ─────────────
@@ -1818,7 +1977,7 @@ function _renderBaseLista() {
     var val=m.key+'::'+x.idx;
     var activo=(val===seleccionActual);
     return '<div class="d-flex justify-content-between align-items-center px-2 py-2'+(activo?'':'')+'" style="cursor:pointer;font-size:.8rem;border-bottom:1px solid #f0f0f0'+(activo?';background:rgba(22,163,73,.08)':'')+'" onclick="_seleccionarBaseMenu(\''+m.key+'\','+x.idx+')">'
-      +'<span><strong>'+MESES_ES[x.it.mes]+' '+x.it.anio+'</strong> <span class="text-muted">— '+x.it.version+'</span></span>'
+      +'<span><strong>'+(x.it.rango||(MESES_ES[x.it.mes]+' '+x.it.anio))+'</strong> <span class="text-muted">— '+x.it.version+'</span></span>'
       +(activo?'<i class="mdi mdi-check-circle text-success"></i>':_histEstadoBadge(x.it.estado))
       +'</div>';
   }).join('');
@@ -1868,6 +2027,13 @@ function abrirModalGenerar() {
   var modoNuevo=document.getElementById('gModoNuevo');
   if(modoNuevo)modoNuevo.checked=true;
   onModoGenerarChange();
+  var esEscolarInit=STATE.tipo==='escolar';
+  var pNormalInit=document.getElementById('periodoNormalGroup');
+  var pEscolarInit=document.getElementById('periodoEscolarGroup');
+  if(pNormalInit)pNormalInit.style.display=esEscolarInit?'none':'';
+  if(pEscolarInit)pEscolarInit.style.display=esEscolarInit?'':'none';
+  _initRangoEscolarPicker();
+  _renderSemanasPreview();
   var mesInicio=document.getElementById('generarMesInicio');
   if(mesInicio){
     var d=new Date();d=new Date(d.getFullYear(),d.getMonth()+1,1);
@@ -1881,9 +2047,22 @@ function abrirModalGenerar() {
 }
 
 function ejecutarGeneracionIA() {
+  var m=_getModalKey();
+  var esEscolarRango=m.tipo==='escolar';
+  var periodos;
+  if(esEscolarRango){
+    periodos=_semanasSeleccionadasEscolar().map(function(s){
+      return {mes:s.inicio.getMonth(),anio:s.inicio.getFullYear(),rango:_formatRangoDias(s.inicio,s.fin)+(s.parcial?' (parcial)':'')};
+    });
+    if(!periodos.length){smToast('Elige un rango de fechas con al menos una semana para generar.','warning',3500);return;}
+  } else {
+    var mesInicioVal=(document.getElementById('generarMesInicio')||{}).value;
+    var numMeses=parseInt((document.getElementById('generarNumMeses')||{}).value||'1',10);
+    periodos=_mesesAGenerar(mesInicioVal,numMeses).map(function(x){return {mes:x.mes,anio:x.anio,rango:null};});
+  }
+
   document.getElementById('btnGenerarIA').disabled=true;
   document.getElementById('iaProgress').style.display='block';
-  var m=_getModalKey();
   var cfg=TIPO_CONFIG[m.key];
   var esBase=!!(document.getElementById('gModoBase')&&document.getElementById('gModoBase').checked);
   var baseRefVal=esBase?(document.getElementById('generarBaseSelect')||{}).value:'';
@@ -1893,23 +2072,20 @@ function ejecutarGeneracionIA() {
     var it=(HISTORICO_BASAL[partes[0]]||[])[parseInt(partes[1],10)];
     if(it)baseLabel=MESES_ES[it.mes]+' '+it.anio+' ('+it.version+')';
   }
-  var mesInicioVal=(document.getElementById('generarMesInicio')||{}).value;
-  var numMeses=parseInt((document.getElementById('generarNumMeses')||{}).value||'1',10);
-  var meses=_mesesAGenerar(mesInicioVal,numMeses);
 
   var msgs=esBase
     ? ['Cargando menú de referencia'+(baseLabel?' ('+baseLabel+')':'')+'…','Adaptando al período seleccionado…','Applying nutritional rules '+cfg.norma+'…','Optimizing costs (target €'+cfg.target.toFixed(2)+')…','Generating final proposal…']
     : ['Consulting Crownet recipes…','Applying nutritional rules '+cfg.norma+'…','Verifying variety and frequencies…','Optimizing costs (target €'+cfg.target.toFixed(2)+')…','Generating final proposal…'];
   var paso=0,bar=document.getElementById('iaProgressBar'),msg=document.getElementById('iaProgressMsg');
   var iv=setInterval(function(){
-    if(paso>=msgs.length*meses.length){
+    if(paso>=msgs.length*periodos.length){
       clearInterval(iv);$('#modalGenerar').modal('hide');
       var keysAfectadas=m.tipo==='escolar'?['primaria','secundaria','infantil','residencia-escolar'].map(function(s){return 'escolar-'+s;}):[m.key];
       keysAfectadas.forEach(function(key){
         if(!HISTORICO_BASAL[key])HISTORICO_BASAL[key]=[];
-        meses.forEach(function(mesInfo){
+        periodos.forEach(function(p){
           HISTORICO_BASAL[key].push({
-            mes:mesInfo.mes,anio:mesInfo.anio,fecha:_fechaAhora(),
+            mes:p.mes,anio:p.anio,rango:p.rango,fecha:_fechaAhora(),
             version:_histSiguienteVersion(key),estado:'pendiente',
             generadoPor:'IA',
             notas:esBase?'Generado a partir de un menú anterior':'Generado desde cero con IA',
@@ -1924,12 +2100,13 @@ function ejecutarGeneracionIA() {
       }
       if(m.tipo===STATE.tipo)renderPage();
       var genLabel=TIPO_LABELS[m.tipo]+(m.tipo==='escolar'?' · Primary, Secondary, Infant and School Residence':'');
-      var mesesLabel=meses.map(function(x){return MESES_ES[x.mes]+' '+x.anio;}).join(', ');
-      smToast('Base menu '+genLabel+' generated for '+meses.length+' month(s) ('+mesesLabel+'). Review and approve each from the historical record.','success',6000);
+      var periodosLabel=periodos.map(function(p){return p.rango?p.rango:(MESES_ES[p.mes]+' '+p.anio);}).join(', ');
+      var unidad=esEscolarRango?' week(s)':' month(s)';
+      smToast('Base menu '+genLabel+' generated for '+periodos.length+unidad+' ('+periodosLabel+'). Review and approve each from the historical record.','success',6000);
       return;
     }
-    msg.textContent=msgs[paso%msgs.length]+' ('+(Math.floor(paso/msgs.length)+1)+'/'+meses.length+')';
-    bar.style.width=((paso+1)/(msgs.length*meses.length)*100)+'%';paso++;
+    msg.textContent=msgs[paso%msgs.length]+' ('+(Math.floor(paso/msgs.length)+1)+'/'+periodos.length+')';
+    bar.style.width=((paso+1)/(msgs.length*periodos.length)*100)+'%';paso++;
   },700);
 }
 
@@ -2444,7 +2621,7 @@ function renderHistoricoGlobal() {
     var it = f.item;
     return '<tr>'
       + '<td>' + _histTipoLabel(f.key) + '</td>'
-      + '<td>' + MESES_ES[it.mes] + ' ' + it.anio + '</td>'
+      + '<td>' + (it.rango ? it.rango + ' <span class="text-muted" style="font-size:.72rem">' + it.anio + '</span>' : MESES_ES[it.mes] + ' ' + it.anio) + '</td>'
       + '<td><strong>' + it.version + '</strong></td>'
       + '<td>' + it.fecha + '</td>'
       + '<td>' + _histEstadoBadge(it.estado) + '</td>'
@@ -2461,7 +2638,7 @@ function renderHistoricoGlobal() {
 function verHistoricoItem(key, idx) {
   var it = (HISTORICO_BASAL[key] || [])[idx];
   if (!it) return;
-  document.getElementById('histPreviewTitulo').textContent = _histTipoLabel(key) + ' — ' + MESES_ES[it.mes] + ' ' + it.anio + ' (' + it.version + ')';
+  document.getElementById('histPreviewTitulo').textContent = _histTipoLabel(key) + ' — ' + (it.rango || (MESES_ES[it.mes] + ' ' + it.anio)) + ' (' + it.version + ')';
   document.getElementById('histPreviewBody').innerHTML =
     '<p class="text-muted mb-3" style="font-size:.78rem"><i class="mdi mdi-information-outline mr-1"></i>Vista previa de referencia. La composición semanal detallada se aplicará al usarlo como base de un nuevo menú.</p>'
     + '<div class="p-2 rounded" style="background:var(--sm-bg-subtle);font-size:.8rem;line-height:1.9">'
@@ -3144,6 +3321,12 @@ function renderEscolarVariants(sem) {
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
+_extenderSemanas(menuBasalDB, TOTAL_SEMANAS);
+_extenderSemanas(menuBasalHospitalDB, TOTAL_SEMANAS);
+_extenderSemanas(menuBasalEmpresaDB, TOTAL_SEMANAS);
+_extenderSemanas(menuEscolarVariantesDB, TOTAL_SEMANAS);
+poblarSemanaMesSelect();
+renderSemanaStrip();
 renderPage();
 (function(){var t=sessionStorage.getItem('menuBasalTipo');if(t){sessionStorage.removeItem('menuBasalTipo');switchTipo(t);}})();
 </script>
