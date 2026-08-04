@@ -80,13 +80,13 @@
 <!-- TABLA MENÚ BASAL SEMANAL -->
 <div class="card mb-3">
   <div class="card-body">
+    <div class="d-flex align-items-center mb-2" style="gap:.4rem" id="semanaGroup">
+      <select class="form-control form-control-sm" id="semanaMesSelect" style="width:135px;flex-shrink:0" onchange="renderSemanaStrip()"></select>
+      <div id="semanaStrip" class="d-flex" style="gap:.3rem;overflow-x:auto;flex:1;padding:2px 0"></div>
+    </div>
     <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap" style="gap:.5rem">
       <h6 class="card-title mb-0" id="tituloSemana"><i class="mdi mdi-calendar-week mr-1" style="color:var(--sm-green)"></i>Base Menu Primary &mdash; Week 1</h6>
       <div class="d-flex align-items-center flex-wrap" style="gap:.5rem" id="basalWeekControls">
-        <div class="d-flex align-items-center" style="gap:.4rem" id="semanaGroup">
-          <select class="form-control form-control-sm" id="semanaMesSelect" style="width:135px" onchange="renderSemanaStrip()"></select>
-          <div id="semanaStrip" class="d-flex" style="gap:.3rem;overflow-x:auto;max-width:320px;padding:2px 0"></div>
-        </div>
         <button class="btn btn-sm btn-outline-secondary" onclick="abrirVistaMensual()"><i class="mdi mdi-calendar-month"></i> <span data-i18n="monthly.btn">Vista mensual</span></button>
         <button class="btn btn-primary btn-sm" id="btnAprobar" onclick="aprobarBasal()" disabled><i class="mdi mdi-check-circle-outline"></i> <span data-i18n="basal.btn.approve">Approve base menu</span></button>
         <button class="btn btn-sm btn-success ml-1" id="btnGenMenusCentros" onclick="abrirGenMenusCentros()" disabled style="display:none"><i class="mdi mdi-office-building-cog"></i> <span data-i18n="basal.btn.genCentros">Generate center menus</span></button>
@@ -836,10 +836,12 @@ function renderPage() {
   var noGen = document.getElementById('basalNoGenerado');
   var contenido = document.getElementById('basalContenido');
   var weekCtrls = document.getElementById('basalWeekControls');
+  var semGroup = document.getElementById('semanaGroup');
   if (gen) {
     if (noGen) noGen.style.display = 'none';
     if (contenido) contenido.style.display = '';
-    if (weekCtrls) weekCtrls.style.display = '';
+    if (weekCtrls) weekCtrls.style.removeProperty('display');
+    if (semGroup) semGroup.style.removeProperty('display');
     if (STATE.tipo === 'escolar') {
       if (escolarView) escolarView.style.display = '';
       if (normalView) normalView.style.display = 'none';
@@ -854,7 +856,8 @@ function renderPage() {
   } else {
     if (noGen) noGen.style.display = '';
     if (contenido) contenido.style.display = 'none';
-    if (weekCtrls) weekCtrls.style.display = 'none';
+    if (weekCtrls) weekCtrls.style.setProperty('display', 'none', 'important');
+    if (semGroup) semGroup.style.setProperty('display', 'none', 'important');
   }
 
   // Titulo semana
